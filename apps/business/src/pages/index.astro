@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Home" description="Surrey Business Society — A student-led community for careers, entrepreneurship, networking, and commercial thinking at the University of Surrey.">
+
+  <!-- Hero -->
+  <section class="bg-navy-deep text-text-on-dark relative overflow-hidden bg-grid-pattern-dark border-b-4 border-gold">
+    <div class="absolute inset-0 bg-gradient-to-t from-navy-deep to-transparent opacity-90"></div>
+    <div class="mx-auto max-w-6xl px-6 py-28 sm:py-36 relative">
+      <div class="flex flex-col items-start max-w-3xl">
+        <div class="inline-flex items-center gap-3 mb-8">
+          <img src="/logos/sbs-logo.png" alt="Surrey Business Society logo" class="w-16 h-16 sm:w-20 sm:h-20" />
+          <span class="text-gold font-bold tracking-widest uppercase text-sm border-l border-gold/30 pl-3">University of Surrey</span>
+        </div>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] uppercase">
+          Surrey <span class="text-gold block sm:inline">Business</span> Society
+        </h1>
+        <p class="mt-8 text-lg sm:text-xl text-text-on-dark-secondary leading-relaxed max-w-2xl border-l-2 border-gold/50 pl-4">
+          Surrey’s student-led hub for business, careers, enterprise and professional networking. Bridging the gap between students and the professional world.
+        </p>
+        <div class="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <a href="/join" class="px-8 py-4 bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2">
+            Join the Society <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/events" class="px-8 py-4 bg-transparent hover:bg-white/5 text-text-on-dark font-bold text-sm tracking-wider uppercase border border-gold/30 transition-all flex items-center justify-center">
+            View Events
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="py-24 sm:py-32 px-6 bg-grid-pattern relative">
+    <div class="absolute top-0 left-0 w-full h-px bg-border-light"></div>
+    <div class="mx-auto max-w-6xl relative z-10">
+      <div class="mb-16 md:flex justify-between items-end border-b border-border-light pb-8">
+        <div>
+          <div class="inline-flex items-center gap-3 mb-4">
+            <span class="w-12 h-0.5 bg-gold"></span>
+            <span class="text-gold text-xs font-bold uppercase tracking-widest">Our Focus</span>
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-navy">Building Ambitious Students</h2>
+        </div>
+        <p class="mt-6 md:mt-0 text-text-secondary max-w-md md:text-right border-l md:border-l-0 md:border-r-2 border-gold pl-4 md:pl-0 md:pr-4">We create opportunities for students to develop commercially, professionally, and personally.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border-light border border-border-light">
+        <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gold transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          <div class="w-12 h-12 bg-navy flex items-center justify-center text-gold mb-6 border border-gold/20 shadow-sm">💼</div>
+          <h3 class="font-bold text-xl mb-3 text-navy uppercase tracking-wide">Careers</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Events focused on graduate roles, internships, and career development across industries.</p>
+        </div>
+        <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gold transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          <div class="w-12 h-12 bg-navy flex items-center justify-center text-gold mb-6 border border-gold/20 shadow-sm">🚀</div>
+          <h3 class="font-bold text-xl mb-3 text-navy uppercase tracking-wide">Enterprise</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Talks, workshops, and discussions with founders and startup-minded students.</p>
+        </div>
+        <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gold transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          <div class="w-12 h-12 bg-navy flex items-center justify-center text-gold mb-6 border border-gold/20 shadow-sm">🤝</div>
+          <h3 class="font-bold text-xl mb-3 text-navy uppercase tracking-wide">Networking</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Socials and professional events that help you build meaningful connections.</p>
+        </div>
+        <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors group relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gold transform -translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          <div class="w-12 h-12 bg-navy flex items-center justify-center text-gold mb-6 border border-gold/20 shadow-sm">📢</div>
+          <h3 class="font-bold text-xl mb-3 text-navy uppercase tracking-wide">Speakers</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Hear from industry professionals, entrepreneurs, and alumni about their journeys.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Preview -->
+  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 bg-grid-pattern-dark relative border-y border-border-dark">
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-deep to-transparent opacity-80"></div>
+    <div class="mx-auto max-w-6xl relative z-10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4 border-b border-border-dark pb-8">
+        <div>
+          <div class="inline-flex items-center gap-3 mb-4">
+            <span class="w-12 h-0.5 bg-gold"></span>
+            <span class="text-gold text-xs font-bold uppercase tracking-widest">Events</span>
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight">Professional Agenda</h2>
+        </div>
+        <a href="/events" class="inline-flex items-center gap-2 text-gold hover:text-gold-light text-xs font-bold uppercase tracking-wider transition-colors">
+          View Full Agenda <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-8">
+        <div class="bg-surface-card-dark p-8 border border-border-dark hover:border-gold/50 transition-colors group">
+          <div class="flex justify-between items-start mb-6">
+            <span class="inline-block text-xs font-bold tracking-widest uppercase text-navy bg-gold px-3 py-1">Coming Soon</span>
+            <span class="text-text-on-dark-secondary text-sm font-medium">TBC</span>
+          </div>
+          <h3 class="font-bold text-2xl mb-3 text-text-on-dark uppercase tracking-wide group-hover:text-gold transition-colors">Careers Evening</h3>
+          <p class="text-text-on-dark-secondary text-sm leading-relaxed mb-6">An evening exploring graduate careers and internship opportunities. Hear from professionals and ask questions.</p>
+          <div class="w-full h-px bg-border-dark group-hover:bg-gold/30 transition-colors"></div>
+        </div>
+        <div class="bg-surface-card-dark p-8 border border-border-dark hover:border-gold/50 transition-colors group">
+          <div class="flex justify-between items-start mb-6">
+            <span class="inline-block text-xs font-bold tracking-widest uppercase text-text-on-dark bg-navy border border-border-dark px-3 py-1">Planned Format</span>
+            <span class="text-text-on-dark-secondary text-sm font-medium">TBC</span>
+          </div>
+          <h3 class="font-bold text-2xl mb-3 text-text-on-dark uppercase tracking-wide group-hover:text-gold transition-colors">Founder Talk</h3>
+          <p class="text-text-on-dark-secondary text-sm leading-relaxed mb-6">Hear from a founder about building a business — the reality, the challenges, and the lessons learned.</p>
+          <div class="w-full h-px bg-border-dark group-hover:bg-gold/30 transition-colors"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Committee Preview -->
+  <section class="py-24 sm:py-32 px-6 bg-surface">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-16 md:flex justify-between items-end border-b border-border-light pb-8">
+        <div>
+          <div class="inline-flex items-center gap-3 mb-4">
+            <span class="w-12 h-0.5 bg-gold"></span>
+            <span class="text-gold text-xs font-bold uppercase tracking-widest">Leadership</span>
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-navy">Board of Directors</h2>
+        </div>
+        <p class="mt-6 md:mt-0 text-text-secondary max-w-md md:text-right border-l md:border-l-0 md:border-r-2 border-gold pl-4 md:pl-0 md:pr-4">The students driving Surrey Business Society forward.</p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-px bg-border-light border border-border-light">
+        {['President', 'Vice President', 'Treasurer', 'Events Lead', 'Sponsors Lead'].map(role => (
+          <div class="bg-surface-card p-6 text-center hover:bg-surface-alt transition-colors">
+            <div class="w-16 h-16 bg-navy mx-auto mb-4 flex items-center justify-center text-gold text-sm font-bold border border-gold/30 shadow-sm">
+              {role.split(' ').map(w => w[0]).join('')}
+            </div>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-navy">{role}</h3>
+            <p class="text-xs text-text-muted mt-2">Name TBC</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/committee" class="inline-flex items-center gap-2 text-navy hover:text-gold text-xs font-bold uppercase tracking-wider transition-colors">
+          View full leadership team <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join CTA -->
+  <section class="bg-navy text-text-on-dark py-24 sm:py-32 px-6 relative border-t-4 border-gold">
+    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50"></div>
+    <div class="mx-auto max-w-4xl text-center relative z-10 bg-navy-deep p-12 sm:p-16 border border-border-dark shadow-2xl">
+      <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-6">Partner With Us</h2>
+      <p class="text-text-on-dark-secondary text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+        Whether you're interested in consulting, finance, entrepreneurship, or just curious about business — join the society. Or if you're a company, explore sponsorship opportunities.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/join" class="px-8 py-4 bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all shadow-md">
+          Become a Member
+        </a>
+        <a href="/join" class="px-8 py-4 bg-transparent hover:bg-white/5 text-text-on-dark font-bold text-sm tracking-wider uppercase border border-gold/30 transition-all">
+          Sponsorship Info
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

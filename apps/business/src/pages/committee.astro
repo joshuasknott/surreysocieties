@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+const committee = [
+  { role: 'President', initials: 'P' },
+  { role: 'Vice President', initials: 'VP' },
+  { role: 'Treasurer', initials: 'T' },
+  { role: 'Professional Events Lead', initials: 'PE' },
+  { role: 'Social Events Lead', initials: 'SE' },
+  { role: 'Marketing & Communications Lead', initials: 'MC' },
+  { role: 'Sponsorships & Partnerships Lead', initials: 'SP' },
+  { role: 'Finance & Operations Officer', initials: 'FO' },
+  { role: 'Media & Content Lead', initials: 'ML' },
+  { role: 'Inclusion Officer', initials: 'IO' },
+  { role: 'First Year Representative', initials: 'FY' },
+];
+---
+
+<Layout title="Committee" description="Meet the student committee running Surrey Business Society — the team behind our careers events, networking, and community.">
+
+  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold">
+    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50"></div>
+    <div class="mx-auto max-w-6xl relative z-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="w-12 h-0.5 bg-gold"></span>
+        <span class="text-gold text-xs font-bold uppercase tracking-widest">Leadership</span>
+      </div>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark">Board of Directors</h1>
+      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed">
+        The students behind Surrey Business Society.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 sm:py-32 px-6 bg-surface">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border-light border border-border-light">
+        {committee.map(member => (
+          <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors group relative overflow-hidden flex items-start gap-6">
+            <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+            <div class="w-16 h-16 bg-navy flex items-center justify-center text-gold font-bold text-xl shrink-0 border border-gold/30 shadow-sm">
+              {member.initials}
+            </div>
+            <div>
+              <h3 class="font-bold text-lg uppercase tracking-wide text-navy leading-tight mb-2">{member.role}</h3>
+              <p class="text-text-muted text-sm font-medium tracking-wide uppercase">Name TBC</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16 bg-surface-alt p-12 border-y border-border-light text-center bg-grid-pattern relative">
+        <div class="relative z-10">
+          <h3 class="font-black text-2xl uppercase tracking-tight mb-4 text-navy">Want to join the board?</h3>
+          <p class="text-text-secondary mb-8 max-w-lg mx-auto leading-relaxed">Elections are held annually through Surrey Students' Union. Follow our announcements for when applications open.</p>
+          <a href="/join" class="inline-flex items-center gap-2 text-navy hover:text-gold text-sm font-bold uppercase tracking-wider transition-colors border-b-2 border-transparent hover:border-gold pb-1">
+            Join the society first <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

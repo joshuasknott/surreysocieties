@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+const events = [
+  {
+    title: 'Intro to Neurotech',
+    description: 'What is neurotechnology? An accessible overview for students from any background — covering the key concepts, applications, and why it matters.',
+    type: 'Coming Soon',
+    format: 'Talk + Q&A',
+  },
+  {
+    title: 'Brain-Computer Interfaces 101',
+    description: 'A beginner-friendly introduction to BCIs — how they work, current applications, and the challenges of connecting brains to machines.',
+    type: 'Planned Format',
+    format: 'Workshop / Talk',
+  },
+  {
+    title: 'Research Reading Group',
+    description: 'A regular session where we pick a recent paper in neuroscience or neurotechnology and discuss it together. No expertise required — just curiosity.',
+    type: 'Planned Format',
+    format: 'Reading Group',
+  },
+  {
+    title: 'Neurotech Careers Panel',
+    description: 'Exploring career paths in neurotechnology, neuroscience, and related fields. What roles exist? What skills matter? What does the path look like?',
+    type: 'Planned Format',
+    format: 'Panel Discussion',
+  },
+];
+---
+
+<Layout title="Events" description="Upcoming and planned events from Surrey Neurotech Society — talks, workshops, reading groups, and careers panels.">
+
+  <section class="bg-primary text-text-on-dark py-16 sm:py-20 px-6 neural-wave-bg-dark curve-bottom relative overflow-hidden">
+    <div class="mx-auto max-w-6xl relative z-10">
+      <div class="inline-flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-accent"></span>
+        <span class="w-8 h-px bg-gradient-to-r from-accent/60 to-transparent"></span>
+        <span class="text-accent text-sm font-semibold uppercase tracking-wider">Events</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-black tracking-tight">Events</h1>
+      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl">What we're planning — from introductory talks to deeper technical sessions and reading groups.</p>
+    </div>
+    <div class="absolute bottom-0 inset-x-0"><div class="neural-pathway"></div></div>
+  </section>
+
+  <section class="py-16 sm:py-20 px-6">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid sm:grid-cols-2 gap-6">
+        {events.map(event => (
+          <div class="glass-card rounded-2xl p-6 border-transparent hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-block text-xs font-medium text-accent bg-accent-muted px-3 py-1 rounded-full">{event.type}</span>
+              <span class="text-xs text-text-muted">Date TBC</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">{event.title}</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">{event.description}</p>
+            <div class="text-xs text-text-muted">
+              Format: {event.format}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 glass-card rounded-2xl p-8 border-transparent text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-accent-muted to-transparent opacity-30"></div>
+        <div class="relative z-10">
+          <h3 class="font-semibold text-lg mb-2 text-primary-deep">Got a topic you'd like us to cover?</h3>
+          <p class="text-text-secondary text-sm mb-4 max-w-xl mx-auto">We're always looking for paper suggestions, speaker ideas, and workshop topics. Get in touch if you have something in mind.</p>
+          <a href="/join" class="text-accent hover:text-accent-dark text-sm font-semibold transition-colors">
+            Get in touch →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

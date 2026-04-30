@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+const events = [
+  {
+    title: 'Careers Evening',
+    description: 'An evening exploring graduate careers and internship opportunities across industries. Hear from professionals, ask questions, and make connections.',
+    type: 'Coming Soon',
+    format: 'Panel + Networking',
+  },
+  {
+    title: 'Founder Talk',
+    description: 'Hear from a founder about building a business — the reality, the challenges, and the lessons. Followed by audience Q&A.',
+    type: 'Planned Format',
+    format: 'Talk + Q&A',
+  },
+  {
+    title: 'Networking Social',
+    description: 'A relaxed social event designed to help you meet other ambitious students. No formal dress code, just good conversation.',
+    type: 'Planned Format',
+    format: 'Social Event',
+  },
+  {
+    title: 'Sponsorship Workshop',
+    description: 'A practical session on approaching companies for sponsorship and partnerships — useful for society leaders and aspiring entrepreneurs alike.',
+    type: 'Planned Format',
+    format: 'Workshop',
+  },
+];
+---
+
+<Layout title="Events" description="Upcoming and planned events from Surrey Business Society — careers evenings, founder talks, networking socials, and workshops.">
+
+  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold">
+    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50"></div>
+    <div class="mx-auto max-w-6xl relative z-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="w-12 h-0.5 bg-gold"></span>
+        <span class="text-gold text-xs font-bold uppercase tracking-widest">Events</span>
+      </div>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark">Professional Agenda</h1>
+      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed">
+        Professional development, networking, and entrepreneurship — here's what we're planning.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 sm:py-32 px-6 bg-surface">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid sm:grid-cols-2 gap-px bg-border-light border border-border-light mb-16">
+        {events.map(event => (
+          <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors group relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+            <div class="flex items-center justify-between gap-3 mb-6">
+              <span class="inline-block text-xs font-bold tracking-widest uppercase text-navy bg-gold px-3 py-1">{event.type}</span>
+              <span class="text-xs font-bold uppercase tracking-widest text-text-muted">Date TBC</span>
+            </div>
+            <h3 class="font-bold text-2xl mb-3 text-navy uppercase tracking-wide group-hover:text-gold-dark transition-colors">{event.title}</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-6">{event.description}</p>
+            <div class="text-xs font-bold uppercase tracking-widest text-navy border-t border-border-light pt-4">
+              Format: {event.format}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-navy-deep text-text-on-dark p-12 text-center relative overflow-hidden border border-border-dark shadow-xl">
+        <div class="absolute inset-0 bg-grid-pattern-dark opacity-30"></div>
+        <div class="relative z-10">
+          <h3 class="font-black text-2xl uppercase tracking-tight mb-4">Have an event idea?</h3>
+          <p class="text-text-on-dark-secondary mb-8 max-w-lg mx-auto">We're open to suggestions from members. If you know a great speaker or have a topic in mind, get in touch.</p>
+          <a href="/join" class="inline-block px-8 py-4 bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all shadow-md">
+            Get in touch <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

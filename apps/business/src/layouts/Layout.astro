@@ -1,0 +1,142 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/committee', label: 'Committee' },
+  { href: '/events', label: 'Events' },
+  { href: '/join', label: 'Join' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>{title} — Surrey Business Society</title>
+  </head>
+  <body class="bg-surface text-text-primary font-sans min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-navy-deep border-b-4 border-gold">
+      <div class="mx-auto max-w-6xl px-6 h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-4 group">
+          <img src="/logos/sbs-logo.png" alt="Surrey Business Society" class="h-10 w-10 transition-transform group-hover:scale-105" />
+          <span class="text-text-on-dark font-bold text-lg tracking-widest uppercase hidden sm:block border-l border-gold/30 pl-4">
+            Surrey <span class="text-gold">Business</span> Society
+          </span>
+        </a>
+
+        <!-- Desktop nav -->
+        <div class="hidden md:flex items-stretch h-full">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class:list={[
+                'px-5 flex items-center text-sm font-bold tracking-wider uppercase transition-all border-b-4 border-transparent hover:bg-white/5',
+                currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                  ? 'text-gold border-gold bg-white/5'
+                  : 'text-text-on-dark-secondary hover:text-text-on-dark',
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-text-on-dark p-2 hover:text-gold transition-colors"
+          aria-label="Toggle navigation menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile nav -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-gold/30 bg-navy-deep">
+        <div class="flex flex-col">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class:list={[
+                'px-6 py-4 text-sm font-bold tracking-wider uppercase transition-colors border-l-4 border-transparent',
+                currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                  ? 'text-gold bg-white/5 border-gold'
+                  : 'text-text-on-dark-secondary hover:text-text-on-dark hover:bg-white/5',
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-deep text-text-on-dark-secondary border-t border-border-dark relative">
+      <div class="absolute inset-0 bg-grid-pattern-dark opacity-30 pointer-events-none"></div>
+      <div class="mx-auto max-w-6xl px-6 py-16 relative z-10">
+        <div class="grid sm:grid-cols-12 gap-8 mb-12">
+          <div class="sm:col-span-5 lg:col-span-4">
+            <div class="flex items-center gap-4 mb-6">
+              <img src="/logos/sbs-logo.png" alt="" class="h-10 w-10" />
+              <span class="text-text-on-dark font-bold uppercase tracking-widest text-sm">Surrey Business Society</span>
+            </div>
+            <p class="text-sm leading-relaxed border-l-2 border-gold pl-4 text-text-on-dark-secondary">
+              A student-led professional network under Surrey Students' Union. Building a community for careers, enterprise, and commercial thinking.
+            </p>
+          </div>
+          <div class="sm:col-span-3 lg:col-span-2 lg:col-start-7">
+            <h4 class="text-gold font-bold mb-5 text-xs uppercase tracking-widest">Navigation</h4>
+            <div class="flex flex-col gap-3">
+              {navLinks.map(link => (
+                <a href={link.href} class="text-sm font-medium hover:text-white transition-colors">{link.label}</a>
+              ))}
+            </div>
+          </div>
+          <div class="sm:col-span-4 lg:col-span-3">
+            <h4 class="text-gold font-bold mb-5 text-xs uppercase tracking-widest">Connect</h4>
+            <div class="flex flex-col gap-3 text-sm font-medium">
+              <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+              <a href="#" class="hover:text-white transition-colors">Instagram</a>
+              <a href="#" class="hover:text-white transition-colors">Email Us</a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-border-dark pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium">
+          <p>&copy; 2025 Surrey Business Society.</p>
+          <p class="text-gold tracking-widest uppercase text-[10px]">surreybusinesssociety.org</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => {
+        menu?.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>
