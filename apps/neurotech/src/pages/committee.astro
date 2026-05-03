@@ -19,44 +19,42 @@ const committee = [
 
 <Layout title="Committee" description="Meet the student committee running Surrey Neurotech Society — the team behind our events, research groups, and community.">
 
-  <section class="bg-primary text-text-on-dark py-16 sm:py-20 px-6 neural-wave-bg-dark curve-bottom relative overflow-hidden">
+  <!-- Header -->
+  <section class="bg-primary text-text-on-dark py-16 sm:py-20 px-6 nav-grid-dark border-b-2 border-gold/20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-2 mb-4">
-        <span class="w-2 h-2 rounded-full bg-accent"></span>
-        <span class="w-8 h-px bg-gradient-to-r from-accent/60 to-transparent"></span>
-        <span class="text-accent text-sm font-semibold uppercase tracking-wider">Our Team</span>
+      <div class="inline-flex items-center gap-3 mb-4">
+        <div class="gold-dot"></div>
+        <span class="text-gold text-xs font-semibold uppercase tracking-wider">Our Team</span>
       </div>
-      <h1 class="text-4xl sm:text-5xl font-black tracking-tight">Committee</h1>
-      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl">The student volunteers who make Surrey Neurotech Society happen.</p>
+      <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-text-on-dark">Committee</h1>
+      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl border-l-2 border-gold/40 pl-4">The student volunteers who make Surrey Neurotech Society happen.</p>
     </div>
-    <div class="absolute bottom-0 inset-x-0"><div class="neural-pathway"></div></div>
   </section>
 
-  <section class="py-16 sm:py-20 px-6">
+  <!-- Committee Grid -->
+  <section class="py-16 sm:py-20 px-6 bg-surface nav-grid-light">
     <div class="mx-auto max-w-6xl">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {committee.map(member => (
-          <div class="glass-card rounded-2xl p-6 border-transparent hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 flex items-start gap-4">
-            <div class="w-14 h-14 rounded-full bg-surface-alt border border-accent/20 shadow-sm flex items-center justify-center text-accent font-bold text-sm shrink-0">
+          <div class="neuro-card p-6 flex items-start gap-4">
+            <div class="w-14 h-14 rounded-xl bg-primary border border-gold/30 flex items-center justify-center text-gold font-bold text-sm shrink-0 shadow-sm">
               {member.initials}
             </div>
             <div>
-              <h3 class="font-semibold text-lg">{member.role}</h3>
+              <h3 class="font-semibold text-lg text-text-primary">{member.role}</h3>
               <p class="text-text-muted text-sm mt-1">Name TBC</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div class="mt-12 glass-card rounded-2xl p-8 border-transparent text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-accent-muted to-transparent opacity-30"></div>
-        <div class="relative z-10">
-          <h3 class="font-semibold text-lg mb-2 text-primary-deep">Interested in joining the committee?</h3>
-          <p class="text-text-secondary text-sm mb-4 max-w-xl mx-auto">Committee elections happen through Surrey Students' Union. Keep an eye on our announcements for when positions open.</p>
-          <a href="/join" class="text-accent hover:text-accent-dark text-sm font-semibold transition-colors">
-            Join the society first →
-          </a>
-        </div>
+      <div class="mt-12 neuro-card p-8 text-center">
+        <h3 class="font-semibold text-lg mb-2 text-text-primary">Interested in joining the committee?</h3>
+        <p class="text-text-secondary text-sm mb-4 max-w-xl mx-auto">Committee elections happen through Surrey Students' Union. Keep an eye on our announcements for when positions open.</p>
+        <a href="/join" class="text-gold hover:text-gold-dark text-sm font-semibold transition-colors">
+          Join the society first →
+        </a>
       </div>
     </div>
   </section>

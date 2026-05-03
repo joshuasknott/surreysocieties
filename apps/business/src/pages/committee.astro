@@ -20,42 +20,51 @@ const committee = [
 
 <Layout title="Committee" description="Meet the student committee running Surrey Business Society — the team behind our careers events, networking, and community.">
 
-  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold">
-    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50"></div>
+  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold overflow-hidden gsap-section">
+    <!-- Geometric Background Shapes -->
+    <div class="absolute top-[20%] right-[10%] w-96 h-96 rounded-full bg-gold/5 blur-3xl mix-blend-screen gsap-parallax-shape pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] left-[-5%] w-72 h-72 rounded-full bg-blue-500/10 blur-[80px] mix-blend-screen gsap-parallax-shape pointer-events-none" data-speed="0.8"></div>
+
+    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50 pointer-events-none"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-3 mb-6">
+      <div class="inline-flex items-center gap-3 mb-6 gsap-fade-up">
         <span class="w-12 h-0.5 bg-gold"></span>
-        <span class="text-gold text-xs font-bold uppercase tracking-widest">Leadership</span>
+        <span class="text-gold text-xs font-bold uppercase tracking-widest backdrop-blur-sm bg-navy/30 px-2 py-1">Leadership</span>
       </div>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark">Board of Directors</h1>
-      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed">
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark gsap-fade-up">Committee</h1>
+      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed gsap-fade-up">
         The students behind Surrey Business Society.
       </p>
     </div>
   </section>
 
-  <section class="py-24 sm:py-32 px-6 bg-surface">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border-light border border-border-light">
+  <section class="py-24 sm:py-32 px-6 bg-surface relative overflow-hidden gsap-section">
+    <!-- Abstract Shape -->
+    <div class="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-navy/5 blur-[120px] pointer-events-none gsap-parallax-shape" data-speed="1.2"></div>
+
+    <div class="mx-auto max-w-6xl relative z-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {committee.map(member => (
-          <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors group relative overflow-hidden flex items-start gap-6">
-            <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
-            <div class="w-16 h-16 bg-navy flex items-center justify-center text-gold font-bold text-xl shrink-0 border border-gold/30 shadow-sm">
+          <div class="gsap-stagger-committee bg-surface-card rounded-2xl p-6 hover:bg-surface-alt transition-all duration-500 hover:-translate-y-2 shadow-[0_4px_24px_rgba(17,24,39,0.04)] hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)] border border-border-light group relative overflow-hidden flex items-start gap-5">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+            <div class="w-14 h-14 rounded-xl bg-navy flex items-center justify-center text-gold font-bold text-base shrink-0 border border-gold/30 shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_0_4px_rgba(212,160,23,0.15)] transition-all duration-500 relative z-10">
               {member.initials}
             </div>
-            <div>
-              <h3 class="font-bold text-lg uppercase tracking-wide text-navy leading-tight mb-2">{member.role}</h3>
+            <div class="relative z-10">
+              <h3 class="font-bold text-base uppercase tracking-wide text-navy leading-tight mb-1 group-hover:text-gold transition-colors">{member.role}</h3>
               <p class="text-text-muted text-sm font-medium tracking-wide uppercase">Name TBC</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div class="mt-16 bg-surface-alt p-12 border-y border-border-light text-center bg-grid-pattern relative">
+      <div class="mt-12 bg-surface-alt rounded-2xl p-10 border border-border-light text-center shadow-[0_4px_24px_rgba(17,24,39,0.04)] bg-grid-pattern relative overflow-hidden gsap-fade-up group hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)] transition-all duration-500 hover:-translate-y-2">
+        <div class="absolute top-[-50%] right-[-10%] w-64 h-64 rounded-full bg-gold/5 blur-[80px] pointer-events-none group-hover:bg-gold/10 transition-colors duration-500"></div>
         <div class="relative z-10">
-          <h3 class="font-black text-2xl uppercase tracking-tight mb-4 text-navy">Want to join the board?</h3>
+          <h3 class="font-black text-2xl uppercase tracking-tight mb-4 text-navy">Want to join the committee?</h3>
           <p class="text-text-secondary mb-8 max-w-lg mx-auto leading-relaxed">Elections are held annually through Surrey Students' Union. Follow our announcements for when applications open.</p>
-          <a href="/join" class="inline-flex items-center gap-2 text-navy hover:text-gold text-sm font-bold uppercase tracking-wider transition-colors border-b-2 border-transparent hover:border-gold pb-1">
+          <a href="/join" class="inline-flex items-center gap-2 text-navy hover:text-gold text-sm font-bold uppercase tracking-wider transition-colors border-b-2 border-transparent hover:border-gold pb-1 group-hover:translate-x-1 duration-300">
             Join the society first <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -63,4 +72,52 @@ const committee = [
     </div>
   </section>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.gsap-fade-up').forEach((elem: any) => {
+          gsap.fromTo(elem, 
+            { y: 40, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: elem,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+              }
+            }
+          );
+        });
+
+        ScrollTrigger.create({
+          trigger: ".gsap-stagger-committee",
+          start: "top 85%",
+          animation: gsap.fromTo(".gsap-stagger-committee", 
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }
+          ),
+          toggleActions: "play none none reverse"
+        });
+
+        gsap.utils.toArray('.gsap-parallax-shape').forEach((shape: any) => {
+          const speed = shape.getAttribute('data-speed') || 0.5;
+          gsap.to(shape, {
+            y: () => (ScrollTrigger.maxScroll(window) - (ScrollTrigger.maxScroll(window) * speed)),
+            ease: "none",
+            scrollTrigger: {
+              trigger: shape.closest('.gsap-section') || document.body,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          });
+        });
+      }
+    });
+  </script>
 </Layout>

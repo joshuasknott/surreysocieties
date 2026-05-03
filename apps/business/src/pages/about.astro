@@ -6,15 +6,19 @@ import '../styles/global.css';
 
 <Layout title="About" description="Learn about Surrey Business Society — our mission, values, and what members can expect from our student-led business community.">
 
-  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold">
-    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50"></div>
+  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold overflow-hidden gsap-section">
+    <!-- Geometric Background Shapes -->
+    <div class="absolute top-[20%] right-[10%] w-96 h-96 rounded-full bg-gold/5 blur-3xl mix-blend-screen gsap-parallax-shape pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] left-[-5%] w-72 h-72 rounded-full bg-blue-500/10 blur-[80px] mix-blend-screen gsap-parallax-shape pointer-events-none" data-speed="0.8"></div>
+
+    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50 pointer-events-none"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-3 mb-6">
+      <div class="inline-flex items-center gap-3 mb-6 gsap-fade-up">
         <span class="w-12 h-0.5 bg-gold"></span>
-        <span class="text-gold text-xs font-bold uppercase tracking-widest">About Us</span>
+        <span class="text-gold text-xs font-bold uppercase tracking-widest backdrop-blur-sm bg-navy/30 px-2 py-1">About Us</span>
       </div>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark">About Surrey Business Society</h1>
-      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed">
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark gsap-fade-up">About Surrey Business Society</h1>
+      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed gsap-fade-up">
         Ambitious students. Professional development. Real-world thinking.
       </p>
     </div>
@@ -131,5 +135,42 @@ import '../styles/global.css';
       </div>
     </div>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
 
+        gsap.utils.toArray('.gsap-fade-up').forEach((elem: any) => {
+          gsap.fromTo(elem, 
+            { y: 40, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: elem,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+              }
+            }
+          );
+        });
+
+        gsap.utils.toArray('.gsap-parallax-shape').forEach((shape: any) => {
+          const speed = shape.getAttribute('data-speed') || 0.5;
+          gsap.to(shape, {
+            y: () => (ScrollTrigger.maxScroll(window) - (ScrollTrigger.maxScroll(window) * speed)),
+            ease: "none",
+            scrollTrigger: {
+              trigger: shape.closest('.gsap-section') || document.body,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          });
+        });
+      }
+    });
+  </script>
 </Layout>
