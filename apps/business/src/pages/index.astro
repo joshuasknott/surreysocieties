@@ -2,7 +2,8 @@
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import BackgroundVideo from '@surreysocieties/ui/components/BackgroundVideo';
-import ResponsiveImageFrame from '@surreysocieties/ui/components/ResponsiveImageFrame';
+import { Picture } from 'astro:assets';
+import businessNetworking from '../assets/images/business-networking.jpg';
 import '../styles/global.css';
 ---
 
@@ -93,14 +94,14 @@ import '../styles/global.css';
 
         <!-- Right Side: Content Area -->
         <div class="md:w-2/3 relative min-h-[420px]">
-          <ResponsiveImageFrame
-            src="/images/optimized/business-networking-1920.webp"
-            fallbackSrc="/images/optimized/business-networking-1920.jpg"
+          <Picture
+            src={businessNetworking}
             alt="Business Society students networking at a professional event"
-            objectPosition="center 42%"
-            className="absolute inset-0 rounded-2xl shadow-xl border border-border-light"
-            imgClass="opacity-45"
+            widths={[768, 1280, 1920]}
             sizes="(min-width: 1024px) 760px, 100vw"
+            class="w-full h-full object-cover opacity-45"
+            style={{ objectPosition: 'center 42%' }}
+            pictureAttributes={{ class: 'absolute inset-0 rounded-2xl shadow-xl border border-border-light block overflow-hidden' }}
           />
           <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-white via-white/95 to-white/75 pointer-events-none"></div>
           <div class="glass-panel w-full h-full rounded-2xl relative overflow-hidden shadow-xl bg-surface-card/80">

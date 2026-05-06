@@ -1,21 +1,26 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import Layout from '../layouts/Layout.astro';
+import { createConvexClient } from '@surreysocieties/admin';
 import '../styles/global.css';
 
-const committee = [
-  { role: 'President', initials: 'P' },
-  { role: 'Vice President', initials: 'VP' },
-  { role: 'Treasurer', initials: 'T' },
-  { role: 'Professional Events Lead', initials: 'PE' },
-  { role: 'Social Events Lead', initials: 'SE' },
-  { role: 'Marketing & Communications Lead', initials: 'MC' },
-  { role: 'Sponsorships & Partnerships Lead', initials: 'SP' },
-  { role: 'Finance & Operations Officer', initials: 'FO' },
-  { role: 'Media & Content Lead', initials: 'ML' },
-  { role: 'Inclusion Officer', initials: 'IO' },
-  { role: 'First Year Representative', initials: 'FY' },
-];
+const SOCIETY_ID = 'business';
+const client = createConvexClient();
+const committee: any[] = (await client.query("committee:listActive", { societySlug: SOCIETY_ID }))
+  .sort((a: any, b: any) =>
+    (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
+    || (a.name || '').localeCompare(b.name || '')
+  );
+
+const getInitials = (name?: string, role?: string) => {
+  const source = (name || role || '?').trim();
+  const words = source.split(/\s+/).filter(Boolean);
+
+  if (words.length === 0) return '?';
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+
+  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+};
 ---
 
 <Layout title="Committee" description="Meet the student committee running Surrey Business Society — the team behind our careers events, networking, and community.">
@@ -44,16 +49,24 @@ const committee = [
 
     <div class="mx-auto max-w-6xl relative z-10">
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {committee.map(member => (
+        {committee.length === 0 ? (
+          <div class="gsap-stagger-committee sm:col-span-2 lg:col-span-3 bg-surface-card rounded-2xl p-10 text-center shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-border-light group relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/[0.02] pointer-events-none"></div>
+            <div class="relative z-10">
+              <h3 class="font-black text-2xl uppercase tracking-tight mb-4 text-navy">Committee details coming soon</h3>
+              <p class="text-text-secondary max-w-lg mx-auto leading-relaxed">Check back soon to meet the Surrey Business Society committee.</p>
+            </div>
+          </div>
+        ) : committee.map(member => (
           <div class="gsap-stagger-committee bg-surface-card rounded-2xl p-6 hover:bg-surface-alt transition-all duration-500 hover:-translate-y-2 shadow-[0_4px_24px_rgba(17,24,39,0.04)] hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)] border border-border-light group relative overflow-hidden flex items-start gap-5">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
             <div class="w-14 h-14 rounded-xl bg-navy flex items-center justify-center text-gold font-bold text-base shrink-0 border border-gold/30 shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_0_4px_rgba(212,160,23,0.15)] transition-all duration-500 relative z-10">
-              {member.initials}
+              {getInitials(member.name, member.role)}
             </div>
             <div class="relative z-10">
               <h3 class="font-bold text-base uppercase tracking-wide text-navy leading-tight mb-1 group-hover:text-gold transition-colors">{member.role}</h3>
-              <p class="text-text-muted text-sm font-medium tracking-wide uppercase">Name TBC</p>
+              <p class="text-text-muted text-sm font-medium tracking-wide uppercase">{member.name}</p>
             </div>
           </div>
         ))}

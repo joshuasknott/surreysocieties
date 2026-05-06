@@ -1,20 +1,26 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import Layout from '../layouts/Layout.astro';
+import { createConvexClient } from '@surreysocieties/admin';
 import '../styles/global.css';
 
-const committee = [
-  { role: 'President', initials: 'P' },
-  { role: 'Vice President', initials: 'VP' },
-  { role: 'Treasurer', initials: 'T' },
-  { role: 'Academic & Research Lead', initials: 'AR' },
-  { role: 'Events Lead', initials: 'EL' },
-  { role: 'Partnerships Lead', initials: 'PL' },
-  { role: 'Marketing & Communications Lead', initials: 'MC' },
-  { role: 'Projects Lead', initials: 'PJ' },
-  { role: 'Wellbeing & Inclusion Officer', initials: 'WI' },
-  { role: 'First Year Representative', initials: 'FY' },
-];
+const SOCIETY_ID = 'neurotech';
+const client = createConvexClient();
+const committee: any[] = (await client.query("committee:listActive", { societySlug: SOCIETY_ID }))
+  .sort((a: any, b: any) =>
+    (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
+    || (a.name || '').localeCompare(b.name || '')
+  );
+
+const getInitials = (name?: string, role?: string) => {
+  const source = (name || role || '?').trim();
+  const words = source.split(/\s+/).filter(Boolean);
+
+  if (words.length === 0) return '?';
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+
+  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+};
 ---
 
 <Layout title="Committee" description="Meet the student committee running Surrey Neurotech Society — the team behind our events, research groups, and community.">
@@ -35,19 +41,26 @@ const committee = [
   <!-- Committee Grid -->
   <section class="py-16 sm:py-20 px-6 bg-surface nav-grid-light">
     <div class="mx-auto max-w-6xl">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {committee.map(member => (
-          <div class="neuro-card p-6 flex items-start gap-4">
-            <div class="w-14 h-14 rounded-xl bg-primary border border-gold/30 flex items-center justify-center text-gold font-bold text-sm shrink-0 shadow-sm">
-              {member.initials}
+      {committee.length === 0 ? (
+        <div class="neuro-card p-8 text-center">
+          <h3 class="font-semibold text-lg mb-2 text-text-primary">Committee details coming soon</h3>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon to meet the Surrey Neurotech Society committee.</p>
+        </div>
+      ) : (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {committee.map(member => (
+            <div class="neuro-card p-6 flex items-start gap-4">
+              <div class="w-14 h-14 rounded-xl bg-primary border border-gold/30 flex items-center justify-center text-gold font-bold text-sm shrink-0 shadow-sm">
+                {getInitials(member.name, member.role)}
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg text-text-primary">{member.role}</h3>
+                <p class="text-text-muted text-sm mt-1">{member.name}</p>
+              </div>
             </div>
-            <div>
-              <h3 class="font-semibold text-lg text-text-primary">{member.role}</h3>
-              <p class="text-text-muted text-sm mt-1">Name TBC</p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <div class="mt-12 neuro-card p-8 text-center">
         <h3 class="font-semibold text-lg mb-2 text-text-primary">Interested in joining the committee?</h3>

@@ -1,7 +1,8 @@
 ---
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
-import ResponsiveImageFrame from '@surreysocieties/ui/components/ResponsiveImageFrame';
+import { Picture } from 'astro:assets';
+import neuroHardware from '../assets/images/neuro-hardware.jpg';
 import '../styles/global.css';
 ---
 
@@ -97,13 +98,14 @@ import '../styles/global.css';
               <p class="text-text-secondary text-base leading-relaxed" id="hotspot-desc">Understanding the brain — from neural pathways to cognitive processes and beyond. Hover or click a glowing node on the neural map to explore our focus areas.</p>
             </div>
           </div>
-          <ResponsiveImageFrame
-            src="/images/optimized/neuro-hardware-1920.webp"
-            fallbackSrc="/images/optimized/neuro-hardware-1920.jpg"
+          <Picture
+            src={neuroHardware}
             alt="Neurotechnology hardware and lab equipment used for hands-on student projects"
-            objectPosition="center 46%"
-            className="aspect-[16/9] rounded-3xl border border-cyan/20 shadow-[0_8px_32px_rgba(34,211,238,0.12)] bg-primary-deep"
+            widths={[768, 1280, 1920]}
             sizes="(min-width: 1024px) 560px, 100vw"
+            class="w-full h-full object-cover"
+            style={{ objectPosition: 'center 46%' }}
+            pictureAttributes={{ class: 'block aspect-[16/9] rounded-3xl border border-cyan/20 shadow-[0_8px_32px_rgba(34,211,238,0.12)] bg-primary-deep overflow-hidden' }}
           />
         </div>
       </div>

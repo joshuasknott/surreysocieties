@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout
+  title="404 — Page Not Found"
+  description="The page you're looking for doesn't exist on the Surrey Business Society website."
+>
+  <section class="bg-navy-deep text-text-on-dark relative overflow-hidden flex items-center justify-center min-h-[70vh] border-b-4 border-gold">
+    <div class="absolute inset-0 bg-grid-pattern-dark opacity-30 pointer-events-none"></div>
+    <div class="mx-auto max-w-3xl px-6 py-24 text-center relative z-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="w-12 h-0.5 bg-gold"></span>
+        <span class="text-gold text-xs font-bold uppercase tracking-widest">Error 404</span>
+        <span class="w-12 h-0.5 bg-gold"></span>
+      </div>
+
+      <h1 class="text-7xl sm:text-9xl font-serif font-bold tracking-tight leading-none mb-6">
+        <span class="text-gold italic">404</span>
+      </h1>
+
+      <p class="text-text-on-dark-secondary text-lg leading-relaxed max-w-xl mx-auto border-l-2 border-gold/50 pl-4 text-left mb-10">
+        The page you're looking for doesn't exist. It may have been moved or the URL might be incorrect. Let's get you back on track.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="px-8 py-4 rounded-xl bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all duration-500 hover:-translate-y-1 shadow-[0_4px_24px_rgba(212,175,55,0.35)] hover:shadow-[0_8px_32px_rgba(212,175,55,0.5)] flex items-center justify-center gap-2 group">
+          Return Home <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+        </a>
+        <a href="/events" class="px-8 py-4 rounded-xl text-text-on-dark font-bold text-sm tracking-wider uppercase transition-all duration-500 hover:-translate-y-1 flex items-center justify-center glass-panel hover:bg-white/10">
+          View Events
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

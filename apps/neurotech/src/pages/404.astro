@@ -1,0 +1,40 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout
+  title="404 — Page Not Found"
+  description="The page you're looking for doesn't exist on the Surrey Neurotech Society website."
+>
+  <section class="bg-primary text-text-on-dark relative overflow-hidden flex items-center justify-center min-h-[70vh] border-b-2 border-gold/20">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan/5 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="mx-auto max-w-3xl px-6 py-24 text-center relative z-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <div class="gold-dot"></div>
+        <span class="text-gold text-xs font-semibold uppercase tracking-wider">Error 404</span>
+        <div class="gold-dot"></div>
+      </div>
+
+      <h1 class="text-7xl sm:text-9xl font-black tracking-tight leading-none mb-6">
+        <span class="text-cyan [text-shadow:0_0_15px_rgba(34,211,238,0.4)]">404</span>
+      </h1>
+
+      <p class="text-text-on-dark-secondary text-lg leading-relaxed max-w-xl mx-auto border-l-2 border-cyan/40 pl-4 text-left mb-10">
+        This neural pathway doesn't lead anywhere. The page you're looking for couldn't be found. Try one of the links below to get back on track.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="btn-trace px-8 py-4 bg-gold hover:bg-gold-light text-primary-deep font-bold rounded-xl transition-all shadow-[0_4px_24px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_32px_rgba(245,158,11,0.5)] text-sm uppercase tracking-wide">
+          Return Home
+        </a>
+        <a href="/events" class="px-8 py-4 bg-transparent hover:bg-white/5 text-text-on-dark font-bold rounded-xl border border-cyan/30 transition-all text-sm uppercase tracking-wide shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+          View Events
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
