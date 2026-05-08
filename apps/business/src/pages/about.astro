@@ -1,28 +1,12 @@
 ---
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
-import { Picture } from 'astro:assets';
-import businessGptHero from '../assets/images/business-gpt-hero.png';
-import studentsCareerFair from '../assets/images/studentscareerfair.jpg';
 import '../styles/global.css';
 ---
 
 <Layout title="About" description="Learn about Surrey Business Society - our mission, values, and what members can expect from our student-led business community.">
 
   <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold overflow-hidden gsap-section">
-    <!-- Background Image -->
-    <div class="absolute inset-0 z-0 pointer-events-none opacity-25 mix-blend-screen">
-      <Picture
-        src={businessGptHero}
-        alt="Surrey Business Society concept"
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        class="w-full h-full object-cover"
-        style={{ objectPosition: 'center' }}
-        pictureAttributes={{ class: 'w-full h-full block overflow-hidden' }}
-      />
-    </div>
-    
     <!-- Geometric Background Shapes -->
     <div class="absolute top-[20%] right-[10%] w-96 h-96 rounded-full bg-gold/5 blur-3xl mix-blend-screen gsap-parallax-shape pointer-events-none z-0"></div>
     <div class="absolute bottom-[-10%] left-[-5%] w-72 h-72 rounded-full bg-blue-500/10 blur-[80px] mix-blend-screen gsap-parallax-shape pointer-events-none z-0" data-speed="0.8"></div>
@@ -49,16 +33,6 @@ import '../styles/global.css';
             <p>
               Surrey Business Society exists to support students in developing professionally and commercially. We provide a platform for networking, career exploration, entrepreneurship, and the exchange of ideas across industries.
             </p>
-            <div class="my-8 relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg border border-border-light">
-               <Picture
-                  src={studentsCareerFair}
-                  alt="Students networking at a career fair"
-                  widths={[768, 1280]}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  class="w-full h-full object-cover"
-                  pictureAttributes={{ class: 'absolute inset-0 w-full h-full block overflow-hidden' }}
-               />
-            </div>
             <p>
               We're a student-led society under Surrey Students' Union, open to students from every course and year. You don't need to be studying business to benefit from what we do.
             </p>

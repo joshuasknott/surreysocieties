@@ -2,8 +2,6 @@
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import { createConvexClient } from '@surreysocieties/admin';
-import { Picture } from 'astro:assets';
-import bciDemo from '../assets/images/braincomputerinterfacedemo.jpg';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
@@ -36,15 +34,6 @@ const getEventDetails = (event: any) => {
 
   <section class="bg-primary text-text-on-dark py-16 sm:py-20 px-6 neural-wave-bg-dark curve-bottom relative overflow-hidden">
     <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
-      <Picture
-        src={bciDemo}
-        alt="A brain-computer interface demo in progress"
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        class="w-full h-full object-cover mix-blend-luminosity"
-        style={{ objectPosition: 'center 40%' }}
-        pictureAttributes={{ class: 'w-full h-full block overflow-hidden' }}
-      />
       <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-primary"></div>
     </div>
     <div class="mx-auto max-w-6xl relative z-10">

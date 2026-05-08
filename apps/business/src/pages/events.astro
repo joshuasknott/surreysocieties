@@ -2,8 +2,6 @@
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import { createConvexClient } from '@surreysocieties/admin';
-import { Picture } from 'astro:assets';
-import universitySpeakerPanel from '../assets/images/universityspeakerpanel.jpg';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'business';
@@ -35,17 +33,6 @@ const getEventDetails = (event: any) => {
 <Layout title="Events" description="Upcoming and planned events from Surrey Business Society — careers evenings, founder talks, networking socials, and workshops.">
 
   <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold overflow-hidden gsap-section">
-    <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
-      <Picture
-        src={universitySpeakerPanel}
-        alt="A university speaker panel"
-        widths={[768, 1280, 1920]}
-        sizes="100vw"
-        class="w-full h-full object-cover mix-blend-luminosity"
-        style={{ objectPosition: 'center 40%' }}
-        pictureAttributes={{ class: 'w-full h-full block overflow-hidden' }}
-      />
-    </div>
     <!-- Geometric Background Shapes -->
     <div class="absolute top-[20%] right-[10%] w-96 h-96 rounded-full bg-gold/5 blur-3xl mix-blend-screen gsap-parallax-shape pointer-events-none z-0"></div>
     <div class="absolute bottom-[-10%] left-[-5%] w-72 h-72 rounded-full bg-blue-500/10 blur-[80px] mix-blend-screen gsap-parallax-shape pointer-events-none z-0" data-speed="0.8"></div>

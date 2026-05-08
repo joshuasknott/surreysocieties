@@ -2,8 +2,6 @@
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import { createConvexClient } from '@surreysocieties/admin';
-import { Picture } from 'astro:assets';
-import neuroHardware from '../assets/images/neuro-hardware.jpg';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
@@ -134,15 +132,9 @@ const getInitials = (name?: string, role?: string) => {
               <p class="text-text-secondary text-base leading-relaxed" id="hotspot-desc">Understanding the brain — from neural pathways to cognitive processes and beyond. Hover or click a glowing node on the neural map to explore our focus areas.</p>
             </div>
           </div>
-          <Picture
-            src={neuroHardware}
-            alt="Neurotechnology hardware and lab equipment used for hands-on student projects"
-            widths={[768, 1280, 1920]}
-            sizes="(min-width: 1024px) 560px, 100vw"
-            class="w-full h-full object-cover"
-            style={{ objectPosition: 'center 46%' }}
-            pictureAttributes={{ class: 'block aspect-[16/9] rounded-3xl border border-cyan/20 shadow-[0_8px_32px_rgba(34,211,238,0.12)] bg-primary-deep overflow-hidden' }}
-          />
+          <div class="h-64 sm:h-auto rounded-3xl border border-cyan/20 shadow-[0_8px_32px_rgba(34,211,238,0.12)] bg-primary-deep overflow-hidden relative">
+            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, var(--cyan) 1px, transparent 0); background-size: 24px 24px;"></div>
+          </div>
         </div>
       </div>
     </div>

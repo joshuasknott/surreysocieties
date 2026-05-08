@@ -2,9 +2,6 @@
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import { createConvexClient } from '@surreysocieties/admin';
-import BackgroundVideo from '@surreysocieties/ui/components/BackgroundVideo';
-import { Picture } from 'astro:assets';
-import businessNetworking from '../assets/images/business-networking.jpg';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'business';
@@ -47,13 +44,9 @@ const getInitials = (name?: string, role?: string) => {
 
   <!-- Hero -->
   <section class="gsap-hero-section bg-navy-deep text-text-on-dark relative overflow-hidden border-b-4 border-gold min-h-screen flex items-center">
-    <BackgroundVideo
-      src="/videos/optimized/business-hero.optimized.mp4"
-      webmSrc="/videos/optimized/business-hero.optimized.webm"
-      poster="/videos/posters/business-hero.poster.jpg"
-      objectPosition="center 42%"
-      className="z-0"
-    />
+    <!-- Abstract premium pattern -->
+    <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#d4af37 1px, transparent 1px), linear-gradient(90deg, #d4af37 1px, transparent 1px); background-size: 60px 60px;"></div>
+
     
     <!-- Heavy Dark Slate Overlay -->
     <div class="absolute inset-0 bg-slate-900/80 pointer-events-none z-10"></div>
@@ -130,15 +123,10 @@ const getInitials = (name?: string, role?: string) => {
 
         <!-- Right Side: Content Area -->
         <div class="md:w-2/3 relative min-h-[420px]">
-          <Picture
-            src={businessNetworking}
-            alt="Business Society students networking at a professional event"
-            widths={[768, 1280, 1920]}
-            sizes="(min-width: 1024px) 760px, 100vw"
-            class="w-full h-full object-cover opacity-45"
-            style={{ objectPosition: 'center 42%' }}
-            pictureAttributes={{ class: 'absolute inset-0 rounded-2xl shadow-xl border border-border-light block overflow-hidden' }}
-          />
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-navy-deep to-navy shadow-xl border border-border-light overflow-hidden">
+             <!-- Abstract corporate pattern -->
+             <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(var(--gold) 1px, transparent 1px), linear-gradient(90deg, var(--gold) 1px, transparent 1px); background-size: 40px 40px;"></div>
+          </div>
           <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-white via-white/95 to-white/75 pointer-events-none"></div>
           <div class="glass-panel w-full h-full rounded-2xl relative overflow-hidden shadow-xl bg-surface-card/80">
             <!-- Careers Content -->
