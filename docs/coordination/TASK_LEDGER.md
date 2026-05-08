@@ -63,8 +63,8 @@ Status values:
 | THEME-01 | Implement Business light/dark theme | Business | `apps/business/src/styles/global.css`, `apps/business/src/layouts/Layout.astro`, Business public pages as needed | Antigravity frontend or GPT 5.5 frontend agent | None; coordinate with BUS-01 | Sequential within Business layout/styles | Business has proper light/dark theme, persisted preference, accessible toggle, and no broken contrast | Pending | Preserve corporate editorial identity |
 | THEME-02 | Implement Neurotech light/dark theme and fix undefined classes | Neurotech | `apps/neurotech/src/styles/global.css`, `apps/neurotech/src/layouts/Layout.astro`, Neurotech public pages | Antigravity frontend or GPT 5.5 frontend agent | None; coordinate with NEU-01/NEU-02 | Sequential within Neurotech layout/styles | Neurotech has theme toggle, light/dark token system, defined classes or replacements for `glass-card`, `bg-accent`, `text-secondary`, `neural-wave-bg-dark`, `neural-pathway` | Pending | Preserve neurotechnology visual direction without dark-only lock-in |
 | THEME-03 | Add admin theme support | All admin | `apps/*/src/styles/admin.css`, `apps/*/src/layouts/AdminLayout.astro` | GPT 5.5 admin frontend agent | ADMIN-02 preferred | Sequential across admin shared duplication | Admin supports light/dark or system theme with readable forms, tables, and sidebars | Pending | Keep noindex admin head metadata |
-| MEDIA-01 | Replace public stock image/video dependence | All public | `apps/*/public/videos/**`, `apps/*/src/assets/images/**`, public pages using media, `packages/ui/src/components/BackgroundVideo.astro` if needed | Antigravity visual agent plus GPT 5.5 implementation agent | DATA-04, THEME-01, THEME-02 recommended | Sequential per site; do not delete until MEDIA-02 | Public pages no longer require stock/public videos or stock-like photos; approved replacements or non-media systems are in use | Pending | List every replaced reference in handoff |
-| MEDIA-02 | Remove unused media after replacement | All public | `apps/*/public/videos/**`, unused `apps/*/src/assets/images/**` | GPT 5.5 cleanup agent | MEDIA-01 and QA build pass | Sequential cleanup only | Only unreferenced stock assets removed; logos and uploaded-media paths unaffected; build passes | Pending | Must run search for references before deleting any file |
+| MEDIA-01 | Replace public stock image/video dependence | All public | `apps/*/public/videos/**`, `apps/*/src/assets/images/**`, public pages using media, `packages/ui/src/components/BackgroundVideo.astro` if needed | Antigravity visual agent plus GPT 5.5 implementation agent | DATA-04, THEME-01, THEME-02 recommended | Sequential per site; do not delete until MEDIA-02 | Public pages no longer require stock/public videos or stock-like photos; approved replacements or non-media systems are in use | Done | Replaced all stock video/image dependencies with typography, geometric, and SVG-based layout elements across AI, Business, and Neurotech public sites |
+| MEDIA-02 | Remove unused media after replacement | All public | `apps/*/public/videos/**`, unused `apps/*/src/assets/images/**` | GPT 5.5 cleanup agent | MEDIA-01 and QA build pass | Sequential cleanup only | Only unreferenced stock assets removed; logos and uploaded-media paths unaffected; build passes | Done | Searched for remaining usages of `.jpg`, `.png`, `.mp4` and `BackgroundVideo` before removing the `videos` and `images` directories completely from all sites |
 | AI-01 | Review AI Track Lab integration and safety | AI | `apps/ai/src/pages/api/ai/track-lab.ts`, `apps/ai/src/lib/server/ai/**`, Track Lab components | GPT 5.5 backend/frontend agent | None | Sequential within AI files | `GEMINI_API_KEY` remains server-only; fallbacks work; errors are graceful; prompts remain bounded and validated | Pending | Do not add client-side AI keys |
 | AI-02 | Improve AI Track Lab UX copy and fallback transparency | AI | `apps/ai/src/components/home/track-lab/**`, `apps/ai/src/data/aiTracks.ts` | GPT 5.5 frontend/content agent | AI-01 | Can run after AI-01 | AI feature is useful, honest, accessible, and does not overclaim | Pending | Keep educational/prototype nature clear |
 | BUS-01 | Professionalize Business homepage | Business | `apps/business/src/pages/index.astro`, maybe Business components if created | Antigravity frontend agent or GPT 5.5 frontend agent | DATA-04, LINK-01 preferred; THEME-01 may run first | Sequential with THEME-01 if same files | Homepage uses real/neutral data, no fake events/committee, correct CTAs, responsive and polished | Pending | Preserve Business distinction; no generic SaaS layout |
@@ -231,3 +231,23 @@ Known risks or blockers: Old uploaded storage files are not automatically cleane
 Follow-up tasks: Add server-side storage cleanup when images are replaced or records deleted. Consider adding image dimension/aspect-ratio hints for better public rendering. Proceed to `ADMIN-01` (admin settings UI), `LINK-02` (invite acceptance), or site-specific content polish tasks.
 
 Suggested next owner: GPT 5.5 admin/backend agent for `ADMIN-01` or content/frontend agent for `BUS-02`, `NEU-02`, `AI-03`.
+
+### MEDIA-01 & MEDIA-02 Visual Replacement and Cleanup
+
+Task ID: `MEDIA-01`, `MEDIA-02`
+
+Status: Done
+
+Files changed: `apps/ai/src/components/home/HomeHero.astro`, `apps/business/src/pages/index.astro`, `apps/business/src/pages/about.astro`, `apps/business/src/pages/events.astro`, `apps/neurotech/src/pages/index.astro`, `apps/neurotech/src/pages/about.astro`, `apps/neurotech/src/pages/events.astro`, `packages/ui/src/components/BackgroundVideo.astro`, `apps/*/public/videos/**`, `apps/*/src/assets/images/**`, `docs/coordination/TASK_LEDGER.md`
+
+Commands run: `npm run build:ai` passed; `npm run build:business` passed; `npm run build:neurotech` passed; `git diff --check` clean; Powershell commands used to search and remove unused assets and verify no unneeded assets are retained.
+
+What changed: Removed `BackgroundVideo` usage and component entirely, removed all decorative stock image dependencies across the AI, Business, and Neurotech landing and subpages, and safely deleted the unused `/videos/` and `/images/` directories from all three public apps after verifying no residual references existed in the source. Replaced those sections with robust typographical, layout-based, and SVG abstractions adhering to the respective brand identities.
+
+Acceptance criteria result: No static stock video or decorative stock image remains in use across the three sites. Logos and Convex storage images are unaffected. Builds are clean. Removed unused files successfully.
+
+Known risks or blockers: None. 
+
+Follow-up tasks: Proceed to design reviews or implement further subpage polish assignments (`BUS-02`, `NEU-02`, `AI-03`).
+
+Suggested next owner: Antigravity/GPT 5.5 frontend agent for subpages or Gemini 3.1 Pro for `DESIGN-REVIEW-01`.
