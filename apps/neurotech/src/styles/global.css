@@ -176,6 +176,22 @@ body {
   transform: translateY(-2px);
 }
 
+/* --- Signal Wave Animation --- */
+@keyframes signal-flow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.signal-wave {
+  animation: signal-flow 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-wave {
+    animation: none;
+  }
+}
+
 /* --- Animated Circuit Trace Hover Effect --- */
 @property --angle {
   syntax: "<angle>";

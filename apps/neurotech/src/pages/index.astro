@@ -43,97 +43,171 @@ const getInitials = (name?: string, role?: string) => {
 <Layout title="Home" description="Surrey Neurotech Society — A student-led community exploring neuroscience, technology, brain-computer interfaces, and human-centred innovation at the University of Surrey.">
 
   <!-- Hero -->
-  <section class="bg-surface-dark text-text-on-dark relative overflow-hidden flex items-center min-h-[85vh] nav-grid-dark border-b-2 border-gold/20">
-    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0 opacity-90 pointer-events-auto"></canvas>
+  <section class="bg-surface-dark text-text-on-dark relative overflow-hidden border-b-2 border-gold/20 nav-grid-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
     <!-- Ambient light blobs -->
     <div class="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 bg-gold/3 rounded-full blur-2xl pointer-events-none"></div>
-    <div class="mx-auto max-w-6xl px-6 py-24 sm:py-32 relative z-10 w-full pointer-events-none">
-      <div class="flex flex-col items-start max-w-3xl pointer-events-auto">
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="mx-auto max-w-7xl px-6 relative z-10 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <div class="flex flex-col items-start max-w-3xl">
+          <div class="inline-flex items-center gap-3 mb-6">
+            <div class="gold-dot"></div>
+            <span class="text-gold text-xs font-semibold uppercase tracking-wider">University of Surrey</span>
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
+            Where <span class="text-cyan [text-shadow:0_0_15px_rgba(34,211,238,0.4)]">neuroscience</span> meets <br class="hidden sm:block" />
+            <span class="text-gold [text-shadow:0_0_15px_rgba(245,158,11,0.4)]">computational power</span>.
+          </h1>
+          
+          <p class="mt-6 text-lg sm:text-xl text-text-on-dark-secondary leading-relaxed border-l-2 border-cyan/40 pl-4 [text-shadow:0_0_10px_rgba(255,255,255,0.1)]">
+            A student-led community exploring the future of brain-computer interfaces, neural signal processing, and human-centred innovation.
+          </p>
+          
+          <div class="mt-8 grid sm:grid-cols-2 gap-6 max-w-2xl border-t border-border-dark pt-6">
+            <div>
+              <h3 class="text-sm font-semibold text-text-on-dark mb-1 flex items-center gap-2">
+                <svg class="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                For Everyone
+              </h3>
+              <p class="text-sm text-text-on-dark-secondary">Whether you study computer science, psychology, engineering, or biosciences—curiosity is the only prerequisite.</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-text-on-dark mb-1 flex items-center gap-2">
+                <svg class="w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                Why It Matters
+              </h3>
+              <p class="text-sm text-text-on-dark-secondary">As AI and neural interfaces advance, understanding their intersection is critical for responsible innovation.</p>
+            </div>
+          </div>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
-          Where <span class="text-cyan [text-shadow:0_0_15px_rgba(34,211,238,0.4)]">neuroscience</span>, <br class="hidden sm:block" />
-          <span class="text-gold [text-shadow:0_0_15px_rgba(245,158,11,0.4)]">technology &amp; curiosity</span> meet.
-        </h1>
-        <p class="mt-6 text-lg sm:text-xl text-text-on-dark-secondary leading-relaxed max-w-2xl border-l-2 border-cyan/40 pl-4 [text-shadow:0_0_10px_rgba(255,255,255,0.1)]">
-          A student-led community exploring the future of brain-computer interfaces and human-centred innovation at the University of Surrey.
-        </p>
-        <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="/join" class="btn-trace px-8 py-3.5 bg-gold hover:bg-gold-light text-primary-deep font-bold rounded-xl transition-all shadow-[0_4px_24px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_32px_rgba(245,158,11,0.5)] text-sm uppercase tracking-wide">
-            Join the Society
-          </a>
-          <a href="/events" class="px-8 py-3.5 bg-transparent hover:bg-white/5 text-text-on-dark font-bold rounded-xl border border-cyan/30 transition-all text-sm uppercase tracking-wide shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
-            View Events
-          </a>
+          <div class="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="/join" class="btn-trace inline-flex items-center justify-center px-8 py-3.5 bg-gold hover:bg-gold-light text-primary-deep font-bold rounded-xl transition-all shadow-[0_4px_24px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_32px_rgba(245,158,11,0.5)] text-sm uppercase tracking-wide">
+              Join the Society
+            </a>
+            <a href="/events" class="inline-flex items-center justify-center px-8 py-3.5 bg-transparent hover:bg-white/5 text-text-on-dark font-bold rounded-xl border border-cyan/30 transition-all text-sm uppercase tracking-wide shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+              View Events
+            </a>
+          </div>
+        </div>
+        
+        <div id="hero-canvas-container" class="relative w-full aspect-square lg:aspect-auto lg:h-[500px] flex items-center justify-center">
+          <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-auto" style="touch-action: none;"></canvas>
+          <div id="hero-fallback" class="hidden absolute inset-0 items-center justify-center pointer-events-none">
+            <div class="w-64 h-64 rounded-full border border-cyan/20 bg-primary/20 backdrop-blur-md shadow-[0_0_40px_rgba(34,211,238,0.1)] flex items-center justify-center">
+              <span class="text-cyan/60 text-sm tracking-widest uppercase text-center leading-relaxed font-semibold">Neural<br/>Simulation</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What We Explore (Interactive Hotspots) -->
+  <!-- What We Explore (Interactive Tabs) -->
   <section class="py-20 sm:py-24 px-6 bg-surface nav-grid-light relative">
     <div class="mx-auto max-w-6xl">
-      <div class="mb-14">
+      <div class="mb-14 text-center sm:text-left">
         <div class="inline-flex items-center gap-3 mb-4">
           <div class="gold-dot"></div>
           <span class="text-gold text-xs font-semibold uppercase tracking-wider">What We Explore</span>
         </div>
         <h2 class="text-3xl sm:text-4xl font-bold text-text-primary">Where Brain Meets Machine</h2>
-        <p class="mt-4 text-text-secondary max-w-xl">Neuroscience, engineering, and computing — brought together by curiosity and a desire to understand the brain.</p>
+        <p class="mt-4 text-text-secondary max-w-xl mx-auto sm:mx-0">Neuroscience, engineering, and computing — brought together by curiosity and a desire to understand the brain.</p>
       </div>
 
-      <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
-        <!-- Left: Brain Visualizer -->
-        <div class="relative w-full aspect-square max-w-md mx-auto border border-border-subtle rounded-3xl bg-primary-deep p-8 flex items-center justify-center overflow-hidden shadow-[0_8px_32px_rgba(5,10,21,0.15)]">
-          <!-- Background glow -->
-          <div class="absolute inset-0 bg-cyan/5 blur-3xl rounded-full"></div>
-          
-          <!-- Wireframe SVG Brain -->
-          <svg viewBox="0 0 100 100" class="w-full h-full opacity-40 text-cyan relative z-0" stroke="currentColor" stroke-width="1.5" fill="none">
-            <!-- Simplified abstract wireframe brain -->
-            <path d="M50 10 C30 10 15 25 15 45 C15 60 25 75 40 85 L50 90 L60 85 C75 75 85 60 85 45 C85 25 70 10 50 10 Z" />
-            <path d="M50 10 L50 90" stroke-dasharray="2 4" />
-            <path d="M20 35 C35 30 65 30 80 35" />
-            <path d="M15 50 C35 55 65 55 85 50" />
-            <path d="M25 70 C40 65 60 65 75 70" />
-            <path d="M30 20 L40 40 L30 60" />
-            <path d="M70 20 L60 40 L70 60" />
-            <circle cx="50" cy="50" r="35" stroke-dasharray="1 6" opacity="0.5" />
-          </svg>
-
-          <!-- Hotspots -->
-          <div class="hotspot absolute w-8 h-8 flex items-center justify-center cursor-pointer group" style="top: 25%; left: 30%;" data-index="0">
-            <div class="absolute w-full h-full bg-cyan rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity"></div>
-            <div class="w-2.5 h-2.5 bg-white rounded-full relative z-10 shadow-[0_0_12px_#22D3EE]"></div>
-          </div>
-          
-          <div class="hotspot absolute w-8 h-8 flex items-center justify-center cursor-pointer group" style="top: 35%; left: 70%;" data-index="1">
-            <div class="absolute w-full h-full bg-cyan rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity"></div>
-            <div class="w-2.5 h-2.5 bg-white rounded-full relative z-10 shadow-[0_0_12px_#22D3EE]"></div>
-          </div>
-          
-          <div class="hotspot absolute w-8 h-8 flex items-center justify-center cursor-pointer group" style="top: 60%; left: 50%; transform: translateX(-50%);" data-index="2">
-            <div class="absolute w-full h-full bg-cyan rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity"></div>
-            <div class="w-2.5 h-2.5 bg-white rounded-full relative z-10 shadow-[0_0_12px_#22D3EE]"></div>
-          </div>
-          
-          <div class="hotspot absolute w-8 h-8 flex items-center justify-center cursor-pointer group" style="top: 75%; left: 35%;" data-index="3">
-            <div class="absolute w-full h-full bg-cyan rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity"></div>
-            <div class="w-2.5 h-2.5 bg-white rounded-full relative z-10 shadow-[0_0_12px_#22D3EE]"></div>
-          </div>
+      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12 items-start">
+        <!-- Left: Focus Areas (Tabs) -->
+        <div class="space-y-4" role="tablist" aria-label="Society Focus Areas">
+          <button type="button" role="tab" aria-selected="true" aria-controls="panel-0" id="tab-0" data-index="0" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border transition-all duration-300 border-cyan/40 bg-cyan/5 shadow-[0_0_15px_rgba(34,211,238,0.1)]">
+            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
+              <span class="text-cyan text-2xl">🧠</span> Neuroscience
+            </h3>
+            <p class="text-text-secondary text-sm leading-relaxed">Understanding the brain — from neural pathways to cognitive processes and biological systems.</p>
+          </button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="panel-1" id="tab-1" data-index="1" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border border-transparent hover:border-border-subtle hover:bg-surface-alt transition-all duration-300 opacity-70 hover:opacity-100">
+            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
+              <span class="text-gold text-2xl">⚡</span> Brain-Computer Interfaces
+            </h3>
+            <p class="text-text-secondary text-sm leading-relaxed">EEG, neural signal processing, and the technology translating thought into action.</p>
+          </button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" data-index="2" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border border-transparent hover:border-border-subtle hover:bg-surface-alt transition-all duration-300 opacity-70 hover:opacity-100">
+            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
+              <span class="text-cyan text-2xl">🤖</span> AI &amp; Machine Learning
+            </h3>
+            <p class="text-text-secondary text-sm leading-relaxed">Applying machine learning to decode complex neural signals and predict cognitive states.</p>
+          </button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" data-index="3" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border border-transparent hover:border-border-subtle hover:bg-surface-alt transition-all duration-300 opacity-70 hover:opacity-100">
+            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
+              <span class="text-gold text-2xl">🤝</span> Human-Centred Ethics
+            </h3>
+            <p class="text-text-secondary text-sm leading-relaxed">Focusing on accessibility, cognitive privacy, and responsible innovation in neurotech.</p>
+          </button>
         </div>
 
-        <!-- Right: Information Panel -->
-        <div class="space-y-6">
-          <div class="neuro-card p-8 lg:p-12 min-h-[300px] flex flex-col justify-center border-l-4 border-l-cyan">
-            <div id="hotspot-content" class="h-full">
-              <div class="w-14 h-14 rounded-xl bg-primary/10 border border-cyan/30 flex items-center justify-center mb-6 text-2xl" id="hotspot-icon">🧠</div>
-              <h3 class="font-bold text-2xl mb-4 text-text-primary" id="hotspot-title">Neuroscience</h3>
-              <p class="text-text-secondary text-base leading-relaxed" id="hotspot-desc">Understanding the brain — from neural pathways to cognitive processes and beyond. Hover or click a glowing node on the neural map to explore our focus areas.</p>
+        <!-- Right: Visualizer -->
+        <div class="relative w-full aspect-[4/3] sm:aspect-auto sm:h-full min-h-[350px] rounded-3xl bg-surface-dark border border-border-dark flex items-center justify-center overflow-hidden shadow-[0_8px_32px_rgba(5,10,21,0.2)] p-6">
+          <!-- Base grid -->
+          <div class="absolute inset-0 opacity-10 nav-grid-dark pointer-events-none"></div>
+          
+          <!-- Panel 0: Neuroscience -->
+          <div id="panel-0" role="tabpanel" aria-labelledby="tab-0" class="visual-panel absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500">
+            <div class="relative w-full h-full max-w-[80%] max-h-[80%] flex items-center justify-center">
+              <svg class="w-full h-full max-w-sm text-cyan/40" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                <path d="M20,30 L40,50 L70,40 L80,70 L50,80 Z" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                <path d="M40,50 L50,80 M70,40 L90,20 M20,30 L10,60 L50,80" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                <circle cx="20" cy="30" r="1.5" class="fill-cyan animate-pulse" />
+                <circle cx="40" cy="50" r="2.5" class="fill-cyan" />
+                <circle cx="70" cy="40" r="1.5" class="fill-cyan animate-pulse" style="animation-delay: 0.5s;" />
+                <circle cx="80" cy="70" r="3" class="fill-cyan" />
+                <circle cx="50" cy="80" r="2" class="fill-cyan" />
+                <circle cx="10" cy="60" r="1.5" class="fill-cyan animate-pulse" style="animation-delay: 1s;" />
+                <circle cx="90" cy="20" r="2" class="fill-cyan" />
+              </svg>
             </div>
           </div>
-          <div class="h-64 sm:h-auto rounded-3xl border border-cyan/20 shadow-[0_8px_32px_rgba(34,211,238,0.12)] bg-primary-deep overflow-hidden relative">
-            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, var(--cyan) 1px, transparent 0); background-size: 24px 24px;"></div>
+
+          <!-- Panel 1: BCI -->
+          <div id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="visual-panel absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
+            <div class="w-full px-8 flex flex-col gap-4">
+              <div class="h-24 w-full flex items-center border-b border-border-dark relative overflow-hidden">
+                <svg class="w-[200%] h-full text-gold opacity-80 signal-wave absolute left-0" viewBox="0 0 400 50" preserveAspectRatio="none">
+                  <path d="M0,25 L10,25 L15,10 L25,45 L30,25 L50,25 L60,25 L65,15 L75,35 L80,25 L100,25 L110,25 L115,5 L125,40 L130,25 L150,25 L160,25 L165,15 L175,30 L180,25 L200,25 L210,25 L215,10 L225,45 L230,25 L250,25 L260,25 L265,15 L275,35 L280,25 L300,25 L310,25 L315,5 L325,40 L330,25 L350,25 L360,25 L365,15 L375,30 L380,25 L400,25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="flex justify-between text-[10px] uppercase tracking-widest text-text-on-dark-secondary font-mono">
+                 <span>Raw EEG Feed</span>
+                 <span class="text-cyan">Active</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Panel 2: AI & ML -->
+          <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="visual-panel absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
+            <div class="w-full px-8 font-mono text-xs sm:text-sm text-text-on-dark-secondary">
+              <div class="mb-4 text-cyan">&gt;&gt;&gt; model.predict(eeg_stream)</div>
+              <div class="space-y-2">
+                 <div class="flex justify-between items-center"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Extracting features...</span> <span class="text-gold opacity-80">[OK]</span></div>
+                 <div class="flex justify-between items-center"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Spatial filtering...</span> <span class="text-gold opacity-80">[OK]</span></div>
+                 <div class="flex justify-between items-center"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span> Classification...</span> <span class="text-cyan animate-pulse">Running</span></div>
+              </div>
+              <div class="mt-6 border-t border-border-dark pt-4">
+                 <span class="text-text-on-dark">Predicted Intent:</span> <span class="text-gold font-bold ml-2">Motor_Execute_Left</span> <span class="text-xs text-text-on-dark-secondary ml-1">(94.2%)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 3: Human-Centred -->
+          <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" class="visual-panel absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
+            <div class="text-center px-8 flex flex-col items-center">
+               <div class="w-16 h-16 rounded-full border border-gold flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(245,158,11,0.15)] bg-gold/5">
+                  <svg class="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+                  </svg>
+               </div>
+               <h4 class="text-text-on-dark font-semibold mb-2 text-lg">Privacy &amp; Accessibility</h4>
+               <p class="text-text-on-dark-secondary text-sm max-w-[250px]">Ensuring neurotechnology empowers individuals without compromising cognitive privacy.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -252,38 +326,53 @@ const getInitials = (name?: string, role?: string) => {
 <script>
   import * as THREE from 'three';
   import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
 
   // --- Organic Section Transitions ---
-  const sections = document.querySelectorAll('section');
-  sections.forEach((section, index) => {
-    if (index === 0) return; // Skip Hero
-    gsap.fromTo(
-      section,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 85%',
-        },
-      }
-    );
-  });
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!prefersReducedMotion) {
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+      if (index === 0) return; // Skip Hero
+      gsap.fromTo(
+        section,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%',
+          },
+        }
+      );
+    });
+  }
 
   // --- Three.js Bio-Tech Brain Hemispheres ---
   const initHeroCanvas = () => {
+    const canvasContainer = document.getElementById('hero-canvas-container');
     const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
-    if (!canvas) return;
+    if (!canvas || !canvasContainer) return;
+
+    const getDimensions = () => ({
+      width: canvasContainer.clientWidth,
+      height: canvasContainer.clientHeight
+    });
+
+    let { width, height } = getDimensions();
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 200;
+    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 1000);
+    camera.position.z = 180;
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const brainGroup = new THREE.Group();
@@ -417,9 +506,10 @@ const getInitials = (name?: string, role?: string) => {
     });
 
     window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const newDim = getDimensions();
+      camera.aspect = newDim.width / newDim.height;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(newDim.width, newDim.height);
     });
 
     const animate = () => {
@@ -456,69 +546,61 @@ const getInitials = (name?: string, role?: string) => {
     animate();
   };
 
-  // Run on mount
-  initHeroCanvas();
+  // Run on mount based on reduced motion setting
+  if (prefersReducedMotion) {
+    const canvas = document.getElementById('hero-canvas');
+    const fallback = document.getElementById('hero-fallback');
+    if (canvas) canvas.style.display = 'none';
+    if (fallback) fallback.classList.remove('hidden');
+    if (fallback) fallback.classList.add('flex');
+  } else {
+    initHeroCanvas();
+  }
 
-  // --- Brain Hotspots Logic ---
-  const hotspotsData = [
-    {
-      icon: '🧠',
-      title: 'Neuroscience',
-      desc: 'Understanding the brain — from neural pathways to cognitive processes and beyond. We explore how organic neural networks process information and direct biological systems.'
-    },
-    {
-      icon: '⚡',
-      title: 'Brain-Computer Interfaces',
-      desc: 'EEG, neural signal processing, and the technology bridging thought and action. We build projects that translate brainwaves into software commands.'
-    },
-    {
-      icon: '🔬',
-      title: 'Research',
-      desc: 'Reading groups, journal clubs, and engagement with current neurotech research. We stay up-to-date with the latest academic papers and technological breakthroughs.'
-    },
-    {
-      icon: '🤝',
-      title: 'Human-Centred',
-      desc: 'Technology should serve people. We focus on ethics, accessibility, cognitive wellbeing, and responsible innovation in the neurotech space.'
-    }
-  ];
+  // --- Interactive Tabs Logic ---
+  const tabs = document.querySelectorAll('.focus-tab');
+  const panels = document.querySelectorAll('.visual-panel');
 
-  const hotspots = document.querySelectorAll('.hotspot');
-  const infoContent = document.getElementById('hotspot-content');
-  const iconEl = document.getElementById('hotspot-icon');
-  const titleEl = document.getElementById('hotspot-title');
-  const descEl = document.getElementById('hotspot-desc');
-
-  let currentIndex = 0;
-
-  hotspots.forEach(hotspot => {
-    const handleTrigger = () => {
-      const index = parseInt(hotspot.getAttribute('data-index') || '0');
-      if (index === currentIndex) return;
-      currentIndex = index;
-      const data = hotspotsData[index];
-
-      if (infoContent) {
-        gsap.to(infoContent, {
-          opacity: 0,
-          y: 10,
-          duration: 0.2,
-          onComplete: () => {
-            if(iconEl) iconEl.textContent = data.icon;
-            if(titleEl) titleEl.textContent = data.title;
-            if(descEl) descEl.textContent = data.desc;
-            
-            gsap.to(infoContent, {
-              opacity: 1,
-              y: 0,
-              duration: 0.3,
-              ease: 'power2.out'
-            });
-          }
-        });
+  const activateTab = (index: number) => {
+    tabs.forEach((t, i) => {
+      const isSelected = i === index;
+      t.setAttribute('aria-selected', isSelected.toString());
+      if (isSelected) {
+        t.classList.add('border-cyan/40', 'bg-cyan/5', 'shadow-[0_0_15px_rgba(34,211,238,0.1)]');
+        t.classList.remove('border-transparent', 'opacity-70');
+      } else {
+        t.classList.remove('border-cyan/40', 'bg-cyan/5', 'shadow-[0_0_15px_rgba(34,211,238,0.1)]');
+        t.classList.add('border-transparent', 'opacity-70');
       }
-    };
-    hotspot.addEventListener('mouseenter', handleTrigger);
-    hotspot.addEventListener('click', handleTrigger);
+    });
+
+    panels.forEach((p, i) => {
+      if (i === index) {
+        p.classList.remove('opacity-0', 'pointer-events-none');
+        p.classList.add('opacity-100');
+      } else {
+        p.classList.remove('opacity-100');
+        p.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(index));
+    tab.addEventListener('keydown', (e: Event) => {
+      const keyEvent = e as KeyboardEvent;
+      let newIndex = index;
+      if (keyEvent.key === 'ArrowDown' || keyEvent.key === 'ArrowRight') {
+        newIndex = (index + 1) % tabs.length;
+        keyEvent.preventDefault();
+      } else if (keyEvent.key === 'ArrowUp' || keyEvent.key === 'ArrowLeft') {
+        newIndex = (index - 1 + tabs.length) % tabs.length;
+        keyEvent.preventDefault();
+      }
+      if (newIndex !== index) {
+        (tabs[newIndex] as HTMLElement).focus();
+        activateTab(newIndex);
+      }
+    });
   });
 </script>
