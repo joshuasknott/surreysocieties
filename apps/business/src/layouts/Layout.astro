@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@surreysocieties/ui/components/BaseLayout';
+import { getSocietyById } from '@surreysocieties/admin/config';
 
 interface Props {
   title: string;
@@ -10,7 +11,8 @@ interface Props {
 
 const { title, description, ogImage } = Astro.props;
 
-const siteName = 'Surrey Business Society';
+const society = getSocietyById('business')!;
+const siteName = society.name;
 const fullTitle = `${title} — ${siteName}`;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -125,6 +127,7 @@ const navLinks = [
           <p class="text-sm leading-relaxed border-l-2 border-gold pl-4 text-text-on-dark-secondary">
             A student-led professional network under Surrey Students' Union. Building a community for careers, enterprise, and commercial thinking.
           </p>
+          <p class="mt-4 text-[10px] font-bold uppercase tracking-widest text-gold">Established {society.establishedYear}</p>
         </div>
         <div class="sm:col-span-3 lg:col-span-2 lg:col-start-7">
           <h4 class="text-gold font-bold mb-5 text-xs uppercase tracking-widest">Navigation</h4>
@@ -137,15 +140,17 @@ const navLinks = [
         <div class="sm:col-span-4 lg:col-span-3">
           <h4 class="text-gold font-bold mb-5 text-xs uppercase tracking-widest">Connect</h4>
           <div class="flex flex-col gap-3 text-sm font-medium">
-            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" class="hover:text-white transition-colors">Instagram</a>
-            <a href="#" class="hover:text-white transition-colors">Email Us</a>
+            <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+            <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
+            <a href={`mailto:${society.contactEmail}`} class="hover:text-white transition-colors">Email Us</a>
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Surrey Students' Union</a>
+            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Membership</a>
           </div>
         </div>
       </div>
       <div class="border-t border-border-dark pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium">
         <p>&copy; 2025 Surrey Business Society.</p>
-        <p class="text-gold tracking-widest uppercase text-[10px]">surreybusinesssociety.org</p>
+        <p class="text-gold tracking-widest uppercase text-[10px]">{society.domain}</p>
       </div>
     </div>
   </footer>

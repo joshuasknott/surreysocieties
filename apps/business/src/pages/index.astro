@@ -1,10 +1,46 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import Layout from '../layouts/Layout.astro';
+import { createConvexClient } from '@surreysocieties/admin';
 import BackgroundVideo from '@surreysocieties/ui/components/BackgroundVideo';
 import { Picture } from 'astro:assets';
 import businessNetworking from '../assets/images/business-networking.jpg';
 import '../styles/global.css';
+
+const SOCIETY_ID = 'business';
+const client = createConvexClient();
+
+const events: any[] = (
+  await client.query('events:listPublished', { societySlug: SOCIETY_ID })
+).filter((event: any) => event.status === 'published');
+
+const committee: any[] = (
+  await client.query('committee:listActive', { societySlug: SOCIETY_ID })
+).sort(
+  (a: any, b: any) =>
+    (a.displayOrder ?? Number.MAX_SAFE_INTEGER) -
+    (b.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
+    (a.name || '').localeCompare(b.name || '')
+);
+
+const formatEventDate = (date?: string) => {
+  if (!date) return 'Date TBC';
+  const parsed = new Date(`${date}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return date;
+  return parsed.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
+const getInitials = (name?: string, role?: string) => {
+  const source = (name || role || '?').trim();
+  const words = source.split(/\s+/).filter(Boolean);
+  if (words.length === 0) return '?';
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return words.slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+};
 ---
 
 <Layout title="Home" description="Surrey Business Society — A student-led community for careers, entrepreneurship, networking, and commercial thinking at the University of Surrey.">
@@ -164,41 +200,32 @@ import '../styles/global.css';
         </a>
       </div>
 
-      <div class="flex flex-col border-t border-border-dark">
-        <!-- Event 1 -->
-        <div class="gsap-stagger-event group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-border-dark hover:bg-white/5 transition-colors px-6 -mx-6">
-          <div class="md:w-1/4 mb-4 md:mb-0">
-            <div class="text-gold text-xs font-bold tracking-widest uppercase mb-2">Coming Soon</div>
-            <div class="text-text-on-dark-secondary text-sm font-medium">Date TBC</div>
-          </div>
-          <div class="md:w-1/2 mb-4 md:mb-0 pr-4">
-            <h3 class="font-serif font-bold text-3xl mb-3 text-text-on-dark group-hover:text-gold transition-colors">Careers Evening</h3>
-            <p class="text-text-on-dark-secondary text-base leading-relaxed">An evening exploring graduate careers and internship opportunities. Hear from professionals and ask questions.</p>
-          </div>
-          <div class="md:w-1/4 flex md:justify-end">
-            <a href="/events" class="inline-flex items-center gap-2 text-text-on-dark text-sm font-bold uppercase tracking-wider group-hover:text-gold transition-colors">
-              View Details <span aria-hidden="true" class="transform transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
-            </a>
-          </div>
+      {events.length === 0 ? (
+        <div class="gsap-stagger-event bg-navy/50 border border-border-dark rounded-2xl p-10 text-center">
+          <h3 class="font-black text-2xl uppercase tracking-tight mb-3 text-text-on-dark">No published events yet</h3>
+          <p class="text-text-on-dark-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon for upcoming Surrey Business Society events.</p>
         </div>
-
-        <!-- Event 2 -->
-        <div class="gsap-stagger-event group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-border-dark hover:bg-white/5 transition-colors px-6 -mx-6">
-          <div class="md:w-1/4 mb-4 md:mb-0">
-            <div class="text-gold text-xs font-bold tracking-widest uppercase mb-2">Planned Format</div>
-            <div class="text-text-on-dark-secondary text-sm font-medium">Date TBC</div>
-          </div>
-          <div class="md:w-1/2 mb-4 md:mb-0 pr-4">
-            <h3 class="font-serif font-bold text-3xl mb-3 text-text-on-dark group-hover:text-gold transition-colors">Founder Talk</h3>
-            <p class="text-text-on-dark-secondary text-base leading-relaxed">Hear from a founder about building a business — the reality, the challenges, and the lessons learned.</p>
-          </div>
-          <div class="md:w-1/4 flex md:justify-end">
-            <a href="/events" class="inline-flex items-center gap-2 text-text-on-dark text-sm font-bold uppercase tracking-wider group-hover:text-gold transition-colors">
-              View Details <span aria-hidden="true" class="transform transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
-            </a>
-          </div>
+      ) : (
+        <div class="flex flex-col border-t border-border-dark">
+          {events.map(event => (
+            <div class="gsap-stagger-event group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-border-dark hover:bg-white/5 transition-colors px-6 -mx-6">
+              <div class="md:w-1/4 mb-4 md:mb-0">
+                <div class="text-gold text-xs font-bold tracking-widest uppercase mb-2">{event.category || 'Event'}</div>
+                <div class="text-text-on-dark-secondary text-sm font-medium">{formatEventDate(event.date)}</div>
+              </div>
+              <div class="md:w-1/2 mb-4 md:mb-0 pr-4">
+                <h3 class="font-serif font-bold text-3xl mb-3 text-text-on-dark group-hover:text-gold transition-colors">{event.title}</h3>
+                <p class="text-text-on-dark-secondary text-base leading-relaxed">{event.description || 'Details coming soon.'}</p>
+              </div>
+              <div class="md:w-1/4 flex md:justify-end">
+                <a href="/events" class="inline-flex items-center gap-2 text-text-on-dark text-sm font-bold uppercase tracking-wider group-hover:text-gold transition-colors">
+                  View Details <span aria-hidden="true" class="transform transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      )}
     </div>
   </section>
 
@@ -217,17 +244,24 @@ import '../styles/global.css';
         <p class="mt-6 md:mt-0 text-text-secondary max-w-md md:text-right border-l md:border-l-0 md:border-r-2 border-gold pl-4 md:pl-0 md:pr-4">The students driving Surrey Business Society forward.</p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
-        {['President', 'Vice President', 'Treasurer', 'Professional Events Lead', 'Social Events Lead', 'Marketing Lead', 'Sponsorships Lead', 'Finance Officer', 'Media Lead', 'Inclusion Officer', 'First Year Rep'].map((role) => (
-          <div class="gsap-stagger-committee group flex flex-col items-center text-center">
-            <div class="w-full aspect-square bg-surface-alt rounded-md overflow-hidden mb-5 border border-border-light relative shadow-sm flex items-center justify-center text-navy text-2xl font-serif font-bold group-hover:text-gold group-hover:border-gold/40 transition-all duration-500">
-              {role.split(' ').map(word => word[0]).join('')}
+      {committee.length === 0 ? (
+        <div class="gsap-stagger-committee bg-surface-card rounded-2xl p-10 text-center shadow-sm border border-border-light">
+          <h3 class="font-black text-2xl uppercase tracking-tight mb-3 text-navy">Committee details coming soon</h3>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon to meet the Surrey Business Society committee.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
+          {committee.map(member => (
+            <div class="gsap-stagger-committee group flex flex-col items-center text-center">
+              <div class="w-full aspect-square bg-surface-alt rounded-md overflow-hidden mb-5 border border-border-light relative shadow-sm flex items-center justify-center text-navy text-2xl font-serif font-bold group-hover:text-gold group-hover:border-gold/40 transition-all duration-500">
+                {getInitials(member.name, member.role)}
+              </div>
+              <h3 class="font-serif font-bold text-xl text-navy relative z-10 mb-1 group-hover:text-gold transition-colors">{member.name}</h3>
+              <p class="text-xs font-bold uppercase tracking-widest text-gold relative z-10">{member.role}</p>
             </div>
-            <h3 class="font-serif font-bold text-xl text-navy relative z-10 mb-1 group-hover:text-gold transition-colors">Name TBC</h3>
-            <p class="text-xs font-bold uppercase tracking-widest text-gold relative z-10">{role}</p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 

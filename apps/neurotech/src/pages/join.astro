@@ -1,7 +1,10 @@
 ---
 export const prerender = true;
+import { getSocietyById } from '@surreysocieties/admin/config';
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+
+const society = getSocietyById('neurotech')!;
 ---
 
 <Layout title="Join" description="Join Surrey Neurotech Society — find out how to become a member, what you'll get, and how to stay connected.">
@@ -54,7 +57,7 @@ import '../styles/global.css';
             Any student at the University of Surrey. You don't need to be studying neuroscience or have any technical background. We welcome curious minds from every discipline.
           </p>
           <p class="text-text-secondary leading-relaxed">
-            Membership is managed through Surrey Students' Union. The sign-up link will be available once our membership page is live.
+            Membership is managed through Surrey Students' Union. You can sign up on their website.
           </p>
         </div>
       </div>
@@ -68,9 +71,12 @@ import '../styles/global.css';
         <div class="relative z-10">
           <h2 class="text-2xl sm:text-3xl font-bold mb-4">Become a Member</h2>
           <p class="text-text-secondary mb-8 max-w-lg mx-auto">Membership is handled through Surrey Students' Union.</p>
-          <a href="#" class="inline-block px-8 py-4 bg-secondary hover:bg-secondary-dark text-primary-deep font-bold rounded-full transition-all hover:shadow-lg hover:shadow-secondary/20 hover:-translate-y-0.5">
-            Surrey Union Link — Coming Soon
+          <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-4 bg-secondary hover:bg-secondary-dark text-primary-deep font-bold rounded-full transition-all hover:shadow-lg hover:shadow-secondary/20 hover:-translate-y-0.5">
+            Join Through Surrey Union
           </a>
+          <p class="mt-4 text-sm text-text-muted">
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-accent underline underline-offset-4">View the society page on the Students' Union site</a>
+          </p>
         </div>
       </div>
     </div>
@@ -84,11 +90,11 @@ import '../styles/global.css';
           <div class="space-y-4">
             <div class="glass-card rounded-2xl p-5 border-transparent">
               <h3 class="font-semibold mb-1">Instagram</h3>
-              <p class="text-text-muted text-sm">Coming soon — follow us for event announcements and updates.</p>
+              <p class="text-text-muted text-sm"><a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-accent underline underline-offset-4">Follow us for event announcements and updates.</a></p>
             </div>
             <div class="glass-card rounded-2xl p-5 border-transparent">
               <h3 class="font-semibold mb-1">Email</h3>
-              <p class="text-text-muted text-sm">Contact details coming soon.</p>
+              <p class="text-text-muted text-sm"><a href={`mailto:${society.contactEmail}`} class="hover:text-accent underline underline-offset-4">{society.contactEmail}</a></p>
             </div>
           </div>
         </div>
