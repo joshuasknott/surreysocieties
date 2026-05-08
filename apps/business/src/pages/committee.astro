@@ -68,9 +68,13 @@ const getInitials = (name?: string, role?: string) => {
           <div class="gsap-stagger-committee bg-surface-card rounded-2xl p-6 hover:bg-surface-alt transition-all duration-500 hover:-translate-y-2 shadow-[0_4px_24px_rgba(17,24,39,0.04)] hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)] border border-border-light group relative overflow-hidden flex items-start gap-5">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-            <div class="w-14 h-14 rounded-xl bg-navy flex items-center justify-center text-gold font-bold text-base shrink-0 border border-gold/30 shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_0_4px_rgba(212,160,23,0.15)] transition-all duration-500 relative z-10">
-              {getInitials(member.name, member.role)}
-            </div>
+            {member.imageUrl ? (
+              <img src={member.imageUrl} alt={member.name || member.role} class="w-14 h-14 rounded-xl object-cover shrink-0 border border-border-light shadow-sm relative z-10" />
+            ) : (
+              <div class="w-14 h-14 rounded-xl bg-navy flex items-center justify-center text-gold font-bold text-base shrink-0 border border-gold/30 shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_0_4px_rgba(212,160,23,0.15)] transition-all duration-500 relative z-10">
+                {getInitials(member.name, member.role)}
+              </div>
+            )}
             <div class="relative z-10">
               <h3 class="font-bold text-base uppercase tracking-wide text-navy leading-tight mb-1 group-hover:text-gold transition-colors">{member.role}</h3>
               <p class="text-text-muted text-sm font-medium tracking-wide uppercase">{member.name}</p>
@@ -102,9 +106,13 @@ const getInitials = (name?: string, role?: string) => {
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {pastCommittee.filter(member => member.yearLabel === yearLabel).map(member => (
                     <article class="bg-surface-card rounded-2xl p-6 border border-border-light flex items-start gap-5 shadow-[0_4px_24px_rgba(17,24,39,0.04)]">
-                      <div class="w-12 h-12 rounded-xl bg-navy flex items-center justify-center text-gold font-bold text-sm shrink-0 border border-gold/30">
-                        {getInitials(member.name, member.role)}
-                      </div>
+                      {member.imageUrl ? (
+                        <img src={member.imageUrl} alt={member.name || member.role} class="w-12 h-12 rounded-xl object-cover shrink-0 border border-border-light" />
+                      ) : (
+                        <div class="w-12 h-12 rounded-xl bg-navy flex items-center justify-center text-gold font-bold text-sm shrink-0 border border-gold/30">
+                          {getInitials(member.name, member.role)}
+                        </div>
+                      )}
                       <div>
                         <h4 class="font-bold text-sm uppercase tracking-wide text-navy leading-tight mb-1">{member.role}</h4>
                         <p class="text-text-muted text-sm font-medium tracking-wide uppercase">{member.name}</p>

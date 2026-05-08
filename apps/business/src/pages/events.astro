@@ -81,6 +81,11 @@ const getEventDetails = (event: any) => {
           <div class="gsap-stagger-event bg-surface-card p-8 hover:bg-surface-alt transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden shadow-sm hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)]">
             <div class="absolute inset-0 bg-gradient-to-tr from-transparent to-black/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+            {event.imageUrl && (
+              <div class="mb-6 relative z-10">
+                <img src={event.imageUrl} alt={event.title} class="w-full aspect-[16/9] object-cover rounded-lg" />
+              </div>
+            )}
             <div class="flex items-center justify-between gap-3 mb-6 relative z-10">
               <span class="inline-block text-xs font-bold tracking-widest uppercase text-navy bg-gold px-3 py-1 shadow-sm rounded">{event.category || 'Event'}</span>
               <span class="text-xs font-bold uppercase tracking-widest text-text-muted">{formatEventDate(event.date)}</span>
