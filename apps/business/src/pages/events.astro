@@ -60,7 +60,7 @@ const getEventDetails = (event: any) => {
           <div class="gsap-stagger-event sm:col-span-2 bg-surface-card p-10 text-center group relative overflow-hidden shadow-sm">
             <div class="absolute inset-0 bg-gradient-to-tr from-transparent to-black/[0.02] pointer-events-none"></div>
             <div class="relative z-10">
-              <h3 class="font-bold text-2xl mb-3 text-navy uppercase tracking-wide">No published events yet</h3>
+              <h3 class="font-bold text-2xl mb-3 text-text-primary uppercase tracking-wide">No published events yet</h3>
               <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon for upcoming Surrey Business Society events.</p>
             </div>
           </div>
@@ -74,12 +74,12 @@ const getEventDetails = (event: any) => {
               </div>
             )}
             <div class="flex items-center justify-between gap-3 mb-6 relative z-10">
-              <span class="inline-block text-xs font-bold tracking-widest uppercase text-navy bg-gold px-3 py-1 shadow-sm rounded">{event.category || 'Event'}</span>
+              <span class="inline-block text-xs font-bold tracking-widest uppercase text-navy-deep bg-gold px-3 py-1 shadow-sm rounded">{event.category || 'Event'}</span>
               <span class="text-xs font-bold uppercase tracking-widest text-text-muted">{formatEventDate(event.date)}</span>
             </div>
-            <h3 class="font-bold text-2xl mb-3 text-navy uppercase tracking-wide group-hover:text-gold transition-colors relative z-10">{event.title}</h3>
+            <h3 class="font-bold text-2xl mb-3 text-text-primary uppercase tracking-wide group-hover:text-gold transition-colors relative z-10">{event.title}</h3>
             <p class="text-text-secondary text-sm leading-relaxed mb-6 relative z-10">{event.description || 'Details coming soon.'}</p>
-            <div class="text-xs font-bold uppercase tracking-widest text-navy border-t border-border-light pt-4 group-hover:border-gold/30 transition-colors relative z-10">
+            <div class="text-xs font-bold uppercase tracking-widest text-text-primary border-t border-border-light pt-4 group-hover:border-gold/30 transition-colors relative z-10">
               {getEventDetails(event)}
             </div>
           </div>
