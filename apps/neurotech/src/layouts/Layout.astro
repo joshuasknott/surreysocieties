@@ -33,8 +33,20 @@ const navLinks = [
   description={description}
   ogImage={ogImage}
   canonicalUrl={canonicalUrl}
-  bodyClass="bg-primary text-text-primary font-sans min-h-screen flex flex-col"
+  htmlClass="motion-safe:scroll-smooth"
+  bodyClass="bg-primary text-text-primary font-sans min-h-screen flex flex-col transition-colors duration-300"
 >
+  <!-- Theme Init Script — runs before paint to prevent FOUC -->
+  <script is:inline>
+    const getTheme = () => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('surrey-neurotech-theme')) {
+        return localStorage.getItem('surrey-neurotech-theme');
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    const theme = getTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
   <!-- Navigation -->
   <nav class="sticky top-0 z-50 bg-primary border-b-2 border-gold/30">
     <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
@@ -66,6 +78,21 @@ const navLinks = [
             {link.label}
           </a>
         ))}
+        
+        <!-- Theme Toggle -->
+        <button
+          type="button"
+          id="theme-toggle"
+          aria-label="Switch to dark mode"
+          class="px-4 py-2 flex items-center text-text-on-dark-secondary hover:text-text-on-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg hover:bg-white/5"
+        >
+          <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </button>
       </div>
 
       <!-- Mobile menu button -->
@@ -161,6 +188,35 @@ const navLinks = [
     import Lenis from 'lenis';
     import gsap from 'gsap';
     import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    // ── Theme toggle ──
+    const themeBtn = document.getElementById('theme-toggle');
+    const iconDark = document.getElementById('theme-icon-dark');
+    const iconLight = document.getElementById('theme-icon-light');
+
+    function updateThemeUI(theme: string) {
+      const isDark = theme === 'dark';
+
+      document.documentElement.setAttribute('data-theme', theme);
+
+      iconDark?.classList.toggle('hidden', !isDark);
+      iconLight?.classList.toggle('hidden', isDark);
+
+      themeBtn?.setAttribute(
+        'aria-label',
+        isDark ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+    }
+
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeUI(currentTheme);
+
+    themeBtn?.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('surrey-neurotech-theme', newTheme);
+      updateThemeUI(newTheme);
+    });
 
     gsap.registerPlugin(ScrollTrigger);
 

@@ -32,40 +32,40 @@ const getEventDetails = (event: any) => {
 
 <Layout title="Events" description="Upcoming and planned events from Surrey Neurotech Society — talks, workshops, reading groups, and careers panels.">
 
-  <section class="bg-primary text-text-on-dark py-16 sm:py-20 px-6 neural-wave-bg-dark curve-bottom relative overflow-hidden">
+  <section class="bg-surface-dark text-text-on-dark py-16 sm:py-20 px-6  curve-bottom relative overflow-hidden">
     <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
       <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-primary"></div>
     </div>
     <div class="mx-auto max-w-6xl relative z-10">
       <div class="inline-flex items-center gap-2 mb-4">
-        <span class="w-2 h-2 rounded-full bg-accent"></span>
-        <span class="w-8 h-px bg-gradient-to-r from-accent/60 to-transparent"></span>
-        <span class="text-accent text-sm font-semibold uppercase tracking-wider">Events</span>
+        <span class="w-2 h-2 rounded-full bg-cyan"></span>
+        <span class="w-8 h-px bg-gradient-to-r from-cyan/60 to-transparent"></span>
+        <span class="text-cyan text-sm font-semibold uppercase tracking-wider">Events</span>
       </div>
       <h1 class="text-4xl sm:text-5xl font-black tracking-tight">Events</h1>
       <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl">What we're planning — from introductory talks to deeper technical sessions and reading groups.</p>
     </div>
-    <div class="absolute bottom-0 inset-x-0"><div class="neural-pathway"></div></div>
+    <div class="absolute bottom-0 inset-x-0"></div>
   </section>
 
   <section class="py-16 sm:py-20 px-6">
     <div class="mx-auto max-w-6xl">
       {events.length === 0 ? (
-        <div class="glass-card rounded-2xl p-8 border-transparent text-center">
+        <div class="neuro-card rounded-2xl p-8 border-transparent text-center">
           <h3 class="font-semibold text-lg mb-2 text-primary-deep">No published events yet</h3>
           <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon for upcoming Surrey Neurotech Society events.</p>
         </div>
       ) : (
         <div class="grid sm:grid-cols-2 gap-6">
           {events.map(event => (
-            <div class="glass-card rounded-2xl p-6 border-transparent hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+            <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
               {event.imageUrl && (
                 <div class="mb-4">
                   <img src={event.imageUrl} alt={event.title} class="w-full aspect-[16/9] object-cover rounded-lg" />
                 </div>
               )}
               <div class="flex items-center gap-3 mb-4">
-                <span class="inline-block text-xs font-medium text-accent bg-accent-muted px-3 py-1 rounded-full">{event.category || 'Event'}</span>
+                <span class="inline-block text-xs font-medium text-cyan bg-cyan/10 px-3 py-1 rounded-full">{event.category || 'Event'}</span>
                 <span class="text-xs text-text-muted">{formatEventDate(event.date)}</span>
               </div>
               <h3 class="font-semibold text-lg mb-2">{event.title}</h3>
@@ -78,12 +78,12 @@ const getEventDetails = (event: any) => {
         </div>
       )}
 
-      <div class="mt-12 glass-card rounded-2xl p-8 border-transparent text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-accent-muted to-transparent opacity-30"></div>
+      <div class="mt-12 neuro-card rounded-2xl p-8 border-transparent text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan/10 to-transparent opacity-30"></div>
         <div class="relative z-10">
           <h3 class="font-semibold text-lg mb-2 text-primary-deep">Got a topic you'd like us to cover?</h3>
           <p class="text-text-secondary text-sm mb-4 max-w-xl mx-auto">We're always looking for paper suggestions, speaker ideas, and workshop topics. Get in touch if you have something in mind.</p>
-          <a href="/join" class="text-accent hover:text-accent-dark text-sm font-semibold transition-colors">
+          <a href="/join" class="text-cyan hover:text-cyan-dark text-sm font-semibold transition-colors">
             Get in touch →
           </a>
         </div>
