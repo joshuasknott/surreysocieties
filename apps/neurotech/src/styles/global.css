@@ -52,6 +52,9 @@
     --neuro-cyan-muted: rgba(34, 211, 238, 0.12);
 
     /* Light Theme (Scientific, polished) */
+    --neuro-gold: #b45309; /* Darker gold for better contrast in light mode */
+    --neuro-cyan: #0891b2; /* Darker cyan for better contrast in light mode */
+
     --neuro-primary: #F8FAFC;
     --neuro-primary-deep: #F1F5F9;
     --neuro-primary-light: #FFFFFF;
@@ -74,6 +77,9 @@
   }
 
   :root[data-theme="dark"] {
+    --neuro-gold: #F59E0B;
+    --neuro-cyan: #22D3EE;
+
     --neuro-primary: #050A15;
     --neuro-primary-deep: #02040a;
     --neuro-primary-light: #0f172a;

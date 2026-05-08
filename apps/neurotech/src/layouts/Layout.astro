@@ -58,7 +58,7 @@ const navLinks = [
           height="36"
           class="h-9 w-9 rounded-full ring-2 ring-gold/30"
         />
-        <span class="text-text-on-dark font-bold text-lg tracking-tight hidden sm:block">
+        <span class="text-text-primary font-bold text-lg tracking-tight hidden sm:block">
           Surrey <span class="text-gold">Neurotech</span> Society
         </span>
       </a>
@@ -72,7 +72,7 @@ const navLinks = [
               'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
               currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
                 ? 'text-gold bg-gold/10'
-                : 'text-text-on-dark-secondary hover:text-text-on-dark hover:bg-white/5',
+                : 'text-text-secondary hover:text-text-primary hover:bg-surface-alt',
             ]}
           >
             {link.label}
@@ -84,7 +84,7 @@ const navLinks = [
           type="button"
           id="theme-toggle"
           aria-label="Switch to dark mode"
-          class="px-4 py-2 flex items-center text-text-on-dark-secondary hover:text-text-on-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg hover:bg-white/5"
+          class="px-4 py-2 flex items-center text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg hover:bg-surface-alt"
         >
           <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -98,7 +98,7 @@ const navLinks = [
       <!-- Mobile menu button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden text-text-on-dark p-2 hover:bg-white/10 rounded-lg transition-colors"
+        class="md:hidden text-text-primary p-2 hover:bg-surface-alt rounded-lg transition-colors"
         aria-label="Toggle navigation menu"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,12 +117,25 @@ const navLinks = [
               'px-4 py-2.5 text-sm font-medium rounded-lg transition-colors',
               currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
                 ? 'text-gold bg-gold/10'
-                : 'text-text-on-dark-secondary hover:text-text-on-dark hover:bg-white/5',
+                : 'text-text-secondary hover:text-text-primary hover:bg-surface-alt',
             ]}
           >
             {link.label}
           </a>
         ))}
+        <button
+          type="button"
+          id="mobile-theme-toggle"
+          class="px-4 py-2.5 flex items-center gap-3 text-sm font-medium rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-alt transition-colors text-left w-full"
+        >
+          <svg id="mobile-theme-icon-dark" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg id="mobile-theme-icon-light" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <span id="mobile-theme-text">Toggle Theme</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -194,6 +207,11 @@ const navLinks = [
     const iconDark = document.getElementById('theme-icon-dark');
     const iconLight = document.getElementById('theme-icon-light');
 
+    const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+    const mobileIconDark = document.getElementById('mobile-theme-icon-dark');
+    const mobileIconLight = document.getElementById('mobile-theme-icon-light');
+    const mobileThemeText = document.getElementById('mobile-theme-text');
+
     function updateThemeUI(theme: string) {
       const isDark = theme === 'dark';
 
@@ -201,22 +219,30 @@ const navLinks = [
 
       iconDark?.classList.toggle('hidden', !isDark);
       iconLight?.classList.toggle('hidden', isDark);
+      
+      mobileIconDark?.classList.toggle('hidden', !isDark);
+      mobileIconLight?.classList.toggle('hidden', isDark);
+      if (mobileThemeText) {
+        mobileThemeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      }
 
-      themeBtn?.setAttribute(
-        'aria-label',
-        isDark ? 'Switch to light mode' : 'Switch to dark mode'
-      );
+      const ariaLabel = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+      themeBtn?.setAttribute('aria-label', ariaLabel);
+      mobileThemeBtn?.setAttribute('aria-label', ariaLabel);
     }
 
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     updateThemeUI(currentTheme);
 
-    themeBtn?.addEventListener('click', () => {
+    const toggleTheme = () => {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
       localStorage.setItem('surrey-neurotech-theme', newTheme);
       updateThemeUI(newTheme);
-    });
+    };
+
+    themeBtn?.addEventListener('click', toggleTheme);
+    mobileThemeBtn?.addEventListener('click', toggleTheme);
 
     gsap.registerPlugin(ScrollTrigger);
 
