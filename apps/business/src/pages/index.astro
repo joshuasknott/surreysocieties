@@ -43,7 +43,7 @@ const getInitials = (name?: string, role?: string) => {
 <Layout title="Home" description="Surrey Business Society — A student-led community for careers, entrepreneurship, networking, and commercial thinking at the University of Surrey.">
 
   <!-- Hero -->
-  <section class="gsap-hero-section bg-navy-deep text-text-on-dark relative overflow-hidden border-b-4 border-gold min-h-screen flex items-center">
+  <section class="gsap-hero-section bg-navy-deep text-text-on-dark relative overflow-hidden border-b-4 border-gold pt-32 pb-24 sm:pt-48 sm:pb-32 flex items-center min-h-[70vh]">
     <!-- Abstract premium pattern -->
     <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#d4af37 1px, transparent 1px), linear-gradient(90deg, #d4af37 1px, transparent 1px); background-size: 60px 60px;"></div>
 
@@ -58,8 +58,8 @@ const getInitials = (name?: string, role?: string) => {
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-[1.1] gsap-hero-text">
           Surrey <span class="text-gold italic">Business</span> Society
         </h1>
-        <p class="mt-8 text-lg sm:text-xl text-text-on-dark/90 font-medium leading-relaxed max-w-2xl border-l-2 border-gold/50 pl-4 gsap-hero-text">
-          Surrey's student-led hub for business, careers, enterprise and professional networking. Bridging the gap between students and the professional world.
+        <p class="mt-8 text-lg sm:text-xl text-text-on-dark-secondary font-medium leading-relaxed max-w-2xl border-l-2 border-gold/50 pl-4 gsap-hero-text">
+          Surrey's student-led hub for <span class="text-text-on-dark">students of all disciplines</span>. Develop commercial awareness, build a professional network, and bridge the gap between your degree and your career.
         </p>
         <div class="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto gsap-hero-text">
           <a href="/join" class="px-8 py-4 rounded-xl bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all duration-500 hover:-translate-y-1 shadow-[0_4px_24px_rgba(212,175,55,0.35)] hover:shadow-[0_8px_32px_rgba(212,175,55,0.5)] flex items-center justify-center gap-2 group">
@@ -96,28 +96,28 @@ const getInitials = (name?: string, role?: string) => {
         <!-- Left Side: Tabs -->
         <div class="md:w-1/3 flex flex-col relative border-l border-border-light">
           
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group active" data-tab="careers">
+          <button class="focus-tab-btn text-left pl-6 py-5 relative group active" data-tab="careers" aria-expanded="true" aria-controls="content-careers" id="tab-careers">
             <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-gold transition-all duration-300 tab-indicator"></span>
             <h3 class="font-bold text-xl text-text-primary uppercase tracking-wide transition-colors tab-title">Careers</h3>
             <p class="text-text-muted text-sm mt-1">Graduate roles & internships</p>
           </button>
           
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="enterprise">
+          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="enterprise" aria-expanded="false" aria-controls="content-enterprise" id="tab-enterprise">
             <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-transparent transition-all duration-300 tab-indicator"></span>
             <h3 class="font-bold text-xl text-text-secondary uppercase tracking-wide group-hover:text-text-primary transition-colors tab-title">Enterprise</h3>
             <p class="text-text-muted text-sm mt-1">Startups & founders</p>
           </button>
 
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="networking">
+          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="networking" aria-expanded="false" aria-controls="content-networking" id="tab-networking">
             <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-transparent transition-all duration-300 tab-indicator"></span>
             <h3 class="font-bold text-xl text-text-secondary uppercase tracking-wide group-hover:text-text-primary transition-colors tab-title">Networking</h3>
             <p class="text-text-muted text-sm mt-1">Professional connections</p>
           </button>
 
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="speakers">
+          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="skills" aria-expanded="false" aria-controls="content-skills">
             <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-transparent transition-all duration-300 tab-indicator"></span>
-            <h3 class="font-bold text-xl text-text-secondary uppercase tracking-wide group-hover:text-text-primary transition-colors tab-title">Speakers</h3>
-            <p class="text-text-muted text-sm mt-1">Industry insights</p>
+            <h3 class="font-bold text-xl text-text-secondary uppercase tracking-wide group-hover:text-text-primary transition-colors tab-title">Skills</h3>
+            <p class="text-text-muted text-sm mt-1">Workshops & community</p>
           </button>
         </div>
 
@@ -130,7 +130,7 @@ const getInitials = (name?: string, role?: string) => {
           <div class="absolute inset-0 rounded-2xl bg-surface-card/50 pointer-events-none"></div>
           <div class="glass-panel w-full h-full rounded-2xl relative overflow-hidden shadow-xl bg-surface-card/80">
             <!-- Careers Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-100 z-10" id="content-careers">
+            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-100 z-10" id="content-careers" role="region" aria-labelledby="tab-careers">
               <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">💼</div>
               <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Launch Your Career</h3>
               <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
@@ -139,7 +139,7 @@ const getInitials = (name?: string, role?: string) => {
             </div>
             
             <!-- Enterprise Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-enterprise">
+            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-enterprise" role="region" aria-labelledby="tab-enterprise">
               <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">🚀</div>
               <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Build Your Vision</h3>
               <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
@@ -148,7 +148,7 @@ const getInitials = (name?: string, role?: string) => {
             </div>
 
             <!-- Networking Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-networking">
+            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-networking" role="region" aria-labelledby="tab-networking">
               <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">🤝</div>
               <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Grow Your Network</h3>
               <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
@@ -156,12 +156,12 @@ const getInitials = (name?: string, role?: string) => {
               </p>
             </div>
 
-            <!-- Speakers Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-speakers">
-              <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">📢</div>
-              <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Learn from Leaders</h3>
+            <!-- Skills Content -->
+            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-skills" role="region" aria-labelledby="tab-skills">
+              <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">🎯</div>
+              <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Sharpen Your Edge</h3>
               <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
-                Hear directly from industry professionals, successful entrepreneurs, and thought leaders about their journeys, strategies, and lessons learned.
+                Practical workshops on presentation, negotiation, leadership, and commercial thinking. Build the tangible skills employers want alongside an ambitious interdisciplinary community.
               </p>
             </div>
           </div>
@@ -258,9 +258,9 @@ const getInitials = (name?: string, role?: string) => {
     <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] rounded-full bg-gold/10 blur-[100px] pointer-events-none -translate-y-1/2 gsap-parallax-shape"></div>
     <div class="absolute inset-0 bg-grid-pattern-dark opacity-50 pointer-events-none"></div>
     <div class="mx-auto max-w-4xl text-center relative z-10 bg-navy-deep p-12 sm:p-16 border border-border-dark shadow-2xl rounded-3xl backdrop-blur-md bg-navy-deep/90 gsap-fade-up">
-      <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-6">Partner With Us</h2>
+      <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-6">Join The Network</h2>
       <p class="text-text-on-dark-secondary text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-        Whether you're interested in consulting, finance, entrepreneurship, or just curious about business — join the society. Or if you're a company, explore sponsorship opportunities.
+        Whether you're interested in consulting, finance, entrepreneurship, or just curious about business — join the society to start building your professional future.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a href="/join" class="px-8 py-4 rounded-xl bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all duration-500 hover:-translate-y-1 shadow-[0_4px_24px_rgba(212,160,23,0.35)] hover:shadow-[0_8px_32px_rgba(212,160,23,0.5)] flex justify-center items-center gap-2 group">
@@ -364,6 +364,7 @@ const getInitials = (name?: string, role?: string) => {
         // Reset all tabs
         tabBtns.forEach(b => {
           b.classList.remove('active');
+          b.setAttribute('aria-expanded', 'false');
           const indicator = b.querySelector('.tab-indicator');
           const title = b.querySelector('.tab-title');
           if (indicator) {
@@ -378,6 +379,7 @@ const getInitials = (name?: string, role?: string) => {
 
         // Set active tab
         btn.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
         const activeIndicator = btn.querySelector('.tab-indicator');
         const activeTitle = btn.querySelector('.tab-title');
         if (activeIndicator) {
