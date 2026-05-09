@@ -6,146 +6,141 @@ import '../styles/global.css';
 
 const SOCIETY_ID = 'business';
 const client = createConvexClient();
-const events: any[] = (await client.query("events:listPublished", { societySlug: SOCIETY_ID }))
+const events: any[] = (await client.query('events:listPublished', { societySlug: SOCIETY_ID }))
   .filter((event: any) => event.status === 'published');
 
 const formatEventDate = (date?: string) => {
   if (!date) return 'Date TBC';
-
   const parsed = new Date(`${date}T00:00:00`);
   if (Number.isNaN(parsed.getTime())) return date;
-
   return parsed.toLocaleDateString('en-GB', {
+    weekday: 'short',
     day: 'numeric',
     month: 'short',
     year: 'numeric',
   });
 };
-
-const getEventDetails = (event: any) => {
-  if (event.location) return `Location: ${event.location}`;
-  if (event.startTime && event.endTime) return `Time: ${event.startTime}-${event.endTime}`;
-  if (event.startTime) return `Time: ${event.startTime}`;
-  return `Category: ${event.category || 'Event'}`;
-};
 ---
 
-<Layout title="Events" description="Upcoming and planned events from Surrey Business Society — careers evenings, founder talks, networking socials, and workshops.">
+<Layout
+  title="Events"
+  description="Upcoming and planned events from Surrey Business Society — careers evenings, founder talks, networking socials, and workshops."
+>
 
-  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold overflow-hidden gsap-section">
-    <!-- Geometric Background Shapes -->
-    <div class="absolute top-[20%] right-[10%] w-96 h-96 rounded-full bg-gold/5 blur-3xl mix-blend-screen gsap-parallax-shape pointer-events-none z-0"></div>
-    <div class="absolute bottom-[-10%] left-[-5%] w-72 h-72 rounded-full bg-blue-500/10 blur-[80px] mix-blend-screen gsap-parallax-shape pointer-events-none z-0" data-speed="0.8"></div>
-
-    <div class="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/80 to-navy-deep/40 pointer-events-none z-0"></div>
+  <!-- ── Page header ── -->
+  <section class="bg-navy-deep text-text-on-dark pt-24 pb-20 sm:pt-32 sm:pb-24 px-6 border-b border-border-dark relative">
+    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-3 mb-6 gsap-fade-up">
-        <span class="w-12 h-0.5 bg-gold"></span>
-        <span class="text-gold text-xs font-bold uppercase tracking-widest backdrop-blur-sm bg-navy/30 px-2 py-1">Events</span>
-      </div>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark gsap-fade-up">Professional Agenda</h1>
-      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed gsap-fade-up">
-        Professional development, networking, and entrepreneurship — here's what we're planning.
+      <p class="eyebrow mb-6 reveal">Programme</p>
+      <h1 class="font-serif text-5xl sm:text-6xl font-bold tracking-tight leading-tight reveal">
+        Events & Agenda
+      </h1>
+      <p class="mt-6 text-base text-text-on-dark-secondary max-w-xl border-l border-gold/40 pl-4 leading-relaxed reveal">
+        Professional development, networking, and entrepreneurship. Our programme spans the academic year and is open to all members.
       </p>
     </div>
   </section>
 
-  <section class="py-24 sm:py-32 px-6 bg-surface relative overflow-hidden gsap-section">
-    <!-- Abstract Shape -->
-    <div class="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-navy/5 blur-[120px] pointer-events-none gsap-parallax-shape" data-speed="1.2"></div>
+  <!-- ── Event listing ── -->
+  <section class="py-20 sm:py-28 px-6 bg-surface border-b border-border">
+    <div class="mx-auto max-w-6xl">
 
-    <div class="mx-auto max-w-6xl relative z-10">
-      <div class="grid sm:grid-cols-2 gap-px bg-border-light border border-border-light mb-16 relative overflow-hidden rounded-3xl">
-        {events.length === 0 ? (
-          <div class="gsap-stagger-event sm:col-span-2 bg-surface-card p-10 text-center group relative overflow-hidden shadow-sm">
-            <div class="absolute inset-0 bg-gradient-to-tr from-transparent to-black/[0.02] pointer-events-none"></div>
-            <div class="relative z-10">
-              <h3 class="font-bold text-2xl mb-3 text-text-primary uppercase tracking-wide">No published events yet</h3>
-              <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon for upcoming Surrey Business Society events.</p>
-            </div>
-          </div>
-        ) : events.map(event => (
-          <div class="gsap-stagger-event bg-surface-card p-8 hover:bg-surface-alt transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden shadow-sm hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)]">
-            <div class="absolute inset-0 bg-gradient-to-tr from-transparent to-black/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-            {event.imageUrl && (
-              <div class="mb-6 relative z-10">
-                <img src={event.imageUrl} alt={event.title} class="w-full aspect-[16/9] object-cover rounded-lg" />
-              </div>
-            )}
-            <div class="flex items-center justify-between gap-3 mb-6 relative z-10">
-              <span class="inline-block text-xs font-bold tracking-widest uppercase text-navy-deep bg-gold px-3 py-1 shadow-sm rounded">{event.category || 'Event'}</span>
-              <span class="text-xs font-bold uppercase tracking-widest text-text-muted">{formatEventDate(event.date)}</span>
-            </div>
-            <h3 class="font-bold text-2xl mb-3 text-text-primary uppercase tracking-wide group-hover:text-gold transition-colors relative z-10">{event.title}</h3>
-            <p class="text-text-secondary text-sm leading-relaxed mb-6 relative z-10">{event.description || 'Details coming soon.'}</p>
-            <div class="text-xs font-bold uppercase tracking-widest text-text-primary border-t border-border-light pt-4 group-hover:border-gold/30 transition-colors relative z-10">
-              {getEventDetails(event)}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div class="bg-navy-deep text-text-on-dark p-12 text-center relative overflow-hidden border border-border-dark shadow-xl rounded-3xl gsap-fade-up group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-        <div class="absolute inset-0 bg-grid-pattern-dark opacity-30 pointer-events-none"></div>
-        <div class="absolute top-[-50%] right-[-10%] w-64 h-64 rounded-full bg-gold/5 blur-[80px] pointer-events-none group-hover:bg-gold/10 transition-colors duration-500"></div>
-        <div class="relative z-10">
-          <h3 class="font-black text-2xl uppercase tracking-tight mb-4 group-hover:text-gold transition-colors">Have an event idea?</h3>
-          <p class="text-text-on-dark-secondary mb-8 max-w-lg mx-auto">We're open to suggestions from members. If you know a great speaker or have a topic in mind, get in touch.</p>
-          <a href="/join" class="inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all shadow-md group-hover:shadow-[0_8px_32px_rgba(212,160,23,0.3)] rounded-xl group/btn">
-            Get in touch <span aria-hidden="true" class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-          </a>
+      {events.length > 0 ? (
+        <div>
+          <header class="mb-10 reveal">
+            <p class="eyebrow mb-3">Upcoming</p>
+            <h2 class="font-serif text-2xl font-bold text-text-primary">Published events</h2>
+          </header>
+          <ol class="divide-y divide-border border border-border" role="list">
+            {events.map(event => (
+              <li class="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 px-6 py-7 hover:bg-surface-alt transition-colors reveal" role="listitem">
+                <!-- Date / category column -->
+                <div class="md:w-48 shrink-0">
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1.5">{event.category || 'Event'}</p>
+                  <p class="text-sm font-semibold text-text-primary">{formatEventDate(event.date)}</p>
+                  {event.startTime && (
+                    <p class="text-xs text-text-muted mt-0.5">
+                      {event.startTime}{event.endTime ? `–${event.endTime}` : ''}
+                    </p>
+                  )}
+                  {event.location && (
+                    <p class="text-xs text-text-muted mt-0.5">{event.location}</p>
+                  )}
+                </div>
+                <!-- Title / description -->
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-serif text-xl font-semibold text-text-primary leading-snug mb-2">{event.title}</h3>
+                  {event.description && (
+                    <p class="text-sm text-text-secondary leading-relaxed">{event.description}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
+      ) : (
+        <!-- Empty state — evergreen programme context -->
+        <div class="reveal">
+          <header class="mb-10">
+            <p class="eyebrow mb-3">Programme</p>
+            <h2 class="font-serif text-2xl font-bold text-text-primary">No published events yet</h2>
+            <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
+              The programme for this academic year is in development. Follow us on Instagram and LinkedIn for the latest announcements.
+            </p>
+          </header>
+        </div>
+      )}
+
+      <!-- ── What we typically run ── -->
+      <div class="mt-16 border-t border-border pt-16 reveal">
+        <header class="mb-10">
+          <p class="eyebrow mb-3">Event types</p>
+          <h2 class="font-serif text-2xl font-bold text-text-primary">What the society runs</h2>
+          <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
+            Our programme spans the academic year and covers the full range of professional development contexts.
+          </p>
+        </header>
+        <dl class="grid sm:grid-cols-2 gap-px bg-border border border-border">
+          {[
+            {
+              dt: 'Careers Evenings',
+              dd: 'Sector-focused sessions that explore graduate pathways, application cycles, and the realities of early careers across industries including finance, consulting, and technology.',
+            },
+            {
+              dt: 'Founder Talks',
+              dd: 'Conversations with entrepreneurs and startup founders about building products, raising funding, pivoting, and the practical realities of running an early-stage business.',
+            },
+            {
+              dt: 'Networking Socials',
+              dd: 'Structured and informal events designed to build meaningful connections between members, with an emphasis on quality conversation over quantity.',
+            },
+            {
+              dt: 'Skills Workshops',
+              dd: 'Practical sessions covering commercial awareness, presentation skills, negotiation technique, and the competencies that employers and graduate recruiters look for.',
+            },
+          ].map(({ dt, dd }) => (
+            <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors">
+              <dt class="text-sm font-bold uppercase tracking-widest text-text-primary mb-3">{dt}</dt>
+              <dd class="text-sm text-text-secondary leading-relaxed">{dd}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   </section>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
+  <!-- ── Event ideas / contact nudge ── -->
+  <section class="bg-navy-deep text-text-on-dark py-20 px-6 border-t-2 border-gold relative">
+    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-50" aria-hidden="true"></div>
+    <div class="mx-auto max-w-3xl text-center relative z-10 reveal">
+      <h2 class="font-serif text-3xl font-bold tracking-tight mb-4">Have a suggestion?</h2>
+      <p class="text-text-on-dark-secondary text-sm mb-8 max-w-lg mx-auto leading-relaxed">
+        We welcome ideas from members. If you know a speaker, have a topic in mind, or want to help organise an event, get in touch.
+      </p>
+      <a href="/join" class="btn-primary">
+        Contact Us <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
 
-        gsap.utils.toArray('.gsap-fade-up').forEach((elem: any) => {
-          gsap.fromTo(elem, 
-            { y: 40, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: elem,
-                start: "top 85%",
-                toggleActions: "play none none reverse"
-              }
-            }
-          );
-        });
-
-        ScrollTrigger.create({
-          trigger: ".gsap-stagger-event",
-          start: "top 85%",
-          animation: gsap.fromTo(".gsap-stagger-event", 
-            { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power3.out" }
-          ),
-          toggleActions: "play none none reverse"
-        });
-
-        gsap.utils.toArray('.gsap-parallax-shape').forEach((shape: any) => {
-          const speed = shape.getAttribute('data-speed') || 0.5;
-          gsap.to(shape, {
-            y: () => (ScrollTrigger.maxScroll(window) - (ScrollTrigger.maxScroll(window) * speed)),
-            ease: "none",
-            scrollTrigger: {
-              trigger: shape.closest('.gsap-section') || document.body,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1
-            }
-          });
-        });
-      }
-    });
-  </script>
 </Layout>

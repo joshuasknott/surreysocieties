@@ -51,6 +51,13 @@ Limitations:
 
 Use these facts as canonical until a later research pack supersedes them. Do not invent additional facts.
 
+Current product direction update:
+
+- Only AI Society should keep public light/dark theme switching.
+- Business Society and Neurotech Society must not add or keep public theme toggles, `data-theme` systems, or persisted theme preferences.
+- Visual hierarchy for future redesigns is AI > Neurotech > Business: AI most visually overengineered, Neurotech second-most with interactive brain/neural visuals, Business most professional/basic with premium editorial polish.
+- No future work may invent events, committee members, sponsors, speakers, equipment access, lab access, or impact claims to make pages feel complete.
+
 | Society | Established | Instagram | Email | Union page | Membership | LinkedIn |
 | --- | --- | --- | --- | --- | --- | --- |
 | Surrey Artificial Intelligence Society | 2025 | `https://www.instagram.com/surrey.ai.ds/` | `ussu.aianddatascience@surrey.ac.uk` | `https://surreyunion.org/your-activity/clubs-and-societies-a-z/ai-and-data-science-society` | `https://surreyunion.org/shop/ai-and-data-science-society/293e762b-01b8-46f4-a541-2260e4d9ec4f` | N/A for now |
@@ -208,23 +215,22 @@ Files:
 - `convex/auth.config.ts`: Clerk JWT provider config.
 - `convex/seed.ts`: society and owner seed mutations.
 
-Schema tables from `convex/schema.ts`:
+Schema tables from `convex/schema.ts` after Phase 1 data/storage work:
 
-- `societies`: `name`, `shortName`, `slug`, `domain`, optional `logo`, optional `contactEmail`, optional `socials`, optional `membershipUrl`, optional `studentsUnionUrl`; index `by_slug`.
+- `societies`: `name`, `shortName`, `slug`, `domain`, optional `logo`, optional `contactEmail`, optional `socials`, optional `membershipUrl`, optional `studentsUnionUrl`, optional `establishedYear`; index `by_slug`.
 - `memberships`: `userId`, `societyId`, `role`, `status`; indexes by user, society, user/society, society/status.
 - `users`: `email`, `name`, optional `clerkId`; indexes by email and Clerk ID.
 - `invitations`: `email`, `societyId`, `role`, `invitedBy`, `token`, `expiresAt`, `status`; indexes by token, society, society/status, email.
-- `events`: `societyId`, `title`, optional description/date/start/end/location/category/image/registrationUrl, `status`, `isFeatured`; indexes by society, society/status, society/date.
-- `committeeMembers`: `societyId`, `name`, `role`, optional bio/image/email/linkedIn, `displayOrder`, `isActive`; indexes by society and society/active.
+- `events`: `societyId`, `title`, optional description/date/start/end/location/category/image/imageStorageId/registrationUrl, `status`, `isFeatured`; indexes by society, society/status, society/date.
+- `committeeMembers`: `societyId`, `name`, `role`, optional bio/image/imageStorageId/email/linkedIn, `displayOrder`, `isActive`; indexes by society and society/active.
+- `pastCommitteeMembers`: `societyId`, `name`, `role`, `yearLabel`, optional bio/image/imageStorageId/email/linkedIn, `displayOrder`; indexes by society and society/year.
 - `siteSettings`: `societyId`, `key`, `value`; index `by_society_key`.
 - `auditLogs`: `societyId`, `userId`, `action`, optional target and details; index by society.
 
-Missing schema capabilities:
+Remaining schema/backend gaps:
 
-- No `establishedYear` or founding date field.
-- No past committee/session/year model.
-- No Convex storage reference fields for uploaded event or committee images.
 - No separate `externalLinks` or typed settings model beyond generic string `siteSettings` and optional society fields.
+- Uploaded storage files are not automatically cleaned up when replaced or when records are deleted.
 
 ## Current Data Model And Data Flows
 
@@ -234,7 +240,7 @@ Society metadata:
 - Seed defaults live in `convex/seed.ts`.
 - Runtime society records live in Convex `societies`.
 - `convex/settings.ts` can read and patch `societies` fields, but audited admin settings pages do not expose society metadata editing.
-- Known official links and established dates are not fully represented in config, seed, schema, or public pages.
+- Known official links and established dates are represented in config, seed, schema, and obvious public footer/join surfaces after Phase 1A/1B work. Convex `societies` is the runtime source of truth; `packages/admin/src/config.ts` is a static fallback/admin convenience mirror.
 
 Events:
 
@@ -243,8 +249,7 @@ Events:
 - Admin authorization: mutations use `requireContentEditor`; list/get use existing membership.
 - Public pages call unauthenticated `createConvexClient()` and query `events:listPublished`.
 - Admin pages use authenticated Convex clients created in middleware from a Clerk token.
-- Event images are strings. Admin forms label them `Image URL` and accept `https://` or `/path/to/image`.
-- No upload, storage, or signed URL flow exists.
+- Event images support optional Convex storage IDs resolved to signed URLs, with URL/path strings retained as a fallback.
 
 Committee:
 
@@ -252,8 +257,8 @@ Committee:
 - Admin data source: `convex/committee.ts` `list`, `getById`, `create`, `update`, `remove`.
 - Admin authorization: mutations use `requireContentEditor`; list/get use existing membership.
 - Public pages sort `listActive` results by `displayOrder` then `name`.
-- Committee images are strings. Admin forms label them `Image URL` and accept `https://` or `/path/to/image`.
-- No past committee support exists beyond `isActive`; inactive entries are not displayed as past committees.
+- Committee images support optional Convex storage IDs resolved to signed URLs, with URL/path strings retained as a fallback.
+- Past committee records use the separate `pastCommitteeMembers` table and are displayed separately from active committee members.
 
 Settings:
 
@@ -290,12 +295,12 @@ AI:
 Business:
 
 - `apps/business/src/pages/events.astro` calls `events:listPublished` and displays Convex events or a no-events empty state.
-- `apps/business/src/pages/index.astro` does not use Convex for the homepage events preview. It hard-codes `Careers Evening` and `Founder Talk` as coming-soon/planned event-like content.
+- `apps/business/src/pages/index.astro` now uses server-side Convex `events:listPublished` data for homepage event previews or an honest empty state.
 
 Neurotech:
 
 - `apps/neurotech/src/pages/events.astro` calls `events:listPublished` and displays Convex events or a no-events empty state.
-- `apps/neurotech/src/pages/index.astro` does not use Convex for the homepage events preview. It hard-codes `Intro to Neurotech` and `Brain-Computer Interfaces 101` as coming-soon/planned event-like content.
+- `apps/neurotech/src/pages/index.astro` now uses server-side Convex `events:listPublished` data for homepage event previews or an honest empty state.
 
 ## Current Public Committee Flow
 
@@ -308,12 +313,12 @@ AI:
 Business:
 
 - `apps/business/src/pages/committee.astro` calls `committee:listActive` and displays active committee or an empty state.
-- `apps/business/src/pages/index.astro` does not use Convex for the homepage committee preview. It hard-codes role tiles with `Name TBC`.
+- `apps/business/src/pages/index.astro` now uses server-side Convex `committee:listActive` data for homepage committee previews or an honest empty state.
 
 Neurotech:
 
 - `apps/neurotech/src/pages/committee.astro` calls `committee:listActive` and displays active committee or an empty state.
-- `apps/neurotech/src/pages/index.astro` does not use Convex for the homepage committee preview. It hard-codes role tiles with `Name TBC`.
+- `apps/neurotech/src/pages/index.astro` now uses server-side Convex `committee:listActive` data for homepage committee previews or an honest empty state.
 
 ## Current Admin Event And Committee Flow
 
@@ -347,8 +352,6 @@ Admin empty states:
 
 Admin gaps:
 
-- No image upload UI.
-- No past committee UI.
 - No society metadata/settings UI despite backend settings functions.
 - No invite accept page.
 - Admin layout is fixed-sidebar; responsive CSS hides sidebar under 1024px but no audited mobile open button exists in `AdminLayout.astro`.
@@ -364,13 +367,13 @@ Business public:
 
 - Events page uses `No published events yet` when Convex has none.
 - Committee page uses `Committee details coming soon` when Convex has none.
-- Homepage hard-codes fake/planned event-like previews and `Name TBC` committee tiles; these should be replaced by Convex data or neutral non-data content.
+- Homepage now uses Convex event/committee data with honest empty states; no fake/planned event-like previews or `Name TBC` committee tiles should be reintroduced.
 
 Neurotech public:
 
 - Events page uses `No published events yet` when Convex has none.
 - Committee page uses `Committee details coming soon` when Convex has none.
-- Homepage hard-codes fake/planned event-like previews and `Name TBC` committee tiles; these should be replaced by Convex data or neutral non-data content.
+- Homepage now uses Convex event/committee data with honest empty states; no fake/planned event-like previews or `Name TBC` committee tiles should be reintroduced.
 
 Admin:
 
@@ -383,24 +386,24 @@ AI Society:
 
 - `apps/ai/src/styles/global.css` defines light and dark tokens via `:root` and `:root[data-theme="dark"]`.
 - `apps/ai/src/layouts/Layout.astro` initializes theme before paint, stores preference in `localStorage` under `surrey-ai-theme`, and exposes a theme toggle.
-- AI public theme is the most complete.
+- AI public theme switching is intentionally retained and should remain the only public society light/dark toggle.
 
 Business Society:
 
 - `apps/business/src/styles/global.css` defines one corporate palette, mostly light surfaces plus dark hero/footer sections.
 - `apps/business/src/layouts/Layout.astro` has no theme initialization or toggle.
-- Business public theme does not satisfy proper light/dark requirements yet.
+- Current direction is to keep Business single-mode and professional/basic. Do not add public theme initialization, `data-theme`, localStorage theme preferences, or a theme toggle.
 
 Neurotech Society:
 
 - `apps/neurotech/src/styles/global.css` defines an effectively dark bioluminescent palette.
 - `apps/neurotech/src/layouts/Layout.astro` has no theme initialization or toggle.
-- Neurotech public theme is effectively dark-only.
+- Current direction is to keep Neurotech single-mode while making it the second-most visually overengineered site with accessible interactive brain/neural visuals. Do not add public theme initialization, `data-theme`, localStorage theme preferences, or a theme toggle.
 
 Admin:
 
 - `apps/*/src/styles/admin.css` is light-only neutral admin styling.
-- Admin has no light/dark toggle and no shared admin theme abstraction.
+- Admin has no light/dark toggle and no shared admin theme abstraction. Admin visual work should prioritize usability and must not introduce Business/Neurotech public theme switching.
 
 ## Current AI/API Integration Status
 
@@ -596,13 +599,13 @@ Build/test execution status:
 
 ## Known Risks And Blockers
 
-- Backend migration risk: established dates, past committee, and storage references require schema changes and likely data migration planning.
-- Public fake-data risk: Business and Neurotech homepages display hard-coded event/committee-like content that can be mistaken for real data.
-- Link trust risk: known official links are missing from config, seed, and pages; current public CTAs include dead `href="#"` links.
+- Backend migration risk: future schema changes still require migration planning, but established dates, past committee, and storage references have been added.
+- Public fake-data risk: Business and Neurotech fake homepage event/committee previews were removed; do not reintroduce fake events, committee, sponsors, speakers, equipment access, or lab access.
+- Link trust risk: known official links were wired in seed/config and obvious public surfaces, but broader page-level CTA/link polish may still be needed.
 - Admin invite risk: invitation acceptance is not wired to a route even though tokens are shown in admin.
-- Media risk: stock image/video dependence is widespread. Removing files before replacing references will break pages.
-- Upload risk: admin currently accepts image URL/path strings. Moving to Convex storage affects schema, admin forms, public rendering, and QA.
-- Theme risk: AI has a theme system, Business and Neurotech do not. Admin is light-only.
+- Media risk: stock image/video dependence was removed after references were replaced; do not add stock-like media without approval.
+- Upload risk: Convex storage upload exists, but old uploaded storage files are not automatically cleaned up when replaced or when records are deleted.
+- Theme risk: AI should remain the only public site with light/dark theme switching. Business and Neurotech must not gain public toggles, `data-theme`, or persisted theme systems.
 - Neurotech visual/CSS risk: pages use classes such as `glass-card`, `bg-accent`, `text-secondary`, `neural-wave-bg-dark`, and `neural-pathway` that are not defined in `apps/neurotech/src/styles/global.css`.
 - Neurotech content quality risk: `apps/neurotech/src/pages/about.astro` contains duplicated mission text and mojibake around line 56.
 - Dependency risk: Business pages import/use GSAP but `apps/business/package.json` does not declare `gsap`.
@@ -615,17 +618,15 @@ Build/test execution status:
 
 Use `TASK_LEDGER.md` as the implementation source of truth. Recommended order:
 
-1. `DATA-01` and `LINK-01`: confirm and wire canonical society metadata in config, seed, and pages.
-2. `DATA-02`: add established/founding fields with migration planning.
-3. `DATA-03` and `ADMIN-04`: design and implement past committee model and admin/public surfaces.
-4. `ADMIN-03`: implement safe image upload/storage flow or approved media replacement path before removing stock media.
-5. `BUS-01` and `NEU-01`: replace hard-coded homepage event/committee previews with Convex data or neutral content.
-6. `THEME-01`, `THEME-02`, and `THEME-03`: complete light/dark theme systems for Business, Neurotech, and admin.
-7. `MEDIA-01`: remove public stock media dependence only after replacement references are in place.
-8. `DESIGN-REVIEW-01`: run browser-based Gemini 3.1 Pro homepage coherence review.
-9. `BUS-02`, `NEU-02`, `SEO-01`: subpage IA, copy, SEO, and content fixes.
-10. `DESIGN-REVIEW-02`: run browser-based Gemini 3.1 Pro subpage ecosystem review.
-11. `QA-01`, `QA-02`, `DESIGN-REVIEW-03`, `QA-03`: final build, accessibility, visual reconciliation, and GPT 5.5 final QA.
+1. `LINK-01`, `LINK-02`, `ADMIN-01`, and `ADMIN-02`: finish remaining link/admin usability work.
+2. `THEME-01` and `THEME-02`: remove/revert Business and Neurotech public theme switching if any was added; keep AI as the only public light/dark theme site.
+3. `BUS-01`: professionalize Business homepage with premium editorial polish, no SaaS/glass/card clutter, and no fake sponsors or speakers.
+4. `NEU-01`: professionalize Neurotech homepage as the second-most visually overengineered site with an accessible interactive brain/neural visual and no fake lab/equipment claims.
+5. `AI-01`, `AI-02`, and AI homepage/subpage polish: keep AI the most visually overengineered while preserving server-only AI keys, bounded outputs, and honest fallbacks.
+6. `DESIGN-REVIEW-01`: run browser-based Gemini 3.1 Pro homepage coherence review against visual hierarchy AI > Neurotech > Business and AI-only theme switching.
+7. `BUS-02`, `NEU-02`, `AI-03`, and `SEO-01`: subpage IA, copy, SEO, and content fixes.
+8. `DESIGN-REVIEW-02`: run browser-based Gemini 3.1 Pro subpage ecosystem review.
+9. `QA-01`, `QA-02`, `DESIGN-REVIEW-03`, `QA-03`: final build, accessibility, visual reconciliation, and GPT 5.5 final QA.
 
 ## File Ownership Rules For Future Agents
 
@@ -633,6 +634,9 @@ Use `TASK_LEDGER.md` as the implementation source of truth. Recommended order:
 - Backend/schema tasks must complete before frontend tasks rely on new fields.
 - Only one agent may edit a given app layout/style pair at a time, for example `apps/business/src/layouts/Layout.astro` and `apps/business/src/styles/global.css`.
 - Homepage redesign agents must not edit subpages unless their task explicitly owns them.
+- AI redesign agents own AI public visuals only and must preserve AI public theme switching and server-side AI feature boundaries.
+- Business redesign agents own Business public visuals only and must keep the site single-mode, professional/basic, editorial, and free of SaaS/glass/card clutter.
+- Neurotech redesign agents own Neurotech public visuals only and must keep the site single-mode, second-most visually overengineered, and focused on accessible brain/neural visuals.
 - Media agents must not delete assets until all references are removed and QA confirms replacement behavior.
 - Link/content agents may edit public pages and shared config only for link/copy tasks; they must not redesign layouts.
 - Admin agents may edit `apps/*/src/pages/admin/**`, `apps/*/src/actions/index.ts`, `packages/admin/**`, and related Convex functions only if their task explicitly owns those paths.

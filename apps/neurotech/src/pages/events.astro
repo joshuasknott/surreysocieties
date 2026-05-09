@@ -42,8 +42,8 @@ const getEventDetails = (event: any) => {
         <span class="w-8 h-px bg-gradient-to-r from-cyan/60 to-transparent"></span>
         <span class="text-cyan text-sm font-semibold uppercase tracking-wider">Events</span>
       </div>
-      <h1 class="text-4xl sm:text-5xl font-black tracking-tight">Events</h1>
-      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl">What we're planning — from introductory talks to deeper technical sessions and reading groups.</p>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1]">Events</h1>
+      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl">Discover our tracks: session formats, responsible innovation, beginner pathways, and project ideas.</p>
     </div>
     <div class="absolute bottom-0 inset-x-0"></div>
   </section>
@@ -51,9 +51,35 @@ const getEventDetails = (event: any) => {
   <section class="py-16 sm:py-20 px-6">
     <div class="mx-auto max-w-6xl">
       {events.length === 0 ? (
-        <div class="neuro-card rounded-2xl p-8 border-transparent text-center">
-          <h3 class="font-semibold text-lg mb-2 text-primary-deep">No published events yet</h3>
-          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon for upcoming Surrey Neurotech Society events.</p>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-block text-xs font-medium text-cyan bg-cyan/10 px-3 py-1 rounded-full">Format</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Neurotechnology Tracks</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">Deep dives into computational modelling and neural decoding methods.</p>
+          </div>
+          <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-block text-xs font-medium text-cyan bg-cyan/10 px-3 py-1 rounded-full">Format</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Beginner Pathway</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">No experience required. Learn the fundamentals of brain-computer interfaces from scratch.</p>
+          </div>
+          <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-block text-xs font-medium text-cyan bg-cyan/10 px-3 py-1 rounded-full">Format</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Responsible Innovation</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">Exploring neuroethics, cognitive privacy, and the societal impact of reading brain data.</p>
+          </div>
+          <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-block text-xs font-medium text-cyan bg-cyan/10 px-3 py-1 rounded-full">Format</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Project Ideas</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">Collaborative reading groups and open-source contributions to BCI libraries.</p>
+          </div>
         </div>
       ) : (
         <div class="grid sm:grid-cols-2 gap-6">

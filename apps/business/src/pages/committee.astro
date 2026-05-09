@@ -6,12 +6,12 @@ import '../styles/global.css';
 
 const SOCIETY_ID = 'business';
 const client = createConvexClient();
-const committee: any[] = (await client.query("committee:listActive", { societySlug: SOCIETY_ID }))
+const committee: any[] = (await client.query('committee:listActive', { societySlug: SOCIETY_ID }))
   .sort((a: any, b: any) =>
     (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
     || (a.name || '').localeCompare(b.name || '')
   );
-const pastCommittee: any[] = (await client.query("committee:listPast", { societySlug: SOCIETY_ID }))
+const pastCommittee: any[] = (await client.query('committee:listPast', { societySlug: SOCIETY_ID }))
   .sort((a: any, b: any) =>
     (b.yearLabel || '').localeCompare(a.yearLabel || '') ||
     (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
@@ -22,169 +22,155 @@ const pastCommitteeYears = [...new Set(pastCommittee.map(member => member.yearLa
 const getInitials = (name?: string, role?: string) => {
   const source = (name || role || '?').trim();
   const words = source.split(/\s+/).filter(Boolean);
-
   if (words.length === 0) return '?';
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-
   return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
 };
 ---
 
-<Layout title="Committee" description="Meet the student committee running Surrey Business Society — the team behind our careers events, networking, and community.">
+<Layout
+  title="Committee"
+  description="Meet the student committee running Surrey Business Society — the team behind our careers events, networking, and community."
+>
 
-  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-b-4 border-gold overflow-hidden gsap-section">
-    <!-- Geometric Background Shapes -->
-    <div class="absolute top-[20%] right-[10%] w-96 h-96 rounded-full bg-gold/5 blur-3xl mix-blend-screen gsap-parallax-shape pointer-events-none"></div>
-    <div class="absolute bottom-[-10%] left-[-5%] w-72 h-72 rounded-full bg-blue-500/10 blur-[80px] mix-blend-screen gsap-parallax-shape pointer-events-none" data-speed="0.8"></div>
-
-    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50 pointer-events-none"></div>
+  <!-- ── Page header ── -->
+  <section class="bg-navy-deep text-text-on-dark pt-24 pb-20 sm:pt-32 sm:pb-24 px-6 border-b border-border-dark relative">
+    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-3 mb-6 gsap-fade-up">
-        <span class="w-12 h-0.5 bg-gold"></span>
-        <span class="text-gold text-xs font-bold uppercase tracking-widest backdrop-blur-sm bg-navy/30 px-2 py-1">Leadership</span>
-      </div>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-text-on-dark gsap-fade-up">Committee</h1>
-      <p class="mt-8 text-xl text-text-on-dark-secondary max-w-2xl border-l-2 border-gold/50 pl-4 leading-relaxed gsap-fade-up">
-        The students behind Surrey Business Society.
+      <p class="eyebrow mb-6 reveal">Leadership</p>
+      <h1 class="font-serif text-5xl sm:text-6xl font-bold tracking-tight leading-tight reveal">Committee</h1>
+      <p class="mt-6 text-base text-text-on-dark-secondary max-w-xl border-l border-gold/40 pl-4 leading-relaxed reveal">
+        The students running Surrey Business Society. Elected annually through Surrey Students' Union.
       </p>
     </div>
   </section>
 
-  <section class="py-24 sm:py-32 px-6 bg-surface relative overflow-hidden gsap-section">
-    <!-- Abstract Shape -->
-    <div class="absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-navy/5 blur-[120px] pointer-events-none gsap-parallax-shape" data-speed="1.2"></div>
+  <!-- ── Active committee ── -->
+  <section class="py-20 sm:py-28 px-6 bg-surface border-b border-border">
+    <div class="mx-auto max-w-6xl">
 
-    <div class="mx-auto max-w-6xl relative z-10">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {committee.length === 0 ? (
-          <div class="gsap-stagger-committee sm:col-span-2 lg:col-span-3 bg-surface-card rounded-2xl p-10 text-center shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-border-light group relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/[0.02] pointer-events-none"></div>
-            <div class="relative z-10">
-              <h3 class="font-black text-2xl uppercase tracking-tight mb-4 text-text-primary">Committee details coming soon</h3>
-              <p class="text-text-secondary max-w-lg mx-auto leading-relaxed">Check back soon to meet the Surrey Business Society committee.</p>
+      {committee.length === 0 ? (
+        <!-- Empty active committee — evergreen context -->
+        <div class="reveal">
+          <header class="mb-10">
+            <p class="eyebrow mb-3">Current committee</p>
+            <h2 class="font-serif text-2xl font-bold text-text-primary">Details coming soon</h2>
+            <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
+              The committee for this academic year will be confirmed once elections have taken place through Surrey Students' Union. Check back for updates.
+            </p>
+          </header>
+          <!-- Structure explainer when no data -->
+          <div class="border border-border">
+            <div class="px-6 py-5 border-b border-border bg-surface-alt">
+              <p class="text-xs font-bold uppercase tracking-widest text-text-muted">Typical committee structure</p>
             </div>
+            <ol class="divide-y divide-border" role="list">
+              {[
+                'President',
+                'Vice President',
+                'Events Officer',
+                'Marketing Officer',
+                'Careers Officer',
+                'Secretary',
+                'Treasurer',
+              ].map((role, i) => (
+                <li class="flex items-center gap-6 px-6 py-4" role="listitem">
+                  <span class="text-xs font-bold text-text-muted tabular-nums w-5">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="text-sm font-medium text-text-secondary">{role}</span>
+                </li>
+              ))}
+            </ol>
           </div>
-        ) : committee.map(member => (
-          <div class="gsap-stagger-committee bg-surface-card rounded-2xl p-6 hover:bg-surface-alt transition-all duration-500 hover:-translate-y-2 shadow-[0_4px_24px_rgba(17,24,39,0.04)] hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)] border border-border-light group relative overflow-hidden flex items-start gap-5">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            <div class="absolute top-0 left-0 w-1 h-full bg-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-            {member.imageUrl ? (
-              <img src={member.imageUrl} alt={member.name || member.role} class="w-14 h-14 rounded-xl object-cover shrink-0 border border-border-light shadow-sm relative z-10" />
-            ) : (
-              <div class="w-14 h-14 rounded-xl bg-navy-deep flex items-center justify-center text-gold font-bold text-base shrink-0 border border-gold/30 shadow-sm group-hover:scale-110 group-hover:shadow-[0_0_0_4px_rgba(212,160,23,0.15)] transition-all duration-500 relative z-10">
-                {getInitials(member.name, member.role)}
-              </div>
-            )}
-            <div class="relative z-10">
-              <h3 class="font-bold text-base uppercase tracking-wide text-text-primary leading-tight mb-1 group-hover:text-gold transition-colors">{member.role}</h3>
-              <p class="text-text-muted text-sm font-medium tracking-wide uppercase">{member.name}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div class="mt-16 pt-12 border-t border-border-light">
-        <div class="mb-10">
-          <div class="inline-flex items-center gap-3 mb-4">
-            <span class="w-12 h-0.5 bg-gold"></span>
-            <span class="text-gold text-xs font-bold uppercase tracking-widest">Archive</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-text-primary">Past Committee</h2>
-          <p class="mt-3 text-text-secondary max-w-xl">Confirmed previous committee records for Surrey Business Society.</p>
         </div>
+      ) : (
+        <div>
+          <header class="mb-10 reveal">
+            <p class="eyebrow mb-3">Current year</p>
+            <h2 class="font-serif text-2xl font-bold text-text-primary">Active committee</h2>
+          </header>
+          <ol class="divide-y divide-border border border-border" role="list">
+            {committee.map((member, i) => (
+              <li class="flex items-center gap-6 px-6 py-5 hover:bg-surface-alt transition-colors reveal" role="listitem">
+                <span class="text-xs font-bold text-text-muted tabular-nums w-5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                {member.imageUrl ? (
+                  <img
+                    src={member.imageUrl}
+                    alt={member.name || member.role}
+                    class="w-9 h-9 object-cover shrink-0 border border-border"
+                  />
+                ) : (
+                  <div class="w-9 h-9 bg-navy-deep flex items-center justify-center text-gold font-semibold text-xs shrink-0 border border-border-dark">
+                    {getInitials(member.name, member.role)}
+                  </div>
+                )}
+                <div class="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
+                  <span class="text-sm font-medium text-text-primary">{member.name}</span>
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-gold">{member.role}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      <!-- ── Past committee archive ── -->
+      <div class="mt-16 border-t border-border pt-16">
+        <header class="mb-10 reveal">
+          <p class="eyebrow mb-3">Archive</p>
+          <h2 class="font-serif text-2xl font-bold text-text-primary">Past committee</h2>
+          <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
+            A record of previous committees who have led Surrey Business Society.
+          </p>
+        </header>
 
         {pastCommittee.length === 0 ? (
-          <div class="bg-surface-card rounded-2xl p-8 border border-border-light text-center shadow-[0_4px_24px_rgba(17,24,39,0.04)]">
-            <h3 class="font-black text-xl uppercase tracking-tight mb-3 text-text-primary">No past committee records yet</h3>
-            <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Past committee details will be published once confirmed.</p>
+          <div class="border border-border px-6 py-8 reveal">
+            <p class="text-sm text-text-secondary leading-relaxed">Past committee records will be published once confirmed.</p>
           </div>
         ) : (
-          <div class="space-y-10">
+          <div class="space-y-12">
             {pastCommitteeYears.map(yearLabel => (
-              <section>
-                <h3 class="font-serif font-bold text-2xl text-text-primary mb-5">{yearLabel}</h3>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {pastCommittee.filter(member => member.yearLabel === yearLabel).map(member => (
-                    <article class="bg-surface-card rounded-2xl p-6 border border-border-light flex items-start gap-5 shadow-[0_4px_24px_rgba(17,24,39,0.04)]">
+              <section class="reveal">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-gold border-b border-border pb-3 mb-0">{yearLabel}</h3>
+                <ol class="divide-y divide-border border border-border border-t-0" role="list">
+                  {pastCommittee.filter(m => m.yearLabel === yearLabel).map((member, i) => (
+                    <li class="flex items-center gap-6 px-6 py-4 hover:bg-surface-alt transition-colors" role="listitem">
+                      <span class="text-xs font-bold text-text-muted tabular-nums w-5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
                       {member.imageUrl ? (
-                        <img src={member.imageUrl} alt={member.name || member.role} class="w-12 h-12 rounded-xl object-cover shrink-0 border border-border-light" />
+                        <img
+                          src={member.imageUrl}
+                          alt={member.name || member.role}
+                          class="w-8 h-8 object-cover shrink-0 border border-border"
+                        />
                       ) : (
-                        <div class="w-12 h-12 rounded-xl bg-navy-deep flex items-center justify-center text-gold font-bold text-sm shrink-0 border border-gold/30">
+                        <div class="w-8 h-8 bg-navy-deep flex items-center justify-center text-gold font-semibold text-[10px] shrink-0 border border-border-dark">
                           {getInitials(member.name, member.role)}
                         </div>
                       )}
-                      <div>
-                        <h4 class="font-bold text-sm uppercase tracking-wide text-text-primary leading-tight mb-1">{member.role}</h4>
-                        <p class="text-text-muted text-sm font-medium tracking-wide uppercase">{member.name}</p>
+                      <div class="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
+                        <span class="text-sm font-medium text-text-primary">{member.name}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted">{member.role}</span>
                       </div>
-                    </article>
+                    </li>
                   ))}
-                </div>
+                </ol>
               </section>
             ))}
           </div>
         )}
       </div>
 
-      <div class="mt-12 bg-surface-alt rounded-2xl p-10 border border-border-light text-center shadow-[0_4px_24px_rgba(17,24,39,0.04)] bg-grid-pattern relative overflow-hidden gsap-fade-up group hover:shadow-[0_16px_48px_rgba(17,24,39,0.1)] transition-all duration-500 hover:-translate-y-2">
-        <div class="absolute top-[-50%] right-[-10%] w-64 h-64 rounded-full bg-gold/5 blur-[80px] pointer-events-none group-hover:bg-gold/10 transition-colors duration-500"></div>
-        <div class="relative z-10">
-          <h3 class="font-black text-2xl uppercase tracking-tight mb-4 text-text-primary">Want to join the committee?</h3>
-          <p class="text-text-secondary mb-8 max-w-lg mx-auto leading-relaxed">Elections are held annually through Surrey Students' Union. Follow our announcements for when applications open.</p>
-          <a href="/join" class="inline-flex items-center gap-2 text-text-primary hover:text-gold text-sm font-bold uppercase tracking-wider transition-colors border-b-2 border-transparent hover:border-gold pb-1 group-hover:translate-x-1 duration-300">
-            Join the society first <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
+      <!-- ── Join committee nudge ── -->
+      <div class="mt-16 border border-border px-8 py-10 bg-surface-alt reveal">
+        <h3 class="font-serif text-xl font-bold text-text-primary mb-3">Want to join the committee?</h3>
+        <p class="text-sm text-text-secondary leading-relaxed max-w-lg mb-6">
+          Elections are held annually through Surrey Students' Union. Membership of the society is the first step.
+        </p>
+        <a href="/join" class="btn-primary">
+          Become a Member <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.utils.toArray('.gsap-fade-up').forEach((elem: any) => {
-          gsap.fromTo(elem, 
-            { y: 40, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: elem,
-                start: "top 85%",
-                toggleActions: "play none none reverse"
-              }
-            }
-          );
-        });
-
-        ScrollTrigger.create({
-          trigger: ".gsap-stagger-committee",
-          start: "top 85%",
-          animation: gsap.fromTo(".gsap-stagger-committee", 
-            { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power3.out" }
-          ),
-          toggleActions: "play none none reverse"
-        });
-
-        gsap.utils.toArray('.gsap-parallax-shape').forEach((shape: any) => {
-          const speed = shape.getAttribute('data-speed') || 0.5;
-          gsap.to(shape, {
-            y: () => (ScrollTrigger.maxScroll(window) - (ScrollTrigger.maxScroll(window) * speed)),
-            ease: "none",
-            scrollTrigger: {
-              trigger: shape.closest('.gsap-section') || document.body,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1
-            }
-          });
-        });
-      }
-    });
-  </script>
 </Layout>

@@ -19,6 +19,7 @@
   --color-tan-light: var(--neuro-cyan-light);
   --color-tan-muted: var(--neuro-cyan-muted);
   --color-cyan: var(--neuro-cyan);
+  --color-cyan-dark: var(--neuro-cyan-dark);
 
   /* Semantic surfaces */
   --color-surface: var(--neuro-surface);
@@ -42,45 +43,22 @@
 @layer base {
   :root {
     /* Brand constants */
-    --neuro-gold: #F59E0B;
-    --neuro-gold-light: #fcd34d;
-    --neuro-gold-dark: #d97706;
-    --neuro-gold-muted: rgba(245, 158, 11, 0.15);
+    --neuro-gold: #D97706; /* Restrained amber/gold */
+    --neuro-gold-light: #F59E0B;
+    --neuro-gold-dark: #B45309;
+    --neuro-gold-muted: rgba(217, 119, 6, 0.15);
 
-    --neuro-cyan: #22D3EE;
-    --neuro-cyan-light: #67e8f9;
+    --neuro-cyan: #22D3EE; /* Electric cyan */
+    --neuro-cyan-light: #67E8F9;
     --neuro-cyan-muted: rgba(34, 211, 238, 0.12);
+    --neuro-cyan-dark: #0891B2; /* Darker cyan for hover/active states */
 
-    /* Light Theme (Scientific, polished) */
-    --neuro-gold: #b45309; /* Darker gold for better contrast in light mode */
-    --neuro-cyan: #0891b2; /* Darker cyan for better contrast in light mode */
+    --neuro-violet: #8B5CF6; /* Neural violet */
+    --neuro-violet-light: #A78BFA;
+    --neuro-violet-muted: rgba(139, 92, 246, 0.15);
 
-    --neuro-primary: #F8FAFC;
-    --neuro-primary-deep: #F1F5F9;
-    --neuro-primary-light: #FFFFFF;
-    --neuro-primary-mid: #E2E8F0;
-
-    --neuro-surface: #F8FAFC;
-    --neuro-surface-alt: #F1F5F9;
-    --neuro-surface-dark: #050A15;
-    --neuro-surface-card: #FFFFFF;
-    --neuro-surface-card-dark: #1e293b;
-
-    --neuro-text-primary: #0F172A;
-    --neuro-text-secondary: #475569;
-    --neuro-text-muted: #64748B;
-    --neuro-text-on-dark: #F8FAFC;
-    --neuro-text-on-dark-secondary: #94A3B8;
-
-    --neuro-border-subtle: #E2E8F0;
-    --neuro-border-dark: rgba(34, 211, 238, 0.1); 
-  }
-
-  :root[data-theme="dark"] {
-    --neuro-gold: #F59E0B;
-    --neuro-cyan: #22D3EE;
-
-    --neuro-primary: #050A15;
+    /* Premium Dark Theme */
+    --neuro-primary: #050A15; /* Deep neural navy/black */
     --neuro-primary-deep: #02040a;
     --neuro-primary-light: #0f172a;
     --neuro-primary-mid: #1e293b;
@@ -94,13 +72,21 @@
     --neuro-text-primary: #F8FAFC;
     --neuro-text-secondary: #94A3B8;
     --neuro-text-muted: #64748B;
+    --neuro-text-on-dark: #F8FAFC;
+    --neuro-text-on-dark-secondary: #94A3B8;
 
     --neuro-border-subtle: rgba(34, 211, 238, 0.2);
+    --neuro-border-dark: rgba(34, 211, 238, 0.1); 
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
 body {
@@ -272,4 +258,26 @@ body {
 .neuro-card > *, .neuro-card-dark > *, .btn-trace > * {
   position: relative;
   z-index: 1;
+}
+
+/* ── Curved bottom section shape ── */
+.curve-bottom {
+  clip-path: ellipse(120% 100% at 50% 0%);
+}
+
+/* ── Focus-visible (accessibility) ── */
+a:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+.btn-trace:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
 }

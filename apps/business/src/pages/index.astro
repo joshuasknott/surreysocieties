@@ -40,212 +40,156 @@ const getInitials = (name?: string, role?: string) => {
 };
 ---
 
-<Layout title="Home" description="Surrey Business Society — A student-led community for careers, entrepreneurship, networking, and commercial thinking at the University of Surrey.">
+<Layout
+  title="Home"
+  description="Surrey Business Society — A student-led community for careers, entrepreneurship, networking, and commercial thinking at the University of Surrey."
+>
 
-  <!-- Hero -->
-  <section class="gsap-hero-section bg-navy-deep text-text-on-dark relative overflow-hidden border-b-4 border-gold pt-32 pb-24 sm:pt-48 sm:pb-32 flex items-center min-h-[70vh]">
-    <!-- Abstract premium pattern -->
-    <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#d4af37 1px, transparent 1px), linear-gradient(90deg, #d4af37 1px, transparent 1px); background-size: 60px 60px;"></div>
+  <!-- ── Hero ── -->
+  <section class="bg-navy-deep text-text-on-dark relative overflow-hidden border-b border-border-dark pt-28 pb-24 sm:pt-40 sm:pb-32">
+    <!-- Subtle dot grid -->
+    <div class="bg-dot-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <!-- Gold bar at bottom -->
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
 
-    
-    <!-- Heavy Dark Slate Overlay -->
-    <div class="absolute inset-0 bg-slate-900/80 pointer-events-none z-10"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-navy-deep to-transparent opacity-90 pointer-events-none z-10"></div>
-
-    <div class="mx-auto max-w-6xl px-6 relative z-20 w-full">
-      <div class="flex flex-col items-start max-w-3xl gsap-hero-parallax">
-
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-[1.1] gsap-hero-text">
-          Surrey <span class="text-gold italic">Business</span> Society
+    <div class="mx-auto max-w-6xl px-6 relative z-10">
+      <div class="max-w-2xl">
+        <p class="eyebrow mb-6 reveal">Student Professional Network</p>
+        <h1 class="font-serif text-5xl sm:text-6xl lg:text-[4.5rem] font-bold tracking-tight leading-[1.08] reveal">
+          Surrey <em class="text-gold not-italic">Business</em> Society
         </h1>
-        <p class="mt-8 text-lg sm:text-xl text-text-on-dark-secondary font-medium leading-relaxed max-w-2xl border-l-2 border-gold/50 pl-4 gsap-hero-text">
-          Surrey's student-led hub for <span class="text-text-on-dark">students of all disciplines</span>. Develop commercial awareness, build a professional network, and bridge the gap between your degree and your career.
+        <p class="mt-7 text-base sm:text-lg text-text-on-dark-secondary leading-relaxed max-w-xl border-l border-gold/40 pl-4 reveal">
+          Surrey's student-led hub for ambitious students of all disciplines. Develop commercial awareness, build a professional network, and bridge the gap between your degree and your career.
         </p>
-        <div class="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto gsap-hero-text">
-          <a href="/join" class="px-8 py-4 rounded-xl bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all duration-500 hover:-translate-y-1 shadow-[0_4px_24px_rgba(212,175,55,0.35)] hover:shadow-[0_8px_32px_rgba(212,175,55,0.5)] flex items-center justify-center gap-2 group">
-            Join the Society <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+        <div class="mt-10 flex flex-col sm:flex-row gap-3 reveal">
+          <a href="/join" class="btn-primary">
+            Join the Society <span aria-hidden="true">→</span>
           </a>
-          <a href="/events" class="px-8 py-4 rounded-xl text-text-on-dark font-bold text-sm tracking-wider uppercase transition-all duration-500 hover:-translate-y-1 flex items-center justify-center glass-panel hover:bg-white/10">
-            View Events
+          <a href="/events" class="btn-ghost">
+            Programme
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What We Do -->
-  <section class="py-24 sm:py-32 px-6 bg-grid-pattern relative overflow-hidden gsap-section">
-    <!-- Abstract Shape -->
-    <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-navy/5 blur-3xl pointer-events-none gsap-parallax-shape" data-speed="1.2"></div>
-    <div class="absolute inset-0 bg-surface/80 backdrop-blur-[2px] pointer-events-none"></div>
+  <!-- ── Our Focus ── -->
+  <section class="py-20 sm:py-28 px-6 bg-surface border-b border-border">
+    <div class="mx-auto max-w-6xl">
+      <header class="mb-14 reveal">
+        <p class="eyebrow mb-4">Our Focus</p>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
+          What the society does
+        </h2>
+      </header>
 
-    <div class="absolute top-0 left-0 w-full h-px bg-border-light"></div>
-    <div class="mx-auto max-w-6xl relative z-10">
-      <div class="mb-16 md:flex justify-between items-end border-b border-border-light pb-8 gsap-fade-up">
-        <div>
-          <div class="inline-flex items-center gap-3 mb-4">
-            <span class="w-12 h-0.5 bg-gold"></span>
-            <span class="text-gold text-xs font-bold uppercase tracking-widest">Our Focus</span>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
+        {[
+          {
+            num: '01',
+            title: 'Careers',
+            body: 'Graduate roles, internships, and sector insight sessions to help you navigate the transition from academia to professional life.',
+          },
+          {
+            num: '02',
+            title: 'Enterprise',
+            body: 'Founder talks and startup-focused discussions for students exploring entrepreneurship, ideation, and early-stage ventures.',
+          },
+          {
+            num: '03',
+            title: 'Networking',
+            body: 'Structured and informal events that build meaningful peer connections with ambitious students across disciplines.',
+          },
+          {
+            num: '04',
+            title: 'Skills',
+            body: 'Practical workshops on commercial awareness, presentation, negotiation, and interview preparation.',
+          },
+        ].map(item => (
+          <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors reveal">
+            <span class="block text-3xl font-black text-border mb-5 leading-none">{item.num}</span>
+            <h3 class="text-sm font-bold uppercase tracking-widest text-text-primary mb-3">{item.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">{item.body}</p>
           </div>
-          <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">Building Ambitious Students</h2>
-        </div>
-        <p class="mt-6 md:mt-0 text-text-secondary max-w-md md:text-right border-l md:border-l-0 md:border-r-2 border-gold pl-4 md:pl-0 md:pr-4">We create opportunities for students to develop commercially, professionally, and personally.</p>
-      </div>
-
-      <div class="flex flex-col md:flex-row gap-8 lg:gap-16 gsap-fade-up">
-        <!-- Left Side: Tabs -->
-        <div class="md:w-1/3 flex flex-col relative border-l border-border-light">
-          
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group active" data-tab="careers" aria-expanded="true" aria-controls="content-careers" id="tab-careers">
-            <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-gold transition-all duration-300 tab-indicator"></span>
-            <h3 class="font-bold text-xl text-text-primary uppercase tracking-wide transition-colors tab-title">Careers</h3>
-            <p class="text-text-muted text-sm mt-1">Graduate roles & internships</p>
-          </button>
-          
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="enterprise" aria-expanded="false" aria-controls="content-enterprise" id="tab-enterprise">
-            <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-transparent transition-all duration-300 tab-indicator"></span>
-            <h3 class="font-bold text-xl text-text-secondary uppercase tracking-wide group-hover:text-text-primary transition-colors tab-title">Enterprise</h3>
-            <p class="text-text-muted text-sm mt-1">Startups & founders</p>
-          </button>
-
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="networking" aria-expanded="false" aria-controls="content-networking" id="tab-networking">
-            <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-transparent transition-all duration-300 tab-indicator"></span>
-            <h3 class="font-bold text-xl text-text-secondary uppercase tracking-wide group-hover:text-text-primary transition-colors tab-title">Networking</h3>
-            <p class="text-text-muted text-sm mt-1">Professional connections</p>
-          </button>
-
-          <button class="focus-tab-btn text-left pl-6 py-5 relative group" data-tab="skills" aria-expanded="false" aria-controls="content-skills">
-            <span class="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-transparent transition-all duration-300 tab-indicator"></span>
-            <h3 class="font-bold text-xl text-text-secondary uppercase tracking-wide group-hover:text-text-primary transition-colors tab-title">Skills</h3>
-            <p class="text-text-muted text-sm mt-1">Workshops & community</p>
-          </button>
-        </div>
-
-        <!-- Right Side: Content Area -->
-        <div class="md:w-2/3 relative min-h-[420px]">
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-navy-deep to-navy shadow-xl border border-border-light overflow-hidden">
-             <!-- Abstract corporate pattern -->
-             <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(var(--gold) 1px, transparent 1px), linear-gradient(90deg, var(--gold) 1px, transparent 1px); background-size: 40px 40px;"></div>
-          </div>
-          <div class="absolute inset-0 rounded-2xl bg-surface-card/50 pointer-events-none"></div>
-          <div class="glass-panel w-full h-full rounded-2xl relative overflow-hidden shadow-xl bg-surface-card/80">
-            <!-- Careers Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-100 z-10" id="content-careers" role="region" aria-labelledby="tab-careers">
-              <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">💼</div>
-              <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Launch Your Career</h3>
-              <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
-                Events focused on graduate roles, internships, and career development across industries. We help you bridge the gap between academia and the professional world.
-              </p>
-            </div>
-            
-            <!-- Enterprise Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-enterprise" role="region" aria-labelledby="tab-enterprise">
-              <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">🚀</div>
-              <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Build Your Vision</h3>
-              <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
-                Talks, workshops, and discussions with founders and startup-minded students. Learn how to validate ideas, pitch effectively, and scale your ventures.
-              </p>
-            </div>
-
-            <!-- Networking Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-networking" role="region" aria-labelledby="tab-networking">
-              <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">🤝</div>
-              <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Grow Your Network</h3>
-              <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
-                Socials and professional events that help you build meaningful connections. Network with ambitious peers, alumni, and potential employers.
-              </p>
-            </div>
-
-            <!-- Skills Content -->
-            <div class="focus-tab-content absolute inset-0 p-8 sm:p-12 flex flex-col justify-center opacity-0 pointer-events-none z-0" id="content-skills" role="region" aria-labelledby="tab-skills">
-              <div class="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center text-gold text-2xl mb-6 shadow-sm">🎯</div>
-              <h3 class="font-black text-3xl mb-4 text-text-primary uppercase tracking-tight">Sharpen Your Edge</h3>
-              <p class="text-text-secondary text-lg leading-relaxed max-w-xl">
-                Practical workshops on presentation, negotiation, leadership, and commercial thinking. Build the tangible skills employers want alongside an ambitious interdisciplinary community.
-              </p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Events Preview -->
-  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 bg-grid-pattern-dark relative border-y border-border-dark overflow-hidden gsap-section">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[500px] rounded-full bg-gold/5 blur-[120px] pointer-events-none gsap-parallax-shape" data-speed="0.9"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-navy-deep to-transparent opacity-80 pointer-events-none"></div>
+  <!-- ── Events Preview ── -->
+  <section class="bg-navy-deep text-text-on-dark py-20 sm:py-28 px-6 border-b border-border-dark relative">
+    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4 border-b border-border-dark pb-8 gsap-fade-up">
+      <header class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4 border-b border-border-dark pb-8 reveal">
         <div>
-          <div class="inline-flex items-center gap-3 mb-4">
-            <span class="w-12 h-0.5 bg-gold"></span>
-            <span class="text-gold text-xs font-bold uppercase tracking-widest">Events</span>
-          </div>
-          <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight">Professional Agenda</h2>
+          <p class="eyebrow mb-3" style="color:var(--color-gold)">Programme</p>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight">Upcoming Events</h2>
         </div>
-        <a href="/events" class="inline-flex items-center gap-2 text-gold hover:text-gold-light text-xs font-bold uppercase tracking-wider transition-colors group">
-          View Full Agenda <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        <a href="/events" class="text-xs font-bold uppercase tracking-widest text-gold hover:text-gold-light transition-colors inline-flex items-center gap-1.5">
+          Full programme <span aria-hidden="true">→</span>
         </a>
-      </div>
+      </header>
 
       {events.length === 0 ? (
-        <div class="gsap-stagger-event bg-navy/50 border border-border-dark rounded-2xl p-10 text-center">
-          <h3 class="font-black text-2xl uppercase tracking-tight mb-3 text-text-on-dark">No published events yet</h3>
-          <p class="text-text-on-dark-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon for upcoming Surrey Business Society events.</p>
+        <div class="border border-border-dark px-8 py-12 reveal">
+          <p class="eyebrow mb-4" style="color:var(--color-gold)">Coming soon</p>
+          <h3 class="font-serif text-2xl font-semibold mb-3">Programme in development</h3>
+          <p class="text-text-on-dark-secondary text-sm leading-relaxed max-w-lg">
+            Events for this academic year are being planned. Follow our social channels for announcements.
+          </p>
         </div>
       ) : (
-        <div class="flex flex-col border-t border-border-dark">
-          {events.map(event => (
-            <div class="gsap-stagger-event group flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-border-dark hover:bg-white/5 transition-colors px-6 -mx-6">
-              <div class="md:w-1/4 mb-4 md:mb-0">
-                <div class="text-gold text-xs font-bold tracking-widest uppercase mb-2">{event.category || 'Event'}</div>
-                <div class="text-text-on-dark-secondary text-sm font-medium">{formatEventDate(event.date)}</div>
+        <ol class="divide-y divide-border-dark" role="list">
+          {events.slice(0, 4).map(event => (
+            <li class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-7 hover:bg-white/[0.03] transition-colors px-2 -mx-2 reveal" role="listitem">
+              <div class="sm:w-40 shrink-0">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1">{event.category || 'Event'}</p>
+                <p class="text-sm text-text-on-dark-secondary font-medium">{formatEventDate(event.date)}</p>
               </div>
-              <div class="md:w-1/2 mb-4 md:mb-0 pr-4">
-                <h3 class="font-serif font-bold text-3xl mb-3 text-text-on-dark group-hover:text-gold transition-colors">{event.title}</h3>
-                <p class="text-text-on-dark-secondary text-base leading-relaxed">{event.description || 'Details coming soon.'}</p>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-serif text-xl font-semibold text-text-on-dark leading-snug">{event.title}</h3>
+                {event.description && (
+                  <p class="text-sm text-text-on-dark-secondary mt-1 leading-relaxed line-clamp-2">{event.description}</p>
+                )}
               </div>
-              <div class="md:w-1/4 flex md:justify-end">
-                <a href="/events" class="inline-flex items-center gap-2 text-text-on-dark text-sm font-bold uppercase tracking-wider group-hover:text-gold transition-colors">
-                  View Details <span aria-hidden="true" class="transform transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
-                </a>
-              </div>
-            </div>
+              <a href="/events" class="text-xs font-bold uppercase tracking-widest text-gold/70 hover:text-gold transition-colors shrink-0 inline-flex items-center gap-1">
+                Details <span aria-hidden="true">→</span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ol>
       )}
     </div>
   </section>
 
-  <!-- Committee -->
-  <section class="py-24 sm:py-32 px-6 bg-surface relative overflow-hidden gsap-section">
-    <div class="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-gold/5 blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3 gsap-parallax-shape"></div>
-    <div class="mx-auto max-w-6xl relative z-10">
-      <div class="mb-16 md:flex justify-between items-end border-b border-border-light pb-8 gsap-fade-up">
+  <!-- ── Committee Preview ── -->
+  <section class="py-20 sm:py-28 px-6 bg-surface border-b border-border">
+    <div class="mx-auto max-w-6xl">
+      <header class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4 border-b border-border pb-8 reveal">
         <div>
-          <div class="inline-flex items-center gap-3 mb-4">
-            <span class="w-12 h-0.5 bg-gold"></span>
-            <span class="text-gold text-xs font-bold uppercase tracking-widest">Leadership</span>
-          </div>
-          <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">Committee</h2>
+          <p class="eyebrow mb-3">Committee</p>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">Current Leadership</h2>
         </div>
-        <p class="mt-6 md:mt-0 text-text-secondary max-w-md md:text-right border-l md:border-l-0 md:border-r-2 border-gold pl-4 md:pl-0 md:pr-4">The students driving Surrey Business Society forward.</p>
-      </div>
+        <a href="/committee" class="text-xs font-bold uppercase tracking-widest text-gold hover:text-gold-dark transition-colors inline-flex items-center gap-1.5">
+          Full committee <span aria-hidden="true">→</span>
+        </a>
+      </header>
 
       {committee.length === 0 ? (
-        <div class="gsap-stagger-committee bg-surface-card rounded-2xl p-10 text-center shadow-sm border border-border-light">
-          <h3 class="font-black text-2xl uppercase tracking-tight mb-3 text-text-primary">Committee details coming soon</h3>
-          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon to meet the Surrey Business Society committee.</p>
+        <div class="border border-border px-8 py-12 reveal">
+          <p class="eyebrow mb-4">Coming soon</p>
+          <h3 class="font-serif text-xl font-semibold text-text-primary mb-2">Committee details coming soon</h3>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-lg">Meet the team once the academic year committee has been confirmed.</p>
         </div>
       ) : (
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
-          {committee.map(member => (
-            <div class="gsap-stagger-committee group flex flex-col items-center text-center">
-              <div class="w-full aspect-square bg-surface-alt rounded-md overflow-hidden mb-5 border border-border-light relative shadow-sm flex items-center justify-center text-text-primary text-2xl font-serif font-bold group-hover:text-gold group-hover:border-gold/40 transition-all duration-500">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-border border border-border reveal">
+          {committee.slice(0, 8).map(member => (
+            <div class="bg-surface-card p-6 hover:bg-surface-alt transition-colors">
+              <div class="w-10 h-10 bg-navy-deep flex items-center justify-center text-gold font-semibold text-sm mb-4">
                 {getInitials(member.name, member.role)}
               </div>
-              <h3 class="font-serif font-bold text-xl text-text-primary relative z-10 mb-1 group-hover:text-gold transition-colors">{member.name}</h3>
-              <p class="text-xs font-bold uppercase tracking-widest text-gold relative z-10">{member.role}</p>
+              <p class="text-xs font-bold uppercase tracking-widest text-gold mb-1">{member.role}</p>
+              <p class="text-sm font-medium text-text-primary">{member.name}</p>
             </div>
           ))}
         </div>
@@ -253,164 +197,24 @@ const getInitials = (name?: string, role?: string) => {
     </div>
   </section>
 
-  <!-- Join CTA -->
-  <section class="bg-navy-deep text-text-on-dark py-24 sm:py-32 px-6 relative border-t-4 border-gold overflow-hidden gsap-section">
-    <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] rounded-full bg-gold/10 blur-[100px] pointer-events-none -translate-y-1/2 gsap-parallax-shape"></div>
-    <div class="absolute inset-0 bg-grid-pattern-dark opacity-50 pointer-events-none"></div>
-    <div class="mx-auto max-w-4xl text-center relative z-10 bg-navy-deep p-12 sm:p-16 border border-border-dark shadow-2xl rounded-3xl backdrop-blur-md bg-navy-deep/90 gsap-fade-up">
-      <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-6">Join The Network</h2>
-      <p class="text-text-on-dark-secondary text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-        Whether you're interested in consulting, finance, entrepreneurship, or just curious about business — join the society to start building your professional future.
+  <!-- ── Join CTA ── -->
+  <section class="bg-navy-deep text-text-on-dark py-20 sm:py-28 px-6 border-t-2 border-gold relative">
+    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-50" aria-hidden="true"></div>
+    <div class="mx-auto max-w-4xl relative z-10 reveal">
+      <p class="eyebrow mb-6 justify-center" style="color:var(--color-gold)">Open to all students</p>
+      <h2 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-center mb-6">Join the Society</h2>
+      <p class="text-text-on-dark-secondary text-base text-center mb-10 max-w-xl mx-auto leading-relaxed">
+        Whether you're focused on consulting, finance, startups, or simply curious about business — membership is open to every University of Surrey student.
       </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="/join" class="px-8 py-4 rounded-xl bg-gold hover:bg-gold-light text-navy-deep font-bold text-sm tracking-wider uppercase transition-all duration-500 hover:-translate-y-1 shadow-[0_4px_24px_rgba(212,160,23,0.35)] hover:shadow-[0_8px_32px_rgba(212,160,23,0.5)] flex justify-center items-center gap-2 group">
-          Become a Member <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href="/join" class="btn-primary justify-center">
+          Become a Member <span aria-hidden="true">→</span>
         </a>
-        <a href="/join" class="px-8 py-4 rounded-xl bg-transparent hover:bg-white/5 text-text-on-dark font-bold text-sm tracking-wider uppercase border border-gold/30 transition-all duration-500 hover:-translate-y-1 shadow-[0_2px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_4px_16px_rgba(212,160,23,0.2)] flex justify-center items-center">
-          Sponsorship Info
+        <a href="/about" class="btn-ghost justify-center">
+          Learn More
         </a>
       </div>
     </div>
   </section>
 
-  <script>
-    import gsap from 'gsap';
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Initial Hero text fade up
-    gsap.fromTo('.gsap-hero-text', 
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out", delay: 0.2 }
-    );
-
-    // Parallax scroll effect for the Hero container
-    gsap.to('.gsap-hero-parallax', {
-      y: 150,
-      opacity: 0,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".gsap-hero-section",
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      }
-    });
-
-    // Existing section animations
-    gsap.utils.toArray('.gsap-fade-up').forEach((elem: any) => {
-      gsap.fromTo(elem, 
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: elem,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    });
-
-
-
-    ScrollTrigger.create({
-      trigger: ".gsap-stagger-event",
-      start: "top 85%",
-      animation: gsap.fromTo(".gsap-stagger-event", 
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }
-      ),
-      toggleActions: "play none none reverse"
-    });
-
-    ScrollTrigger.create({
-      trigger: ".gsap-stagger-committee",
-      start: "top 85%",
-      animation: gsap.fromTo(".gsap-stagger-committee", 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" }
-      ),
-      toggleActions: "play none none reverse"
-    });
-
-    gsap.utils.toArray('.gsap-parallax-shape').forEach((shape: any) => {
-      const speed = shape.getAttribute('data-speed') || 0.5;
-      gsap.to(shape, {
-        y: () => (ScrollTrigger.maxScroll(window) - (ScrollTrigger.maxScroll(window) * speed)),
-        ease: "none",
-        scrollTrigger: {
-          trigger: shape.closest('.gsap-section') || document.body,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
-        }
-      });
-    });
-
-    // Focus Tab Logic
-    const tabBtns = document.querySelectorAll('.focus-tab-btn');
-    const tabContents = document.querySelectorAll('.focus-tab-content');
-    
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-tab');
-        if (btn.classList.contains('active')) return;
-
-        // Reset all tabs
-        tabBtns.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-expanded', 'false');
-          const indicator = b.querySelector('.tab-indicator');
-          const title = b.querySelector('.tab-title');
-          if (indicator) {
-            indicator.classList.remove('bg-gold');
-            indicator.classList.add('bg-transparent');
-          }
-          if (title) {
-            title.classList.remove('text-text-primary');
-            title.classList.add('text-text-secondary');
-          }
-        });
-
-        // Set active tab
-        btn.classList.add('active');
-        btn.setAttribute('aria-expanded', 'true');
-        const activeIndicator = btn.querySelector('.tab-indicator');
-        const activeTitle = btn.querySelector('.tab-title');
-        if (activeIndicator) {
-          activeIndicator.classList.remove('bg-transparent');
-          activeIndicator.classList.add('bg-gold');
-        }
-        if (activeTitle) {
-          activeTitle.classList.remove('text-text-secondary');
-          activeTitle.classList.add('text-text-primary');
-        }
-
-        // Animate content switch
-        tabContents.forEach(content => {
-          if (content.id === `content-${target}`) {
-            // Fade in new content
-            content.classList.remove('pointer-events-none');
-            content.classList.add('z-10');
-            content.classList.remove('z-0');
-            gsap.fromTo(content, 
-              { opacity: 0, y: 15 },
-              { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-            );
-          } else {
-            // Fade out old content
-            content.classList.add('pointer-events-none');
-            content.classList.remove('z-10');
-            content.classList.add('z-0');
-            gsap.to(content, { opacity: 0, duration: 0.2, ease: "power2.in" });
-          }
-        });
-      });
-    });
-  </script>
 </Layout>

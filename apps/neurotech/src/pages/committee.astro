@@ -40,7 +40,7 @@ const getInitials = (name?: string, role?: string) => {
         <div class="gold-dot"></div>
         <span class="text-gold text-xs font-semibold uppercase tracking-wider">Our Team</span>
       </div>
-      <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-text-on-dark">Committee</h1>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-text-on-dark">Committee</h1>
       <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl border-l-2 border-gold/40 pl-4">The student volunteers who make Surrey Neurotech Society happen.</p>
     </div>
   </section>
@@ -50,8 +50,11 @@ const getInitials = (name?: string, role?: string) => {
     <div class="mx-auto max-w-6xl">
       {committee.length === 0 ? (
         <div class="neuro-card p-8 text-center">
-          <h3 class="font-semibold text-lg mb-2 text-text-primary">Committee details coming soon</h3>
-          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Check back soon to meet the Surrey Neurotech Society committee.</p>
+          <h2 class="font-semibold text-xl mb-3 text-text-primary">Committee details coming soon</h2>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto mb-6">Our committee roster for the current academic year will be published here once elections are complete through Surrey Students' Union.</p>
+          <a href="/join" class="text-gold hover:text-gold-light text-sm font-semibold transition-colors">
+            Join the society →
+          </a>
         </div>
       ) : (
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

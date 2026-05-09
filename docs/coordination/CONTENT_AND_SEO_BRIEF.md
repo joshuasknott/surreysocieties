@@ -9,7 +9,7 @@ Do not invent or imply facts that have not been verified. This includes:
 - Committee names, photos, bios, roles, or past committee records.
 - Event titles, dates, speakers, locations, attendance numbers, sponsors, or outcomes.
 - Membership fees or benefits not confirmed by the Students' Union or society leads.
-- Partnerships, industry relationships, alumni involvement, awards, research access, lab access, equipment ownership, or project successes.
+- Partnerships, industry relationships, alumni involvement, awards, research access, lab access, equipment access, equipment ownership, or project successes.
 - Claims that a society is the first, largest, official research group, or professionally affiliated unless verified.
 
 Acceptable placeholder language:
@@ -31,6 +31,13 @@ Use this data until a later research pack supersedes it.
 | Surrey Neurotech Society | 2024 | `https://www.instagram.com/surreyneurotech/` | `ussu.neurotechsoc@surrey.ac.uk` | `https://surreyunion.org/your-activity/clubs-and-societies-a-z/neurotech-society` | `https://surreyunion.org/shop/neurotech-society/d5784e49-49f7-4bd4-a66c-b4f3971103af` | `https://www.linkedin.com/company/surrey-neurotech/posts/?feedView=all` |
 
 ## Society-Specific Messaging Direction
+
+Cross-site visual/content hierarchy:
+
+- AI Society should feel the most visually overengineered while staying honest, educational, and beginner-friendly.
+- Neurotech Society should be second-most visually overengineered and should lean into interactive brain/neural visuals without implying verified lab access, research access, or equipment access.
+- Business Society should be the most professional/basic, with premium editorial polish rather than SaaS, glass-card, or generic startup clutter.
+- Only AI Society should reference or support public light/dark theme switching. Do not write copy or QA notes that imply Business or Neurotech have public dark mode.
 
 AI Society:
 

@@ -15,7 +15,7 @@ Use this checklist for final reconciliation after implementation, design reviews
 
 - [ ] No mock public events remain.
 - [ ] No fake committee names, fake committee images, or `Name TBC` public committee grids remain.
-- [ ] No invented speakers, sponsors, partners, attendance numbers, awards, or project outcomes appear.
+- [ ] No invented speakers, sponsors, partners, equipment access, lab access, attendance numbers, awards, or project outcomes appear.
 - [ ] Public events are driven by Convex published events.
 - [ ] Public current committee pages are driven by Convex active committee data.
 - [ ] Past committee is manageable in admin and displayed publicly if the past committee task was implemented.
@@ -58,16 +58,18 @@ Use this checklist for final reconciliation after implementation, design reviews
 
 - [ ] AI light theme works.
 - [ ] AI dark theme works.
-- [ ] Business light theme works.
-- [ ] Business dark theme works.
-- [ ] Neurotech light theme works.
-- [ ] Neurotech dark theme works.
+- [ ] AI public theme toggle persists preference and initializes before paint without unreadable flash.
+- [ ] Business has no public theme toggle, `data-theme` switching, or localStorage theme preference system.
+- [ ] Business uses a single polished professional/editorial visual mode with strong contrast.
+- [ ] Neurotech has no public theme toggle, `data-theme` switching, or localStorage theme preference system.
+- [ ] Neurotech uses a single scientific brain/neural visual mode with strong contrast.
 - [ ] Admin theme behavior matches the implemented admin theme scope.
-- [ ] Theme preference persists where designed.
-- [ ] Theme initialization does not flash unreadable colors before paint.
-- [ ] Text contrast passes visually in both light and dark themes.
+- [ ] Theme preference persists only where designed: AI public theme switching, and admin only if explicitly implemented.
+- [ ] Theme initialization does not flash unreadable colors before paint where theme switching exists.
+- [ ] Text contrast passes visually in each implemented visual mode.
 - [ ] CTA hierarchy is clear on every public page.
 - [ ] Cross-site ecosystem feels coherent without making the sites identical.
+- [ ] Visual hierarchy is clear: AI is most visually overengineered, Neurotech second-most, Business most professional/basic.
 - [ ] Spacing, heading scale, and section rhythm are internally consistent within each site.
 
 ## Admin Dashboards
@@ -99,7 +101,7 @@ Use this checklist for final reconciliation after implementation, design reviews
 ## Accessibility QA
 
 - [ ] Keyboard navigation reaches all interactive elements.
-- [ ] Focus states are visible in light and dark themes.
+- [ ] Focus states are visible in each implemented visual mode.
 - [ ] Nav toggles expose correct labels and expanded state.
 - [ ] Tabs/hotspots/prototypes have keyboard or non-hover alternatives.
 - [ ] `prefers-reduced-motion` is respected by AI Track Lab, Business GSAP, Neurotech GSAP/Lenis/Three.js, and videos.

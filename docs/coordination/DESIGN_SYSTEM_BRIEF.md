@@ -2,12 +2,17 @@
 
 This brief guides future frontend/design agents. The project goal is refinement and professionalisation, not a full rebuild. The three society sites should feel like part of one Surrey student-society ecosystem without becoming identical.
 
+Current product direction supersedes older theme guidance: AI Society is the only public society site that should keep light/dark theme switching. Business Society and Neurotech Society must not add or keep public theme toggles, `data-theme` switching, or localStorage theme preference systems.
+
+Visual ambition hierarchy: AI Society should be the most visually overengineered, Neurotech Society should be second-most visually overengineered, and Business Society should be the most professional/basic.
+
 ## Shared Design Principles
 
 - Professional, student-led, credible: the sites should feel trustworthy enough for students, committee members, sponsors, and the Students' Union.
 - Distinct but related: each society keeps its own visual language, but spacing, accessibility, navigation quality, CTA clarity, and content reliability should feel consistently high.
 - Real data over theatre: events, committee, past committee, founding dates, links, and images should come from verified data or approved assets.
 - Useful interactions only: interactive elements should help people understand the society, find events, join, or learn something relevant.
+- Visual complexity must be intentional and ordered: AI > Neurotech > Business.
 - Accessible by default: keyboard access, focus states, reduced motion, color contrast, alt text, and responsive layouts are non-negotiable.
 - Small correct changes beat broad rewrites: keep existing architecture where reasonable and avoid unnecessary component churn.
 
@@ -20,6 +25,8 @@ This brief guides future frontend/design agents. The project goal is refinement 
 - Motion-heavy sections that ignore `prefers-reduced-motion` or trap keyboard/mouse users.
 - Making all three sites share one identical template, hero layout, or visual motif.
 - Replacing all imagery with large abstract graphics if society-owned photos later become available.
+- Adding or preserving Business/Neurotech public theme toggles, `data-theme` systems, or persisted light/dark preference scripts.
+- Filling visual gaps with fake events, fake committee members, fake sponsors, fake speakers, fake equipment access, fake lab access, or invented impact claims.
 
 ## Theme Requirements
 
@@ -32,21 +39,26 @@ AI Society:
 
 Business Society:
 
-- Add a real light/dark theme system, not just dark hero sections.
-- Preserve the corporate/editorial identity: navy/slate, gold, serif display use, structured professional rhythm.
-- Dark mode should feel premium and readable, not just inverted.
+- Do not add a public light/dark theme system.
+- Remove or revert any Business public theme toggle, `data-theme` switching, or localStorage theme preference system if one is found.
+- Preserve a professional editorial identity: navy/slate, gold, restrained serif display use, structured rhythm, and premium publication-like polish.
+- Business should be the most basic and professional site: refined, credible, and spacious rather than visually overengineered.
+- Avoid SaaS/glass/card clutter, dashboard metaphors, generic startup gradients, and excessive decorative modules.
 - CTAs should use a clear primary hierarchy, especially membership and union links.
 
 Neurotech Society:
 
-- Add a real light/dark theme system while preserving the bioluminescent/neurotechnology identity.
-- Current site is effectively dark-only; light mode must still feel scientific and polished.
+- Do not add a public light/dark theme system.
+- Remove or revert any Neurotech public theme toggle, `data-theme` switching, or localStorage theme preference system if one is found.
+- Neurotech should be the second-most visually overengineered site, behind AI and ahead of Business.
+- Lean into an interactive brain/neural visual system: neural pathways, signal flow, brain/circuit motifs, BCI-inspired hotspots, and accessible educational micro-interactions.
+- Preserve a scientific/neurotechnology identity without creating unverified research, lab, medical, or equipment-access claims.
 - Fix or replace undefined classes such as `glass-card`, `bg-accent`, `text-secondary`, `neural-wave-bg-dark`, and `neural-pathway`.
 - 3D/animated hero work must degrade gracefully on low-power devices and reduced motion.
 
 Admin:
 
-- Current admin is light-only. If admin theming is scoped, prioritize usability over visual expression.
+- Current admin is light-only. Do not use admin work as a reason to add public Business/Neurotech theme switching.
 - Tables, forms, sidebars, alerts, and empty states must maintain strong contrast.
 - Admin should be consistent across societies unless a clear reason exists to vary it.
 
@@ -54,8 +66,8 @@ Admin:
 
 - Respect `prefers-reduced-motion` in all animations, videos, smooth scrolling, GSAP, Lenis, Three.js, and interactive prototypes.
 - Avoid continuous animation that cannot be paused or reduced.
-- Keyboard users must be able to operate nav menus, tabs, hotspots, theme toggles, and CTAs.
-- Use visible focus states with adequate contrast in both light and dark themes.
+- Keyboard users must be able to operate nav menus, tabs, hotspots, AI theme toggles, and CTAs.
+- Use visible focus states with adequate contrast in each site's implemented visual mode.
 - Keep semantic headings in order; avoid using visual size as the only hierarchy.
 - Use real text instead of text baked into images.
 - Use descriptive alt text for meaningful images; decorative images should have empty alt text or be hidden.
@@ -68,7 +80,7 @@ Candidates for `packages/ui` or consistent copy/patterns:
 
 - Shared `SiteHead` metadata conventions.
 - Base page shell and skip-link behavior.
-- Theme toggle pattern and pre-paint theme initialization, once generalized safely.
+- AI theme toggle pattern and pre-paint theme initialization should remain AI-specific unless a future task explicitly scopes shared admin theming.
 - Public empty states for no events and no committee records.
 - Event card/list pattern that supports date, time, location, category, image, and registration URL.
 - Committee member card pattern that supports name, role, bio, image, email, LinkedIn, current/past status.
@@ -107,21 +119,21 @@ Admin-specific:
 AI Society:
 
 - Personality: precise, modern, technical, welcoming, accessible to beginners.
-- Visual language: clean surfaces, measured grid, cyan/purple accents, subtle data/graph motifs, restrained gradients.
+- Visual language: the most visually overengineered of the three sites, with layered technical systems, data/graph motifs, cyan/purple accents, precise motion, and clear educational interactions.
 - Avoid: cyberpunk overload, excessive neon, fake futuristic imagery, jargon-heavy visuals.
 - Ideal feel: a credible AI learning community for students from any discipline.
 
 Business Society:
 
 - Personality: confident, professional, editorial, commercially aware, ambitious.
-- Visual language: navy/slate, gold accents, serif display headlines, strong rule lines, structured sections, refined spacing.
-- Avoid: generic startup SaaS dashboards, fake office stock imagery, overused handshake/city skyline visuals.
+- Visual language: premium editorial polish with navy/slate, gold accents, restrained serif display headlines, strong rule lines, structured sections, and refined spacing.
+- Avoid: generic startup SaaS dashboards, glass-card clutter, fake office stock imagery, overused handshake/city skyline visuals, and overbuilt visual effects.
 - Ideal feel: student professional network with real career value.
 
 Neurotech Society:
 
 - Personality: scientific, curious, experimental, human-centred, responsible.
-- Visual language: deep/clean scientific surfaces, cyan/gold signal accents, neural/circuit motifs, controlled glow, lab-inspired structure.
+- Visual language: the second-most visually overengineered site, with deep/clean scientific surfaces, cyan/gold signal accents, neural/circuit motifs, controlled glow, brain/neural interaction, and lab-inspired structure.
 - Avoid: uncontrolled sci-fi, illegible glow text, dark-only pages, overstated medical/research claims.
 - Ideal feel: accessible gateway into neuroscience and technology.
 
@@ -135,15 +147,15 @@ AI:
 
 Business:
 
-- Light: off-white backgrounds, slate/navy text, gold accents, high-contrast navy sections.
-- Dark: deep slate/navy backgrounds, warm gold accents, off-white text, muted slate cards.
+- Single public visual mode: off-white backgrounds, slate/navy text, gold accents, high-contrast navy sections where useful.
 - Use gold sparingly for primary actions, section rules, and active states.
+- Do not add Business `data-theme` palettes or theme preference persistence.
 
 Neurotech:
 
-- Light: clean pale surfaces with deep blue/slate text, cyan/gold accents, subtle signal lines.
-- Dark: deep void/navy surfaces, cyan and neural gold accents, restrained glow.
+- Single public visual mode: deep/clean scientific surfaces with deep blue/slate text, cyan/gold accents, signal lines, and restrained glow.
 - Use cyan for technology/signal interactions and gold for warmth, emphasis, and CTAs.
+- Do not add Neurotech `data-theme` palettes or theme preference persistence.
 
 ## Interaction And Prototype Direction
 
@@ -179,7 +191,10 @@ Neurotech:
 - Do not hide missing real data behind fake-looking cards.
 - Do not introduce a new dependency without checking the app package that imports it.
 - Do not rely on browser globals for GSAP/ScrollTrigger unless the page actually imports or loads them.
-- Do not ship theme work without checking both desktop and mobile in light and dark modes.
+- Do not add public theme work outside AI. For AI theme work, check both desktop and mobile in light and dark modes.
+- Business redesign agents own professional editorial polish only; they must not add public theme toggles, `data-theme`, localStorage theme scripts, fake sponsors, or fake speaker/event content.
+- Neurotech redesign agents own the interactive brain/neural visual direction; they must not add public theme toggles, `data-theme`, localStorage theme scripts, fake equipment access, fake lab access, or fake research claims.
+- AI redesign agents own the most visually overengineered public experience and must preserve AI theme switching, server-side AI safety boundaries, and honest fallback behavior.
 
 ## Design Coherence Review Gates
 
@@ -199,7 +214,7 @@ Review task mapping:
 Reviewers should inspect at least:
 
 - Desktop and mobile.
-- Light and dark themes where implemented.
+- AI light and dark themes; Business and Neurotech in their single public visual modes with no public theme toggle.
 - Homepage, About, Committee, Events, Join, and 404 pages for each public site.
 - Admin dashboard if admin visual changes were made.
 - Reduced-motion behavior for AI Track Lab, Business GSAP sections, and Neurotech Three.js/Lenis/GSAP interactions.
@@ -212,6 +227,7 @@ Reviewers should inspect at least:
 - Founding/established dates visible after data tasks complete.
 - Events and committee pages are database-driven.
 - Past committee is manageable and displayable after data tasks complete.
-- Themes work across public sites.
+- AI public theme switching works.
+- Business and Neurotech do not expose public theme switching or `data-theme` systems.
 - Admin remains usable and professional.
 - Visual systems feel deliberate, not generated filler.
