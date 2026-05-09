@@ -4,130 +4,90 @@ import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 ---
 
-<Layout title="About" description="Learn about Surrey Neurotech Society - our mission, focus areas, and what members can expect from our student-led neurotech community.">
+<Layout title="About" description="Surrey Neurotech Society exists to demystify neurotechnology. We bring together students from all degrees to explore the human mind.">
 
-  <section class="bg-surface-dark text-text-on-dark py-16 sm:py-20 px-6  curve-bottom relative overflow-hidden">
-    <div class="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-lighten">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-primary"></div>
+  <!-- Hero / Society Story -->
+  <section class="bg-slate-50 py-24 sm:py-32 px-6 relative overflow-hidden flow-section">
+    <!-- Soft abstract flowing background -->
+    <div class="absolute inset-0 pointer-events-none opacity-30">
+        <div class="absolute top-0 right-[10%] w-[60vw] h-[60vw] bg-cyan-500/10 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[10%] left-[10%] w-[50vw] h-[50vw] bg-blue-500/10 rounded-full blur-[80px]"></div>
     </div>
+    
+    <div class="mx-auto max-w-4xl relative z-10 text-center">
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-8">Demystifying Neurotechnology.</h1>
+      <p class="text-xl sm:text-2xl text-slate-600 leading-relaxed font-light">
+        We believe the intersection of the human mind and technology is too important to be kept behind closed doors. We're a student-led community dedicated to making neuroscience, BCIs, and AI accessible to everyone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Who We Are -->
+  <section class="py-24 px-6 bg-white border-t border-slate-200">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row items-center gap-16">
+        <div class="flex-1 text-center md:text-left">
+          <h2 class="text-4xl font-bold text-slate-900 mb-6">Who We Are</h2>
+          <p class="text-lg text-slate-600 leading-relaxed mb-6">
+            We are a vibrant mix of psychology, computer science, biomedical engineering, and arts students. You don't need a medical degree or programming experience to join us.
+          </p>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            What unites us is a shared curiosity about how the brain works and how we can build technologies that interface with it responsibly.
+          </p>
+        </div>
+        
+        <div class="flex-1 w-full flex justify-center">
+           <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+              <div class="bg-cyan-50 rounded-3xl p-8 text-center flex flex-col items-center justify-center aspect-square shadow-sm">
+                 <span class="text-4xl mb-4">🧠</span>
+                 <span class="font-bold text-slate-900">Psychology & Biosciences</span>
+              </div>
+              <div class="bg-blue-50 rounded-3xl p-8 text-center flex flex-col items-center justify-center aspect-square shadow-sm translate-y-8">
+                 <span class="text-4xl mb-4">💻</span>
+                 <span class="font-bold text-slate-900">Computing & Engineering</span>
+              </div>
+              <div class="bg-slate-100 rounded-3xl p-8 text-center flex flex-col items-center justify-center aspect-square shadow-sm col-span-2 mt-4">
+                 <span class="text-3xl mb-2">🤝</span>
+                 <span class="font-bold text-slate-900">Everyone Else</span>
+                 <span class="text-sm text-slate-500 mt-2">Arts, Humanities, Business, and more.</span>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Vision & Ethics -->
+  <section class="bg-slate-900 text-white py-24 px-6 relative overflow-hidden">
+    <!-- Ambient light blobs -->
+    <div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-2 mb-4">
-        <span class="w-2 h-2 rounded-full bg-cyan"></span>
-        <span class="w-8 h-px bg-gradient-to-r from-cyan/60 to-transparent"></span>
-        <span class="text-cyan text-sm font-semibold uppercase tracking-wider">About Us</span>
+      <div class="text-center mb-16">
+         <h2 class="text-4xl font-bold tracking-tight mb-6">Our Vision & Ethics</h2>
+         <p class="text-xl text-slate-300 max-w-2xl mx-auto">Building a responsible future for neurotechnology.</p>
       </div>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1]">About Surrey Neurotech Society</h1>
-      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl">Where neuroscience meets technology — driven by curiosity and grounded in science.</p>
-    </div>
-    <div class="absolute bottom-0 inset-x-0"></div>
-  </section>
 
-  <section class="py-16 sm:py-20 px-6">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-bold mb-6">Our Mission</h2>
-          <p class="text-text-secondary leading-relaxed mb-4">
-            Surrey Neurotech Society exists to bring together students interested in the intersection of neuroscience, technology, and engineering. We explore how the brain works, how technology can interface with it, and what this means for medicine, computing, and society.
-          </p>
-          <div class="my-6 relative h-64 rounded-2xl overflow-hidden shadow-lg border border-cyan/20 bg-primary-deep flex items-center justify-center">
-             <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, var(--cyan) 1px, transparent 0); background-size: 24px 24px;"></div>
-             <svg class="w-24 h-24 text-cyan opacity-80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M50 10 L90 50 L50 90 L10 50 L50 10Z" stroke="currentColor" stroke-width="2" />
-               <circle cx="50" cy="50" r="20" stroke="var(--gold)" stroke-width="2" />
-               <circle cx="50" cy="50" r="4" fill="currentColor" />
-             </svg>
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+        <div class="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md">
+          <div class="w-16 h-16 bg-cyan-500/20 text-cyan-400 rounded-2xl flex items-center justify-center mb-6">
+             <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
           </div>
-          <p class="text-text-secondary leading-relaxed mb-4">
-            We're a student-led society under Surrey Students' Union, run by students who believe that understanding the brain is one of the most important challenges of our time — and that students from every discipline can contribute to it.
-          </p>
-          <p class="text-text-secondary leading-relaxed">
-            Our events span from accessible introductions to deeper technical discussions. We're not a research lab — we're a community of curious students who want to learn, discuss, and build together.
+          <h3 class="text-2xl font-bold mb-4">Human-Centred Design</h3>
+          <p class="text-slate-300 leading-relaxed">
+            We focus on how technology can support and enhance human wellbeing. We explore neurotechnology not just for the sake of innovation, but to understand its profound impact on accessibility, mental health, and daily life.
           </p>
         </div>
-        <div class="neuro-card rounded-2xl p-8 border-transparent relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-cyan/10 to-transparent opacity-30"></div>
-          <div class="relative z-10">
-            <h3 class="font-semibold text-lg mb-6 text-primary-deep">What to Expect</h3>
-            <ul class="space-y-4">
-              <li class="flex gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan mt-2 shrink-0"></span>
-                <span class="text-text-secondary text-sm leading-relaxed">Introductory talks on neuroscience, BCIs, and neurotechnology</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan mt-2 shrink-0"></span>
-                <span class="text-text-secondary text-sm leading-relaxed">Research reading groups and journal clubs</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan mt-2 shrink-0"></span>
-                <span class="text-text-secondary text-sm leading-relaxed">Hands-on projects with EEG and neural signal processing</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan mt-2 shrink-0"></span>
-                <span class="text-text-secondary text-sm leading-relaxed">Careers panels focused on neurotech and neuroscience pathways</span>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan mt-2 shrink-0"></span>
-                <span class="text-text-secondary text-sm leading-relaxed">A welcoming, interdisciplinary community</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="bg-surface-alt py-16 sm:py-20 px-6">
-    <div class="mx-auto max-w-6xl">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-6">Who Is This For?</h2>
-      <div class="grid sm:grid-cols-3 gap-6">
-        <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
-          <h3 class="font-semibold mb-3">Neuroscience Students</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">Deepen your understanding beyond lectures and connect with peers who share your interest in the brain.</p>
-        </div>
-        <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1">
-          <h3 class="font-semibold mb-3">Engineers & Computer Scientists</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">Interested in BCIs, signal processing, or biomedical engineering? This is your space to explore those applications.</p>
-        </div>
-        <div class="neuro-card rounded-2xl p-6 border-transparent hover:border-cyan/30 transition-all duration-300 hover:-translate-y-1">
-          <h3 class="font-semibold mb-3">Curious Minds</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">No background required. If you're curious about how the brain works and what technology can do, you're welcome here.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-16 sm:py-20 px-6">
-    <div class="mx-auto max-w-6xl">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-8">Our Focus Areas</h2>
-      <div class="grid sm:grid-cols-2 gap-6">
-        <div class="flex gap-4">
-          <div class="w-10 h-10 rounded-xl bg-cyan/10 flex items-center justify-center text-cyan shrink-0 font-bold text-sm">01</div>
-          <div>
-            <h3 class="font-semibold mb-1">Brain-Computer Interfaces</h3>
-            <p class="text-text-secondary text-sm leading-relaxed">The technology that lets brains communicate directly with machines.</p>
+        <div class="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md">
+          <div class="w-16 h-16 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6">
+             <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
           </div>
-        </div>
-        <div class="flex gap-4">
-          <div class="w-10 h-10 rounded-xl bg-cyan/10 flex items-center justify-center text-cyan shrink-0 font-bold text-sm">02</div>
-          <div>
-            <h3 class="font-semibold mb-1">Computational Neuroscience</h3>
-            <p class="text-text-secondary text-sm leading-relaxed">Modelling and understanding neural systems through mathematics and simulation.</p>
-          </div>
-        </div>
-        <div class="flex gap-4">
-          <div class="w-10 h-10 rounded-xl bg-cyan/10 flex items-center justify-center text-cyan shrink-0 font-bold text-sm">03</div>
-          <div>
-            <h3 class="font-semibold mb-1">Neuroethics</h3>
-            <p class="text-text-secondary text-sm leading-relaxed">The ethical implications of reading, stimulating, and augmenting the human brain.</p>
-          </div>
-        </div>
-        <div class="flex gap-4">
-          <div class="w-10 h-10 rounded-xl bg-cyan/10 flex items-center justify-center text-cyan shrink-0 font-bold text-sm">04</div>
-          <div>
-            <h3 class="font-semibold mb-1">Wellbeing & Mental Health Tech</h3>
-            <p class="text-text-secondary text-sm leading-relaxed">How neurotechnology can support mental health, accessibility, and human flourishing.</p>
-          </div>
+          <h3 class="text-2xl font-bold mb-4">Cognitive Privacy</h3>
+          <p class="text-slate-300 leading-relaxed">
+            With the ability to decode brain signals comes immense responsibility. We prioritize discussions around data rights, consent, and the ethical boundaries of reading the human mind. Responsible innovation is our core philosophy.
+          </p>
         </div>
       </div>
     </div>

@@ -1,283 +1,105 @@
 @import "tailwindcss";
 
-/* Surrey Neurotech Society — Bioluminescent, cutting-edge aesthetic */
+/* Surrey Neurotech Society — Clean, Accessible, Flowing */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  /* Brand colours */
-  --color-primary: var(--neuro-primary);
-  --color-primary-deep: var(--neuro-primary-deep);
-  --color-primary-light: var(--neuro-primary-light);
-  --color-primary-mid: var(--neuro-primary-mid);
+  /* Brand colours - New Palette */
+  --color-slate-900: #0A0F14; /* Deep Slate / Dark Sections */
+  --color-slate-800: #1E293B;
+  --color-slate-600: #475569; /* Muted Text */
+  --color-slate-200: #E2E8F0;
+  --color-slate-50: #F1F5F9; /* Slate-tinted white */
+  --color-white: #FAFAFA; /* Pure soft white */
 
-  --color-gold: var(--neuro-gold);
-  --color-gold-light: var(--neuro-gold-light);
-  --color-gold-dark: var(--neuro-gold-dark);
-  --color-gold-muted: var(--neuro-gold-muted);
-
-  --color-tan: var(--neuro-cyan);
-  --color-tan-light: var(--neuro-cyan-light);
-  --color-tan-muted: var(--neuro-cyan-muted);
-  --color-cyan: var(--neuro-cyan);
-  --color-cyan-dark: var(--neuro-cyan-dark);
+  --color-cyan-500: #06B6D4; /* Primary Accent */
+  --color-cyan-600: #0891B2;
+  --color-blue-500: #0EA5E9; /* Secondary Accent */
 
   /* Semantic surfaces */
-  --color-surface: var(--neuro-surface);
-  --color-surface-alt: var(--neuro-surface-alt);
-  --color-surface-dark: var(--neuro-surface-dark);
-  --color-surface-card: var(--neuro-surface-card);
-  --color-surface-card-dark: var(--neuro-surface-card-dark);
-
+  --color-background: var(--color-white);
+  --color-surface: var(--color-slate-50);
+  --color-surface-dark: var(--color-slate-900);
+  
   /* Text */
-  --color-text-primary: var(--neuro-text-primary);
-  --color-text-secondary: var(--neuro-text-secondary);
-  --color-text-muted: var(--neuro-text-muted);
-  --color-text-on-dark: var(--neuro-text-on-dark);
-  --color-text-on-dark-secondary: var(--neuro-text-on-dark-secondary);
+  --color-text-primary: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-600);
+  --color-text-on-dark: var(--color-white);
+  --color-text-on-dark-secondary: var(--color-slate-200);
 
-  /* Borders */
-  --color-border-subtle: var(--neuro-border-subtle);
-  --color-border-dark: var(--neuro-border-dark);
+  /* Accents */
+  --color-accent-primary: var(--color-cyan-500);
+  --color-accent-secondary: var(--color-blue-500);
 }
 
 @layer base {
   :root {
-    /* Brand constants */
-    --neuro-gold: #D97706; /* Restrained amber/gold */
-    --neuro-gold-light: #F59E0B;
-    --neuro-gold-dark: #B45309;
-    --neuro-gold-muted: rgba(217, 119, 6, 0.15);
+    --color-slate-900: #0A0F14;
+    --color-slate-800: #1E293B;
+    --color-slate-600: #475569;
+    --color-slate-200: #E2E8F0;
+    --color-slate-50: #F1F5F9;
+    --color-white: #FAFAFA;
 
-    --neuro-cyan: #22D3EE; /* Electric cyan */
-    --neuro-cyan-light: #67E8F9;
-    --neuro-cyan-muted: rgba(34, 211, 238, 0.12);
-    --neuro-cyan-dark: #0891B2; /* Darker cyan for hover/active states */
-
-    --neuro-violet: #8B5CF6; /* Neural violet */
-    --neuro-violet-light: #A78BFA;
-    --neuro-violet-muted: rgba(139, 92, 246, 0.15);
-
-    /* Premium Dark Theme */
-    --neuro-primary: #050A15; /* Deep neural navy/black */
-    --neuro-primary-deep: #02040a;
-    --neuro-primary-light: #0f172a;
-    --neuro-primary-mid: #1e293b;
-
-    --neuro-surface: #050A15;
-    --neuro-surface-alt: #0f172a;
-    --neuro-surface-dark: #02040a;
-    --neuro-surface-card: #0f172a;
-    --neuro-surface-card-dark: #1e293b;
-
-    --neuro-text-primary: #F8FAFC;
-    --neuro-text-secondary: #94A3B8;
-    --neuro-text-muted: #64748B;
-    --neuro-text-on-dark: #F8FAFC;
-    --neuro-text-on-dark-secondary: #94A3B8;
-
-    --neuro-border-subtle: rgba(34, 211, 238, 0.2);
-    --neuro-border-dark: rgba(34, 211, 238, 0.1); 
+    --color-cyan-500: #06B6D4;
+    --color-cyan-600: #0891B2;
+    --color-blue-500: #0EA5E9;
   }
 }
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { 
+    animation-duration: 0.01ms !important; 
+    transition-duration: 0.01ms !important; 
+  }
 }
 
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Organic bio-cell shape */
-.shape-organic {
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-}
-
-/* Circuit-trace divider — thin gradient line */
-.circuit-trace {
-  height: 1px;
-  background: linear-gradient(to right, transparent 0%, var(--color-gold) 25%, var(--color-cyan) 50%, var(--color-gold) 75%, transparent 100%);
-  opacity: 0.5;
-}
-
-/* Bioluminescent dot for accent bullet */
-.gold-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-cyan);
-  box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
-}
-
-/* Bioluminescent cyan grid */
-.nav-grid-light {
-  background-image:
-    linear-gradient(to right, rgba(34, 211, 238, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Gold-tinted grid */
-.nav-grid-dark {
-  background-image:
-    linear-gradient(to right, rgba(245, 158, 11, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Card style for light surface */
-.neuro-card {
-  background-color: var(--color-surface-card);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(5, 10, 21, 0.06), 0 0 0 0 rgba(34, 211, 238, 0);
-  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
-}
-
-.neuro-card:hover {
-  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.12), 0 0 0 2px rgba(34, 211, 238, 0.2);
-  transform: translateY(-2px);
-}
-
-/* Dark card for void sections */
-.neuro-card-dark {
-  background-color: var(--color-surface-card-dark);
-  border: 1px solid var(--color-border-dark);
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.25s ease, transform 0.2s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.neuro-card-dark:hover {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(34, 211, 238, 0.2);
-  transform: translateY(-2px);
-}
-
-/* --- Signal Wave Animation --- */
-@keyframes signal-flow {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.signal-wave {
-  animation: signal-flow 4s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .signal-wave {
-    animation: none;
-  }
-}
-
-/* --- Animated Circuit Trace Hover Effect --- */
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes circuit-pulse {
-  0% { --angle: 0deg; }
-  100% { --angle: 360deg; }
-}
-
-.neuro-card, .neuro-card-dark, .btn-trace {
-  position: relative;
-  z-index: 1;
-  /* Required if elements inside need to be clicked correctly */
-  isolation: isolate; 
-}
-
-/* Inner masking layers to hide the center of the gradient */
-.neuro-card::after {
-  content: "";
-  position: absolute;
-  inset: 0px;
-  border-radius: inherit;
-  background-color: var(--color-surface-card);
-  z-index: -1;
-  transition: background-color 0.2s ease;
-}
-
-.neuro-card-dark::after {
-  content: "";
-  position: absolute;
-  inset: 0px;
-  border-radius: inherit;
-  background-color: var(--color-surface-card-dark);
-  z-index: -1;
-  transition: background-color 0.2s ease;
-}
-
-.btn-trace::after {
-  content: "";
-  position: absolute;
-  inset: 0px;
-  border-radius: inherit;
-  background-color: var(--color-gold);
-  z-index: -1;
-  transition: background-color 0.2s ease;
-}
-
-.btn-trace:hover::after {
-  background-color: var(--color-gold-light);
-}
-
-/* Outer conic gradient layer acting as the pulsing border */
-.neuro-card::before, .neuro-card-dark::before, .btn-trace::before {
-  content: "";
-  position: absolute;
-  /* Grow slightly outside to serve as border */
-  inset: -2px;
-  border-radius: calc(16px + 2px); /* Fallback, though standard button might be different */
-  background: conic-gradient(from var(--angle), transparent 70%, var(--color-cyan) 100%);
-  animation: circuit-pulse 2s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -2;
-}
-
-.btn-trace::before {
-  border-radius: calc(0.75rem + 2px); /* typical xl border-radius matching Tailwind's rounded-xl */
-}
-
-.neuro-card:hover::before, .neuro-card-dark:hover::before, .btn-trace:hover::before {
-  opacity: 1;
-}
-
-/* Ensure contents stay above pseudo-elements */
-.neuro-card > *, .neuro-card-dark > *, .btn-trace > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* ── Curved bottom section shape ── */
-.curve-bottom {
-  clip-path: ellipse(120% 100% at 50% 0%);
+  background-color: var(--color-white);
+  color: var(--color-slate-900);
+  line-height: 1.6;
 }
 
 /* ── Focus-visible (accessibility) ── */
-a:focus-visible {
-  outline: 2px solid var(--color-cyan);
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--color-cyan-500);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-button:focus-visible {
-  outline: 2px solid var(--color-cyan);
-  outline-offset: 2px;
+/* ── Utility Classes ── */
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--color-white), var(--color-slate-50));
 }
 
-.btn-trace:focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 3px;
+.gradient-dark {
+  background: linear-gradient(135deg, var(--color-slate-900), var(--color-slate-800));
 }
+
+.gradient-text {
+  background: linear-gradient(to right, var(--color-cyan-500), var(--color-blue-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.flow-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.smooth-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hero Brain Particle Network - Reduced Motion Fallback Handled in Component */

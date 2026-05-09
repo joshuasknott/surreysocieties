@@ -11,15 +11,6 @@ const events: any[] = (
   await client.query('events:listPublished', { societySlug: SOCIETY_ID })
 ).filter((event: any) => event.status === 'published');
 
-const committee: any[] = (
-  await client.query('committee:listActive', { societySlug: SOCIETY_ID })
-).sort(
-  (a: any, b: any) =>
-    (a.displayOrder ?? Number.MAX_SAFE_INTEGER) -
-    (b.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
-    (a.name || '').localeCompare(b.name || '')
-);
-
 const formatEventDate = (date?: string) => {
   if (!date) return 'Date TBC';
   const parsed = new Date(`${date}T00:00:00`);
@@ -30,324 +21,318 @@ const formatEventDate = (date?: string) => {
     year: 'numeric',
   });
 };
-
-const getInitials = (name?: string, role?: string) => {
-  const source = (name || role || '?').trim();
-  const words = source.split(/\s+/).filter(Boolean);
-  if (words.length === 0) return '?';
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-  return words.slice(0, 2).map((w) => w[0]).join('').toUpperCase();
-};
 ---
 
-<Layout title="Home" description="Surrey Neurotech Society — A student-led community exploring neuroscience, technology, brain-computer interfaces, and human-centred innovation at the University of Surrey.">
+<Layout title="Home" description="Surrey Neurotech Society — Demystifying neurotechnology. Connecting the human mind with technology through accessible exploration of BCIs, AI, and ethics.">
 
   <!-- Hero -->
-  <section class="bg-surface-dark text-text-on-dark relative overflow-hidden border-b-2 border-gold/20 nav-grid-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
+  <section class="bg-slate-900 text-white relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32 gradient-dark">
     <!-- Ambient light blobs -->
-    <div class="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
     
     <div class="mx-auto max-w-7xl px-6 relative z-10 w-full">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        <div class="flex flex-col items-start max-w-3xl">
-          <div class="inline-flex items-center gap-3 mb-6">
-            <div class="gold-dot"></div>
-            <span class="text-gold text-xs font-semibold uppercase tracking-wider">University of Surrey</span>
-          </div>
+        <div class="flex flex-col items-start max-w-3xl z-10">
+          <p class="text-cyan-500 font-semibold tracking-wide uppercase text-sm mb-4">A student-led society at the University of Surrey.</p>
           
-          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1]">
-            Where <span class="text-cyan [text-shadow:0_0_15px_rgba(34,211,238,0.4)]">neuroscience</span> meets <br class="hidden sm:block" />
-            <span class="text-gold [text-shadow:0_0_15px_rgba(245,158,11,0.4)]">computational power</span>.
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
+            Connecting the human mind with <span class="text-cyan-500">technology.</span>
           </h1>
           
-          <p class="mt-6 text-lg sm:text-xl text-text-on-dark-secondary leading-relaxed border-l-2 border-cyan/40 pl-4 [text-shadow:0_0_10px_rgba(255,255,255,0.1)]">
-            A student-led community exploring the future of brain-computer interfaces, neural signal processing, and human-centred innovation.
+          <p class="text-xl sm:text-2xl text-slate-300 leading-relaxed font-light mb-8 max-w-2xl">
+            Demystifying neurotechnology. Explore brain-computer interfaces, artificial intelligence, and responsible innovation.
           </p>
           
-          <div class="mt-8 grid sm:grid-cols-2 gap-6 max-w-2xl border-t border-border-dark pt-6">
-            <div>
-              <h3 class="text-sm font-semibold text-text-on-dark mb-1 flex items-center gap-2">
-                <svg class="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                For Everyone
-              </h3>
-              <p class="text-sm text-text-on-dark-secondary">Whether you study computer science, psychology, engineering, or biosciences—curiosity is the only prerequisite.</p>
-            </div>
-            <div>
-              <h3 class="text-sm font-semibold text-text-on-dark mb-1 flex items-center gap-2">
-                <svg class="w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                Why It Matters
-              </h3>
-              <p class="text-sm text-text-on-dark-secondary">As AI and neural interfaces advance, understanding their intersection is critical for responsible innovation.</p>
-            </div>
+          <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="/join" class="inline-flex items-center justify-center px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-xl transition-all shadow-[0_4px_20px_rgba(6,182,212,0.3)] hover:shadow-[0_8px_30px_rgba(6,182,212,0.4)] text-base">
+              Become a Member
+            </a>
+            <a href="/events" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl border border-white/10 transition-all text-base backdrop-blur-sm">
+              Discover Events
+            </a>
           </div>
 
-          <div class="mt-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href="/join" class="btn-trace inline-flex items-center justify-center px-8 py-3.5 bg-gold hover:bg-gold-light text-primary-deep font-bold rounded-xl transition-all shadow-[0_4px_24px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_32px_rgba(245,158,11,0.5)] text-sm uppercase tracking-wide">
-              Join the Society
-            </a>
-            <a href="/events" class="inline-flex items-center justify-center px-8 py-3.5 bg-transparent hover:bg-white/5 text-text-on-dark font-bold rounded-xl border border-cyan/30 transition-all text-sm uppercase tracking-wide shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
-              View Events
-            </a>
+          <div class="mt-12 flex items-center gap-4 text-slate-400 text-sm">
+            <span class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              No experience required
+            </span>
+            <span class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              All degrees welcome
+            </span>
           </div>
         </div>
         
-        <div id="hero-canvas-container" class="relative w-full aspect-square lg:aspect-auto lg:h-[500px] flex items-center justify-center">
+        <div id="hero-canvas-container" class="relative w-full aspect-square lg:aspect-auto lg:h-[600px] flex items-center justify-center pointer-events-none">
           <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-auto" style="touch-action: none;"></canvas>
           <div id="hero-fallback" class="hidden absolute inset-0 items-center justify-center pointer-events-none">
-            <div class="w-64 h-64 rounded-full border border-cyan/20 bg-primary/20 backdrop-blur-md shadow-[0_0_40px_rgba(34,211,238,0.1)] flex items-center justify-center">
-              <span class="text-cyan/60 text-sm tracking-widest uppercase text-center leading-relaxed font-semibold">Neural<br/>Simulation</span>
-            </div>
+             <!-- Static Beautiful SVG fallback for reduced motion -->
+             <svg class="w-full h-full max-w-md opacity-80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 20C140 20 170 50 170 90C170 130 140 180 100 180C60 180 30 130 30 90C30 50 60 20 100 20Z" stroke="url(#paint0_linear)" stroke-width="2" stroke-dasharray="4 4" />
+                <path d="M100 40C120 40 140 60 140 90C140 120 120 150 100 150C80 150 60 120 60 90C60 60 80 40 100 40Z" stroke="#06B6D4" stroke-width="1.5" />
+                <circle cx="100" cy="90" r="20" fill="#0EA5E9" fill-opacity="0.2" stroke="#06B6D4" stroke-width="2"/>
+                <defs>
+                  <linearGradient id="paint0_linear" x1="30" y1="20" x2="170" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#06B6D4"/>
+                    <stop offset="1" stop-color="#FAFAFA" stop-opacity="0.2"/>
+                  </linearGradient>
+                </defs>
+             </svg>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What We Explore (Interactive Tabs) -->
-  <section class="py-20 sm:py-24 px-6 bg-surface nav-grid-light relative">
+  <!-- Interactive Pillars -->
+  <section class="py-24 px-6 bg-slate-50 relative">
     <div class="mx-auto max-w-6xl">
-      <div class="mb-14 text-center sm:text-left">
-        <div class="inline-flex items-center gap-3 mb-4">
-          <div class="gold-dot"></div>
-          <span class="text-gold text-xs font-semibold uppercase tracking-wider">What We Explore</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-bold text-text-primary">Where Brain Meets Machine</h2>
-        <p class="mt-4 text-text-secondary max-w-xl mx-auto sm:mx-0">Neuroscience, engineering, and computing — brought together by curiosity and a desire to understand the brain.</p>
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight">Our Focus Areas</h2>
+        <p class="mt-6 text-xl text-slate-600 leading-relaxed">
+          We break down complex topics into accessible, interactive experiences. See for yourself how brain-computer interfaces and artificial intelligence work.
+        </p>
       </div>
 
-      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12 items-start">
-        <!-- Left: Focus Areas (Tabs) -->
-        <div class="space-y-4" role="tablist" aria-label="Society Focus Areas">
-          <button type="button" role="tab" aria-selected="true" aria-controls="panel-0" id="tab-0" data-index="0" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border transition-all duration-300 border-cyan/40 bg-cyan/5 shadow-[0_0_15px_rgba(34,211,238,0.1)]">
-            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
-              <span class="text-cyan text-2xl">🧠</span> Neuroscience
-            </h3>
-            <p class="text-text-secondary text-sm leading-relaxed">Understanding the brain — from neural pathways to cognitive processes and biological systems.</p>
-          </button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="panel-1" id="tab-1" data-index="1" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border border-transparent hover:border-border-subtle hover:bg-surface-alt transition-all duration-300 opacity-70 hover:opacity-100">
-            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
-              <span class="text-gold text-2xl">⚡</span> Brain-Computer Interfaces
-            </h3>
-            <p class="text-text-secondary text-sm leading-relaxed">Neural signal processing, and the technology translating thought into action.</p>
-          </button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" data-index="2" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border border-transparent hover:border-border-subtle hover:bg-surface-alt transition-all duration-300 opacity-70 hover:opacity-100">
-            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
-              <span class="text-cyan text-2xl">🤖</span> AI &amp; Machine Learning
-            </h3>
-            <p class="text-text-secondary text-sm leading-relaxed">Applying machine learning to decode complex neural signals and predict cognitive states.</p>
-          </button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" data-index="3" class="focus-tab focus:outline-none focus:ring-2 focus:ring-cyan text-left w-full p-6 rounded-2xl border border-transparent hover:border-border-subtle hover:bg-surface-alt transition-all duration-300 opacity-70 hover:opacity-100">
-            <h3 class="font-bold text-xl mb-2 text-text-primary flex items-center gap-3">
-              <span class="text-gold text-2xl">🤝</span> Human-Centred Ethics
-            </h3>
-            <p class="text-text-secondary text-sm leading-relaxed">Focusing on accessibility, cognitive privacy, and responsible innovation in neurotech.</p>
-          </button>
-        </div>
-
-        <!-- Right: Visualizer -->
-        <div class="relative w-full aspect-[4/3] sm:aspect-auto sm:h-full min-h-[350px] rounded-3xl bg-surface-dark border border-border-dark flex items-center justify-center overflow-hidden shadow-[0_8px_32px_rgba(5,10,21,0.2)] p-6">
-          <!-- Base grid -->
-          <div class="absolute inset-0 opacity-10 nav-grid-dark pointer-events-none"></div>
-          
-          <!-- Panel 0: Neuroscience -->
-          <div id="panel-0" role="tabpanel" aria-labelledby="tab-0" class="visual-panel absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500">
-            <div class="relative w-full h-full max-w-[80%] max-h-[80%] flex items-center justify-center">
-              <svg class="w-full h-full max-w-sm text-cyan/40" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                <path d="M20,30 L40,50 L70,40 L80,70 L50,80 Z" fill="none" stroke="currentColor" stroke-width="0.5"/>
-                <path d="M40,50 L50,80 M70,40 L90,20 M20,30 L10,60 L50,80" fill="none" stroke="currentColor" stroke-width="0.5"/>
-                <circle cx="20" cy="30" r="1.5" class="fill-cyan animate-pulse" />
-                <circle cx="40" cy="50" r="2.5" class="fill-cyan" />
-                <circle cx="70" cy="40" r="1.5" class="fill-cyan animate-pulse" style="animation-delay: 0.5s;" />
-                <circle cx="80" cy="70" r="3" class="fill-cyan" />
-                <circle cx="50" cy="80" r="2" class="fill-cyan" />
-                <circle cx="10" cy="60" r="1.5" class="fill-cyan animate-pulse" style="animation-delay: 1s;" />
-                <circle cx="90" cy="20" r="2" class="fill-cyan" />
+      <div class="space-y-32">
+        
+        <!-- Neuroscience Explainer -->
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+          <div class="flex-1 lg:pr-12">
+            <h3 class="text-3xl font-bold text-slate-900 mb-6">Understand the Brain</h3>
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+              We explore how the brain functions, mapping thoughts and movements to neural pathways. You don't need a medical degree to grasp the fundamentals of neuroscience.
+            </p>
+            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
+              Hover over the brain to explore
+            </div>
+          </div>
+          <div class="flex-1 w-full relative">
+            <div class="aspect-square sm:aspect-[4/3] rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden relative flex items-center justify-center group p-8">
+              <!-- Simple SVG Brain -->
+              <svg class="w-full h-full max-w-sm text-slate-300 transition-colors duration-500 group-hover:text-slate-200" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 20C150 20 180 50 180 90C180 130 140 140 100 140C60 140 20 130 20 90C20 50 50 20 100 20Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M60 50C80 40 120 40 140 50" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                <path d="M40 80C70 90 130 90 160 80" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
               </svg>
-            </div>
-          </div>
+              <!-- Interactive Hotspots -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                 <div class="relative w-full h-full max-w-sm">
+                    <!-- Motor Cortex -->
+                    <div class="absolute top-[25%] left-[45%] w-12 h-12 -translate-x-1/2 -translate-y-1/2 peer/motor cursor-pointer rounded-full hover:bg-cyan-500/20 transition-colors z-10"></div>
+                    <div class="absolute top-[25%] left-[45%] w-4 h-4 bg-cyan-500 rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-transform peer-hover/motor:scale-150"></div>
+                    <!-- Tooltip Motor -->
+                    <div class="absolute top-0 left-[55%] w-64 bg-slate-900 text-white p-4 rounded-xl opacity-0 peer-hover/motor:opacity-100 transition-opacity pointer-events-none translate-y-[-20px] peer-hover/motor:translate-y-0 duration-300 shadow-2xl z-20">
+                      <p class="font-semibold text-cyan-400 mb-1">Motor Cortex</p>
+                      <p class="text-sm text-slate-300">This area plans and executes movement. BCIs often read signals from here to control prosthetics.</p>
+                    </div>
 
-          <!-- Panel 1: BCI -->
-          <div id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="visual-panel absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
-            <div class="w-full px-8 flex flex-col gap-4">
-              <div class="h-24 w-full flex items-center border-b border-border-dark relative overflow-hidden">
-                <svg class="w-[200%] h-full text-gold opacity-80 signal-wave absolute left-0" viewBox="0 0 400 50" preserveAspectRatio="none">
-                  <path d="M0,25 L10,25 L15,10 L25,45 L30,25 L50,25 L60,25 L65,15 L75,35 L80,25 L100,25 L110,25 L115,5 L125,40 L130,25 L150,25 L160,25 L165,15 L175,30 L180,25 L200,25 L210,25 L215,10 L225,45 L230,25 L250,25 L260,25 L265,15 L275,35 L280,25 L300,25 L310,25 L315,5 L325,40 L330,25 L350,25 L360,25 L365,15 L375,30 L380,25 L400,25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                    <!-- Visual Cortex -->
+                    <div class="absolute top-[60%] left-[85%] w-12 h-12 -translate-x-1/2 -translate-y-1/2 peer/visual cursor-pointer rounded-full hover:bg-blue-500/20 transition-colors z-10"></div>
+                    <div class="absolute top-[60%] left-[85%] w-4 h-4 bg-blue-500 rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-transform peer-hover/visual:scale-150"></div>
+                    <!-- Tooltip Visual -->
+                    <div class="absolute top-[40%] right-[20%] w-64 bg-slate-900 text-white p-4 rounded-xl opacity-0 peer-hover/visual:opacity-100 transition-opacity pointer-events-none translate-y-[-20px] peer-hover/visual:translate-y-0 duration-300 shadow-2xl z-20">
+                      <p class="font-semibold text-blue-400 mb-1">Visual Cortex</p>
+                      <p class="text-sm text-slate-300">Processes visual information. Research here helps develop visual prosthetics for the blind.</p>
+                    </div>
+                 </div>
               </div>
-              <div class="flex justify-between text-[10px] uppercase tracking-widest text-text-on-dark-secondary font-mono">
-                 <span>Simulated Neural Feed</span>
-                 <span class="text-cyan">Active</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Panel 2: AI & ML -->
-          <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="visual-panel absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
-            <div class="w-full px-8 font-mono text-xs sm:text-sm text-text-on-dark-secondary">
-              <div class="mb-4 text-cyan">&gt;&gt;&gt; model.predict(eeg_stream)</div>
-              <div class="space-y-2">
-                 <div class="flex justify-between items-center"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Extracting features...</span> <span class="text-gold opacity-80">[OK]</span></div>
-                 <div class="flex justify-between items-center"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Spatial filtering...</span> <span class="text-gold opacity-80">[OK]</span></div>
-                 <div class="flex justify-between items-center"><span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span> Classification...</span> <span class="text-cyan animate-pulse">Running</span></div>
-              </div>
-              <div class="mt-6 border-t border-border-dark pt-4">
-                 <span class="text-text-on-dark">Predicted Intent:</span> <span class="text-gold font-bold ml-2">Motor_Execute_Left</span> <span class="text-xs text-text-on-dark-secondary ml-1">(94.2%)</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Panel 3: Human-Centred -->
-          <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" class="visual-panel absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
-            <div class="text-center px-8 flex flex-col items-center">
-               <div class="w-16 h-16 rounded-full border border-gold flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(245,158,11,0.15)] bg-gold/5">
-                  <svg class="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
-                  </svg>
-               </div>
-               <h4 class="text-text-on-dark font-semibold mb-2 text-lg">Privacy &amp; Accessibility</h4>
-               <p class="text-text-on-dark-secondary text-sm max-w-[250px]">Ensuring neurotechnology empowers individuals without compromising cognitive privacy.</p>
             </div>
           </div>
         </div>
+
+        <!-- BCI Explainer -->
+        <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+          <div class="flex-1 lg:pl-12">
+            <h3 class="text-3xl font-bold text-slate-900 mb-6">Translate Thought to Action</h3>
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+              Brain-Computer Interfaces (BCIs) capture electrical signals from the brain and translate them into commands that computers or devices can understand.
+            </p>
+            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
+              Click and hold to generate a signal
+            </div>
+          </div>
+          <div class="flex-1 w-full">
+            <div class="rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden relative flex flex-col p-8 text-white h-[350px]">
+              <div class="flex justify-between items-center mb-8">
+                <span class="text-sm font-semibold tracking-wider text-slate-400 uppercase">Signal Amplitude</span>
+                <span class="text-cyan-500 font-mono text-sm px-3 py-1 bg-cyan-500/10 rounded-full" id="bci-status">Resting</span>
+              </div>
+              
+              <!-- Wave Canvas -->
+              <div class="flex-1 relative w-full overflow-hidden flex items-center justify-center">
+                <svg id="bci-wave" class="w-[200%] h-32 text-cyan-500 transition-all duration-300" viewBox="0 0 400 100" preserveAspectRatio="none">
+                  <!-- Dynamic path handled in JS -->
+                  <path id="bci-path" d="M0,50 Q25,50 50,50 T100,50 T150,50 T200,50 T250,50 T300,50 T350,50 T400,50" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                </svg>
+                <!-- Target Action Graphic -->
+                <div id="bci-action" class="absolute right-8 w-16 h-16 rounded-full bg-slate-800 border-2 border-slate-700 flex items-center justify-center transition-all duration-500">
+                  <svg class="w-8 h-8 text-slate-500 transition-colors duration-500" id="bci-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                </div>
+              </div>
+
+              <div class="mt-8 flex justify-center">
+                <button id="bci-trigger" class="px-8 py-3 bg-white text-slate-900 font-bold rounded-full select-none hover:bg-cyan-50 transition-colors focus:outline-none focus:ring-4 focus:ring-cyan-500/50 active:scale-95">
+                  Concentrate (Hold)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI/ML Explainer -->
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+          <div class="flex-1 lg:pr-12">
+            <h3 class="text-3xl font-bold text-slate-900 mb-6">Recognize Patterns</h3>
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+              Artificial Intelligence helps us make sense of the noise. By applying machine learning, we can find distinct patterns in chaotic brain data to understand what a person is intending to do.
+            </p>
+            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+              Drag the slider to find patterns
+            </div>
+          </div>
+          <div class="flex-1 w-full">
+            <div class="rounded-3xl bg-white border border-slate-200 shadow-xl p-8 h-[350px] flex flex-col">
+              <div class="flex-1 relative mb-6" id="ai-scatter-container">
+                <!-- Dots injected via JS -->
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="text-sm font-medium text-slate-500">Raw Data</span>
+                <input type="range" id="ai-slider" min="0" max="100" value="0" class="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                <span class="text-sm font-medium text-cyan-600">Clustered</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ethics Explainer -->
+        <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+          <div class="flex-1 lg:pl-12">
+            <h3 class="text-3xl font-bold text-slate-900 mb-6">Innovate Responsibly</h3>
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+              With the power to read the mind comes the responsibility to protect it. We champion human-centred design, ensuring cognitive privacy, accessibility, and wellbeing are never an afterthought.
+            </p>
+            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+              Adjust priorities
+            </div>
+          </div>
+          <div class="flex-1 w-full">
+            <div class="rounded-3xl bg-slate-900 p-8 border border-slate-800 shadow-2xl text-white">
+              <div class="space-y-8 relative">
+                <!-- Speed Slider -->
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <label for="eth-speed" class="text-sm font-semibold text-slate-300">Speed of Innovation</label>
+                    <span id="eth-speed-val" class="text-sm text-cyan-400 font-mono">50%</span>
+                  </div>
+                  <input type="range" id="eth-speed" min="0" max="100" value="50" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                </div>
+                
+                <!-- Privacy Indicator -->
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="text-sm font-semibold text-slate-300">Data Privacy</span>
+                    <span id="eth-privacy-val" class="text-sm text-blue-400 font-mono">100%</span>
+                  </div>
+                  <div class="w-full h-4 bg-slate-700 rounded-full overflow-hidden">
+                    <div id="eth-privacy-bar" class="h-full bg-blue-500 rounded-full w-full transition-all duration-300"></div>
+                  </div>
+                </div>
+
+                <!-- Wellbeing Indicator -->
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="text-sm font-semibold text-slate-300">User Wellbeing</span>
+                    <span id="eth-well-val" class="text-sm text-green-400 font-mono">100%</span>
+                  </div>
+                  <div class="w-full h-4 bg-slate-700 rounded-full overflow-hidden">
+                    <div id="eth-well-bar" class="h-full bg-green-500 rounded-full w-full transition-all duration-300"></div>
+                  </div>
+                </div>
+
+                <div id="eth-warning" class="absolute -bottom-4 left-0 right-0 bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-4 rounded-xl text-center opacity-0 transition-opacity pointer-events-none mt-4">
+                  Moving too fast compromises privacy and user wellbeing.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Events Preview -->
-  <section class="bg-surface-dark py-20 sm:py-24 px-6 nav-grid-dark">
-    <div class="mx-auto max-w-6xl">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+  <section class="py-24 px-6 bg-white border-t border-slate-200">
+    <div class="mx-auto max-w-5xl">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
         <div>
-          <div class="inline-flex items-center gap-3 mb-4">
-            <div class="gold-dot"></div>
-            <span class="text-gold text-xs font-semibold uppercase tracking-wider">Events</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-text-on-dark">What's Coming Up</h2>
+          <h2 class="text-4xl font-bold text-slate-900 tracking-tight">Upcoming Sessions</h2>
+          <p class="mt-4 text-lg text-slate-600">Join us for deep dives, workshops, and discussions.</p>
         </div>
-        <a href="/events" class="text-gold hover:text-gold-light text-sm font-semibold transition-colors">
-          View all events →
+        <a href="/events" class="inline-flex items-center justify-center px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold rounded-xl transition-colors">
+          View All Events
         </a>
       </div>
 
-      <div class="relative pl-8 sm:pl-12">
-        <!-- Vertical Neural Pathway Line -->
-        <div class="absolute left-2.5 sm:left-4 top-6 bottom-6 w-0.5 bg-gradient-to-b from-cyan/80 via-gold/50 to-transparent"></div>
-
+      <div class="flex flex-col gap-6">
         {events.length === 0 ? (
-          <div class="space-y-8 relative">
-            <div class="relative">
-              <div class="absolute -left-8 sm:-left-12 top-6 w-6 h-6 flex items-center justify-center">
-                <div class="absolute w-full h-full bg-cyan rounded-full animate-pulse opacity-40"></div>
-                <div class="w-2.5 h-2.5 bg-cyan rounded-full shadow-[0_0_12px_#22D3EE] z-10 relative"></div>
-              </div>
-              <div class="bg-primary/20 backdrop-blur-md border border-cyan/20 p-6 sm:p-8 rounded-2xl hover:border-cyan/40 transition-colors shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-block text-xs font-medium text-gold bg-gold/10 border border-gold/30 px-3 py-1 rounded-lg">Session Format</span>
-                </div>
-                <h3 class="font-semibold text-xl mb-2 text-text-on-dark">Neurotechnology Tracks</h3>
-                <p class="text-text-on-dark-secondary text-sm leading-relaxed">Deep dives into computational modelling and neural decoding methods.</p>
-              </div>
+          <div class="bg-slate-50 border border-slate-200 p-10 rounded-3xl text-center">
+            <div class="w-16 h-16 bg-cyan-100 text-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             </div>
-            <div class="relative">
-              <div class="absolute -left-8 sm:-left-12 top-6 w-6 h-6 flex items-center justify-center">
-                <div class="absolute w-full h-full rounded-full animate-pulse opacity-40 bg-gold"></div>
-                <div class="w-2.5 h-2.5 rounded-full z-10 relative bg-gold shadow-[0_0_12px_#F59E0B]"></div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-3">Our Event Formats</h3>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+              We host a variety of sessions designed for all experience levels. Here's what you can expect:
+            </p>
+            <div class="grid sm:grid-cols-3 gap-6 text-left">
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h4 class="font-bold text-slate-900 mb-2">Beginner Workshops</h4>
+                <p class="text-slate-600 text-sm">Hands-on introductions to signal processing and machine learning.</p>
               </div>
-              <div class="bg-primary/20 backdrop-blur-md border border-cyan/20 p-6 sm:p-8 rounded-2xl hover:border-cyan/40 transition-colors shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-block text-xs font-medium text-cyan bg-cyan/10 border border-cyan/30 px-3 py-1 rounded-lg">Beginner Pathway</span>
-                </div>
-                <h3 class="font-semibold text-xl mb-2 text-text-on-dark">Intro to BCI</h3>
-                <p class="text-text-on-dark-secondary text-sm leading-relaxed">No experience required. Learn the fundamentals of brain-computer interfaces from scratch.</p>
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h4 class="font-bold text-slate-900 mb-2">Guest Lectures</h4>
+                <p class="text-slate-600 text-sm">Insights from industry leaders and researchers in neurotech.</p>
               </div>
-            </div>
-            <div class="relative">
-              <div class="absolute -left-8 sm:-left-12 top-6 w-6 h-6 flex items-center justify-center">
-                <div class="absolute w-full h-full rounded-full animate-pulse opacity-40 bg-cyan"></div>
-                <div class="w-2.5 h-2.5 rounded-full z-10 relative bg-cyan shadow-[0_0_12px_#22D3EE]"></div>
-              </div>
-              <div class="bg-primary/20 backdrop-blur-md border border-cyan/20 p-6 sm:p-8 rounded-2xl hover:border-cyan/40 transition-colors shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="inline-block text-xs font-medium text-gold bg-gold/10 border border-gold/30 px-3 py-1 rounded-lg">Discussion</span>
-                </div>
-                <h3 class="font-semibold text-xl mb-2 text-text-on-dark">Responsible Innovation</h3>
-                <p class="text-text-on-dark-secondary text-sm leading-relaxed">Exploring neuroethics, cognitive privacy, and the societal impact of reading brain data.</p>
+              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h4 class="font-bold text-slate-900 mb-2">Ethics Panels</h4>
+                <p class="text-slate-600 text-sm">Discussions on the societal and ethical impact of cognitive interfaces.</p>
               </div>
             </div>
           </div>
         ) : (
-          <div class="space-y-8 relative">
-            {events.map((event: any, i: number) => (
-              <div class="relative">
-                <div class="absolute -left-8 sm:-left-12 top-6 w-6 h-6 flex items-center justify-center">
-                  <div class={`absolute w-full h-full rounded-full animate-pulse opacity-40 ${i % 2 === 0 ? 'bg-cyan' : 'bg-gold'}`}></div>
-                  <div class={`w-2.5 h-2.5 rounded-full z-10 relative ${i % 2 === 0 ? 'bg-cyan shadow-[0_0_12px_#22D3EE]' : 'bg-gold shadow-[0_0_12px_#F59E0B]'}`}></div>
-                </div>
-                <div class="bg-primary/20 backdrop-blur-md border border-cyan/20 p-6 sm:p-8 rounded-2xl hover:border-cyan/40 transition-colors shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
-                  <div class="flex items-center gap-3 mb-4">
-                    <span class="inline-block text-xs font-medium text-gold bg-gold/10 border border-gold/30 px-3 py-1 rounded-lg">{event.category || 'Event'}</span>
-                    <span class="text-xs text-text-muted">{formatEventDate(event.date)}</span>
-                  </div>
-                  <h3 class="font-semibold text-xl mb-2 text-text-on-dark">{event.title}</h3>
-                  <p class="text-text-on-dark-secondary text-sm leading-relaxed">{event.description || 'Details coming soon.'}</p>
-                </div>
+          events.slice(0, 3).map((event: any) => (
+            <div class="group flex flex-col sm:flex-row gap-6 p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white hover:border-cyan-200 hover:shadow-xl transition-all duration-300">
+              <div class="flex-shrink-0 w-24">
+                <span class="block text-sm font-bold text-cyan-600 mb-1">{formatEventDate(event.date)}</span>
+                <span class="inline-block text-xs font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full">{event.category || 'Event'}</span>
               </div>
-            ))}
-          </div>
+              <div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">{event.title}</h3>
+                <p class="text-slate-600 leading-relaxed text-lg">{event.description || 'Details coming soon.'}</p>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>
   </section>
 
-  <!-- Committee — Flat Grid (no "View full committee" link) -->
-  <section class="py-20 sm:py-24 px-6 bg-surface nav-grid-light">
-    <div class="mx-auto max-w-6xl">
-      <div class="mb-14">
-        <div class="inline-flex items-center gap-3 mb-4">
-          <div class="gold-dot"></div>
-          <span class="text-gold text-xs font-semibold uppercase tracking-wider">Our Team</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-bold text-text-primary">Meet the Committee</h2>
-        <p class="mt-3 text-text-secondary">The students behind Surrey Neurotech Society.</p>
-      </div>
-
-      {committee.length === 0 ? (
-        <div class="neuro-card p-8 text-center">
-          <h3 class="font-semibold text-xl mb-3 text-text-primary">Committee details coming soon</h3>
-          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Our committee roster will be published once confirmed through Surrey Students' Union.</p>
-        </div>
-      ) : (
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10">
-          {committee.map(member => (
-            <div class="flex flex-col items-center text-center group">
-              <div class="w-24 h-24 sm:w-28 sm:h-28 shape-organic bg-primary-deep border border-cyan/30 mb-4 flex items-center justify-center text-cyan text-lg font-bold shadow-[0_0_15px_rgba(34,211,238,0.15)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] group-hover:border-cyan/60 transition-all duration-300">
-                {getInitials(member.name, member.role)}
-              </div>
-              <p class="text-sm font-semibold text-text-primary">{member.name}</p>
-              <p class="text-xs text-text-muted mt-1">{member.role}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  </section>
-
   <!-- Join CTA -->
-  <section class="bg-surface-dark text-text-on-dark py-24 sm:py-32 px-6 relative overflow-hidden nav-grid-dark border-t-2 border-gold/20">
-    <div class="absolute top-0 right-0 w-80 h-80 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="mx-auto max-w-3xl text-center relative z-10">
-      <div class="inline-flex items-center gap-3 mb-6">
-        <div class="gold-dot"></div>
-        <span class="text-gold text-xs font-semibold uppercase tracking-wider">Get Involved</span>
-        <div class="gold-dot"></div>
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-bold mb-6">Curious about the brain?</h2>
-      <p class="text-text-on-dark-secondary text-lg mb-10 max-w-xl mx-auto border-l-2 border-gold/40 pl-4 text-left">
-        Whether you're studying neuroscience, computer science, psychology, engineering, or anything else — if you're curious about the intersection of brain and technology, you belong here.
+  <section class="bg-slate-900 text-white py-32 px-6 text-center">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6">Ready to explore the mind?</h2>
+      <p class="text-xl text-slate-400 mb-10 leading-relaxed">
+        Join our community of students building the future of human-computer interaction. No prior experience needed.
       </p>
-      <a href="/join" class="btn-trace inline-block px-8 py-4 bg-gold hover:bg-gold-light text-primary-deep font-bold rounded-xl transition-all shadow-[0_4px_24px_rgba(201,168,76,0.35)] hover:shadow-[0_6px_32px_rgba(201,168,76,0.5)] text-sm uppercase tracking-wide">
-        Join Surrey Neurotech Society
+      <a href="/join" class="inline-flex items-center justify-center px-10 py-5 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-2xl transition-all shadow-[0_8px_30px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_40px_rgba(6,182,212,0.4)] text-lg">
+        Join the Society Today
       </a>
     </div>
   </section>
@@ -356,36 +341,9 @@ const getInitials = (name?: string, role?: string) => {
 
 <script>
   import * as THREE from 'three';
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // --- Organic Section Transitions ---
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
-  if (!prefersReducedMotion) {
-    const sections = document.querySelectorAll('section');
-    sections.forEach((section, index) => {
-      if (index === 0) return; // Skip Hero
-      gsap.fromTo(
-        section,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 85%',
-          },
-        }
-      );
-    });
-  }
 
-  // --- Three.js Bio-Tech Brain Hemispheres ---
+  // --- Three.js Fluid Network Brain (Hero) ---
   const initHeroCanvas = () => {
     const canvasContainer = document.getElementById('hero-canvas-container');
     const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
@@ -399,8 +357,8 @@ const getInitials = (name?: string, role?: string) => {
     let { width, height } = getDimensions();
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 1000);
-    camera.position.z = 180;
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    camera.position.z = 200;
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setSize(width, height);
@@ -409,14 +367,16 @@ const getInitials = (name?: string, role?: string) => {
     const brainGroup = new THREE.Group();
     scene.add(brainGroup);
 
-    const particleCount = 800;
+    const particleCount = 1000;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
+    const originalPositions = new Float32Array(particleCount * 3);
+    const phases = new Float32Array(particleCount);
     
-    const radius = 60;
-    const gap = 5;
+    const radius = 65;
+    const gap = 3;
 
-    // Generate two hemispheres (stylized brain)
+    // Generate flowing construct
     for (let i = 0; i < particleCount; i++) {
       const isLeft = i % 2 === 0;
       const sign = isLeft ? -1 : 1;
@@ -431,99 +391,56 @@ const getInitials = (name?: string, role?: string) => {
       let y = r * Math.sin(phi) * Math.sin(theta);
       let z = r * Math.cos(phi);
 
-      // Squash to form brain shape
-      z *= 0.7;
-      y *= 0.85;
-
-      // Split into hemispheres
+      z *= 0.75;
+      y *= 0.9;
       x = Math.abs(x) + gap;
       x *= sign;
 
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
+      
+      originalPositions[i * 3] = x;
+      originalPositions[i * 3 + 1] = y;
+      originalPositions[i * 3 + 2] = z;
+      
+      phases[i] = Math.random() * Math.PI * 2;
     }
 
     particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-    // Base particles
+    // Pure soft white and Cyan particles
     const pMaterial = new THREE.PointsMaterial({
-      color: 0x22D3EE, // Cyan
+      color: 0xFAFAFA,
       size: 1.5,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
+    
+    const pMaterialCyan = new THREE.PointsMaterial({
+      color: 0x06B6D4,
+      size: 2.0,
       transparent: true,
       opacity: 0.6,
       blending: THREE.AdditiveBlending
     });
+
     const particleSystem = new THREE.Points(particles, pMaterial);
     brainGroup.add(particleSystem);
-
-    // Faint base connections
-    const linePositions = [];
-    for (let i = 0; i < particleCount; i++) {
-      const p1x = positions[i*3], p1y = positions[i*3+1], p1z = positions[i*3+2];
-      for (let j = i + 1; j < Math.min(i + 20, particleCount); j++) {
-        const p2x = positions[j*3], p2y = positions[j*3+1], p2z = positions[j*3+2];
-        const distSq = (p1x-p2x)*(p1x-p2x) + (p1y-p2y)*(p1y-p2y) + (p1z-p2z)*(p1z-p2z);
-        if (distSq < 400) {
-          linePositions.push(p1x, p1y, p1z, p2x, p2y, p2z);
-        }
-      }
-    }
-    const baseLinesGeo = new THREE.BufferGeometry();
-    baseLinesGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-    const baseLinesMat = new THREE.LineBasicMaterial({ 
-      color: 0x22D3EE, 
-      transparent: true, 
-      opacity: 0.08,
-      blending: THREE.AdditiveBlending 
-    });
-    const baseLines = new THREE.LineSegments(baseLinesGeo, baseLinesMat);
-    brainGroup.add(baseLines);
-
-    // Firing synapses system
-    const synapseGroup = new THREE.Group();
-    brainGroup.add(synapseGroup);
     
-    const activeSynapses: { mesh: THREE.Line, life: number, decay: number }[] = [];
-    const matGold = new THREE.LineBasicMaterial({ color: 0xF59E0B, transparent: true, opacity: 1, blending: THREE.AdditiveBlending, linewidth: 2 });
-    const matCyan = new THREE.LineBasicMaterial({ color: 0x22D3EE, transparent: true, opacity: 1, blending: THREE.AdditiveBlending, linewidth: 2 });
-
-    function spawnSynapse() {
-      const i1 = Math.floor(Math.random() * particleCount);
-      let closest = -1;
-      const p1x = positions[i1*3], p1y = positions[i1*3+1], p1z = positions[i1*3+2];
-      
-      // Find random nearby particle
-      for(let i=0; i<40; i++) {
-        const j = Math.floor(Math.random() * particleCount);
-        if(i1 === j) continue;
-        const dx = positions[j*3] - p1x;
-        const dy = positions[j*3+1] - p1y;
-        const dz = positions[j*3+2] - p1z;
-        if(dx*dx + dy*dy + dz*dz < 1500) {
-          closest = j;
-          break;
-        }
-      }
-      
-      if (closest !== -1) {
-        const isGold = Math.random() > 0.4;
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute('position', new THREE.Float32BufferAttribute([
-          p1x, p1y, p1z,
-          positions[closest*3], positions[closest*3+1], positions[closest*3+2]
-        ], 3));
-        
-        const line = new THREE.Line(geo, isGold ? matGold.clone() : matCyan.clone());
-        synapseGroup.add(line);
-        
-        activeSynapses.push({
-          mesh: line,
-          life: 1.0,
-          decay: 0.03 + Math.random() * 0.04 // fast flash
-        });
-      }
+    // Add some cyan highlight particles
+    const highlightGeo = new THREE.BufferGeometry();
+    const highlightCount = 200;
+    const highlightPos = new Float32Array(highlightCount * 3);
+    for(let i=0; i<highlightCount; i++) {
+        highlightPos[i*3] = positions[i*3];
+        highlightPos[i*3+1] = positions[i*3+1];
+        highlightPos[i*3+2] = positions[i*3+2];
     }
+    highlightGeo.setAttribute('position', new THREE.BufferAttribute(highlightPos, 3));
+    const cyanSystem = new THREE.Points(highlightGeo, pMaterialCyan);
+    brainGroup.add(cyanSystem);
 
     // Mouse Interaction
     let targetRotationX = 0;
@@ -533,8 +450,8 @@ const getInitials = (name?: string, role?: string) => {
       const rect = canvasContainer.getBoundingClientRect();
       const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-      targetRotationY = x * 0.5;
-      targetRotationX = -y * 0.5;
+      targetRotationY = x * 0.3;
+      targetRotationX = -y * 0.3;
     });
 
     window.addEventListener('resize', () => {
@@ -544,33 +461,32 @@ const getInitials = (name?: string, role?: string) => {
       renderer.setSize(newDim.width, newDim.height);
     });
 
+    let time = 0;
     const animate = () => {
       requestAnimationFrame(animate);
+      time += 0.01;
 
-      // Smooth rotate towards mouse
       brainGroup.rotation.y += (targetRotationY - brainGroup.rotation.y) * 0.05;
       brainGroup.rotation.x += (targetRotationX - brainGroup.rotation.x) * 0.05;
-      
-      // Constant slow idle rotation
-      brainGroup.rotation.y += 0.002;
+      brainGroup.rotation.y += 0.001;
 
-      // Handle synapses
-      if (Math.random() < 0.3 && activeSynapses.length < 40) { // 30% chance per frame to spawn a synapse, capped at 40
-        spawnSynapse();
+      // Gentle wave motion
+      const posAttribute = particles.getAttribute('position');
+      for (let i = 0; i < particleCount; i++) {
+         const ox = originalPositions[i*3];
+         const oy = originalPositions[i*3+1];
+         const oz = originalPositions[i*3+2];
+         const phase = phases[i];
+         
+         const offset = Math.sin(time * 2 + phase) * 1.5;
+         
+         // Normalize
+         const len = Math.sqrt(ox*ox + oy*oy + oz*oz);
+         if(len > 0) {
+             posAttribute.setXYZ(i, ox + (ox/len)*offset, oy + (oy/len)*offset, oz + (oz/len)*offset);
+         }
       }
-
-      for (let i = activeSynapses.length - 1; i >= 0; i--) {
-        const s = activeSynapses[i];
-        s.life -= s.decay;
-        if (s.life <= 0) {
-          synapseGroup.remove(s.mesh);
-          s.mesh.geometry.dispose();
-          (s.mesh.material as THREE.Material).dispose();
-          activeSynapses.splice(i, 1);
-        } else {
-          (s.mesh.material as THREE.Material).opacity = s.life;
-        }
-      }
+      posAttribute.needsUpdate = true;
 
       renderer.render(scene, camera);
     };
@@ -578,7 +494,6 @@ const getInitials = (name?: string, role?: string) => {
     animate();
   };
 
-  // Run on mount based on reduced motion setting
   if (prefersReducedMotion) {
     const canvas = document.getElementById('hero-canvas');
     const fallback = document.getElementById('hero-fallback');
@@ -589,50 +504,185 @@ const getInitials = (name?: string, role?: string) => {
     initHeroCanvas();
   }
 
-  // --- Interactive Tabs Logic ---
-  const tabs = document.querySelectorAll('.focus-tab');
-  const panels = document.querySelectorAll('.visual-panel');
+  // --- BCI Simulation ---
+  const bciTrigger = document.getElementById('bci-trigger');
+  const bciPath = document.getElementById('bci-path');
+  const bciWave = document.getElementById('bci-wave');
+  const bciAction = document.getElementById('bci-action');
+  const bciIcon = document.getElementById('bci-icon');
+  const bciStatus = document.getElementById('bci-status');
 
-  const activateTab = (index: number) => {
-    tabs.forEach((t, i) => {
-      const isSelected = i === index;
-      t.setAttribute('aria-selected', isSelected.toString());
-      if (isSelected) {
-        t.classList.add('border-cyan/40', 'bg-cyan/5', 'shadow-[0_0_15px_rgba(34,211,238,0.1)]');
-        t.classList.remove('border-transparent', 'opacity-70');
-      } else {
-        t.classList.remove('border-cyan/40', 'bg-cyan/5', 'shadow-[0_0_15px_rgba(34,211,238,0.1)]');
-        t.classList.add('border-transparent', 'opacity-70');
-      }
-    });
+  if(bciTrigger && bciPath && bciWave && bciAction && bciStatus && bciIcon) {
+      let isHolding = false;
+      let amplitude = 5;
+      let time = 0;
+      let animationId: number;
 
-    panels.forEach((p, i) => {
-      if (i === index) {
-        p.classList.remove('opacity-0', 'pointer-events-none');
-        p.classList.add('opacity-100');
-      } else {
-        p.classList.remove('opacity-100');
-        p.classList.add('opacity-0', 'pointer-events-none');
-      }
-    });
-  };
+      const down = () => { isHolding = true; bciTrigger.textContent = 'Concentrating...'; bciStatus.textContent = 'Processing'; };
+      const up = () => { isHolding = false; bciTrigger.textContent = 'Concentrate (Hold)'; };
 
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => activateTab(index));
-    tab.addEventListener('keydown', (e: Event) => {
-      const keyEvent = e as KeyboardEvent;
-      let newIndex = index;
-      if (keyEvent.key === 'ArrowDown' || keyEvent.key === 'ArrowRight') {
-        newIndex = (index + 1) % tabs.length;
-        keyEvent.preventDefault();
-      } else if (keyEvent.key === 'ArrowUp' || keyEvent.key === 'ArrowLeft') {
-        newIndex = (index - 1 + tabs.length) % tabs.length;
-        keyEvent.preventDefault();
+      bciTrigger.addEventListener('mousedown', down);
+      bciTrigger.addEventListener('touchstart', down, {passive: true});
+      window.addEventListener('mouseup', up);
+      window.addEventListener('touchend', up, {passive: true});
+
+      const drawWave = () => {
+          if (prefersReducedMotion) {
+              if (isHolding) amplitude = 40; else amplitude = 5;
+          } else {
+              if (isHolding) {
+                  amplitude += (40 - amplitude) * 0.05;
+              } else {
+                  amplitude += (5 - amplitude) * 0.1;
+              }
+              time += 0.2;
+          }
+
+          if (amplitude > 30) {
+              bciAction.classList.replace('bg-slate-800', 'bg-cyan-500');
+              bciAction.classList.replace('border-slate-700', 'border-cyan-400');
+              bciAction.classList.add('shadow-[0_0_30px_rgba(6,182,212,0.6)]');
+              bciIcon.classList.replace('text-slate-500', 'text-white');
+              bciStatus.textContent = 'Action Triggered';
+              bciStatus.classList.replace('bg-cyan-500/10', 'bg-cyan-500');
+              bciStatus.classList.replace('text-cyan-500', 'text-white');
+          } else {
+              bciAction.classList.replace('bg-cyan-500', 'bg-slate-800');
+              bciAction.classList.replace('border-cyan-400', 'border-slate-700');
+              bciAction.classList.remove('shadow-[0_0_30px_rgba(6,182,212,0.6)]');
+              bciIcon.classList.replace('text-white', 'text-slate-500');
+              if(!isHolding) {
+                  bciStatus.textContent = 'Resting';
+                  bciStatus.classList.replace('bg-cyan-500', 'bg-cyan-500/10');
+                  bciStatus.classList.replace('text-white', 'text-cyan-500');
+              }
+          }
+
+          if(!prefersReducedMotion) {
+              let d = `M0,50 `;
+              for(let i=0; i<=400; i+=10) {
+                  const y = 50 + Math.sin(i * 0.05 - time) * amplitude;
+                  d += `L${i},${y} `;
+              }
+              bciPath.setAttribute('d', d);
+              animationId = requestAnimationFrame(drawWave);
+          } else {
+              // Static straight line or sine wave depending on amplitude
+              let d = `M0,50 `;
+              for(let i=0; i<=400; i+=20) {
+                  const y = 50 + Math.sin(i * 0.05) * amplitude;
+                  d += `L${i},${y} `;
+              }
+              bciPath.setAttribute('d', d);
+              setTimeout(() => requestAnimationFrame(drawWave), 100); // Polling for reduced motion state change
+          }
+      };
+      
+      drawWave();
+  }
+
+  // --- AI Clustering Simulation ---
+  const aiContainer = document.getElementById('ai-scatter-container');
+  const aiSlider = document.getElementById('ai-slider') as HTMLInputElement;
+  
+  if (aiContainer && aiSlider) {
+      const numDots = 80;
+      const dots: HTMLDivElement[] = [];
+      const clusters = [
+          { x: 20, y: 30, color: 'bg-cyan-500' },
+          { x: 80, y: 70, color: 'bg-blue-500' },
+          { x: 50, y: 20, color: 'bg-slate-400' }
+      ];
+
+      for(let i=0; i<numDots; i++) {
+          const dot = document.createElement('div');
+          const targetCluster = clusters[i % clusters.length];
+          
+          // Store random original pos
+          const origX = Math.random() * 90 + 5;
+          const origY = Math.random() * 90 + 5;
+          
+          // Store target pos (with some scatter)
+          const targX = targetCluster.x + (Math.random() * 20 - 10);
+          const targY = targetCluster.y + (Math.random() * 20 - 10);
+          
+          dot.className = `absolute w-3 h-3 rounded-full ${targetCluster.color} opacity-60 mix-blend-multiply`;
+          if(!prefersReducedMotion) dot.style.transition = 'all 0.3s ease-out';
+          
+          dot.style.left = `${origX}%`;
+          dot.style.top = `${origY}%`;
+          
+          // Save data
+          dot.dataset.ox = origX.toString();
+          dot.dataset.oy = origY.toString();
+          dot.dataset.tx = targX.toString();
+          dot.dataset.ty = targY.toString();
+          
+          dots.push(dot);
+          aiContainer.appendChild(dot);
       }
-      if (newIndex !== index) {
-        (tabs[newIndex] as HTMLElement).focus();
-        activateTab(newIndex);
-      }
-    });
-  });
+
+      aiSlider.addEventListener('input', (e) => {
+          const val = parseInt((e.target as HTMLInputElement).value) / 100;
+          dots.forEach(dot => {
+              const ox = parseFloat(dot.dataset.ox!);
+              const oy = parseFloat(dot.dataset.oy!);
+              const tx = parseFloat(dot.dataset.tx!);
+              const ty = parseFloat(dot.dataset.ty!);
+              
+              const currentX = ox + (tx - ox) * val;
+              const currentY = oy + (ty - oy) * val;
+              
+              dot.style.left = `${currentX}%`;
+              dot.style.top = `${currentY}%`;
+          });
+      });
+  }
+
+  // --- Ethics Simulation ---
+  const ethSpeed = document.getElementById('eth-speed') as HTMLInputElement;
+  const ethSpeedVal = document.getElementById('eth-speed-val');
+  const ethPrivacyBar = document.getElementById('eth-privacy-bar');
+  const ethPrivacyVal = document.getElementById('eth-privacy-val');
+  const ethWellBar = document.getElementById('eth-well-bar');
+  const ethWellVal = document.getElementById('eth-well-val');
+  const ethWarning = document.getElementById('eth-warning');
+
+  if(ethSpeed && ethPrivacyBar && ethWellBar && ethWarning && ethSpeedVal && ethPrivacyVal && ethWellVal) {
+      ethSpeed.addEventListener('input', (e) => {
+          const speed = parseInt((e.target as HTMLInputElement).value);
+          ethSpeedVal.textContent = `${speed}%`;
+          
+          // Logic: Speed above 60 starts reducing privacy and wellbeing rapidly
+          let privacy = 100;
+          let wellbeing = 100;
+          
+          if(speed > 60) {
+              const penalty = (speed - 60) * 2.5; // Max penalty 100 at speed 100
+              privacy = Math.max(0, 100 - penalty);
+              wellbeing = Math.max(0, 100 - (penalty * 0.8));
+          }
+
+          ethPrivacyBar.style.width = `${privacy}%`;
+          ethPrivacyVal.textContent = `${Math.round(privacy)}%`;
+          
+          ethWellBar.style.width = `${wellbeing}%`;
+          ethWellVal.textContent = `${Math.round(wellbeing)}%`;
+
+          if(speed > 80) {
+              ethWarning.classList.remove('opacity-0', 'pointer-events-none');
+              ethPrivacyBar.classList.replace('bg-blue-500', 'bg-red-500');
+              ethWellBar.classList.replace('bg-green-500', 'bg-red-500');
+              ethPrivacyVal.classList.replace('text-blue-400', 'text-red-400');
+              ethWellVal.classList.replace('text-green-400', 'text-red-400');
+          } else {
+              ethWarning.classList.add('opacity-0', 'pointer-events-none');
+              ethPrivacyBar.classList.replace('bg-red-500', 'bg-blue-500');
+              ethWellBar.classList.replace('bg-red-500', 'bg-green-500');
+              ethPrivacyVal.classList.replace('text-red-400', 'text-blue-400');
+              ethWellVal.classList.replace('text-red-400', 'text-green-400');
+          }
+      });
+  }
+
 </script>

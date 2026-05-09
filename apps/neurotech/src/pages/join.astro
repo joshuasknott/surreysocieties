@@ -7,121 +7,136 @@ import '../styles/global.css';
 const society = getSocietyById('neurotech')!;
 ---
 
-<Layout title="Join" description="Join Surrey Neurotech Society — find out how to become a member, what you'll get, and how to stay connected.">
+<Layout title="Join" description="Become a member of Surrey Neurotech Society. No prior experience required.">
 
-  <section class="bg-surface-dark text-text-on-dark py-16 sm:py-20 px-6  curve-bottom relative overflow-hidden">
-    <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-2 mb-4">
-        <span class="w-2 h-2 rounded-full bg-cyan"></span>
-        <span class="w-8 h-px bg-gradient-to-r from-cyan/60 to-transparent"></span>
-        <span class="text-cyan text-sm font-semibold uppercase tracking-wider">Get Involved</span>
-      </div>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1]">Join Us</h1>
-      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl">Membership is open to all University of Surrey students through Surrey Students' Union.</p>
-    </div>
-    <div class="absolute bottom-0 inset-x-0"></div>
-  </section>
-
-  <section class="py-16 sm:py-20 px-6">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid lg:grid-cols-2 gap-12">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-bold mb-6">Why Join?</h2>
-          <div class="space-y-4">
-            <div class="flex gap-3">
-              <div class="w-6 h-6 rounded bg-cyan/10 flex items-center justify-center text-cyan shrink-0 mt-0.5">✓</div>
-              <p class="text-text-secondary leading-relaxed">Access to talks, workshops, and reading groups on neuroscience and neurotechnology</p>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-6 h-6 rounded bg-cyan/10 flex items-center justify-center text-cyan shrink-0 mt-0.5">✓</div>
-              <p class="text-text-secondary leading-relaxed">Opportunities to explore BCI concepts and discuss neurotechnology papers</p>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-6 h-6 rounded bg-cyan/10 flex items-center justify-center text-cyan shrink-0 mt-0.5">✓</div>
-              <p class="text-text-secondary leading-relaxed">An interdisciplinary community spanning neuroscience, CS, engineering, and psychology</p>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-6 h-6 rounded bg-cyan/10 flex items-center justify-center text-cyan shrink-0 mt-0.5">✓</div>
-              <p class="text-text-secondary leading-relaxed">Careers-focused events exploring paths in neurotech and related fields</p>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-6 h-6 rounded bg-cyan/10 flex items-center justify-center text-cyan shrink-0 mt-0.5">✓</div>
-              <p class="text-text-secondary leading-relaxed">Shape the direction of the society — we're student-run and open to ideas</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-bold mb-6">Who Can Join?</h2>
-          <p class="text-text-secondary leading-relaxed mb-6">
-            Any student at the University of Surrey. You don't need to be studying neuroscience or have any technical background. We welcome curious minds from every discipline.
-          </p>
-          <p class="text-text-secondary leading-relaxed">
-            Membership is managed through Surrey Students' Union. You can sign up on their website.
-          </p>
-        </div>
-      </div>
+  <!-- Header -->
+  <section class="bg-slate-50 py-24 px-6 relative overflow-hidden text-center border-b border-slate-200">
+    <div class="mx-auto max-w-4xl relative z-10">
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-slate-900 mb-6">Become a Member</h1>
+      <p class="text-xl text-slate-600">Join our community and explore the intersection of mind and machine.</p>
     </div>
   </section>
 
-  <section class="bg-surface-alt py-16 sm:py-20 px-6">
-    <div class="mx-auto max-w-6xl">
-      <div class="neuro-card rounded-2xl p-8 sm:p-12 border-transparent text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan/10 to-transparent opacity-30"></div>
-        <div class="relative z-10">
-          <h2 class="text-2xl sm:text-3xl font-bold mb-4">Become a Member</h2>
-          <p class="text-text-secondary mb-8 max-w-lg mx-auto">Membership is handled through Surrey Students' Union.</p>
-          <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-4 bg-cyan hover:bg-cyan-dark text-primary-deep font-bold rounded-full transition-all hover:shadow-lg hover:shadow-secondary/20 hover:-translate-y-0.5">
-            Join Through Surrey Union
-          </a>
-          <p class="mt-4 text-sm text-text-muted">
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-cyan underline underline-offset-4">View the society page on the Students' Union site</a>
-          </p>
-        </div>
+  <!-- Who Can Join -->
+  <section class="py-24 px-6 bg-white">
+    <div class="mx-auto max-w-4xl text-center">
+       <h2 class="text-4xl font-bold text-slate-900 mb-8">Who can join?</h2>
+       <p class="text-2xl text-slate-600 leading-relaxed font-light mb-12">
+          Anyone. Literally anyone. You <strong class="font-semibold text-cyan-600">do not</strong> need prior experience in programming, biology, or engineering. We welcome curious minds from any degree background.
+       </p>
+    </div>
+  </section>
+
+  <!-- The Journey (Steps) -->
+  <section class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
+     <!-- Ambient light blobs -->
+    <div class="absolute top-[50%] right-[-10%] w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2"></div>
+    
+    <div class="mx-auto max-w-5xl relative z-10">
+      <h2 class="text-4xl font-bold mb-16 text-center">How to join</h2>
+      
+      <div class="grid md:grid-cols-3 gap-12">
+         <!-- Step 1 -->
+         <div class="relative">
+            <div class="text-8xl font-black text-white/5 absolute -top-8 -left-4 z-0 pointer-events-none">1</div>
+            <div class="relative z-10">
+               <h3 class="text-2xl font-bold text-cyan-400 mb-4">Get Membership</h3>
+               <p class="text-slate-300 leading-relaxed mb-6">
+                  Sign up for a free or paid membership via Surrey Students' Union to become an official member of the society.
+               </p>
+               <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-cyan-400 transition-colors group">
+                  Sign up on SU <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+               </a>
+            </div>
+         </div>
+         
+         <!-- Step 2 -->
+         <div class="relative">
+            <div class="text-8xl font-black text-white/5 absolute -top-8 -left-4 z-0 pointer-events-none">2</div>
+            <div class="relative z-10">
+               <h3 class="text-2xl font-bold text-cyan-400 mb-4">Join the Discord</h3>
+               <p class="text-slate-300 leading-relaxed mb-6">
+                  Our Discord is where our community lives. Chat with members, find resources, and get instant updates on events.
+               </p>
+               <a href={society.socials.discord || '#'} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-cyan-400 transition-colors group">
+                  Join our Discord <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+               </a>
+            </div>
+         </div>
+
+         <!-- Step 3 -->
+         <div class="relative">
+            <div class="text-8xl font-black text-white/5 absolute -top-8 -left-4 z-0 pointer-events-none">3</div>
+            <div class="relative z-10">
+               <h3 class="text-2xl font-bold text-cyan-400 mb-4">Follow Us</h3>
+               <p class="text-slate-300 leading-relaxed mb-6">
+                  Follow us on Instagram and LinkedIn to stay up to date with our professional network, photos, and announcements.
+               </p>
+               <div class="flex flex-col gap-3">
+                   <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-cyan-400 transition-colors group">
+                      Follow Instagram <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                   </a>
+                   <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-cyan-400 transition-colors group">
+                      Connect LinkedIn <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                   </a>
+               </div>
+            </div>
+         </div>
       </div>
     </div>
   </section>
 
-  <section class="py-16 sm:py-20 px-6">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid lg:grid-cols-2 gap-12">
-        <div>
-          <h2 class="text-2xl font-bold mb-6">Stay Connected</h2>
-          <div class="space-y-4">
-            <div class="neuro-card rounded-2xl p-5 border-transparent">
-              <h3 class="font-semibold mb-1">Instagram</h3>
-              <p class="text-text-muted text-sm"><a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-cyan underline underline-offset-4">Follow us for event announcements and updates.</a></p>
-            </div>
-            <div class="neuro-card rounded-2xl p-5 border-transparent">
-              <h3 class="font-semibold mb-1">Email</h3>
-              <p class="text-text-muted text-sm"><a href={`mailto:${society.contactEmail}`} class="hover:text-cyan underline underline-offset-4">{society.contactEmail}</a></p>
-            </div>
-          </div>
-        </div>
+  <!-- FAQ -->
+  <section class="py-24 px-6 bg-slate-50">
+     <div class="mx-auto max-w-3xl">
+        <h2 class="text-4xl font-bold text-slate-900 mb-12 text-center">Frequently Asked Questions</h2>
+        
+        <div class="space-y-6">
+           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg text-slate-900 group-open:bg-slate-50 transition-colors">
+                 <span>Do I need a science or tech background?</span>
+                 <svg class="w-6 h-6 text-cyan-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="p-6 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2 bg-slate-50">
+                 No. Our events are designed to be accessible. We start from first principles and build up. We have members from arts, humanities, business, and sciences.
+              </div>
+           </details>
+           
+           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg text-slate-900 group-open:bg-slate-50 transition-colors">
+                 <span>Is there a membership fee?</span>
+                 <svg class="w-6 h-6 text-cyan-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="p-6 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2 bg-slate-50">
+                 Fees are set through Surrey Students' Union and are either free or very low cost to cover basic society running expenses. Check the SU page for current pricing.
+              </div>
+           </details>
 
-        <div>
-          <h2 class="text-2xl font-bold mb-6">FAQ</h2>
-          <div class="space-y-4">
-            <div>
-              <h3 class="font-semibold mb-1">Do I need a science background?</h3>
-              <p class="text-text-secondary text-sm leading-relaxed">No. Our events are designed to be accessible. We start from first principles and build up.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold mb-1">Is there a membership fee?</h3>
-              <p class="text-text-secondary text-sm leading-relaxed">Fees are set through Surrey Students' Union and will be confirmed on our membership page.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold mb-1">What kind of projects do you discuss?</h3>
-              <p class="text-text-secondary text-sm leading-relaxed">We explore reading group ideas, computational modelling concepts, and beginner pathways in BCI.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold mb-1">I'm a first-year. Is this for me?</h3>
-              <p class="text-text-secondary text-sm leading-relaxed">Absolutely. We have a First Year Representative on our committee and design events to be welcoming to newcomers.</p>
-            </div>
-          </div>
+           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg text-slate-900 group-open:bg-slate-50 transition-colors">
+                 <span>I'm a first-year. Is this for me?</span>
+                 <svg class="w-6 h-6 text-cyan-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="p-6 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2 bg-slate-50">
+                 Absolutely. We have a First Year Representative on our committee and design events to be highly welcoming to newcomers.
+              </div>
+           </details>
         </div>
-      </div>
-    </div>
+     </div>
   </section>
 
 </Layout>
+
+<script>
+  // Simple script to auto-close other details when one is opened
+  const details = document.querySelectorAll("details");
+  details.forEach((targetDetail) => {
+    targetDetail.addEventListener("click", () => {
+      details.forEach((detail) => {
+        if (detail !== targetDetail) {
+          detail.removeAttribute("open");
+        }
+      });
+    });
+  });
+</script>

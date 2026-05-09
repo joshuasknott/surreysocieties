@@ -6,126 +6,70 @@ import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
 const client = createConvexClient();
+
+// Fetch committee
 const committee: any[] = (await client.query("committee:listActive", { societySlug: SOCIETY_ID }))
   .sort((a: any, b: any) =>
     (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
     || (a.name || '').localeCompare(b.name || '')
   );
-const pastCommittee: any[] = (await client.query("committee:listPast", { societySlug: SOCIETY_ID }))
-  .sort((a: any, b: any) =>
-    (b.yearLabel || '').localeCompare(a.yearLabel || '') ||
-    (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
-    (a.name || '').localeCompare(b.name || '')
-  );
-const pastCommitteeYears = [...new Set(pastCommittee.map(member => member.yearLabel))];
 
 const getInitials = (name?: string, role?: string) => {
   const source = (name || role || '?').trim();
   const words = source.split(/\s+/).filter(Boolean);
-
   if (words.length === 0) return '?';
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-
-  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+  return words.slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 };
 ---
 
-<Layout title="Committee" description="Meet the student committee running Surrey Neurotech Society — the team behind our events, research groups, and community.">
+<Layout title="Committee" description="Meet the student committee running Surrey Neurotech Society.">
 
   <!-- Header -->
-  <section class="bg-surface-dark text-text-on-dark py-16 sm:py-20 px-6 nav-grid-dark border-b-2 border-gold/20 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="mx-auto max-w-6xl relative z-10">
-      <div class="inline-flex items-center gap-3 mb-4">
-        <div class="gold-dot"></div>
-        <span class="text-gold text-xs font-semibold uppercase tracking-wider">Our Team</span>
-      </div>
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-text-on-dark">Committee</h1>
-      <p class="mt-4 text-text-on-dark-secondary text-lg max-w-2xl border-l-2 border-gold/40 pl-4">The student volunteers who make Surrey Neurotech Society happen.</p>
+  <section class="bg-slate-50 py-24 px-6 relative overflow-hidden text-center border-b border-slate-200">
+    <div class="mx-auto max-w-4xl relative z-10">
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-slate-900 mb-6">Meet the Team</h1>
+      <p class="text-xl text-slate-600">The students behind Surrey Neurotech Society.</p>
     </div>
   </section>
 
   <!-- Committee Grid -->
-  <section class="py-16 sm:py-20 px-6 bg-surface nav-grid-light">
+  <section class="py-24 px-6 bg-white min-h-[50vh]">
     <div class="mx-auto max-w-6xl">
       {committee.length === 0 ? (
-        <div class="neuro-card p-8 text-center">
-          <h2 class="font-semibold text-xl mb-3 text-text-primary">Committee details coming soon</h2>
-          <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto mb-6">Our committee roster for the current academic year will be published here once elections are complete through Surrey Students' Union.</p>
-          <a href="/join" class="text-gold hover:text-gold-light text-sm font-semibold transition-colors">
-            Join the society →
-          </a>
+        <div class="w-full bg-slate-900 rounded-3xl p-16 text-center text-white shadow-2xl relative overflow-hidden">
+           <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"></div>
+           <div class="relative z-10 max-w-2xl mx-auto">
+             <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-8 backdrop-blur-sm">
+                <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+             </div>
+             <h2 class="text-4xl font-bold mb-6">Upcoming Elections</h2>
+             <p class="text-xl text-slate-300 leading-relaxed mb-8">
+               We are currently forming our next committee. Elections and appointments happen through Surrey Students' Union. If you're passionate about neurotech, this is your chance to lead.
+             </p>
+             <a href="/join" class="inline-flex items-center justify-center px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-xl transition-all shadow-lg text-lg">
+                Join the Society
+             </a>
+           </div>
         </div>
       ) : (
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {committee.map(member => (
-            <div class="neuro-card p-6 flex items-start gap-4">
-              {member.imageUrl ? (
-                <img src={member.imageUrl} alt={member.name || member.role} class="w-14 h-14 rounded-xl object-cover shrink-0 border border-border-subtle shadow-sm" />
-              ) : (
-                <div class="w-14 h-14 rounded-xl bg-primary border border-gold/30 flex items-center justify-center text-gold font-bold text-sm shrink-0 shadow-sm">
-                  {getInitials(member.name, member.role)}
-                </div>
-              )}
-              <div>
-                <h3 class="font-semibold text-lg text-text-primary">{member.role}</h3>
-                <p class="text-text-muted text-sm mt-1">{member.name}</p>
+            <div class="flex flex-col items-center text-center group">
+              <div class="w-48 h-48 rounded-full bg-slate-100 border border-slate-200 mb-6 flex items-center justify-center text-slate-400 text-3xl font-bold shadow-xl overflow-hidden relative transition-transform duration-500 group-hover:-translate-y-2">
+                {member.imageUrl ? (
+                  <img src={member.imageUrl} alt={member.name || member.role} class="w-full h-full object-cover" />
+                ) : (
+                  <span>{getInitials(member.name, member.role)}</span>
+                )}
+                <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-full"></div>
               </div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-2">{member.name}</h3>
+              <p class="text-lg text-cyan-600 font-medium">{member.role}</p>
             </div>
           ))}
         </div>
       )}
-
-      <div class="mt-12 pt-10 border-t border-border-subtle">
-        <div class="mb-8">
-          <div class="inline-flex items-center gap-3 mb-4">
-            <div class="gold-dot"></div>
-            <span class="text-gold text-xs font-semibold uppercase tracking-wider">Archive</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary">Past Committee</h2>
-          <p class="mt-3 text-text-secondary max-w-xl">Confirmed previous committee records for Surrey Neurotech Society.</p>
-        </div>
-
-        {pastCommittee.length === 0 ? (
-          <div class="neuro-card p-8 text-center">
-            <h3 class="font-semibold text-lg mb-2 text-text-primary">No past committee records yet</h3>
-            <p class="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto">Past committee details will be published once confirmed.</p>
-          </div>
-        ) : (
-          <div class="space-y-8">
-            {pastCommitteeYears.map(yearLabel => (
-              <section>
-                <h3 class="font-semibold text-xl text-text-primary mb-4">{yearLabel}</h3>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {pastCommittee.filter(member => member.yearLabel === yearLabel).map(member => (
-                    <article class="neuro-card p-6 flex items-start gap-4">
-                      {member.imageUrl ? (
-                        <img src={member.imageUrl} alt={member.name || member.role} class="w-12 h-12 rounded-xl object-cover shrink-0 border border-border-subtle shadow-sm" />
-                      ) : (
-                        <div class="w-12 h-12 rounded-xl bg-primary border border-cyan/30 flex items-center justify-center text-cyan font-bold text-sm shrink-0 shadow-sm">
-                          {getInitials(member.name, member.role)}
-                        </div>
-                      )}
-                      <div>
-                        <h4 class="font-semibold text-base text-text-primary">{member.role}</h4>
-                        <p class="text-text-muted text-sm mt-1">{member.name}</p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <div class="mt-12 neuro-card p-8 text-center">
-        <h3 class="font-semibold text-lg mb-2 text-text-primary">Interested in joining the committee?</h3>
-        <p class="text-text-secondary text-sm mb-4 max-w-xl mx-auto">Committee elections happen through Surrey Students' Union. Keep an eye on our announcements for when positions open.</p>
-        <a href="/join" class="text-gold hover:text-gold-dark text-sm font-semibold transition-colors">
-          Join the society first →
-        </a>
-      </div>
     </div>
   </section>
 
