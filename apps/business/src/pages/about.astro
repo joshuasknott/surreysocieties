@@ -6,134 +6,100 @@ import '../styles/global.css';
 
 <Layout
   title="About"
-  description="Learn about Surrey Business Society — our mission, values, and what members can expect from our student-led business community."
+  description="Learn about Surrey Business Society - our mission, values, and what members can expect from our student-led business community."
 >
 
-  <!-- ── Page header ── -->
-  <section class="bg-navy-deep text-text-on-dark pt-24 pb-20 sm:pt-32 sm:pb-24 px-6 border-b border-border-dark relative">
+  <!-- Section 1: Hero / Introduction -->
+  <section class="bg-navy-deep text-text-on-dark pt-32 pb-24 sm:pt-40 sm:pb-32 px-6 border-b border-border-dark relative">
     <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
-    <div class="mx-auto max-w-6xl relative z-10">
-      <p class="eyebrow mb-6 reveal">About Us</p>
-      <h1 class="font-serif text-5xl sm:text-6xl font-bold tracking-tight leading-tight reveal">
-        Surrey Business Society
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
+    
+    <div class="mx-auto max-w-3xl relative z-10 text-center">
+      <p class="eyebrow mb-8 justify-center reveal" style="color:var(--color-gold)">Our Purpose</p>
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-snug reveal">
+        We bridge the gap between academic study and the corporate world, equipping Surrey students with the commercial awareness and confidence to excel.
       </h1>
-      <p class="mt-6 text-base text-text-on-dark-secondary max-w-xl border-l border-gold/40 pl-4 leading-relaxed reveal">
-        A student-led professional community at the University of Surrey. Open to students from every course and year.
-      </p>
     </div>
   </section>
 
-  <!-- ── Mission + Member benefits ── -->
-  <section class="py-20 sm:py-28 px-6 border-b border-border">
+  <!-- Section 2: Our Philosophy / The Story -->
+  <section class="py-24 sm:py-32 px-6 border-b border-border bg-surface">
     <div class="mx-auto max-w-6xl">
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
-        <!-- Mission -->
-        <div class="reveal">
-          <p class="eyebrow mb-5">Mission</p>
-          <h2 class="font-serif text-3xl font-bold tracking-tight text-text-primary mb-8">Our purpose</h2>
-          <div class="space-y-5 text-text-secondary leading-relaxed text-sm">
-            <p>
-              Surrey Business Society exists to support students in developing professionally and commercially. We provide a platform for networking, career exploration, entrepreneurship, and the exchange of ideas across industries.
-            </p>
-            <p>
-              We are a student-led society under Surrey Students' Union, open to students from every course and year. You do not need to be studying business to benefit from what we do.
-            </p>
-            <p>
-              Our events range from careers evenings and founder talks to networking socials and skills workshops. We aim to bridge the gap between university life and the professional world.
-            </p>
-          </div>
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        
+        <div class="lg:sticky lg:top-32 reveal">
+          <h2 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-text-primary leading-tight">
+            Business is not just a degree.<br />
+            <span class="text-gold-dark italic">It's a mindset.</span>
+          </h2>
         </div>
 
-        <!-- What to expect -->
-        <div class="reveal">
-          <p class="eyebrow mb-5">Membership</p>
-          <h2 class="font-serif text-3xl font-bold tracking-tight text-text-primary mb-8">What to expect</h2>
-          <ul class="divide-y divide-border" role="list">
-            {[
-              'Professional networking opportunities with industry contacts',
-              'Careers-focused events across consulting, finance, tech, and more',
-              'Founder talks and entrepreneurship workshops',
-              'Skills sessions covering CVs, interviews, and commercial awareness',
-              'Social events and a community of ambitious, like-minded students',
-            ].map(item => (
-              <li class="flex gap-4 py-4" role="listitem">
-                <span class="text-gold font-bold text-sm shrink-0 mt-0.5" aria-hidden="true">→</span>
-                <span class="text-text-secondary text-sm leading-relaxed">{item}</span>
-              </li>
-            ))}
-          </ul>
+        <article class="prose prose-lg max-w-prose text-text-secondary leading-relaxed reveal">
+          <p class="mb-8">
+            The Surrey Business Society was founded on a simple premise: success in any sector requires an understanding of how value is created, managed, and scaled. While academia provides the theoretical foundation, navigating the complexities of the modern economy demands practical commercial awareness and interdisciplinary thinking.
+          </p>
+          <p class="mb-8">
+            We are resolutely open to students from every faculty and discipline. The modern corporate environment does not operate in silos. The most successful ventures require the analytical rigour of scientists, the problem-solving capabilities of engineers, the creativity of artists, and the strategic foresight of business students.
+          </p>
+          <p>
+            Our mandate is to provide an environment where ambitious individuals can converge. We facilitate exposure to top-tier employers, provide a platform for entrepreneurial ideation, and offer rigorous skills development—ensuring our members graduate not just with a degree, but with a distinct professional advantage.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: What We Do (Typographic 2-column text grid) -->
+  <section class="py-24 sm:py-32 px-6 bg-surface-alt border-b border-border">
+    <div class="mx-auto max-w-6xl">
+      <header class="mb-20 reveal">
+        <h2 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">
+          Core Objectives
+        </h2>
+      </header>
+
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-16 reveal">
+        
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-text-primary mb-4 border-b border-border-dark pb-4">Career Direction</h3>
+          <p class="text-base text-text-secondary leading-loose">
+            Navigating the graduate market requires strategy. We demystify the recruitment processes of leading firms across consulting, finance, technology, and FMCG. Through sector insights and alumni networking, we help members identify and secure their optimal career path.
+          </p>
         </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-text-primary mb-4 border-b border-border-dark pb-4">Tangible Skills</h3>
+          <p class="text-base text-text-secondary leading-loose">
+            A strong CV is only the first hurdle. We run intensive workshops focused on the competencies employers actually test for: commercial awareness, casing, effective communication, and structured problem solving.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-text-primary mb-4 border-b border-border-dark pb-4">Enterprise</h3>
+          <p class="text-base text-text-secondary leading-loose">
+            For those drawn to building rather than joining, we provide a nexus for entrepreneurship. By hosting founder talks and facilitating co-founder networking, we aim to be the catalyst for the next generation of Surrey-led startups.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-text-primary mb-4 border-b border-border-dark pb-4">Interdisciplinary Access</h3>
+          <p class="text-base text-text-secondary leading-loose">
+            We actively break down faculty barriers. By bringing together students from engineering, law, sciences, and business, we create a diverse talent pool that mirrors the reality of modern cross-functional business teams.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Who is this for ── -->
-  <section class="py-20 sm:py-28 px-6 bg-surface-alt border-b border-border">
-    <div class="mx-auto max-w-6xl">
-      <header class="mb-12 reveal">
-        <p class="eyebrow mb-4">Audience</p>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">Who is the society for?</h2>
-      </header>
-      <div class="grid sm:grid-cols-3 gap-px bg-border border border-border">
-        {[
-          {
-            title: 'Career-Focused Students',
-            body: 'Whether you are targeting graduate schemes, internships, or starting something of your own — we help you get there.',
-          },
-          {
-            title: 'Aspiring Entrepreneurs',
-            body: 'Curious about starting a business? Our founder talks and entrepreneurship events are designed for you.',
-          },
-          {
-            title: 'All Disciplines',
-            body: 'Business thinking is relevant everywhere. We welcome students from engineering, arts, sciences, and everything else.',
-          },
-        ].map(card => (
-          <div class="bg-surface-card p-8 hover:bg-white transition-colors reveal">
-            <h3 class="text-sm font-bold uppercase tracking-widest text-text-primary mb-3">{card.title}</h3>
-            <p class="text-sm text-text-secondary leading-relaxed">{card.body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Core values ── -->
-  <section class="py-20 sm:py-28 px-6 bg-surface border-b border-border">
-    <div class="mx-auto max-w-6xl">
-      <header class="mb-14 reveal">
-        <p class="eyebrow mb-4">Values</p>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">Core principles</h2>
-      </header>
-      <div class="grid sm:grid-cols-2 gap-12 lg:gap-16 reveal">
-        {[
-          { num: '01', title: 'Ambition', body: 'We encourage students to think big and take their development seriously.' },
-          { num: '02', title: 'Professionalism', body: 'Our events are run to a high standard, because first impressions matter.' },
-          { num: '03', title: 'Inclusivity', body: 'Every student is welcome, regardless of background, year, or subject.' },
-          { num: '04', title: 'Practicality', body: 'We focus on real skills and real connections, not just theory.' },
-        ].map(v => (
-          <div class="flex gap-8 items-start">
-            <span class="text-3xl font-black text-border shrink-0 leading-none">{v.num}</span>
-            <div>
-              <h3 class="text-sm font-bold uppercase tracking-widest text-text-primary mb-2">{v.title}</h3>
-              <p class="text-sm text-text-secondary leading-relaxed">{v.body}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA ── -->
-  <section class="bg-navy-deep text-text-on-dark py-20 px-6 border-t-2 border-gold relative">
+  <!-- CTA -->
+  <section class="bg-navy-deep text-text-on-dark py-24 px-6 relative">
     <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-50" aria-hidden="true"></div>
     <div class="mx-auto max-w-3xl text-center relative z-10 reveal">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-6">Ready to join?</h2>
-      <p class="text-text-on-dark-secondary text-sm mb-8 max-w-lg mx-auto leading-relaxed">
-        Membership is open to every University of Surrey student through Surrey Students' Union.
-      </p>
-      <a href="/join" class="btn-primary">
-        Join the Society <span aria-hidden="true">→</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-8">Ready to join?</h2>
+      <a href="/join" class="btn-primary rounded-none">
+        Become a Member <span aria-hidden="true">→</span>
       </a>
     </div>
   </section>

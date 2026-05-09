@@ -14,132 +14,93 @@ const formatEventDate = (date?: string) => {
   const parsed = new Date(`${date}T00:00:00`);
   if (Number.isNaN(parsed.getTime())) return date;
   return parsed.toLocaleDateString('en-GB', {
-    weekday: 'short',
+    weekday: 'long',
     day: 'numeric',
-    month: 'short',
+    month: 'long',
     year: 'numeric',
   });
 };
 ---
 
 <Layout
-  title="Events"
-  description="Upcoming and planned events from Surrey Business Society — careers evenings, founder talks, networking socials, and workshops."
+  title="Programme & Events"
+  description="Upcoming and planned events from Surrey Business Society - careers evenings, founder talks, networking socials, and workshops."
 >
 
-  <!-- ── Page header ── -->
-  <section class="bg-navy-deep text-text-on-dark pt-24 pb-20 sm:pt-32 sm:pb-24 px-6 border-b border-border-dark relative">
+  <!-- Section 1: Hero -->
+  <section class="bg-navy-deep text-text-on-dark pt-32 pb-24 sm:pt-40 sm:pb-32 px-6 border-b border-border-dark relative">
     <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <p class="eyebrow mb-6 reveal">Programme</p>
-      <h1 class="font-serif text-5xl sm:text-6xl font-bold tracking-tight leading-tight reveal">
-        Events & Agenda
+      <p class="eyebrow mb-6 reveal" style="color:var(--color-gold)">The Schedule</p>
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight reveal">
+        Programme & Events
       </h1>
-      <p class="mt-6 text-base text-text-on-dark-secondary max-w-xl border-l border-gold/40 pl-4 leading-relaxed reveal">
-        Professional development, networking, and entrepreneurship. Our programme spans the academic year and is open to all members.
-      </p>
     </div>
   </section>
 
-  <!-- ── Event listing ── -->
-  <section class="py-20 sm:py-28 px-6 bg-surface border-b border-border">
-    <div class="mx-auto max-w-6xl">
+  <!-- Section 2: The Ledger -->
+  <section class="py-24 sm:py-32 px-6 bg-surface">
+    <div class="mx-auto max-w-5xl">
 
       {events.length > 0 ? (
-        <div>
-          <header class="mb-10 reveal">
-            <p class="eyebrow mb-3">Upcoming</p>
-            <h2 class="font-serif text-2xl font-bold text-text-primary">Published events</h2>
-          </header>
-          <ol class="divide-y divide-border border border-border" role="list">
-            {events.map(event => (
-              <li class="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 px-6 py-7 hover:bg-surface-alt transition-colors reveal" role="listitem">
-                <!-- Date / category column -->
-                <div class="md:w-48 shrink-0">
-                  <p class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1.5">{event.category || 'Event'}</p>
-                  <p class="text-sm font-semibold text-text-primary">{formatEventDate(event.date)}</p>
-                  {event.startTime && (
-                    <p class="text-xs text-text-muted mt-0.5">
-                      {event.startTime}{event.endTime ? `–${event.endTime}` : ''}
-                    </p>
-                  )}
-                  {event.location && (
-                    <p class="text-xs text-text-muted mt-0.5">{event.location}</p>
-                  )}
-                </div>
-                <!-- Title / description -->
-                <div class="flex-1 min-w-0">
-                  <h3 class="font-serif text-xl font-semibold text-text-primary leading-snug mb-2">{event.title}</h3>
-                  {event.description && (
-                    <p class="text-sm text-text-secondary leading-relaxed">{event.description}</p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ol>
+        <div class="flex flex-col border-t border-border-dark reveal">
+          {events.map(event => (
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 py-12 border-b border-border-dark">
+              <div class="shrink-0 md:w-48">
+                <p class="text-xs font-bold uppercase tracking-widest text-gold-dark mb-2">{event.category || 'Event'}</p>
+                <p class="text-base font-semibold text-text-primary mb-1">{formatEventDate(event.date)}</p>
+                {event.startTime && (
+                  <p class="text-sm text-text-muted">
+                    {event.startTime}{event.endTime ? ` - ${event.endTime}` : ''}
+                  </p>
+                )}
+                {event.location && (
+                  <p class="text-sm text-text-muted mt-2">{event.location}</p>
+                )}
+              </div>
+              <div class="flex-1">
+                <h3 class="font-serif text-2xl font-bold text-text-primary mb-4">{event.title}</h3>
+                {event.description && (
+                  <p class="text-base text-text-secondary leading-relaxed max-w-2xl">{event.description}</p>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
-        <!-- Empty state — evergreen programme context -->
+        <!-- Section 3: Our Programme Areas (Empty State) -->
         <div class="reveal">
-          <header class="mb-10">
-            <p class="eyebrow mb-3">Programme</p>
-            <h2 class="font-serif text-2xl font-bold text-text-primary">No published events yet</h2>
-            <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
-              The programme for this academic year is in development. Follow us on Instagram and LinkedIn for the latest announcements.
+          <header class="mb-16">
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-text-primary mb-6">Our Upcoming Programme</h2>
+            <p class="text-lg text-text-secondary max-w-2xl leading-relaxed">
+              While our schedule for the current period is being finalised, the Surrey Business Society runs a robust series of events designed to provide distinct professional advantages.
             </p>
           </header>
+          
+          <div class="grid md:grid-cols-3 gap-x-12 gap-y-16 border-t border-border-dark pt-16">
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-widest text-text-primary mb-4 border-b border-border-dark pb-4">Industry Guest Lectures</h3>
+              <p class="text-base text-text-secondary leading-loose">
+                Insights directly from the source. We host sector leaders, graduate recruiters, and subject matter experts to provide unfiltered perspectives on the current commercial landscape and future trends.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-widest text-text-primary mb-4 border-b border-border-dark pb-4">Networking Evenings</h3>
+              <p class="text-base text-text-secondary leading-loose">
+                Your network is your net worth. These sessions are structured to facilitate meaningful introductions between ambitious students and experienced alumni or corporate representatives.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-widest text-text-primary mb-4 border-b border-border-dark pb-4">Skills & CV Workshops</h3>
+              <p class="text-base text-text-secondary leading-loose">
+                Preparation meets opportunity. We run intensive clinics focused on CV optimisation, rigorous interview preparation, and the development of core commercial awareness competencies.
+              </p>
+            </div>
+          </div>
         </div>
       )}
 
-      <!-- ── What we typically run ── -->
-      <div class="mt-16 border-t border-border pt-16 reveal">
-        <header class="mb-10">
-          <p class="eyebrow mb-3">Event types</p>
-          <h2 class="font-serif text-2xl font-bold text-text-primary">What the society runs</h2>
-          <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
-            Our programme spans the academic year and covers the full range of professional development contexts.
-          </p>
-        </header>
-        <dl class="grid sm:grid-cols-2 gap-px bg-border border border-border">
-          {[
-            {
-              dt: 'Careers Evenings',
-              dd: 'Sector-focused sessions that explore graduate pathways, application cycles, and the realities of early careers across industries including finance, consulting, and technology.',
-            },
-            {
-              dt: 'Founder Talks',
-              dd: 'Conversations with entrepreneurs and startup founders about building products, raising funding, pivoting, and the practical realities of running an early-stage business.',
-            },
-            {
-              dt: 'Networking Socials',
-              dd: 'Structured and informal events designed to build meaningful connections between members, with an emphasis on quality conversation over quantity.',
-            },
-            {
-              dt: 'Skills Workshops',
-              dd: 'Practical sessions covering commercial awareness, presentation skills, negotiation technique, and the competencies that employers and graduate recruiters look for.',
-            },
-          ].map(({ dt, dd }) => (
-            <div class="bg-surface-card p-8 hover:bg-surface-alt transition-colors">
-              <dt class="text-sm font-bold uppercase tracking-widest text-text-primary mb-3">{dt}</dt>
-              <dd class="text-sm text-text-secondary leading-relaxed">{dd}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Event ideas / contact nudge ── -->
-  <section class="bg-navy-deep text-text-on-dark py-20 px-6 border-t-2 border-gold relative">
-    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-50" aria-hidden="true"></div>
-    <div class="mx-auto max-w-3xl text-center relative z-10 reveal">
-      <h2 class="font-serif text-3xl font-bold tracking-tight mb-4">Have a suggestion?</h2>
-      <p class="text-text-on-dark-secondary text-sm mb-8 max-w-lg mx-auto leading-relaxed">
-        We welcome ideas from members. If you know a speaker, have a topic in mind, or want to help organise an event, get in touch.
-      </p>
-      <a href="/join" class="btn-primary">
-        Contact Us <span aria-hidden="true">→</span>
-      </a>
     </div>
   </section>
 

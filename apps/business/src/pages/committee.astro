@@ -29,147 +29,95 @@ const getInitials = (name?: string, role?: string) => {
 ---
 
 <Layout
-  title="Committee"
-  description="Meet the student committee running Surrey Business Society — the team behind our careers events, networking, and community."
+  title="Society Leadership"
+  description="Meet the student committee running Surrey Business Society - the team behind our careers events, networking, and community."
 >
 
-  <!-- ── Page header ── -->
-  <section class="bg-navy-deep text-text-on-dark pt-24 pb-20 sm:pt-32 sm:pb-24 px-6 border-b border-border-dark relative">
+  <!-- Section 1: Hero -->
+  <section class="bg-navy-deep text-text-on-dark pt-32 pb-24 sm:pt-40 sm:pb-32 px-6 border-b border-border-dark relative">
     <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
-    <div class="mx-auto max-w-6xl relative z-10">
-      <p class="eyebrow mb-6 reveal">Leadership</p>
-      <h1 class="font-serif text-5xl sm:text-6xl font-bold tracking-tight leading-tight reveal">Committee</h1>
-      <p class="mt-6 text-base text-text-on-dark-secondary max-w-xl border-l border-gold/40 pl-4 leading-relaxed reveal">
-        The students running Surrey Business Society. Elected annually through Surrey Students' Union.
-      </p>
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
+    <div class="mx-auto max-w-6xl relative z-10 text-center">
+      <p class="eyebrow mb-6 reveal justify-center" style="color:var(--color-gold)">The Committee</p>
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight reveal">
+        Society Leadership
+      </h1>
     </div>
   </section>
 
-  <!-- ── Active committee ── -->
-  <section class="py-20 sm:py-28 px-6 bg-surface border-b border-border">
+  <section class="py-24 sm:py-32 px-6 bg-surface">
     <div class="mx-auto max-w-6xl">
 
       {committee.length === 0 ? (
-        <!-- Empty active committee — evergreen context -->
-        <div class="reveal">
-          <header class="mb-10">
-            <p class="eyebrow mb-3">Current committee</p>
-            <h2 class="font-serif text-2xl font-bold text-text-primary">Details coming soon</h2>
-            <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
-              The committee for this academic year will be confirmed once elections have taken place through Surrey Students' Union. Check back for updates.
-            </p>
-          </header>
-          <!-- Structure explainer when no data -->
-          <div class="border border-border">
-            <div class="px-6 py-5 border-b border-border bg-surface-alt">
-              <p class="text-xs font-bold uppercase tracking-widest text-text-muted">Typical committee structure</p>
-            </div>
-            <ol class="divide-y divide-border" role="list">
-              {[
-                'President',
-                'Vice President',
-                'Events Officer',
-                'Marketing Officer',
-                'Careers Officer',
-                'Secretary',
-                'Treasurer',
-              ].map((role, i) => (
-                <li class="flex items-center gap-6 px-6 py-4" role="listitem">
-                  <span class="text-xs font-bold text-text-muted tabular-nums w-5">{String(i + 1).padStart(2, '0')}</span>
-                  <span class="text-sm font-medium text-text-secondary">{role}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
+        <!-- Section 3: The Structure (Empty State) -->
+        <article class="prose prose-lg max-w-3xl mx-auto text-text-secondary leading-relaxed reveal">
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-text-primary mb-6">Society Governance</h2>
+          <p class="mb-6">
+            The Surrey Business Society is governed by a dedicated team of student leaders, committed to delivering high-quality professional development opportunities and fostering a robust interdisciplinary network.
+          </p>
+          <p class="mb-6">
+            The core committee typically consists of a President, Vice President, Treasurer, and specialised officers overseeing areas such as Corporate Relations, Marketing, and Events. These roles are critical in bridging the gap between our student members and industry partners.
+          </p>
+          <p class="mb-6">
+            Leadership positions are elected annually through a democratic process overseen by the University of Surrey Students' Union. This ensures our society remains entirely student-led and accountable to its members.
+          </p>
+          <p>
+            If you are interested in running for future positions, or if you have governance inquiries in the interim, please reach out to us via our <a href="mailto:ussu.bizsoc@surrey.ac.uk" class="text-gold-dark hover:underline font-semibold">official email</a>.
+          </p>
+        </article>
       ) : (
-        <div>
-          <header class="mb-10 reveal">
-            <p class="eyebrow mb-3">Current year</p>
-            <h2 class="font-serif text-2xl font-bold text-text-primary">Active committee</h2>
-          </header>
-          <ol class="divide-y divide-border border border-border" role="list">
-            {committee.map((member, i) => (
-              <li class="flex items-center gap-6 px-6 py-5 hover:bg-surface-alt transition-colors reveal" role="listitem">
-                <span class="text-xs font-bold text-text-muted tabular-nums w-5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
-                {member.imageUrl ? (
+        <!-- Section 2: The Roster (Populated State) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16 reveal">
+          {committee.map((member) => (
+            <div class="flex flex-col">
+              {member.imageUrl ? (
+                <div class="w-full aspect-[4/5] bg-surface-alt mb-6">
                   <img
                     src={member.imageUrl}
                     alt={member.name || member.role}
-                    class="w-9 h-9 object-cover shrink-0 border border-border"
+                    class="w-full h-full object-cover grayscale mix-blend-multiply"
                   />
-                ) : (
-                  <div class="w-9 h-9 bg-navy-deep flex items-center justify-center text-gold font-semibold text-xs shrink-0 border border-border-dark">
-                    {getInitials(member.name, member.role)}
-                  </div>
-                )}
-                <div class="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
-                  <span class="text-sm font-medium text-text-primary">{member.name}</span>
-                  <span class="text-[10px] font-bold uppercase tracking-widest text-gold">{member.role}</span>
                 </div>
-              </li>
-            ))}
-          </ol>
+              ) : (
+                <div class="w-full aspect-[4/5] bg-navy-deep flex items-center justify-center text-gold font-serif text-4xl mb-6">
+                  {getInitials(member.name, member.role)}
+                </div>
+              )}
+              <h3 class="font-serif text-xl font-bold text-text-primary mb-1">{member.name}</h3>
+              <p class="text-xs font-bold uppercase tracking-widest text-text-muted">{member.role}</p>
+            </div>
+          ))}
         </div>
       )}
 
-      <!-- ── Past committee archive ── -->
-      <div class="mt-16 border-t border-border pt-16">
-        <header class="mb-10 reveal">
-          <p class="eyebrow mb-3">Archive</p>
-          <h2 class="font-serif text-2xl font-bold text-text-primary">Past committee</h2>
-          <p class="mt-3 text-sm text-text-secondary max-w-xl leading-relaxed">
-            A record of previous committees who have led Surrey Business Society.
-          </p>
-        </header>
+      <!-- Past committee archive -->
+      {pastCommittee.length > 0 && (
+        <div class="mt-32 pt-24 border-t border-border">
+          <header class="mb-16 reveal text-center">
+            <h2 class="font-serif text-3xl font-bold text-text-primary">Alumni Leadership</h2>
+            <p class="mt-4 text-base text-text-secondary max-w-xl mx-auto leading-relaxed">
+              A record of the individuals who have previously directed the Surrey Business Society.
+            </p>
+          </header>
 
-        {pastCommittee.length === 0 ? (
-          <div class="border border-border px-6 py-8 reveal">
-            <p class="text-sm text-text-secondary leading-relaxed">Past committee records will be published once confirmed.</p>
-          </div>
-        ) : (
-          <div class="space-y-12">
+          <div class="space-y-16 max-w-4xl mx-auto">
             {pastCommitteeYears.map(yearLabel => (
               <section class="reveal">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-gold border-b border-border pb-3 mb-0">{yearLabel}</h3>
-                <ol class="divide-y divide-border border border-border border-t-0" role="list">
-                  {pastCommittee.filter(m => m.yearLabel === yearLabel).map((member, i) => (
-                    <li class="flex items-center gap-6 px-6 py-4 hover:bg-surface-alt transition-colors" role="listitem">
-                      <span class="text-xs font-bold text-text-muted tabular-nums w-5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
-                      {member.imageUrl ? (
-                        <img
-                          src={member.imageUrl}
-                          alt={member.name || member.role}
-                          class="w-8 h-8 object-cover shrink-0 border border-border"
-                        />
-                      ) : (
-                        <div class="w-8 h-8 bg-navy-deep flex items-center justify-center text-gold font-semibold text-[10px] shrink-0 border border-border-dark">
-                          {getInitials(member.name, member.role)}
-                        </div>
-                      )}
-                      <div class="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
-                        <span class="text-sm font-medium text-text-primary">{member.name}</span>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted">{member.role}</span>
-                      </div>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-gold border-b border-border pb-4 mb-8 text-center">{yearLabel}</h3>
+                <ol class="grid grid-cols-2 sm:grid-cols-3 gap-y-8 gap-x-6" role="list">
+                  {pastCommittee.filter(m => m.yearLabel === yearLabel).map((member) => (
+                    <li class="flex flex-col items-center text-center" role="listitem">
+                      <span class="font-serif text-lg font-bold text-text-primary mb-1">{member.name}</span>
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-text-muted">{member.role}</span>
                     </li>
                   ))}
                 </ol>
               </section>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      <!-- ── Join committee nudge ── -->
-      <div class="mt-16 border border-border px-8 py-10 bg-surface-alt reveal">
-        <h3 class="font-serif text-xl font-bold text-text-primary mb-3">Want to join the committee?</h3>
-        <p class="text-sm text-text-secondary leading-relaxed max-w-lg mb-6">
-          Elections are held annually through Surrey Students' Union. Membership of the society is the first step.
-        </p>
-        <a href="/join" class="btn-primary">
-          Become a Member <span aria-hidden="true">→</span>
-        </a>
-      </div>
     </div>
   </section>
 
