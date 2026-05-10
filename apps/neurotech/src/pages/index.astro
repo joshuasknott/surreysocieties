@@ -1,6 +1,7 @@
 ---
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
+import BrainExplainer from '../components/BrainExplainer.astro';
 import { createConvexClient } from '@surreysocieties/admin';
 import '../styles/global.css';
 
@@ -23,21 +24,21 @@ const formatEventDate = (date?: string) => {
 };
 ---
 
-<Layout title="Home" description="Surrey Neurotech Society — Demystifying neurotechnology. Connecting the human mind with technology through accessible exploration of BCIs, AI, and ethics.">
+<Layout title="Home" description="Surrey Neurotech Society Ã¢â‚¬â€ Demystifying neurotechnology. Connecting the human mind with technology through accessible exploration of BCIs, AI, and ethics.">
 
   <!-- Hero -->
   <section class="bg-slate-900 text-white relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32 gradient-dark">
     <!-- Ambient light blobs -->
-    <div class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
     
     <div class="mx-auto max-w-7xl px-6 relative z-10 w-full">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         <div class="flex flex-col items-start max-w-3xl z-10">
-          <p class="text-cyan-500 font-semibold tracking-wide uppercase text-sm mb-4">A student-led society at the University of Surrey.</p>
+          <p class="text-gold-500 font-semibold tracking-wide uppercase text-sm mb-4">A student-led society at the University of Surrey.</p>
           
           <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
-            Connecting the human mind with <span class="text-cyan-500">technology.</span>
+            Connecting the human mind with <span class="text-gold-500">technology.</span>
           </h1>
           
           <p class="text-xl sm:text-2xl text-slate-300 leading-relaxed font-light mb-8 max-w-2xl">
@@ -45,7 +46,7 @@ const formatEventDate = (date?: string) => {
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href="/join" class="inline-flex items-center justify-center px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-xl transition-all shadow-[0_4px_20px_rgba(6,182,212,0.3)] hover:shadow-[0_8px_30px_rgba(6,182,212,0.4)] text-base">
+            <a href="/join" class="inline-flex items-center justify-center px-8 py-4 bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-xl transition-all shadow-[0_4px_20px_rgba(201,168,76,0.3)] hover:shadow-[0_8px_30px_rgba(201,168,76,0.4)] text-base">
               Become a Member
             </a>
             <a href="/events" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl border border-white/10 transition-all text-base backdrop-blur-sm">
@@ -55,11 +56,11 @@ const formatEventDate = (date?: string) => {
 
           <div class="mt-12 flex items-center gap-4 text-slate-400 text-sm">
             <span class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              <svg class="w-5 h-5 text-gold-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
               No experience required
             </span>
             <span class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              <svg class="w-5 h-5 text-gold-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
               All degrees welcome
             </span>
           </div>
@@ -71,11 +72,11 @@ const formatEventDate = (date?: string) => {
              <!-- Static Beautiful SVG fallback for reduced motion -->
              <svg class="w-full h-full max-w-md opacity-80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M100 20C140 20 170 50 170 90C170 130 140 180 100 180C60 180 30 130 30 90C30 50 60 20 100 20Z" stroke="url(#paint0_linear)" stroke-width="2" stroke-dasharray="4 4" />
-                <path d="M100 40C120 40 140 60 140 90C140 120 120 150 100 150C80 150 60 120 60 90C60 60 80 40 100 40Z" stroke="#06B6D4" stroke-width="1.5" />
-                <circle cx="100" cy="90" r="20" fill="#0EA5E9" fill-opacity="0.2" stroke="#06B6D4" stroke-width="2"/>
+                <path d="M100 40C120 40 140 60 140 90C140 120 120 150 100 150C80 150 60 120 60 90C60 60 80 40 100 40Z" stroke="#C9A84C" stroke-width="1.5" />
+                <circle cx="100" cy="90" r="20" fill="#C9A84C" fill-opacity="0.2" stroke="#C9A84C" stroke-width="2"/>
                 <defs>
                   <linearGradient id="paint0_linear" x1="30" y1="20" x2="170" y2="180" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#06B6D4"/>
+                    <stop stop-color="#C9A84C"/>
                     <stop offset="1" stop-color="#FAFAFA" stop-opacity="0.2"/>
                   </linearGradient>
                 </defs>
@@ -99,50 +100,7 @@ const formatEventDate = (date?: string) => {
       <div class="space-y-32">
         
         <!-- Neuroscience Explainer -->
-        <div class="flex flex-col lg:flex-row items-center gap-16">
-          <div class="flex-1 lg:pr-12">
-            <h3 class="text-3xl font-bold text-slate-900 mb-6">Understand the Brain</h3>
-            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-              We explore how the brain functions, mapping thoughts and movements to neural pathways. You don't need a medical degree to grasp the fundamentals of neuroscience.
-            </p>
-            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
-              Hover over the brain to explore
-            </div>
-          </div>
-          <div class="flex-1 w-full relative">
-            <div class="aspect-square sm:aspect-[4/3] rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden relative flex items-center justify-center group p-8">
-              <!-- Simple SVG Brain -->
-              <svg class="w-full h-full max-w-sm text-slate-300 transition-colors duration-500 group-hover:text-slate-200" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M100 20C150 20 180 50 180 90C180 130 140 140 100 140C60 140 20 130 20 90C20 50 50 20 100 20Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M60 50C80 40 120 40 140 50" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                <path d="M40 80C70 90 130 90 160 80" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-              </svg>
-              <!-- Interactive Hotspots -->
-              <div class="absolute inset-0 flex items-center justify-center">
-                 <div class="relative w-full h-full max-w-sm">
-                    <!-- Motor Cortex -->
-                    <div class="absolute top-[25%] left-[45%] w-12 h-12 -translate-x-1/2 -translate-y-1/2 peer/motor cursor-pointer rounded-full hover:bg-cyan-500/20 transition-colors z-10"></div>
-                    <div class="absolute top-[25%] left-[45%] w-4 h-4 bg-cyan-500 rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-transform peer-hover/motor:scale-150"></div>
-                    <!-- Tooltip Motor -->
-                    <div class="absolute top-0 left-[55%] w-64 bg-slate-900 text-white p-4 rounded-xl opacity-0 peer-hover/motor:opacity-100 transition-opacity pointer-events-none translate-y-[-20px] peer-hover/motor:translate-y-0 duration-300 shadow-2xl z-20">
-                      <p class="font-semibold text-cyan-400 mb-1">Motor Cortex</p>
-                      <p class="text-sm text-slate-300">This area plans and executes movement. BCIs often read signals from here to control prosthetics.</p>
-                    </div>
-
-                    <!-- Visual Cortex -->
-                    <div class="absolute top-[60%] left-[85%] w-12 h-12 -translate-x-1/2 -translate-y-1/2 peer/visual cursor-pointer rounded-full hover:bg-blue-500/20 transition-colors z-10"></div>
-                    <div class="absolute top-[60%] left-[85%] w-4 h-4 bg-blue-500 rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_15px_rgba(14,165,233,0.5)] transition-transform peer-hover/visual:scale-150"></div>
-                    <!-- Tooltip Visual -->
-                    <div class="absolute top-[40%] right-[20%] w-64 bg-slate-900 text-white p-4 rounded-xl opacity-0 peer-hover/visual:opacity-100 transition-opacity pointer-events-none translate-y-[-20px] peer-hover/visual:translate-y-0 duration-300 shadow-2xl z-20">
-                      <p class="font-semibold text-blue-400 mb-1">Visual Cortex</p>
-                      <p class="text-sm text-slate-300">Processes visual information. Research here helps develop visual prosthetics for the blind.</p>
-                    </div>
-                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <BrainExplainer />
 
         <!-- BCI Explainer -->
         <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
@@ -151,7 +109,7 @@ const formatEventDate = (date?: string) => {
             <p class="text-lg text-slate-600 mb-8 leading-relaxed">
               Brain-Computer Interfaces (BCIs) capture electrical signals from the brain and translate them into commands that computers or devices can understand.
             </p>
-            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
+            <div class="inline-flex items-center gap-2 text-gold-600 font-medium bg-amber-50 px-4 py-2 rounded-lg">
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
               Click and hold to generate a signal
             </div>
@@ -160,12 +118,12 @@ const formatEventDate = (date?: string) => {
             <div class="rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden relative flex flex-col p-8 text-white h-[350px]">
               <div class="flex justify-between items-center mb-8">
                 <span class="text-sm font-semibold tracking-wider text-slate-400 uppercase">Signal Amplitude</span>
-                <span class="text-cyan-500 font-mono text-sm px-3 py-1 bg-cyan-500/10 rounded-full" id="bci-status">Resting</span>
+                <span class="text-gold-500 font-mono text-sm px-3 py-1 bg-gold-500/10 rounded-full" id="bci-status">Resting</span>
               </div>
               
               <!-- Wave Canvas -->
               <div class="flex-1 relative w-full overflow-hidden flex items-center justify-center">
-                <svg id="bci-wave" class="w-[200%] h-32 text-cyan-500 transition-all duration-300" viewBox="0 0 400 100" preserveAspectRatio="none">
+                <svg id="bci-wave" class="w-[200%] h-32 text-gold-500 transition-all duration-300" viewBox="0 0 400 100" preserveAspectRatio="none">
                   <!-- Dynamic path handled in JS -->
                   <path id="bci-path" d="M0,50 Q25,50 50,50 T100,50 T150,50 T200,50 T250,50 T300,50 T350,50 T400,50" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
                 </svg>
@@ -176,7 +134,7 @@ const formatEventDate = (date?: string) => {
               </div>
 
               <div class="mt-8 flex justify-center">
-                <button id="bci-trigger" class="px-8 py-3 bg-white text-slate-900 font-bold rounded-full select-none hover:bg-cyan-50 transition-colors focus:outline-none focus:ring-4 focus:ring-cyan-500/50 active:scale-95">
+                <button id="bci-trigger" class="px-8 py-3 bg-white text-slate-900 font-bold rounded-full select-none hover:bg-amber-50 transition-colors focus:outline-none focus:ring-4 focus:ring-gold-500/50 active:scale-95">
                   Concentrate (Hold)
                 </button>
               </div>
@@ -191,20 +149,20 @@ const formatEventDate = (date?: string) => {
             <p class="text-lg text-slate-600 mb-8 leading-relaxed">
               Artificial Intelligence helps us make sense of the noise. By applying machine learning, we can find distinct patterns in chaotic brain data to understand what a person is intending to do.
             </p>
-            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
+            <div class="inline-flex items-center gap-2 text-gold-600 font-medium bg-amber-50 px-4 py-2 rounded-lg">
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
               Drag the slider to find patterns
             </div>
           </div>
           <div class="flex-1 w-full">
-            <div class="rounded-3xl bg-white border border-slate-200 shadow-xl p-8 h-[350px] flex flex-col">
+            <div class="rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl p-8 h-[350px] flex flex-col text-white">
               <div class="flex-1 relative mb-6" id="ai-scatter-container">
                 <!-- Dots injected via JS -->
               </div>
               <div class="flex items-center gap-4">
-                <span class="text-sm font-medium text-slate-500">Raw Data</span>
-                <input type="range" id="ai-slider" min="0" max="100" value="0" class="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-cyan-500">
-                <span class="text-sm font-medium text-cyan-600">Clustered</span>
+                <span class="text-sm font-medium text-slate-400">Raw Data</span>
+                <input type="range" id="ai-slider" min="0" max="100" value="0" class="flex-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                <span class="text-sm font-medium text-gold-400">Clustered</span>
               </div>
             </div>
           </div>
@@ -217,7 +175,7 @@ const formatEventDate = (date?: string) => {
             <p class="text-lg text-slate-600 mb-8 leading-relaxed">
               With the power to read the mind comes the responsibility to protect it. We champion human-centred design, ensuring cognitive privacy, accessibility, and wellbeing are never an afterthought.
             </p>
-            <div class="inline-flex items-center gap-2 text-cyan-600 font-medium bg-cyan-50 px-4 py-2 rounded-lg">
+            <div class="inline-flex items-center gap-2 text-gold-600 font-medium bg-amber-50 px-4 py-2 rounded-lg">
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
               Adjust priorities
             </div>
@@ -229,9 +187,9 @@ const formatEventDate = (date?: string) => {
                 <div>
                   <div class="flex justify-between mb-2">
                     <label for="eth-speed" class="text-sm font-semibold text-slate-300">Speed of Innovation</label>
-                    <span id="eth-speed-val" class="text-sm text-cyan-400 font-mono">50%</span>
+                    <span id="eth-speed-val" class="text-sm text-gold-400 font-mono">50%</span>
                   </div>
-                  <input type="range" id="eth-speed" min="0" max="100" value="50" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                  <input type="range" id="eth-speed" min="0" max="100" value="50" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
                 </div>
                 
                 <!-- Privacy Indicator -->
@@ -284,7 +242,7 @@ const formatEventDate = (date?: string) => {
       <div class="flex flex-col gap-6">
         {events.length === 0 ? (
           <div class="bg-slate-50 border border-slate-200 p-10 rounded-3xl text-center">
-            <div class="w-16 h-16 bg-cyan-100 text-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div class="w-16 h-16 bg-amber-100 text-gold-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             </div>
             <h3 class="text-2xl font-bold text-slate-900 mb-3">Our Event Formats</h3>
@@ -308,13 +266,13 @@ const formatEventDate = (date?: string) => {
           </div>
         ) : (
           events.slice(0, 3).map((event: any) => (
-            <div class="group flex flex-col sm:flex-row gap-6 p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white hover:border-cyan-200 hover:shadow-xl transition-all duration-300">
+            <div class="group flex flex-col sm:flex-row gap-6 p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white hover:border-amber-200 hover:shadow-xl transition-all duration-300">
               <div class="flex-shrink-0 w-24">
-                <span class="block text-sm font-bold text-cyan-600 mb-1">{formatEventDate(event.date)}</span>
+                <span class="block text-sm font-bold text-gold-600 mb-1">{formatEventDate(event.date)}</span>
                 <span class="inline-block text-xs font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full">{event.category || 'Event'}</span>
               </div>
               <div>
-                <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">{event.title}</h3>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-gold-600 transition-colors">{event.title}</h3>
                 <p class="text-slate-600 leading-relaxed text-lg">{event.description || 'Details coming soon.'}</p>
               </div>
             </div>
@@ -331,7 +289,7 @@ const formatEventDate = (date?: string) => {
       <p class="text-xl text-slate-400 mb-10 leading-relaxed">
         Join our community of students building the future of human-computer interaction. No prior experience needed.
       </p>
-      <a href="/join" class="inline-flex items-center justify-center px-10 py-5 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-2xl transition-all shadow-[0_8px_30px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_40px_rgba(6,182,212,0.4)] text-lg">
+      <a href="/join" class="inline-flex items-center justify-center px-10 py-5 bg-gold-500 hover:bg-gold-600 text-white font-bold rounded-2xl transition-all shadow-[0_8px_30px_rgba(201,168,76,0.3)] hover:shadow-[0_12px_40px_rgba(201,168,76,0.4)] text-lg">
         Join the Society Today
       </a>
     </div>
@@ -409,7 +367,7 @@ const formatEventDate = (date?: string) => {
 
     particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-    // Pure soft white and Cyan particles
+    // Pure soft white and Gold particles
     const pMaterial = new THREE.PointsMaterial({
       color: 0xFAFAFA,
       size: 1.5,
@@ -418,8 +376,8 @@ const formatEventDate = (date?: string) => {
       blending: THREE.AdditiveBlending
     });
     
-    const pMaterialCyan = new THREE.PointsMaterial({
-      color: 0x06B6D4,
+    const pMaterialGold = new THREE.PointsMaterial({
+      color: 0xC9A84C,
       size: 2.0,
       transparent: true,
       opacity: 0.6,
@@ -429,7 +387,7 @@ const formatEventDate = (date?: string) => {
     const particleSystem = new THREE.Points(particles, pMaterial);
     brainGroup.add(particleSystem);
     
-    // Add some cyan highlight particles
+    // Add some gold highlight particles
     const highlightGeo = new THREE.BufferGeometry();
     const highlightCount = 200;
     const highlightPos = new Float32Array(highlightCount * 3);
@@ -439,8 +397,8 @@ const formatEventDate = (date?: string) => {
         highlightPos[i*3+2] = positions[i*3+2];
     }
     highlightGeo.setAttribute('position', new THREE.BufferAttribute(highlightPos, 3));
-    const cyanSystem = new THREE.Points(highlightGeo, pMaterialCyan);
-    brainGroup.add(cyanSystem);
+    const goldSystem = new THREE.Points(highlightGeo, pMaterialGold);
+    brainGroup.add(goldSystem);
 
     // Mouse Interaction
     let targetRotationX = 0;
@@ -539,22 +497,22 @@ const formatEventDate = (date?: string) => {
           }
 
           if (amplitude > 30) {
-              bciAction.classList.replace('bg-slate-800', 'bg-cyan-500');
-              bciAction.classList.replace('border-slate-700', 'border-cyan-400');
-              bciAction.classList.add('shadow-[0_0_30px_rgba(6,182,212,0.6)]');
+              bciAction.classList.replace('bg-slate-800', 'bg-gold-500');
+              bciAction.classList.replace('border-slate-700', 'border-gold-400');
+              bciAction.classList.add('shadow-[0_0_30px_rgba(201,168,76,0.6)]');
               bciIcon.classList.replace('text-slate-500', 'text-white');
               bciStatus.textContent = 'Action Triggered';
-              bciStatus.classList.replace('bg-cyan-500/10', 'bg-cyan-500');
-              bciStatus.classList.replace('text-cyan-500', 'text-white');
+              bciStatus.classList.replace('bg-gold-500/10', 'bg-gold-500');
+              bciStatus.classList.replace('text-gold-500', 'text-white');
           } else {
-              bciAction.classList.replace('bg-cyan-500', 'bg-slate-800');
-              bciAction.classList.replace('border-cyan-400', 'border-slate-700');
-              bciAction.classList.remove('shadow-[0_0_30px_rgba(6,182,212,0.6)]');
+              bciAction.classList.replace('bg-gold-500', 'bg-slate-800');
+              bciAction.classList.replace('border-gold-400', 'border-slate-700');
+              bciAction.classList.remove('shadow-[0_0_30px_rgba(201,168,76,0.6)]');
               bciIcon.classList.replace('text-white', 'text-slate-500');
               if(!isHolding) {
                   bciStatus.textContent = 'Resting';
-                  bciStatus.classList.replace('bg-cyan-500', 'bg-cyan-500/10');
-                  bciStatus.classList.replace('text-white', 'text-cyan-500');
+                  bciStatus.classList.replace('bg-gold-500', 'bg-gold-500/10');
+                  bciStatus.classList.replace('text-white', 'text-gold-500');
               }
           }
 
@@ -589,7 +547,7 @@ const formatEventDate = (date?: string) => {
       const numDots = 80;
       const dots: HTMLDivElement[] = [];
       const clusters = [
-          { x: 20, y: 30, color: 'bg-cyan-500' },
+          { x: 20, y: 30, color: 'bg-gold-500' },
           { x: 80, y: 70, color: 'bg-blue-500' },
           { x: 50, y: 20, color: 'bg-slate-400' }
       ];
@@ -606,7 +564,7 @@ const formatEventDate = (date?: string) => {
           const targX = targetCluster.x + (Math.random() * 20 - 10);
           const targY = targetCluster.y + (Math.random() * 20 - 10);
           
-          dot.className = `absolute w-3 h-3 rounded-full ${targetCluster.color} opacity-60 mix-blend-multiply`;
+          dot.className = `absolute w-3 h-3 rounded-full ${targetCluster.color} opacity-80 mix-blend-screen shadow-sm`;
           if(!prefersReducedMotion) dot.style.transition = 'all 0.3s ease-out';
           
           dot.style.left = `${origX}%`;
@@ -686,3 +644,5 @@ const formatEventDate = (date?: string) => {
   }
 
 </script>
+
+

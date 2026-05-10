@@ -1,4 +1,4 @@
----
+﻿---
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 import { createConvexClient } from '@surreysocieties/admin';
@@ -38,16 +38,16 @@ const getInitials = (name?: string, role?: string) => {
     <div class="mx-auto max-w-6xl">
       {committee.length === 0 ? (
         <div class="w-full bg-slate-900 rounded-3xl p-16 text-center text-white shadow-2xl relative overflow-hidden">
-           <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"></div>
+           <div class="absolute inset-0 bg-gradient-to-r from-gold-500/10 to-blue-500/10"></div>
            <div class="relative z-10 max-w-2xl mx-auto">
              <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-8 backdrop-blur-sm">
-                <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                <svg class="w-10 h-10 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
              </div>
              <h2 class="text-4xl font-bold mb-6">Upcoming Elections</h2>
              <p class="text-xl text-slate-300 leading-relaxed mb-8">
                We are currently forming our next committee. Elections and appointments happen through Surrey Students' Union. If you're passionate about neurotech, this is your chance to lead.
              </p>
-             <a href="/join" class="inline-flex items-center justify-center px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-xl transition-all shadow-lg text-lg">
+             <a href="/join" class="inline-flex items-center justify-center px-8 py-4 bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-xl transition-all shadow-lg text-lg">
                 Join the Society
              </a>
            </div>
@@ -65,7 +65,7 @@ const getInitials = (name?: string, role?: string) => {
                 <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-full"></div>
               </div>
               <h3 class="text-2xl font-bold text-slate-900 mb-2">{member.name}</h3>
-              <p class="text-lg text-cyan-600 font-medium">{member.role}</p>
+              <p class="text-lg text-gold-600 font-medium">{member.role}</p>
             </div>
           ))}
         </div>
@@ -74,3 +74,5 @@ const getInitials = (name?: string, role?: string) => {
   </section>
 
 </Layout>
+
+

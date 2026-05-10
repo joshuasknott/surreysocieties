@@ -12,9 +12,9 @@
   --color-slate-50: #F1F5F9; /* Slate-tinted white */
   --color-white: #FAFAFA; /* Pure soft white */
 
-  --color-cyan-500: #06B6D4; /* Primary Accent */
-  --color-cyan-600: #0891B2;
-  --color-blue-500: #0EA5E9; /* Secondary Accent */
+  --color-gold-500: #C9A84C; /* Primary Accent — Logo Gold */
+  --color-gold-600: #A8873B; /* Darker Gold */
+  --color-gold-400: #D4B96A; /* Lighter Gold for dark surfaces */
 
   /* Semantic surfaces */
   --color-background: var(--color-white);
@@ -28,8 +28,8 @@
   --color-text-on-dark-secondary: var(--color-slate-200);
 
   /* Accents */
-  --color-accent-primary: var(--color-cyan-500);
-  --color-accent-secondary: var(--color-blue-500);
+  --color-accent-primary: var(--color-gold-500);
+  --color-accent-secondary: var(--color-gold-400);
 }
 
 @layer base {
@@ -41,9 +41,9 @@
     --color-slate-50: #F1F5F9;
     --color-white: #FAFAFA;
 
-    --color-cyan-500: #06B6D4;
-    --color-cyan-600: #0891B2;
-    --color-blue-500: #0EA5E9;
+    --color-gold-500: #C9A84C;
+    --color-gold-600: #A8873B;
+    --color-gold-400: #D4B96A;
   }
 }
 
@@ -71,7 +71,7 @@ body {
 
 /* ── Focus-visible (accessibility) ── */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--color-cyan-500);
+  outline: 2px solid var(--color-gold-500);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -87,7 +87,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .gradient-text {
-  background: linear-gradient(to right, var(--color-cyan-500), var(--color-blue-500));
+  background: linear-gradient(to right, var(--color-gold-500), var(--color-gold-400));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
