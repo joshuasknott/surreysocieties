@@ -28,21 +28,17 @@ const formatEventDate = (date?: string) => {
 
   <!-- Hero -->
   <section class="bg-slate-900 text-white relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32 gradient-dark">
-    <!-- Ambient light blobs -->
-    <div class="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute inset-0 neuro-hero-grid pointer-events-none" aria-hidden="true"></div>
     
     <div class="mx-auto max-w-7xl px-6 relative z-10 w-full">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         <div class="flex flex-col items-start max-w-3xl z-10">
-          <p class="text-gold-500 font-semibold tracking-wide uppercase text-sm mb-4">A student-led society at the University of Surrey.</p>
-          
           <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
             Connecting the human mind with <span class="text-gold-500">technology.</span>
           </h1>
           
           <p class="text-xl sm:text-2xl text-slate-300 leading-relaxed font-light mb-8 max-w-2xl">
-            Demystifying neurotechnology. Explore brain-computer interfaces, artificial intelligence, and responsible innovation.
+            Demystifying neurotechnology through neuroscience foundations, brain-computer interface concepts, signal processing, research literacy, and responsible innovation.
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -54,7 +50,7 @@ const formatEventDate = (date?: string) => {
             </a>
           </div>
 
-          <div class="mt-12 flex items-center gap-4 text-slate-400 text-sm">
+          <div class="mt-12 flex flex-col sm:flex-row sm:items-center gap-4 text-slate-400 text-sm">
             <span class="flex items-center gap-2">
               <svg class="w-5 h-5 text-gold-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
               No experience required
@@ -66,7 +62,7 @@ const formatEventDate = (date?: string) => {
           </div>
         </div>
         
-        <div id="hero-canvas-container" class="relative w-full aspect-square lg:aspect-auto lg:h-[600px] flex items-center justify-center pointer-events-none">
+        <div id="hero-canvas-container" class="relative w-full aspect-square lg:aspect-auto lg:h-[620px] flex items-center justify-center pointer-events-none" aria-label="Animated neural brain signal visual">
           <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-auto" style="touch-action: none;"></canvas>
           <div id="hero-fallback" class="hidden absolute inset-0 items-center justify-center pointer-events-none">
              <!-- Static Beautiful SVG fallback for reduced motion -->
@@ -81,6 +77,11 @@ const formatEventDate = (date?: string) => {
                   </linearGradient>
                 </defs>
              </svg>
+          </div>
+          <div class="neuro-signal-readout" aria-hidden="true">
+            <span>BCI signal</span>
+            <strong>Neural pattern detected</strong>
+            <small>Motor intention to interface command</small>
           </div>
         </div>
       </div>
@@ -107,7 +108,7 @@ const formatEventDate = (date?: string) => {
           <div class="flex-1 lg:pl-12">
             <h3 class="text-3xl font-bold text-slate-900 mb-6">Translate Thought to Action</h3>
             <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-              Brain-Computer Interfaces (BCIs) capture electrical signals from the brain and translate them into commands that computers or devices can understand.
+              Brain-computer interfaces (BCIs) capture electrical signals from the brain and translate them into commands that computers or devices can understand.
             </p>
             <div class="inline-flex items-center gap-2 text-gold-600 font-medium bg-amber-50 px-4 py-2 rounded-lg">
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
@@ -295,6 +296,64 @@ const formatEventDate = (date?: string) => {
     </div>
   </section>
 
+  <style>
+    .neuro-hero-grid {
+      background-image:
+        linear-gradient(rgba(212, 185, 106, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 165, 250, 0.1) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at 66% 45%, black, transparent 72%);
+      opacity: 0.58;
+    }
+
+    .neuro-signal-readout {
+      position: absolute;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      width: min(18rem, calc(100% - 2.5rem));
+      border: 1px solid rgba(212, 185, 106, 0.34);
+      background: rgba(10, 15, 20, 0.74);
+      backdrop-filter: blur(14px);
+      padding: 1rem;
+      color: var(--color-white);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .neuro-signal-readout span,
+    .neuro-signal-readout small {
+      display: block;
+      color: var(--color-gold-400);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .neuro-signal-readout strong {
+      display: block;
+      margin: 0.35rem 0;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .neuro-signal-readout small {
+      color: var(--color-slate-200);
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 640px) {
+      .neuro-signal-readout {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        align-self: end;
+        margin-top: auto;
+      }
+    }
+  </style>
+
 </Layout>
 
 <script>
@@ -400,6 +459,45 @@ const formatEventDate = (date?: string) => {
     const goldSystem = new THREE.Points(highlightGeo, pMaterialGold);
     brainGroup.add(goldSystem);
 
+    // Short-range fibre lines make the brain read as a connected signal network.
+    const connectionPositions: number[] = [];
+    for (let i = 0; i < particleCount; i += 9) {
+      for (let j = i + 9; j < Math.min(particleCount, i + 90); j += 18) {
+        const ax = originalPositions[i * 3];
+        const ay = originalPositions[i * 3 + 1];
+        const az = originalPositions[i * 3 + 2];
+        const bx = originalPositions[j * 3];
+        const by = originalPositions[j * 3 + 1];
+        const bz = originalPositions[j * 3 + 2];
+        const distance = Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2 + (az - bz) ** 2);
+        if (distance > 18 && distance < 44) {
+          connectionPositions.push(ax, ay, az, bx, by, bz);
+        }
+      }
+    }
+
+    const connectionGeo = new THREE.BufferGeometry();
+    connectionGeo.setAttribute('position', new THREE.Float32BufferAttribute(connectionPositions, 3));
+    const connectionMaterial = new THREE.LineBasicMaterial({
+      color: 0x60A5FA,
+      transparent: true,
+      opacity: 0.16,
+      blending: THREE.AdditiveBlending
+    });
+    const connections = new THREE.LineSegments(connectionGeo, connectionMaterial);
+    brainGroup.add(connections);
+
+    const pulseRingGeo = new THREE.TorusGeometry(78, 0.35, 8, 120);
+    const pulseRingMaterial = new THREE.MeshBasicMaterial({
+      color: 0xC9A84C,
+      transparent: true,
+      opacity: 0.18,
+      blending: THREE.AdditiveBlending
+    });
+    const pulseRing = new THREE.Mesh(pulseRingGeo, pulseRingMaterial);
+    pulseRing.rotation.x = Math.PI / 2.4;
+    brainGroup.add(pulseRing);
+
     // Mouse Interaction
     let targetRotationX = 0;
     let targetRotationY = 0;
@@ -445,6 +543,20 @@ const formatEventDate = (date?: string) => {
          }
       }
       posAttribute.needsUpdate = true;
+
+      const goldAttribute = highlightGeo.getAttribute('position');
+      for (let i = 0; i < highlightCount; i++) {
+        goldAttribute.setXYZ(
+          i,
+          posAttribute.getX(i),
+          posAttribute.getY(i),
+          posAttribute.getZ(i)
+        );
+      }
+      goldAttribute.needsUpdate = true;
+
+      pulseRing.rotation.z += 0.004;
+      pulseRing.scale.setScalar(1 + Math.sin(time * 1.8) * 0.035);
 
       renderer.render(scene, camera);
     };
@@ -644,5 +756,3 @@ const formatEventDate = (date?: string) => {
   }
 
 </script>
-
-

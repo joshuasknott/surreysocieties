@@ -36,8 +36,12 @@ const navLinks = [
   htmlClass="motion-safe:scroll-smooth"
   bodyClass="bg-white text-slate-900 font-sans min-h-screen flex flex-col transition-colors duration-300"
 >
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-slate-900 focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 shadow-lg rounded-lg">
+    Skip to content
+  </a>
+
   <!-- Navigation -->
-  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200" aria-label="Main navigation">
     <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3">
         <img
@@ -75,7 +79,9 @@ const navLinks = [
       <button
         id="mobile-menu-btn"
         class="md:hidden text-slate-900 p-2 hover:bg-slate-50 rounded-lg transition-colors"
-        aria-label="Toggle navigation menu"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -105,7 +111,7 @@ const navLinks = [
   </nav>
 
   <!-- Main content -->
-  <main class="flex-1">
+  <main id="main-content" class="flex-1" tabindex="-1">
     <slot />
   </main>
 
@@ -166,6 +172,14 @@ const navLinks = [
     import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
     // No theme logic needed
+    const mobileMenuButton = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton?.addEventListener('click', () => {
+      const isOpen = mobileMenu?.classList.toggle('hidden') === false;
+      mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+      mobileMenuButton.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
 
     gsap.registerPlugin(ScrollTrigger);
 

@@ -42,7 +42,7 @@ const society = getSocietyById('neurotech')!;
             <div class="relative z-10">
                <h3 class="text-2xl font-bold text-gold-400 mb-4">Get Membership</h3>
                <p class="text-slate-300 leading-relaxed mb-6">
-                  Sign up for a free or paid membership via Surrey Students' Union to become an official member of the society.
+                  Sign up via Surrey Students' Union to become an official member of the society. Current pricing is shown on the union checkout page.
                </p>
                <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-gold-400 transition-colors group">
                   Sign up on SU <span class="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
@@ -54,12 +54,12 @@ const society = getSocietyById('neurotech')!;
          <div class="relative">
             <div class="text-8xl font-black text-white/5 absolute -top-8 -left-4 z-0 pointer-events-none">2</div>
             <div class="relative z-10">
-               <h3 class="text-2xl font-bold text-gold-400 mb-4">Join the Discord</h3>
+               <h3 class="text-2xl font-bold text-gold-400 mb-4">Check Events</h3>
                <p class="text-slate-300 leading-relaxed mb-6">
-                  Our Discord is where our community lives. Chat with members, find resources, and get instant updates on events.
+                  Visit the events page for confirmed sessions, workshops, discussions, and society updates as they are published.
                </p>
-               <a href={society.socials.discord || '#'} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-gold-400 transition-colors group">
-                  Join our Discord <span class="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
+               <a href="/events" class="inline-flex items-center font-semibold text-white hover:text-gold-400 transition-colors group">
+                  View events <span class="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
                </a>
             </div>
          </div>
@@ -108,7 +108,7 @@ const society = getSocietyById('neurotech')!;
                  <svg class="w-6 h-6 text-gold-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
               </summary>
               <div class="p-6 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2 bg-slate-50">
-                 Fees are set through Surrey Students' Union and are either free or very low cost to cover basic society running expenses. Check the SU page for current pricing.
+                 Fees are set through Surrey Students' Union. Check the SU page for current pricing.
               </div>
            </details>
 

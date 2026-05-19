@@ -8,13 +8,13 @@
       We explore how the brain functions, mapping thoughts and movements to neural pathways. Our interactive model reveals the complex architecture of human cognition.
     </p>
     
-    <div id="brain-info-panel" class="min-h-[160px] bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm transition-all duration-300">
+    <div id="brain-info-panel" class="min-h-[160px] bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm transition-all duration-300" aria-live="polite">
       <div id="default-info">
         <div class="inline-flex items-center gap-2 text-gold-600 font-medium mb-2">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
           Interactive Exploration
         </div>
-        <p class="text-slate-600">Hover over or tap the different regions of the brain to uncover their specialized functions and role in neurotechnology.</p>
+        <p class="text-slate-600">Hover, tap, or focus the different brain regions to uncover their specialised functions and role in neurotechnology.</p>
       </div>
       
       <div id="region-info" class="hidden h-full flex flex-col justify-center">
@@ -222,10 +222,9 @@
   const descEl = document.getElementById('region-desc');
   const bciEl = document.getElementById('region-bci');
   
-  regions.forEach(region => {
-    region.addEventListener('mouseenter', (e) => {
-      const target = e.target as SVGElement;
-      
+  let selectedRegion: SVGElement | null = null;
+
+  const showRegion = (target: SVGElement) => {
       const title = target.getAttribute('data-title');
       const colorClass = target.getAttribute('data-color');
       const desc = target.getAttribute('data-desc');
@@ -244,13 +243,58 @@
         defaultInfo.classList.add('hidden');
         regionInfo.classList.remove('hidden');
       }
-    });
-    
-    region.addEventListener('mouseleave', () => {
+  };
+
+  const resetRegion = () => {
+      if (selectedRegion) return;
       if (defaultInfo && regionInfo) {
         defaultInfo.classList.remove('hidden');
         regionInfo.classList.add('hidden');
       }
+  };
+
+  regions.forEach(region => {
+    const svgRegion = region as SVGElement;
+    const title = svgRegion.getAttribute('data-title') || 'Brain region';
+    svgRegion.setAttribute('tabindex', '0');
+    svgRegion.setAttribute('role', 'button');
+    svgRegion.setAttribute('aria-label', `Show ${title} information`);
+
+    region.addEventListener('mouseenter', (e) => {
+      showRegion(e.target as SVGElement);
+    });
+
+    region.addEventListener('focus', (e) => {
+      showRegion(e.target as SVGElement);
+    });
+
+    region.addEventListener('click', (e) => {
+      const target = e.target as SVGElement;
+      selectedRegion = selectedRegion === target ? null : target;
+      showRegion(target);
+      regions.forEach((item) => item.removeAttribute('aria-pressed'));
+      if (selectedRegion) selectedRegion.setAttribute('aria-pressed', 'true');
+    });
+
+    region.addEventListener('keydown', (e) => {
+      const keyboardEvent = e as KeyboardEvent;
+      if (keyboardEvent.key === 'Enter' || keyboardEvent.key === ' ') {
+        keyboardEvent.preventDefault();
+        (e.target as SVGElement).dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      }
+      if (keyboardEvent.key === 'Escape') {
+        selectedRegion = null;
+        regions.forEach((item) => item.removeAttribute('aria-pressed'));
+        resetRegion();
+      }
+    });
+
+    region.addEventListener('mouseleave', () => {
+      resetRegion();
+    });
+
+    region.addEventListener('blur', () => {
+      resetRegion();
     });
   });
 
