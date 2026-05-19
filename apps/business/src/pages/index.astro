@@ -7,118 +7,332 @@ import '../styles/global.css';
 const SOCIETY_ID = 'business';
 const client = createConvexClient();
 
-// Keep events for preview, but design spec says to remove grid cards entirely.
-// Spec says: Home: clearer value proposition, careers/enterprise/networking/skills, stronger page flow, fewer boxed grids.
+const events: any[] = (
+  await client.query('events:listPublished', { societySlug: SOCIETY_ID })
+).filter((event: any) => event.status === 'published');
+
+const formatEventDate = (date?: string) => {
+  if (!date) return 'Date TBC';
+  const parsed = new Date(`${date}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return date;
+  return parsed.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
+const pillars = [
+  {
+    number: '01',
+    title: 'Careers',
+    copy: 'Practical support for commercial awareness, applications, interviews, workplace confidence, and choosing a direction after Surrey.',
+  },
+  {
+    number: '02',
+    title: 'Enterprise',
+    copy: 'Structured space to discuss ideas, pitching, founders, early-stage ventures, and how students can think more commercially.',
+  },
+  {
+    number: '03',
+    title: 'Networking',
+    copy: 'A society environment for meeting ambitious peers and making professional conversations feel less intimidating.',
+  },
+  {
+    number: '04',
+    title: 'Skills',
+    copy: 'Sessions around presentation, negotiation, leadership, CVs, and the everyday behaviours that make students more employable.',
+  },
+];
+
+const pathway = [
+  'Understand career routes and commercial language.',
+  'Practise the skills that interviews and team projects test.',
+  'Meet students with similar ambition across different courses.',
+  'Use society events as a repeatable professional development habit.',
+];
 ---
 
 <Layout
   title="Home"
-  description="Surrey Business Society - The premier professional network for ambitious students at the University of Surrey."
+  description="Surrey Business Society - professional development, commercial awareness, enterprise, networking, and skills for University of Surrey students."
 >
 
-  <!-- Section 1: Hero (Asymmetric split) -->
-  <section class="bg-navy-deep text-text-on-dark relative overflow-hidden border-b border-border-dark pt-28 pb-24 sm:pt-40 sm:pb-32">
-    <!-- Subtle dot grid -->
-    <div class="bg-dot-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-    <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
-
-    <div class="mx-auto max-w-6xl px-6 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        <div class="lg:col-span-7 xl:col-span-8">
-          <p class="eyebrow mb-6 reveal" style="color:var(--color-gold)">University of Surrey</p>
-          <h1 class="font-serif text-5xl sm:text-6xl lg:text-[5rem] font-bold tracking-tight leading-[1.05] reveal">
-            Commercial Awareness.<br />
-            <em class="text-gold not-italic">Professional Confidence.</em>
-          </h1>
-          <p class="mt-8 text-base sm:text-lg text-text-on-dark-secondary leading-relaxed max-w-xl border-l border-gold/40 pl-5 reveal">
-            The premier network for ambitious students at the University of Surrey. We bridge the gap between academic study and the corporate world.
-          </p>
-          <div class="mt-12 flex flex-col sm:flex-row gap-4 reveal">
-            <a href="/join" class="btn-primary rounded-none">
-              Become a Member <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-        <div class="hidden lg:flex lg:col-span-5 xl:col-span-4 justify-end items-center reveal opacity-80" aria-hidden="true">
-          <!-- Stark geometric graphic / logo abstraction -->
-          <div class="relative w-64 h-64 border border-gold/20 flex items-center justify-center">
-            <div class="absolute inset-4 border border-gold/40"></div>
-            <div class="absolute inset-8 border border-gold/60"></div>
-            <div class="w-16 h-16 bg-gold/10 backdrop-blur-sm border border-gold flex items-center justify-center">
-               <img src="/logos/sbs-logo.png" alt="" class="w-10 h-10 opacity-90" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2: The Value Proposition (Editorial Ledger) -->
-  <section class="py-24 sm:py-32 px-6 bg-surface">
-    <div class="mx-auto max-w-5xl">
-      <header class="mb-20 reveal">
-        <h2 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">
-          Strategic Pillars
-        </h2>
-        <p class="text-lg text-text-secondary max-w-2xl leading-relaxed">
-          Our society is structured around three core pillars designed to equip you with the tangible skills and connections required in today's competitive landscape.
+  <section class="business-hero" aria-labelledby="business-hero-title">
+    <div class="business-hero__grid" aria-hidden="true"></div>
+    <div class="business-hero__inner">
+      <div class="business-hero__copy reveal">
+        <p class="eyebrow mb-6">University of Surrey</p>
+        <h1 id="business-hero-title" class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05]">
+          Professional confidence for commercially minded students.
+        </h1>
+        <p class="mt-8 text-lg text-text-on-dark-secondary leading-relaxed max-w-2xl border-l border-gold/50 pl-5">
+          Surrey Business Society helps students build career direction, enterprise thinking, useful networks, and practical workplace skills without assuming prior business experience.
         </p>
-      </header>
-
-      <div class="flex flex-col border-t border-border reveal">
-        <!-- 01 -->
-        <div class="flex flex-col md:flex-row gap-6 md:gap-16 py-12 md:py-16 border-b border-border">
-          <div class="shrink-0 md:w-32">
-            <span class="text-5xl md:text-6xl font-bold text-border-dark/20 tracking-tighter block leading-none">01</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-serif text-2xl md:text-3xl font-bold text-text-primary mb-4">Careers & Enterprise</h3>
-            <p class="text-base md:text-lg text-text-secondary leading-loose max-w-3xl">
-              We focus heavily on bridging academia and industry. Through graduate roles, internships insights, and founder-led discussions, we provide clear pathways for students exploring corporate pathways, entrepreneurship, ideation, and early-stage ventures.
-            </p>
-          </div>
-        </div>
-        
-        <!-- 02 -->
-        <div class="flex flex-col md:flex-row gap-6 md:gap-16 py-12 md:py-16 border-b border-border">
-          <div class="shrink-0 md:w-32">
-            <span class="text-5xl md:text-6xl font-bold text-border-dark/20 tracking-tighter block leading-none">02</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-serif text-2xl md:text-3xl font-bold text-text-primary mb-4">Professional Networking</h3>
-            <p class="text-base md:text-lg text-text-secondary leading-loose max-w-3xl">
-              Access an exclusive network of alumni and corporate partners. We facilitate structured and informal environments that build meaningful connections with ambitious students across disciplines and seasoned professionals from varied sectors.
-            </p>
-          </div>
-        </div>
-
-        <!-- 03 -->
-        <div class="flex flex-col md:flex-row gap-6 md:gap-16 py-12 md:py-16 border-b border-border">
-          <div class="shrink-0 md:w-32">
-            <span class="text-5xl md:text-6xl font-bold text-border-dark/20 tracking-tighter block leading-none">03</span>
-          </div>
-          <div class="flex-1">
-            <h3 class="font-serif text-2xl md:text-3xl font-bold text-text-primary mb-4">Skills Development</h3>
-            <p class="text-base md:text-lg text-text-secondary leading-loose max-w-3xl">
-              Knowledge is theory until applied. We run practical workshops covering commercial awareness, effective presentation, negotiation tactics, and rigorous interview preparation, ensuring you possess the practical toolkit to succeed.
-            </p>
-          </div>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a href="/join" class="btn-primary">Become a member <span aria-hidden="true">&rarr;</span></a>
+          <a href="/events" class="btn-ghost">View events <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 3: Call to Action Band -->
-  <section class="bg-navy-deep text-text-on-dark py-24 px-6 relative">
-    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-50" aria-hidden="true"></div>
-    <div class="mx-auto max-w-3xl relative z-10 text-center reveal">
-      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-10 leading-snug">
-        Take the next step in your professional journey.
-      </h2>
-      <a href="/join" class="btn-primary rounded-none">
-        Become a Member <span aria-hidden="true">→</span>
-      </a>
+  <section class="py-24 sm:py-32 px-6 bg-surface" aria-labelledby="business-pillars-title">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+        <div class="lg:col-span-5 reveal">
+          <p class="eyebrow mb-5" style="color:var(--color-gold-dark)">The offer</p>
+          <h2 id="business-pillars-title" class="font-serif text-4xl sm:text-5xl font-bold leading-tight text-text-primary">
+            Four ways the society supports your next step.
+          </h2>
+        </div>
+        <p class="lg:col-span-7 reveal text-lg text-text-secondary leading-loose max-w-3xl">
+          The programme is intentionally practical: understand commercial contexts, practise professional skills, meet people beyond your course, and use events as a structured way to build confidence.
+        </p>
+      </div>
+
+      <div class="business-pillar-list reveal">
+        {pillars.map((pillar) => (
+          <article>
+            <span>{pillar.number}</span>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="business-pathway" aria-labelledby="business-pathway-title">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+        <div class="lg:col-span-4 reveal">
+          <p class="eyebrow mb-5">Member pathway</p>
+          <h2 id="business-pathway-title" class="font-serif text-4xl sm:text-5xl font-bold leading-tight">
+            A clearer professional route.
+          </h2>
+        </div>
+        <ol class="lg:col-span-8 business-pathway__steps reveal">
+          {pathway.map((item, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{item}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 sm:py-32 px-6 bg-surface" aria-labelledby="business-events-title">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 reveal">
+        <div>
+          <p class="eyebrow mb-5" style="color:var(--color-gold-dark)">Programme</p>
+          <h2 id="business-events-title" class="font-serif text-4xl sm:text-5xl font-bold text-text-primary">
+            Events with a practical purpose.
+          </h2>
+        </div>
+        <a href="/events" class="text-sm font-bold uppercase tracking-widest text-gold-dark hover:text-navy-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">
+          View all events
+        </a>
+      </div>
+
+      {events.length > 0 ? (
+        <div class="business-events reveal">
+          {events.slice(0, 3).map((event: any) => (
+            <article>
+              <div>
+                <time>{formatEventDate(event.date)}</time>
+                <span>{event.category || 'Event'}</span>
+              </div>
+              <div>
+                <h3>{event.title}</h3>
+                <p>{event.description || 'Details will be confirmed soon.'}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="business-empty reveal">
+          <h3>Events will appear here once confirmed.</h3>
+          <p>
+            Until the next schedule is published, expect the society to focus on careers, enterprise, professional networking, and practical student skill development.
+          </p>
+          <a href="/join" class="btn-primary">Join for updates <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      )}
     </div>
   </section>
 
 </Layout>
+
+<style>
+  .business-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-navy-deep);
+    color: var(--color-text-on-dark);
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+
+  .business-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201, 168, 76, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 168, 76, 0.1) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(to bottom, black, transparent 82%);
+    pointer-events: none;
+  }
+
+  .business-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 72rem);
+    margin: 0 auto;
+    padding: 8rem 1.5rem 7rem;
+  }
+
+  .business-hero__copy {
+    max-width: 56rem;
+  }
+
+  .business-pillar-list {
+    border-top: 1px solid var(--color-border-dark);
+  }
+
+  .business-pillar-list article {
+    display: grid;
+    grid-template-columns: 7rem minmax(10rem, 0.35fr) minmax(0, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .business-pillar-list span {
+    color: rgba(15, 23, 42, 0.22);
+    font-size: 2.7rem;
+    line-height: 1;
+    font-weight: 800;
+  }
+
+  .business-pillar-list h3 {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .business-pillar-list p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    font-size: 1.02rem;
+  }
+
+  .business-pathway {
+    background: var(--color-navy-deep);
+    color: var(--color-text-on-dark);
+    padding: 6rem 0;
+    border-block: 1px solid var(--color-border-dark);
+  }
+
+  .business-pathway__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(201, 168, 76, 0.32);
+  }
+
+  .business-pathway__steps li {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.22);
+  }
+
+  .business-pathway__steps span {
+    color: var(--color-gold);
+    font-weight: 800;
+  }
+
+  .business-pathway__steps p {
+    margin: 0;
+    color: var(--color-text-on-dark-secondary);
+    line-height: 1.7;
+    font-size: 1.08rem;
+  }
+
+  .business-events {
+    border-top: 1px solid var(--color-border-dark);
+  }
+
+  .business-events article {
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .business-events time,
+  .business-events span {
+    display: block;
+  }
+
+  .business-events time {
+    color: var(--color-text-primary);
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+  }
+
+  .business-events span {
+    color: var(--color-gold-dark);
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .business-events h3,
+  .business-empty h3 {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-primary);
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .business-events p,
+  .business-empty p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+  }
+
+  .business-empty {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-card);
+    padding: 2rem;
+    max-width: 48rem;
+  }
+
+  .business-empty .btn-primary {
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .business-pillar-list article,
+    .business-events article {
+      grid-template-columns: 1fr;
+    }
+
+    .business-hero__inner {
+      padding-top: 6rem;
+    }
+  }
+</style>

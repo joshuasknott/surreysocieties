@@ -36,6 +36,10 @@ const navLinks = [
     'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap',
   ]}
 >
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-surface focus:text-text-primary focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold shadow-lg">
+    Skip to content
+  </a>
+
   <!-- Navigation -->
   <nav class="sticky top-0 z-50 bg-navy-deep border-b border-border-dark" role="navigation" aria-label="Main navigation">
     <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
@@ -80,7 +84,7 @@ const navLinks = [
       <button
         id="mobile-menu-btn"
         class="md:hidden text-text-on-dark p-2 hover:text-gold transition-colors"
-        aria-label="Toggle navigation menu"
+        aria-label="Open navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
@@ -120,7 +124,7 @@ const navLinks = [
   </nav>
 
   <!-- Main content -->
-  <main class="flex-1">
+  <main id="main-content" class="flex-1" tabindex="-1">
     <slot />
   </main>
 
@@ -176,6 +180,7 @@ const navLinks = [
       hamburger?.classList.toggle('hidden', isOpen);
       closeIcon?.classList.toggle('hidden', !isOpen);
       btn.setAttribute('aria-expanded', String(isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
     });
 
     // CSS-driven scroll reveal
