@@ -1,4 +1,4 @@
-﻿---
+---
 export const prerender = true;
 import { getSocietyById } from '@surreysocieties/admin/config';
 import Layout from '../layouts/Layout.astro';
@@ -9,118 +9,237 @@ const society = getSocietyById('neurotech')!;
 
 <Layout title="Join" description="Become a member of Surrey Neurotech Society. No prior experience required.">
 
-  <!-- Header -->
-  <section class="bg-slate-50 py-24 px-6 relative overflow-hidden text-center border-b border-slate-200">
-    <div class="mx-auto max-w-4xl relative z-10">
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-slate-900 mb-6">Become a Member</h1>
-      <p class="text-xl text-slate-600">Join our community and explore the intersection of mind and machine.</p>
+  <!-- Premium Hero -->
+  <section class="bg-slate-900 text-white py-24 sm:py-32 px-6 relative overflow-hidden gradient-dark">
+    <!-- Glowing background elements -->
+    <div class="absolute inset-0 pointer-events-none opacity-30" aria-hidden="true">
+        <div class="absolute top-[-10%] right-[10%] w-[60vw] h-[60vw] bg-gold-500/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] left-[10%] w-[50vw] h-[50vw] bg-blue-500/10 rounded-full blur-[100px]"></div>
     </div>
-  </section>
-
-  <!-- Who Can Join -->
-  <section class="py-24 px-6 bg-white">
-    <div class="mx-auto max-w-4xl text-center">
-       <h2 class="text-4xl font-bold text-slate-900 mb-8">Who can join?</h2>
-       <p class="text-2xl text-slate-600 leading-relaxed font-light mb-12">
-          Anyone. Literally anyone. You <strong class="font-semibold text-gold-600">do not</strong> need prior experience in programming, biology, or engineering. We welcome curious minds from any degree background.
-       </p>
-    </div>
-  </section>
-
-  <!-- The Journey (Steps) -->
-  <section class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
-     <!-- Ambient light blobs -->
-    <div class="absolute top-[50%] right-[-10%] w-[400px] h-[400px] bg-gold-500/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2"></div>
     
-    <div class="mx-auto max-w-5xl relative z-10">
-      <h2 class="text-4xl font-bold mb-16 text-center">How to join</h2>
-      
-      <div class="grid md:grid-cols-3 gap-12">
-         <!-- Step 1 -->
-         <div class="relative">
-            <div class="text-8xl font-black text-white/5 absolute -top-8 -left-4 z-0 pointer-events-none">1</div>
-            <div class="relative z-10">
-               <h3 class="text-2xl font-bold text-gold-400 mb-4">Get Membership</h3>
-               <p class="text-slate-300 leading-relaxed mb-6">
-                  Sign up via Surrey Students' Union to become an official member of the society. Current pricing is shown on the union checkout page.
-               </p>
-               <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-gold-400 transition-colors group">
-                  Sign up on SU <span class="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
-               </a>
-            </div>
-         </div>
-         
-         <!-- Step 2 -->
-         <div class="relative">
-            <div class="text-8xl font-black text-white/5 absolute -top-8 -left-4 z-0 pointer-events-none">2</div>
-            <div class="relative z-10">
-               <h3 class="text-2xl font-bold text-gold-400 mb-4">Check Events</h3>
-               <p class="text-slate-300 leading-relaxed mb-6">
-                  Visit the events page for confirmed sessions, workshops, discussions, and society updates as they are published.
-               </p>
-               <a href="/events" class="inline-flex items-center font-semibold text-white hover:text-gold-400 transition-colors group">
-                  View events <span class="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
-               </a>
-            </div>
-         </div>
+    <div class="mx-auto max-w-5xl relative z-10 text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-sm font-semibold mb-6">
+        Get Involved
+      </span>
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">
+        Become a <span class="text-gold-500">Member</span>
+      </h1>
+      <p class="text-xl text-slate-300 leading-relaxed font-light max-w-2xl mx-auto">
+        Join our community mapping the frontiers of the human mind and technology.
+      </p>
+    </div>
+  </section>
 
-         <!-- Step 3 -->
-         <div class="relative">
-            <div class="text-8xl font-black text-white/5 absolute -top-8 -left-4 z-0 pointer-events-none">3</div>
-            <div class="relative z-10">
-               <h3 class="text-2xl font-bold text-gold-400 mb-4">Follow Us</h3>
-               <p class="text-slate-300 leading-relaxed mb-6">
-                  Follow us on Instagram and LinkedIn to stay up to date with our professional network, photos, and announcements.
-               </p>
-               <div class="flex flex-col gap-3">
-                   <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-gold-400 transition-colors group">
-                      Follow Instagram <span class="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
-                   </a>
-                   <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-white hover:text-gold-400 transition-colors group">
-                      Connect LinkedIn <span class="ml-2 group-hover:translate-x-1 transition-transform">â†’</span>
-                   </a>
-               </div>
+  <!-- BCI Calibration Test Widget / Who Can Join -->
+  <section class="py-24 px-6 bg-slate-50 border-t border-slate-200">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid lg:grid-cols-12 gap-16 items-center">
+        
+        <div class="lg:col-span-6 text-center lg:text-left">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-700 text-sm font-semibold mb-6">
+            Open Invitation
+          </span>
+          <h2 class="text-4xl font-bold text-slate-900 tracking-tight mb-6">Who Can Join?</h2>
+          <p class="text-xl text-slate-600 leading-relaxed font-light mb-8">
+            Anyone. Literally anyone. You <strong class="font-semibold text-gold-600">do not</strong> need prior experience in advanced coding, medicine, or electronics. We build our projects together from the ground up.
+          </p>
+          <p class="text-lg text-slate-600 leading-relaxed font-light mb-8">
+            Whether you want to build hardware prototypes, write python signal pipelines, deliberate neuro-policy, or just hang out with curious students, you have a home here.
+          </p>
+          
+          <!-- BCI Calibration CTA prompt -->
+          <div class="inline-flex items-center gap-3 p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-left">
+            <span class="text-3xl pointer-events-none" aria-hidden="true">💡</span>
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Want to test your connection?</h4>
+              <p class="text-slate-500 text-xs mt-0.5">Use our simulated interface calibration widget to synchronize.</p>
             </div>
-         </div>
+          </div>
+        </div>
+
+        <!-- BCI Calibration Widget Container -->
+        <div class="lg:col-span-6 w-full flex justify-center">
+          <div class="w-full max-w-[460px] bg-slate-900 border border-slate-800 text-white rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden text-left">
+            <!-- Glowing accent header -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_var(--tw-gradient-stops))] from-gold-500/10 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+
+            <div class="flex justify-between items-center mb-6 relative z-10">
+              <span class="font-mono text-[10px] text-gold-400 font-bold uppercase tracking-widest flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-gold-500 rounded-full animate-ping" id="calibration-ping" aria-hidden="true"></span>
+                BCI-Telemetry V4
+              </span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400 font-mono text-[9px]">
+                STATUS: <span id="calibration-status">READY</span>
+              </span>
+            </div>
+
+            <!-- Simulated Electrode Indicators -->
+            <div class="grid grid-cols-3 gap-3 mb-6 relative z-10 text-center">
+              <div class="bg-slate-950 border border-white/5 p-3 rounded-xl">
+                <span class="text-slate-500 font-mono text-[9px] block mb-1">FRONTAL (Fp1)</span>
+                <span class="inline-block w-2 h-2 rounded-full bg-green-500" id="electrode-1" aria-label="Frontal channel status: Active"></span>
+              </div>
+              <div class="bg-slate-950 border border-white/5 p-3 rounded-xl">
+                <span class="text-slate-500 font-mono text-[9px] block mb-1">PARIETAL (P3)</span>
+                <span class="inline-block w-2 h-2 rounded-full bg-green-500" id="electrode-2" aria-label="Parietal channel status: Active"></span>
+              </div>
+              <div class="bg-slate-950 border border-white/5 p-3 rounded-xl">
+                <span class="text-slate-500 font-mono text-[9px] block mb-1">OCCIPITAL (O2)</span>
+                <span class="inline-block w-2 h-2 rounded-full bg-green-500" id="electrode-3" aria-label="Occipital channel status: Active"></span>
+              </div>
+            </div>
+
+            <!-- Output Logger Terminal -->
+            <div class="bg-slate-950 border border-white/5 rounded-xl p-4 min-h-[140px] font-mono text-xs text-slate-300 relative overflow-hidden mb-6 flex flex-col justify-between">
+              <div class="space-y-1.5" id="terminal-logs">
+                <p class="text-slate-500">&gt; System initialized. Signals locked.</p>
+                <p class="text-slate-500">&gt; Electrodes sampling baseline feeds.</p>
+                <p class="text-gold-400">&gt; Awaiting cognitive signal calibration...</p>
+              </div>
+              
+              <!-- Calibration Progress Bar -->
+              <div class="w-full bg-slate-900 h-1 rounded-full overflow-hidden mt-4 hidden" id="calibration-progress-bar">
+                <div class="bg-gold-500 h-full w-0 transition-all duration-300" id="calibration-progress-fill"></div>
+              </div>
+            </div>
+
+            <!-- Calibration Complete Stats Details (hidden initially) -->
+            <div class="hidden bg-gold-500/10 border border-gold-500/20 rounded-xl p-4 mb-6 font-mono text-xs text-gold-400" id="calibration-stats-panel">
+              <h5 class="font-bold uppercase tracking-wider mb-2 text-white">Calibration Complete</h5>
+              <div class="grid grid-cols-2 gap-2">
+                <div>Coherence Gain: +98.4%</div>
+                <div>Sync Latency: 28ms</div>
+                <div>Ref. Band: Alpha-9</div>
+                <div>Telemetry: Stable</div>
+              </div>
+            </div>
+
+            <button class="w-full py-3 bg-gold-500 hover:bg-gold-600 active:scale-98 text-slate-950 font-bold rounded-xl shadow-lg transition-all text-sm uppercase tracking-wider font-sans relative z-10" id="btn-calibrate">
+              Calibrate BCI System
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="py-24 px-6 bg-slate-50">
+  <!-- Sequential Onboarding Steps -->
+  <section class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
+     <!-- Ambient light bubbles -->
+     <div class="absolute top-[50%] right-[-10%] w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" aria-hidden="true"></div>
+     
+     <div class="mx-auto max-w-5xl relative z-10">
+       <div class="text-center mb-20">
+         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-sm font-semibold mb-6">
+           Step-by-step
+         </span>
+         <h2 class="text-4xl font-bold tracking-tight mb-4">How To Join</h2>
+         <p class="text-slate-300 font-light">Get active in our cognitive workspace in three easy steps.</p>
+       </div>
+       
+       <div class="grid md:grid-cols-3 gap-12 relative">
+          <!-- Flow connectors (Synapse Paths) -->
+          <div class="absolute top-[60px] left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-gold-500/40 via-gold-500/10 to-gold-500/40 hidden md:block" aria-hidden="true"></div>
+
+          <!-- Step 1 -->
+          <div class="relative group">
+             <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-white/5 flex items-center justify-center font-mono font-bold text-lg text-gold-400 mb-8 relative z-10 group-hover:border-gold-500/30 transition-all duration-300">
+               01
+             </div>
+             <div class="relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-gold-400 transition-colors">Get Membership</h3>
+                <p class="text-slate-300 leading-relaxed font-light mb-6 text-sm">
+                   Register via the official Surrey Students' Union checkout portal to secure your official membership status. Current pricing is displayed live on their checkout.
+                </p>
+                <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-bold text-xs uppercase tracking-widest text-gold-400 hover:text-white transition-colors group">
+                   SU Checkout Portal <span class="ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+             </div>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="relative group">
+             <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-white/5 flex items-center justify-center font-mono font-bold text-lg text-gold-400 mb-8 relative z-10 group-hover:border-gold-500/30 transition-all duration-300">
+               02
+             </div>
+             <div class="relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-gold-400 transition-colors">Check Schedule</h3>
+                <p class="text-slate-300 leading-relaxed font-light mb-6 text-sm">
+                   Browse upcoming coding tutorials, signal processing bootcamps, ethics forums, and project timelines directly on our events catalog.
+                </p>
+                <a href="/events" class="inline-flex items-center font-bold text-xs uppercase tracking-widest text-gold-400 hover:text-white transition-colors group">
+                   Explore Calendar <span class="ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+             </div>
+          </div>
+ 
+          <!-- Step 3 -->
+          <div class="relative group">
+             <div class="w-16 h-16 rounded-2xl bg-slate-950 border border-white/5 flex items-center justify-center font-mono font-bold text-lg text-gold-400 mb-8 relative z-10 group-hover:border-gold-500/30 transition-all duration-300">
+               03
+             </div>
+             <div class="relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-gold-400 transition-colors">Follow Media</h3>
+                <p class="text-slate-300 leading-relaxed font-light mb-6 text-sm">
+                   Follow our public socials to check photo galleries, hardware showcase reels, student developer logs, and general recruitment updates.
+                </p>
+                <div class="flex flex-col gap-3">
+                    <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-sm text-slate-300 hover:text-gold-400 transition-colors group">
+                       Instagram feed <span class="ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                    <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-sm text-slate-300 hover:text-gold-400 transition-colors group">
+                       LinkedIn profile <span class="ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                </div>
+             </div>
+          </div>
+       </div>
+     </div>
+  </section>
+
+  <!-- Premium FAQ Accordion -->
+  <section class="py-24 px-6 bg-slate-50 border-t border-slate-200">
      <div class="mx-auto max-w-3xl">
-        <h2 class="text-4xl font-bold text-slate-900 mb-12 text-center">Frequently Asked Questions</h2>
+        <div class="text-center mb-16">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-700 text-sm font-semibold mb-6">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+        </div>
         
-        <div class="space-y-6">
-           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg text-slate-900 group-open:bg-slate-50 transition-colors">
+        <div class="space-y-4">
+           
+           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-base sm:text-lg text-slate-900 group-open:bg-slate-55 transition-colors">
                  <span>Do I need a science or tech background?</span>
-                 <svg class="w-6 h-6 text-gold-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                 <svg class="w-5 h-5 text-gold-500 transform group-open:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
               </summary>
-              <div class="p-6 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2 bg-slate-50">
-                 No. Our events are designed to be accessible. We start from first principles and build up. We have members from arts, humanities, business, and sciences.
+              <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed text-sm sm:text-base border-t border-slate-100/50 bg-slate-50/50">
+                 Absolutely not. We starts our workshops from basic, first-principles logic and build up steadily. We welcome students from arts, humanities, business, law, and computer science alike.
               </div>
            </details>
            
-           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg text-slate-900 group-open:bg-slate-50 transition-colors">
-                 <span>Is there a membership fee?</span>
-                 <svg class="w-6 h-6 text-gold-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-base sm:text-lg text-slate-900 group-open:bg-slate-55 transition-colors">
+                 <span>Is there an official membership fee?</span>
+                 <svg class="w-5 h-5 text-gold-500 transform group-open:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
               </summary>
-              <div class="p-6 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2 bg-slate-50">
-                 Fees are set through Surrey Students' Union. Check the SU page for current pricing.
+              <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed text-sm sm:text-base border-t border-slate-100/50 bg-slate-50/50">
+                 Yes, membership dues are configured directly through Surrey Students' Union and are vital to funding biosensor hardware kits, active wet electrodes, and printing project assets. Please verify current rates on the SU checkout portal.
+              </div>
+           </details>
+ 
+           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-base sm:text-lg text-slate-900 group-open:bg-slate-55 transition-colors">
+                 <span>I am a first-year undergraduate. Is this for me?</span>
+                 <svg class="w-5 h-5 text-gold-500 transform group-open:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="px-6 pb-6 pt-2 text-slate-600 leading-relaxed text-sm sm:text-base border-t border-slate-100/50 bg-slate-50/50">
+                 Undoubtedly. We explicitly dedicate resources to mentoring first-year students, assign designated representative seats, and design activities to be supportive, introductory workspaces.
               </div>
            </details>
 
-           <details class="group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-              <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-lg text-slate-900 group-open:bg-slate-50 transition-colors">
-                 <span>I'm a first-year. Is this for me?</span>
-                 <svg class="w-6 h-6 text-gold-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-              </summary>
-              <div class="p-6 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2 bg-slate-50">
-                 Absolutely. We have a First Year Representative on our committee and design events to be highly welcoming to newcomers.
-              </div>
-           </details>
         </div>
      </div>
   </section>
@@ -139,5 +258,105 @@ const society = getSocietyById('neurotech')!;
       });
     });
   });
-</script>
 
+  // --- BCI CALIBRATION INTERACTIVE WIDGET ---
+  const btnCalibrate = document.getElementById('btn-calibrate');
+  const terminalLogs = document.getElementById('terminal-logs');
+  const calibrationStatus = document.getElementById('calibration-status');
+  const calibrationPing = document.getElementById('calibration-ping');
+  const pBar = document.getElementById('calibration-progress-bar');
+  const pFill = document.getElementById('calibration-progress-fill');
+  const statsPanel = document.getElementById('calibration-stats-panel');
+
+  const electrodes = [
+    document.getElementById('electrode-1'),
+    document.getElementById('electrode-2'),
+    document.getElementById('electrode-3')
+  ];
+
+  let isCalibrating = false;
+
+  const logs = [
+    "Sourcing active telemetry electrodes...",
+    "Validating Fp1 Frontal biosensor resistance...",
+    "Isolating biometric signal noise levels...",
+    "Aligning bandpass signal baseline references...",
+    "Calibrating neural algorithm models...",
+    "Telemetry stabilized! System synchronized."
+  ];
+
+  if (btnCalibrate && terminalLogs && calibrationStatus && pBar && pFill && statsPanel) {
+    btnCalibrate.addEventListener('click', () => {
+      if (isCalibrating) return;
+      isCalibrating = true;
+
+      // Reset
+      btnCalibrate.setAttribute('disabled', 'true');
+      btnCalibrate.textContent = "Calibrating Mind...";
+      btnCalibrate.classList.replace('bg-gold-500', 'bg-slate-800');
+      btnCalibrate.classList.replace('text-slate-950', 'text-slate-500');
+      
+      calibrationStatus.textContent = "RUNNING";
+      calibrationStatus.className = "text-gold-400 font-mono text-[9px]";
+      calibrationPing?.classList.replace('bg-gold-500', 'bg-gold-400');
+      
+      statsPanel.classList.add('hidden');
+      pBar.classList.remove('hidden');
+      pFill.style.width = "0%";
+      
+      terminalLogs.innerHTML = `<p class="text-gold-400 font-bold">&gt; Initializing BCI calibration sequence...</p>`;
+
+      let step = 0;
+      const totalSteps = logs.length;
+
+      const runCalibrationStep = () => {
+        if (step < totalSteps) {
+          // Append log
+          const p = document.createElement('p');
+          p.className = "text-slate-300";
+          p.textContent = `> [STEP 0${step + 1}] ${logs[step]}`;
+          terminalLogs.appendChild(p);
+
+          // Animate random electrode flicker
+          electrodes.forEach(el => {
+            if (el) {
+              el.className = Math.random() > 0.5 ? "inline-block w-2 h-2 rounded-full bg-gold-400 animate-pulse" : "inline-block w-2 h-2 rounded-full bg-green-500";
+            }
+          });
+
+          // Update Progress bar
+          const percent = ((step + 1) / totalSteps) * 100;
+          pFill.style.width = `${percent}%`;
+
+          step++;
+          setTimeout(runCalibrationStep, 800);
+        } else {
+          // Done
+          isCalibrating = false;
+          btnCalibrate.removeAttribute('disabled');
+          btnCalibrate.textContent = "System Synchronized";
+          btnCalibrate.classList.replace('bg-slate-800', 'bg-green-500');
+          btnCalibrate.classList.replace('text-slate-500', 'text-slate-950');
+
+          calibrationStatus.textContent = "SYNCHRONIZED";
+          calibrationStatus.className = "text-green-400 font-bold font-mono text-[9px]";
+          calibrationPing?.classList.replace('bg-gold-400', 'bg-green-500');
+          
+          electrodes.forEach(el => {
+            if (el) el.className = "inline-block w-2 h-2 rounded-full bg-green-500";
+          });
+
+          pBar.classList.add('hidden');
+          statsPanel.classList.remove('hidden');
+
+          const finalLog = document.createElement('p');
+          finalLog.className = "text-green-400 font-bold";
+          finalLog.textContent = "> BCI Calibration complete! Ready for connection.";
+          terminalLogs.appendChild(finalLog);
+        }
+      };
+
+      setTimeout(runCalibrationStep, 600);
+    });
+  }
+</script>

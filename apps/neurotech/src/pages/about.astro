@@ -1,4 +1,4 @@
-﻿---
+---
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
@@ -6,92 +6,462 @@ import '../styles/global.css';
 
 <Layout title="About" description="Surrey Neurotech Society exists to demystify neurotechnology. We bring together students from all degrees to explore the human mind.">
 
-  <!-- Hero / Society Story -->
-  <section class="bg-slate-50 py-24 sm:py-32 px-6 relative overflow-hidden flow-section">
-    <!-- Soft abstract flowing background -->
-    <div class="absolute inset-0 pointer-events-none opacity-30">
-        <div class="absolute top-0 right-[10%] w-[60vw] h-[60vw] bg-gold-500/10 rounded-full blur-[100px]"></div>
-        <div class="absolute bottom-[10%] left-[10%] w-[50vw] h-[50vw] bg-blue-500/10 rounded-full blur-[80px]"></div>
+  <!-- Premium Hero -->
+  <section class="bg-slate-900 text-white py-24 sm:py-32 px-6 relative overflow-hidden gradient-dark">
+    <!-- Glowing background patterns -->
+    <div class="absolute inset-0 pointer-events-none opacity-30" aria-hidden="true">
+        <div class="absolute top-[-10%] right-[10%] w-[60vw] h-[60vw] bg-gold-500/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] left-[10%] w-[50vw] h-[50vw] bg-blue-500/10 rounded-full blur-[100px]"></div>
     </div>
     
-    <div class="mx-auto max-w-4xl relative z-10 text-center">
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-8">Demystifying Neurotechnology.</h1>
-      <p class="text-xl sm:text-2xl text-slate-600 leading-relaxed font-light">
-        We believe the intersection of the human mind and technology is too important to be kept behind closed doors. We're a student-led community dedicated to making neuroscience, BCIs, and AI accessible to everyone.
+    <div class="mx-auto max-w-5xl relative z-10 text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-sm font-semibold mb-6">
+        Our Vision & Mission
+      </span>
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8">
+        Demystifying <span class="text-gold-500">Neurotechnology</span>.
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-300 leading-relaxed font-light max-w-3xl mx-auto">
+        We believe the intersection of the human mind and technology is too important to be kept behind closed doors. We're a student-led community dedicated to making neuroscience, BCIs, and cognitive interfaces accessible to everyone.
       </p>
     </div>
   </section>
 
-  <!-- Who We Are -->
-  <section class="py-24 px-6 bg-white border-t border-slate-200">
+  <!-- BCI Pipeline Interactive Section -->
+  <section class="py-24 px-6 bg-white border-t border-slate-200 relative">
     <div class="mx-auto max-w-6xl">
-      <div class="flex flex-col md:flex-row items-center gap-16">
-        <div class="flex-1 text-center md:text-left">
-          <h2 class="text-4xl font-bold text-slate-900 mb-6">Who We Are</h2>
-          <p class="text-lg text-slate-600 leading-relaxed mb-6">
-            We are a vibrant mix of psychology, computer science, biomedical engineering, and arts students. You don't need a medical degree or programming experience to join us.
-          </p>
-          <p class="text-lg text-slate-600 leading-relaxed">
-            What unites us is a shared curiosity about how the brain works and how we can build technologies that interface with it responsibly.
-          </p>
-        </div>
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl font-bold text-slate-900 tracking-tight">The BCI Signal Pipeline</h2>
+        <p class="mt-4 text-lg text-slate-600">
+          How does a Brain-Computer Interface actually work? Interact with the signal pipeline below to trace how thoughts are captured, refined, and converted into action.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-center bg-slate-900 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+        <!-- Glowing ambient lights -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_var(--tw-gradient-stops))] from-gold-500/10 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
         
-        <div class="flex-1 w-full flex justify-center">
-           <div class="grid grid-cols-2 gap-4 w-full max-w-md">
-              <div class="bg-amber-50 rounded-3xl p-8 text-center flex flex-col items-center justify-center aspect-square shadow-sm">
-                 <span class="text-4xl mb-4">ðŸ§ </span>
-                 <span class="font-bold text-slate-900">Psychology & Biosciences</span>
-              </div>
-              <div class="bg-blue-50 rounded-3xl p-8 text-center flex flex-col items-center justify-center aspect-square shadow-sm translate-y-8">
-                 <span class="text-4xl mb-4">ðŸ’»</span>
-                 <span class="font-bold text-slate-900">Computing & Engineering</span>
-              </div>
-              <div class="bg-slate-100 rounded-3xl p-8 text-center flex flex-col items-center justify-center aspect-square shadow-sm col-span-2 mt-4">
-                 <span class="text-3xl mb-2">ðŸ¤</span>
-                 <span class="font-bold text-slate-900">Everyone Else</span>
-                 <span class="text-sm text-slate-500 mt-2">Arts, Humanities, Business, and more.</span>
-              </div>
-           </div>
+        <!-- Pipeline SVG Wrapper -->
+        <div class="lg:col-span-7 relative w-full flex items-center justify-center min-h-[220px]">
+          <svg class="w-full h-full max-w-[550px] overflow-visible" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" id="pipeline-svg">
+            <defs>
+              <filter id="pipeline-glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+              <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#C9A84C" />
+                <stop offset="100%" stop-color="#D4B96A" />
+              </linearGradient>
+            </defs>
+
+            <!-- Flow connection lines -->
+            <g fill="none" stroke-linecap="round" stroke-width="2.5">
+              <!-- Path 1 (Chaotic Signal) -->
+              <path id="flow-path-1" class="stroke-slate-700" d="M 85,100 C 110,80 120,120 145,100" />
+              <!-- Path 2 (Filtered Signal) -->
+              <path id="flow-path-2" class="stroke-slate-700" d="M 205,100 Q 235,80 265,100" />
+              <!-- Path 3 (Decoded Signal) -->
+              <path id="flow-path-3" class="stroke-slate-700" d="M 325,100 L 385,100" stroke-dasharray="4 4" />
+            </g>
+
+            <!-- Animated Signal Pulses -->
+            <g fill="none" stroke-linecap="round" stroke-width="2.5" class="pipeline-pulses pointer-events-none">
+              <!-- JavaScript will animate pulses along paths -->
+            </g>
+
+            <!-- Step 1: EEG Node -->
+            <g class="pipeline-node cursor-pointer group" tabindex="0" role="button" aria-label="Step 1: Signal Acquisition" data-step="1">
+              <circle cx="55" cy="100" r="30" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/80" id="node-circle-1" />
+              <!-- Cap/Head Icon -->
+              <path d="M 45,95 C 45,85 52,80 55,80 C 58,80 65,85 65,95 C 65,105 45,105 45,95 Z" class="fill-none stroke-gold-400 stroke-[1.5]" />
+              <circle cx="55" cy="92" r="2" class="fill-gold-500" />
+              <path d="M 48,110 L 62,110" class="stroke-slate-500 stroke-[1.5]" />
+              <text x="55" y="148" class="fill-slate-400 font-mono text-[9px] font-bold text-center tracking-widest uppercase transition-colors group-hover:fill-gold-400" text-anchor="middle">ACQUIRE</text>
+            </g>
+
+            <!-- Step 2: Filter Node -->
+            <g class="pipeline-node cursor-pointer group" tabindex="0" role="button" aria-label="Step 2: Preprocessing and Filtering" data-step="2">
+              <circle cx="175" cy="100" r="30" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/80" id="node-circle-2" />
+              <!-- Slider/Filter Icon -->
+              <path d="M 165,90 L 185,90 M 165,100 L 185,100 M 165,110 L 185,110" class="stroke-gold-400 stroke-[1.5] fill-none" />
+              <circle cx="170" cy="90" r="2.5" class="fill-gold-500" />
+              <circle cx="180" cy="100" r="2.5" class="fill-gold-500" />
+              <circle cx="173" cy="110" r="2.5" class="fill-gold-500" />
+              <text x="175" y="148" class="fill-slate-400 font-mono text-[9px] font-bold text-center tracking-widest uppercase transition-colors group-hover:fill-gold-400" text-anchor="middle">FILTER</text>
+            </g>
+
+            <!-- Step 3: Decoder Node -->
+            <g class="pipeline-node cursor-pointer group" tabindex="0" role="button" aria-label="Step 3: Feature Extraction and Classification" data-step="3">
+              <circle cx="295" cy="100" r="30" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/80" id="node-circle-3" />
+              <!-- Network Icon -->
+              <circle cx="288" cy="92" r="2.5" class="fill-gold-400" />
+              <circle cx="288" cy="108" r="2.5" class="fill-gold-400" />
+              <circle cx="304" cy="100" r="2.5" class="fill-gold-400" />
+              <line x1="290.5" y1="94" x2="301.5" y2="98" class="stroke-slate-500 stroke-[1]" />
+              <line x1="290.5" y1="106" x2="301.5" y2="102" class="stroke-slate-500 stroke-[1]" />
+              <text x="295" y="148" class="fill-slate-400 font-mono text-[9px] font-bold text-center tracking-widest uppercase transition-colors group-hover:fill-gold-400" text-anchor="middle">DECODE</text>
+            </g>
+
+            <!-- Step 4: Interface Node -->
+            <g class="pipeline-node cursor-pointer group" tabindex="0" role="button" aria-label="Step 4: Device Interface" data-step="4">
+              <circle cx="415" cy="100" r="30" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/80" id="node-circle-4" />
+              <!-- Laptop/Screen Icon -->
+              <rect x="403" y="90" width="24" height="15" rx="2" class="fill-none stroke-gold-400 stroke-[1.5]" />
+              <line x1="399" y1="106" x2="431" y2="106" class="stroke-gold-400 stroke-[1.5]" />
+              <circle cx="415" cy="97" r="1.5" class="fill-gold-500" />
+              <text x="415" y="148" class="fill-slate-400 font-mono text-[9px] font-bold text-center tracking-widest uppercase transition-colors group-hover:fill-gold-400" text-anchor="middle">INTERFACE</text>
+            </g>
+          </svg>
         </div>
+
+        <!-- Detail Readout Panel -->
+        <div class="lg:col-span-5 flex flex-col justify-center">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-md min-h-[220px]" id="pipeline-panel" aria-live="polite">
+            <div id="pipeline-default">
+              <span class="inline-flex items-center gap-1.5 text-gold-400 font-semibold text-xs uppercase tracking-wider mb-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
+                Hover to decode
+              </span>
+              <h3 class="text-2xl font-bold text-white mb-4">Signal Pipeline</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Hover or click the pipeline stages on the left to see how brain signals map to commands. Our projects walk through each phase of this cycle.
+              </p>
+            </div>
+            
+            <div id="pipeline-stage" class="hidden">
+              <span class="text-gold-400 font-mono text-xs uppercase tracking-widest font-bold mb-1 block" id="stage-num">STAGE 01</span>
+              <h3 class="text-2xl font-bold text-white mb-3" id="stage-title">Stage Title</h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-4" id="stage-desc">Stage description goes here.</p>
+              <div class="border-t border-white/10 pt-3 text-xs text-slate-400" id="stage-tech">Technical details.</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Our Vision & Ethics -->
+  <!-- Convergence Multidisciplinary Map -->
+  <section class="py-24 px-6 bg-slate-50 border-t border-slate-200">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex flex-col lg:flex-row items-center gap-16">
+        
+        <div class="flex-1 text-center lg:text-left">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-700 text-sm font-semibold mb-6">
+            A Convergent Space
+          </span>
+          <h2 class="text-4xl font-bold text-slate-900 tracking-tight mb-6">Who We Are</h2>
+          <p class="text-lg text-slate-600 leading-relaxed mb-6 font-light">
+            We are a vibrant community where psychology, computer science, biomedical engineering, and the humanities unite. You do not need a medical degree or advanced coding experience to join.
+          </p>
+          <p class="text-lg text-slate-600 leading-relaxed mb-8 font-light">
+            What unites us is a shared curiosity about the human brain and a drive to develop assistive, human-centred technologies responsibly.
+          </p>
+          
+          <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm text-left transition-all duration-300" id="discipline-readout" aria-live="polite">
+            <h4 class="font-bold text-slate-900 text-lg mb-2" id="discipline-title">Hover over the map disciplines</h4>
+            <p class="text-slate-600 text-sm leading-relaxed" id="discipline-desc">Explore the disciplines to see what each field contributes to the Surrey Neurotech ecosystem.</p>
+          </div>
+        </div>
+
+        <!-- Convergence map SVG -->
+        <div class="flex-1 w-full flex justify-center relative">
+          <div class="w-full max-w-[420px] aspect-square rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl p-6 relative flex items-center justify-center">
+            
+            <!-- Glow core center -->
+            <div class="absolute w-36 h-36 rounded-full bg-gold-500/5 blur-[40px] pointer-events-none" aria-hidden="true"></div>
+
+            <svg class="w-full h-full overflow-visible" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" id="convergence-svg">
+              
+              <!-- Connection Lines -->
+              <g stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="4 6" class="opacity-40 fill-none">
+                <!-- North-South -->
+                <path d="M 200,80 Q 200,200 200,320" />
+                <!-- East-West -->
+                <path d="M 80,200 Q 200,200 320,200" />
+                <!-- Diagonals -->
+                <path d="M 200,200 L 115,115" />
+                <path d="M 200,200 L 285,285" />
+                <path d="M 200,200 L 285,115" />
+                <path d="M 200,200 L 115,285" />
+              </g>
+
+              <!-- Center Core Node -->
+              <g class="transition-transform duration-500 transform-origin-center">
+                <circle cx="200" cy="200" r="38" class="fill-slate-950 stroke-gold-500 stroke-2 drop-shadow-[0_0_12px_rgba(201,168,76,0.3)]" />
+                <text x="200" y="196" class="fill-white font-sans text-[10px] font-bold text-center tracking-wider" text-anchor="middle">SURREY</text>
+                <text x="200" y="210" class="fill-gold-400 font-sans text-[9px] font-bold text-center tracking-wider" text-anchor="middle">NEUROTECH</text>
+              </g>
+
+              <!-- Discipline 1: Psychology (North) -->
+              <g class="discipline-node cursor-pointer group" tabindex="0" role="button" aria-label="Psychology and Biosciences" 
+                 data-title="Psychology & Biosciences"
+                 data-desc="Supplies understanding of brain dynamics, sensory pathways, cognition, and ethical methodologies. Provides the grounding neural theory for BCIs.">
+                <circle cx="200" cy="70" r="28" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/90 group-focus:stroke-gold-500" />
+                <text x="200" y="74" class="fill-gold-400 text-lg pointer-events-none" text-anchor="middle">🧠</text>
+                <text x="200" y="32" class="fill-slate-400 font-sans text-[10px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">Psychology</text>
+              </g>
+
+              <!-- Discipline 2: Computing (East) -->
+              <g class="discipline-node cursor-pointer group" tabindex="0" role="button" aria-label="Computing and Artificial Intelligence"
+                 data-title="Computing & AI"
+                 data-desc="Designs machine learning classifiers, DSP filters, neural networks, and applications to translate processed signals into actual device inputs.">
+                <circle cx="330" cy="200" r="28" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/90 group-focus:stroke-gold-500" />
+                <text x="330" y="205" class="fill-gold-400 text-lg pointer-events-none" text-anchor="middle">💻</text>
+                <text x="330" y="246" class="fill-slate-400 font-sans text-[10px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">Computing</text>
+              </g>
+
+              <!-- Discipline 3: Engineering (South) -->
+              <g class="discipline-node cursor-pointer group" tabindex="0" role="button" aria-label="Biomedical Engineering"
+                 data-title="Biomedical Engineering"
+                 data-desc="Focuses on raw hardware, sensor electrodes, ADC (analog-to-digital converters), shield designs, and signal amplification frameworks.">
+                <circle cx="200" cy="330" r="28" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/90 group-focus:stroke-gold-500" />
+                <text x="200" y="335" class="fill-gold-400 text-lg pointer-events-none" text-anchor="middle">⚡</text>
+                <text x="200" y="374" class="fill-slate-400 font-sans text-[10px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">Engineering</text>
+              </g>
+
+              <!-- Discipline 4: Humanities (West) -->
+              <g class="discipline-node cursor-pointer group" tabindex="0" role="button" aria-label="Ethics and Humanities"
+                 data-title="Humanities & Ethics"
+                 data-desc="Navigates cognitive privacy policy, accessibility compliance, neuro-ethics, human-centered UI/UX design, and public policy advocacy.">
+                <circle cx="70" cy="200" r="28" class="fill-slate-800 stroke-slate-700 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-slate-800/90 group-focus:stroke-gold-500" />
+                <text x="70" y="204" class="fill-gold-400 text-lg pointer-events-none" text-anchor="middle">⚖️</text>
+                <text x="70" y="160" class="fill-slate-400 font-sans text-[10px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">Ethics & Art</text>
+              </g>
+
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Ethics & Core Pillars -->
   <section class="bg-slate-900 text-white py-24 px-6 relative overflow-hidden">
     <!-- Ambient light blobs -->
-    <div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-    <div class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" aria-hidden="true"></div>
 
     <div class="mx-auto max-w-6xl relative z-10">
-      <div class="text-center mb-16">
-         <h2 class="text-4xl font-bold tracking-tight mb-6">Our Vision & Ethics</h2>
-         <p class="text-xl text-slate-300 max-w-2xl mx-auto">Building a responsible future for neurotechnology.</p>
+      <div class="text-center mb-20">
+         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-sm font-semibold mb-6">
+           Our Foundation
+         </span>
+         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6">Our Vision & Ethics</h2>
+         <p class="text-xl text-slate-300 max-w-2xl mx-auto font-light">Building a responsible, transparent future for neural interfaces.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
-        <div class="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md">
-          <div class="w-16 h-16 bg-gold-500/20 text-gold-400 rounded-2xl flex items-center justify-center mb-6">
+        
+        <!-- Pillar 1 -->
+        <div class="bg-slate-950/40 border border-white/5 hover:border-gold-500/20 p-10 rounded-3xl backdrop-blur-md transition-all duration-300 hover:-translate-y-2 group shadow-xl">
+          <div class="w-16 h-16 bg-gold-500/10 text-gold-400 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/20 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-slate-950">
              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
           </div>
-          <h3 class="text-2xl font-bold mb-4">Human-Centred Design</h3>
-          <p class="text-slate-300 leading-relaxed">
-            We focus on how technology can support and enhance human wellbeing. We explore neurotechnology not just for the sake of innovation, but to understand its profound impact on accessibility, mental health, and daily life.
+          <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-gold-400 transition-colors">Human-Centred Design</h3>
+          <p class="text-slate-300 leading-relaxed font-light text-base">
+            We focus strictly on how neural technology can support and enhance human wellbeing. We explore brain interfaces not just for novel technology, but to expand accessibility for locked-in conditions, assist mental health diagnostics, and refine cognitive rehabilitation systems.
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md">
-          <div class="w-16 h-16 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6">
+        <!-- Pillar 2 -->
+        <div class="bg-slate-950/40 border border-white/5 hover:border-gold-500/20 p-10 rounded-3xl backdrop-blur-md transition-all duration-300 hover:-translate-y-2 group shadow-xl">
+          <div class="w-16 h-16 bg-gold-500/10 text-gold-400 rounded-2xl flex items-center justify-center mb-8 border border-gold-500/20 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-slate-950">
              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
           </div>
-          <h3 class="text-2xl font-bold mb-4">Cognitive Privacy</h3>
-          <p class="text-slate-300 leading-relaxed">
-            With the ability to decode brain signals comes immense responsibility. We prioritize discussions around data rights, consent, and the ethical boundaries of reading the human mind. Responsible innovation is our core philosophy.
+          <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-gold-400 transition-colors">Cognitive Privacy</h3>
+          <p class="text-slate-300 leading-relaxed font-light text-base">
+            With the ability to decode brain signals comes an immense, unprecedented responsibility. We place conversations around cognitive privacy, neural data rights, cognitive consent, and consumer guardrails at the center of our development. Responsible innovation is our core philosophy.
           </p>
         </div>
+
       </div>
     </div>
   </section>
 
 </Layout>
 
+<script>
+  const stageData = {
+    "1": {
+      title: "Signal Acquisition",
+      desc: "Capturing synaptic activities via non-invasive EEG electrode nodes. Electrodes measure minuscule microvolt potentials generated by firing neurons inside the cortex.",
+      tech: "Tools: Wet/Dry active electrodes, low-noise amplifiers, Analog-to-Digital converters (ADCs)."
+    },
+    "2": {
+      title: "Preprocessing & Filtering",
+      desc: "Isolating raw signal feeds from environmental and biophysical artifacts like eye blinks or power line hums.",
+      tech: "Methods: Notch filters (50Hz), high-pass frequency cutoff (0.5Hz), Bandpass filters (Alpha/Beta bands)."
+    },
+    "3": {
+      title: "Feature Decoding",
+      desc: "Extracting core features and utilizing machine learning models to classify intention from the frequency signatures.",
+      tech: "Algorithms: Fast Fourier Transforms (FFT), Common Spatial Patterns (CSP), Linear Discriminant Analysis (LDA)."
+    },
+    "4": {
+      title: "Interface Command",
+      desc: "Executing the decoded thought pattern as a digital action, sending controls to custom applications, devices, or robotic systems.",
+      tech: "Outputs: Simulated keyboard binds, virtual directional inputs, motor prosthesis triggers."
+    }
+  };
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- BCI Pipeline Animation & Interaction ---
+  const nodes = document.querySelectorAll('.pipeline-node');
+  const defaultPanel = document.getElementById('pipeline-default');
+  const stagePanel = document.getElementById('pipeline-stage');
+  
+  const stageNum = document.getElementById('stage-num');
+  const stageTitle = document.getElementById('stage-title');
+  const stageDesc = document.getElementById('stage-desc');
+  const stageTech = document.getElementById('stage-tech');
+  
+  const pulseGroup = document.querySelector('.pipeline-pulses');
+
+  let activeIndex = -1;
+
+  const showStage = (stepStr: string) => {
+    const data = stageData[stepStr as keyof typeof stageData];
+    if (!data) return;
+
+    if (stageNum) stageNum.textContent = `STAGE 0${stepStr}`;
+    if (stageTitle) stageTitle.textContent = data.title;
+    if (stageDesc) stageDesc.textContent = data.desc;
+    if (stageTech) stageTech.innerHTML = `<span class="font-bold text-white uppercase tracking-wider">Frameworks:</span> ${data.tech}`;
+
+    if (defaultPanel && stagePanel) {
+      defaultPanel.classList.add('hidden');
+      stagePanel.classList.remove('hidden');
+    }
+
+    // visual node selection effect
+    nodes.forEach(n => {
+      const circle = n.querySelector('circle');
+      if (circle) {
+        if (n.getAttribute('data-step') === stepStr) {
+          circle.classList.replace('stroke-slate-700', 'stroke-gold-500');
+          circle.classList.replace('fill-slate-800', 'fill-gold-500/10');
+          circle.setAttribute('filter', 'url(#pipeline-glow)');
+        } else {
+          circle.classList.replace('stroke-gold-500', 'stroke-slate-700');
+          circle.classList.replace('fill-gold-500/10', 'fill-slate-800');
+          circle.removeAttribute('filter');
+        }
+      }
+    });
+  };
+
+  const resetStage = () => {
+    if (activeIndex !== -1) {
+      showStage(activeIndex.toString());
+      return;
+    }
+    if (defaultPanel && stagePanel) {
+      defaultPanel.classList.remove('hidden');
+      stagePanel.classList.add('hidden');
+    }
+    nodes.forEach(n => {
+      const circle = n.querySelector('circle');
+      if (circle) {
+        circle.classList.replace('stroke-gold-500', 'stroke-slate-700');
+        circle.classList.replace('fill-gold-500/10', 'fill-slate-800');
+        circle.removeAttribute('filter');
+      }
+    });
+  };
+
+  nodes.forEach(node => {
+    const step = node.getAttribute('data-step') || '1';
+
+    node.addEventListener('mouseenter', () => showStage(step));
+    node.addEventListener('focus', () => showStage(step));
+    
+    node.addEventListener('click', () => {
+      activeIndex = parseInt(step);
+      showStage(step);
+    });
+
+    node.addEventListener('mouseleave', resetStage);
+    node.addEventListener('blur', resetStage);
+    
+    node.addEventListener('keydown', (e) => {
+      const ke = e as KeyboardEvent;
+      if (ke.key === 'Enter' || ke.key === ' ') {
+        ke.preventDefault();
+        activeIndex = parseInt(step);
+        showStage(step);
+      }
+    });
+  });
+
+  // Animated connection line pulses
+  if (!prefersReducedMotion && pulseGroup) {
+    const paths = [
+      document.getElementById('flow-path-1') as any,
+      document.getElementById('flow-path-2') as any,
+      document.getElementById('flow-path-3') as any
+    ];
+
+    paths.forEach((path, idx) => {
+      if (!path) return;
+      const length = path.getTotalLength();
+      
+      const pulse = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      pulse.setAttribute("r", "3");
+      pulse.setAttribute("fill", "#C9A84C");
+      pulse.setAttribute("filter", "url(#pipeline-glow)");
+      pulseGroup.appendChild(pulse);
+
+      let progress = idx * 0.33;
+      const speed = 0.005;
+
+      const animatePulse = () => {
+        progress += speed;
+        if (progress > 1) progress = 0;
+        const pt = path.getPointAtLength(progress * length);
+        pulse.setAttribute("cx", pt.x.toString());
+        pulse.setAttribute("cy", pt.y.toString());
+        requestAnimationFrame(animatePulse);
+      };
+      requestAnimationFrame(animatePulse);
+    });
+  }
+
+  // --- Discipline Map Interactions ---
+  const discNodes = document.querySelectorAll('.discipline-node');
+  const discTitle = document.getElementById('discipline-title');
+  const discDesc = document.getElementById('discipline-desc');
+  const discCard = document.getElementById('discipline-readout');
+
+  const showDiscipline = (el: SVGElement) => {
+    const title = el.getAttribute('data-title') || '';
+    const desc = el.getAttribute('data-desc') || '';
+
+    if (discTitle) discTitle.textContent = title;
+    if (discDesc) discDesc.textContent = desc;
+    if (discCard) {
+      discCard.classList.replace('border-slate-200', 'border-gold-300');
+      discCard.classList.add('shadow-md');
+    }
+  };
+
+  const resetDiscipline = () => {
+    if (discTitle) discTitle.textContent = "Hover over the map disciplines";
+    if (discDesc) discDesc.textContent = "Explore the disciplines to see what each field contributes to the Surrey Neurotech ecosystem.";
+    if (discCard) {
+      discCard.classList.replace('border-gold-300', 'border-slate-200');
+      discCard.classList.remove('shadow-md');
+    }
+  };
+
+  discNodes.forEach(node => {
+    const svgEl = node as SVGElement;
+    svgEl.addEventListener('mouseenter', () => showDiscipline(svgEl));
+    svgEl.addEventListener('focus', () => showDiscipline(svgEl));
+    svgEl.addEventListener('mouseleave', resetDiscipline);
+    svgEl.addEventListener('blur', resetDiscipline);
+  });
+</script>
