@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '@surreysocieties/ui/components/BaseLayout';
+import AssistantWidget from '@surreysocieties/ui/components/AssistantWidget';
+import { ASSISTANT_CONFIGS } from '@surreysocieties/ui';
 import { getSocietyById } from '@surreysocieties/admin/config';
 
 interface Props {
@@ -11,6 +13,7 @@ interface Props {
 const { title, description, ogImage } = Astro.props;
 
 const society = getSocietyById('business')!;
+const assistantConfig = ASSISTANT_CONFIGS.business;
 const siteName = society.name;
 const fullTitle = `${title} — ${siteName}`;
 
@@ -167,6 +170,8 @@ const navLinks = [
       </div>
     </div>
   </footer>
+
+  <AssistantWidget config={assistantConfig} endpoint="/api/assistant/chat" />
 
   <script>
     // Mobile menu toggle — no theme logic
