@@ -16,7 +16,7 @@ const { title, description, ogImage } = Astro.props;
 const society = getSocietyById('neurotech')!;
 const assistantConfig = ASSISTANT_CONFIGS.neurotech;
 const siteName = society.name;
-const fullTitle = `${title} â€” ${siteName}`;
+const fullTitle = `${title} — ${siteName}`;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
