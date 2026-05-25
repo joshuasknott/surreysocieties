@@ -1,14 +1,13 @@
 ---
 export const prerender = false;
 import Layout from '../layouts/Layout.astro';
-import { createConvexClient } from '@surreysocieties/admin';
+import { queryPublicConvex } from '@surreysocieties/admin';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'business';
-const client = createConvexClient();
 
 const events: any[] = (
-  await client.query('events:listPublished', { societySlug: SOCIETY_ID })
+  await queryPublicConvex<any[]>('events:listPublished', { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
 
 const formatEventDate = (date?: string) => {
