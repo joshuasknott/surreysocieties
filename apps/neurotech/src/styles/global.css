@@ -1,20 +1,25 @@
 @import "tailwindcss";
 
-/* Surrey Neurotech Society — Clean, Accessible, Flowing */
+/* Surrey Neurotech Society — Clean, Accessible, Flowing
+   Identity: Scientific Journal meets Interactive Museum
+   Palette: Teal/Cyan primary, Slate surfaces */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  /* Brand colours - New Palette */
-  --color-slate-900: #0A0F14; /* Deep Slate / Dark Sections */
+  /* Brand colours — Teal/Cyan identity */
+  --color-slate-900: #0A0F14;
   --color-slate-800: #1E293B;
-  --color-slate-600: #475569; /* Muted Text */
+  --color-slate-600: #475569;
   --color-slate-200: #E2E8F0;
-  --color-slate-50: #F1F5F9; /* Slate-tinted white */
-  --color-white: #FAFAFA; /* Pure soft white */
+  --color-slate-50: #F1F5F9;
+  --color-white: #FAFAFA;
 
-  --color-gold-500: #C9A84C; /* Primary Accent — Logo Gold */
-  --color-gold-600: #A8873B; /* Darker Gold */
-  --color-gold-400: #D4B96A; /* Lighter Gold for dark surfaces */
+  --color-teal-600: #0D9488;
+  --color-teal-500: #14B8A6;
+  --color-teal-400: #2DD4BF;
+  --color-teal-700: #0F766E;
+  --color-teal-50: #F0FDFA;
+  --color-teal-100: #CCFBF1;
 
   /* Semantic surfaces */
   --color-background: var(--color-white);
@@ -28,8 +33,8 @@
   --color-text-on-dark-secondary: var(--color-slate-200);
 
   /* Accents */
-  --color-accent-primary: var(--color-gold-500);
-  --color-accent-secondary: var(--color-gold-400);
+  --color-accent-primary: var(--color-teal-500);
+  --color-accent-secondary: var(--color-teal-400);
 }
 
 @layer base {
@@ -41,9 +46,12 @@
     --color-slate-50: #F1F5F9;
     --color-white: #FAFAFA;
 
-    --color-gold-500: #C9A84C;
-    --color-gold-600: #A8873B;
-    --color-gold-400: #D4B96A;
+    --color-teal-600: #0D9488;
+    --color-teal-500: #14B8A6;
+    --color-teal-400: #2DD4BF;
+    --color-teal-700: #0F766E;
+    --color-teal-50: #F0FDFA;
+    --color-teal-100: #CCFBF1;
   }
 }
 
@@ -71,7 +79,7 @@ body {
 
 /* ── Focus-visible (accessibility) ── */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--color-gold-500);
+  outline: 2px solid var(--color-teal-500);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -87,7 +95,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .gradient-text {
-  background: linear-gradient(to right, var(--color-gold-500), var(--color-gold-400));
+  background: linear-gradient(to right, var(--color-teal-500), var(--color-teal-400));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -102,4 +110,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: all 0.3s ease-in-out;
 }
 
-/* Hero Brain Particle Network - Reduced Motion Fallback Handled in Component */
+/* ── Scroll reveal animation ── */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+}

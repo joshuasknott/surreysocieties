@@ -62,7 +62,6 @@ const pathway = [
     <div class="business-hero__grid" aria-hidden="true"></div>
     <div class="business-hero__inner">
       <div class="business-hero__copy reveal">
-        <p class="eyebrow mb-6">University of Surrey</p>
         <h1 id="business-hero-title" class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05]">
           Professional confidence for commercially minded students.
         </h1>
@@ -203,19 +202,29 @@ const pathway = [
     border-top: 1px solid var(--color-border-dark);
   }
 
+  .business-pillar-list span {
+    color: rgba(15, 23, 42, 0.08);
+    font-size: 3.5rem;
+    line-height: 1;
+    font-weight: 900;
+    transition: color 0.3s ease;
+  }
+
+  .business-pillar-list article:hover span {
+    color: var(--color-gold);
+  }
+
   .business-pillar-list article {
     display: grid;
     grid-template-columns: 7rem minmax(10rem, 0.35fr) minmax(0, 1fr);
     gap: 2rem;
     padding: 2rem 0;
     border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.3s ease;
   }
 
-  .business-pillar-list span {
-    color: rgba(15, 23, 42, 0.22);
-    font-size: 2.7rem;
-    line-height: 1;
-    font-weight: 800;
+  .business-pillar-list article:hover {
+    background-color: rgba(201, 168, 76, 0.03);
   }
 
   .business-pillar-list h3 {

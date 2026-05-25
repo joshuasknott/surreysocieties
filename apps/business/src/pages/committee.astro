@@ -38,7 +38,6 @@ const getInitials = (name?: string, role?: string) => {
     <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
     <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
     <div class="mx-auto max-w-6xl relative z-10 text-center">
-      <p class="eyebrow mb-6 reveal justify-center" style="color:var(--color-gold)">The Committee</p>
       <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight reveal">
         Society Leadership
       </h1>
@@ -64,18 +63,23 @@ const getInitials = (name?: string, role?: string) => {
           <p>
             If you are interested in running for future positions, or if you have governance inquiries in the interim, please reach out to us via our <a href="mailto:ussu.bizsoc@surrey.ac.uk" class="text-gold-dark hover:underline font-semibold">official email</a>.
           </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/join" class="btn-primary">Become a member <span aria-hidden="true">&rarr;</span></a>
+            <a href="https://www.instagram.com/surreybusinesssociety/" target="_blank" rel="noopener noreferrer" class="btn-ghost">Instagram</a>
+            <a href="https://surreyunion.org" target="_blank" rel="noopener noreferrer" class="btn-ghost">Students' Union</a>
+          </div>
         </article>
       ) : (
         <!-- Section 2: The Roster (Populated State) -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16 reveal">
           {committee.map((member) => (
-            <div class="flex flex-col">
+            <div class="flex flex-col group transition-transform duration-300 hover:-translate-y-2">
               {member.imageUrl ? (
-                <div class="w-full aspect-[4/5] bg-surface-alt mb-6">
+                <div class="w-full aspect-[4/5] bg-surface-alt mb-6 overflow-hidden">
                   <img
                     src={member.imageUrl}
                     alt={member.name || member.role}
-                    class="w-full h-full object-cover grayscale mix-blend-multiply"
+                    class="w-full h-full object-cover grayscale mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               ) : (

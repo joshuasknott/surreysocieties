@@ -144,3 +144,48 @@ button:focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
+
+/* ── Editorial heading utility ── */
+.heading-serif {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ── Editorial card with hover lift ── */
+.card-editorial {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-editorial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  border-color: var(--color-gold);
+}
+
+/* ── Section rule (gold accent line) ── */
+.section-rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  border: none;
+  margin: 0;
+}
+
+/* ── Pillar number large treatment ── */
+.pillar-number {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.08);
+  transition: color 0.3s ease;
+}
+
+.pillar-number:hover,
+article:hover .pillar-number {
+  color: var(--color-gold);
+}
+
