@@ -4,7 +4,10 @@ import Layout from '../layouts/Layout.astro';
 import { createConvexClient } from '@surreysocieties/admin';
 import '../styles/global.css';
 
+import { getSocietyById } from '@surreysocieties/admin/config';
+
 const SOCIETY_ID = 'business';
+const society = getSocietyById(SOCIETY_ID)!;
 const client = createConvexClient();
 const committee: any[] = (await client.query('committee:listActive', { societySlug: SOCIETY_ID }))
   .sort((a: any, b: any) =>
@@ -38,7 +41,7 @@ const getInitials = (name?: string, role?: string) => {
     <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
     <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
     <div class="mx-auto max-w-6xl relative z-10 text-center">
-      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight reveal">
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
         Society Leadership
       </h1>
     </div>
@@ -66,7 +69,7 @@ const getInitials = (name?: string, role?: string) => {
           <div class="mt-8 flex flex-wrap gap-4">
             <a href="/join" class="btn-primary">Become a member <span aria-hidden="true">&rarr;</span></a>
             <a href="https://www.instagram.com/surreybusinesssociety/" target="_blank" rel="noopener noreferrer" class="btn-ghost">Instagram</a>
-            <a href="https://surreyunion.org" target="_blank" rel="noopener noreferrer" class="btn-ghost">Students' Union</a>
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="btn-ghost">Students' Union</a>
           </div>
         </article>
       ) : (

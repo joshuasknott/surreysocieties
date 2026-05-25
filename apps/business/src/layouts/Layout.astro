@@ -39,6 +39,10 @@ const navLinks = [
     'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap',
   ]}
 >
+  <script slot="head" is:inline>
+    document.documentElement.classList.add('js-enabled');
+  </script>
+
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-surface focus:text-text-primary focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold shadow-lg">
     Skip to content
   </a>
@@ -86,7 +90,7 @@ const navLinks = [
       <!-- Mobile menu button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden text-text-on-dark p-2 hover:text-gold transition-colors"
+        class="md:hidden text-text-on-dark p-2 hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
         aria-label="Open navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -102,26 +106,28 @@ const navLinks = [
 
     <!-- Mobile nav -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-border-dark bg-navy-deep">
-      <div class="flex flex-col py-2">
+      <div class="flex flex-col py-1">
         {navLinks.map(link => (
           <a
             href={link.href}
             class:list={[
-              'px-6 py-3 text-xs font-semibold tracking-widest uppercase transition-colors',
+              'px-6 py-4 text-xs font-semibold tracking-widest uppercase transition-colors border-b border-border-dark/30',
               currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                ? 'text-gold'
-                : 'text-text-on-dark-secondary hover:text-text-on-dark',
+                ? 'text-gold bg-navy'
+                : 'text-text-on-dark-secondary hover:text-text-on-dark hover:bg-navy-light/10',
             ]}
           >
             {link.label}
           </a>
         ))}
-        <a
-          href="/join"
-          class="px-6 py-3 mt-2 text-xs font-bold tracking-widest uppercase text-navy-deep bg-gold hover:bg-gold-light transition-colors"
-        >
-          Join
-        </a>
+        <div class="px-6 py-4 bg-navy/20">
+          <a
+            href="/join"
+            class="block text-center py-3 text-xs font-bold tracking-widest uppercase text-navy-deep bg-gold hover:bg-gold-light transition-colors"
+          >
+            Join
+          </a>
+        </div>
       </div>
     </div>
   </nav>

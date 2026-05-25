@@ -4,7 +4,10 @@ import Layout from '../layouts/Layout.astro';
 import { createConvexClient } from '@surreysocieties/admin';
 import '../styles/global.css';
 
+import { getSocietyById } from '@surreysocieties/admin/config';
+
 const SOCIETY_ID = 'business';
+const society = getSocietyById(SOCIETY_ID)!;
 const client = createConvexClient();
 const events: any[] = (await client.query('events:listPublished', { societySlug: SOCIETY_ID }))
   .filter((event: any) => event.status === 'published');
@@ -32,7 +35,7 @@ const formatEventDate = (date?: string) => {
     <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
     <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
     <div class="mx-auto max-w-6xl relative z-10">
-      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight reveal">
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
         Programme & Events
       </h1>
     </div>
@@ -101,7 +104,7 @@ const formatEventDate = (date?: string) => {
           <div class="mt-16 pt-12 border-t border-border flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <a href="/join" class="btn-primary">Join for updates <span aria-hidden="true">&rarr;</span></a>
             <p class="text-sm text-text-muted">
-              Follow us on <a href="https://www.instagram.com/surreybusinesssociety/" target="_blank" rel="noopener noreferrer" class="text-gold-dark hover:text-navy-deep font-semibold">Instagram</a> or check the <a href="https://surreyunion.org" target="_blank" rel="noopener noreferrer" class="text-gold-dark hover:text-navy-deep font-semibold">Students' Union</a> for the latest.
+              Follow us on <a href="https://www.instagram.com/surreybusinesssociety/" target="_blank" rel="noopener noreferrer" class="text-gold-dark hover:text-navy-deep font-semibold">Instagram</a> or check the <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="text-gold-dark hover:text-navy-deep font-semibold">Students' Union</a> for the latest.
             </p>
           </div>
         </div>

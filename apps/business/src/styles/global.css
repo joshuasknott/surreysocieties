@@ -80,14 +80,18 @@ body {
   flex-shrink: 0;
 }
 
-/* ── Fade-in on scroll (CSS-only, reduced-motion safe) ── */
+/* ── Snappy, readable scroll reveal (falls back to visible) ── */
+.reveal {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .reveal {
+  :root.js-enabled .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    transform: translateY(8px);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .reveal.visible {
+  :root.js-enabled .reveal.visible {
     opacity: 1;
     transform: none;
   }
@@ -105,10 +109,14 @@ body {
   font-size: 0.8125rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   text-decoration: none;
+  border: 1px solid var(--color-gold);
 }
-.btn-primary:hover { background-color: var(--color-gold-light); }
+.btn-primary:hover {
+  background-color: var(--color-navy-deep);
+  color: var(--color-gold);
+}
 
 /* ── CTA ghost ── */
 .btn-ghost {
@@ -122,10 +130,14 @@ body {
   font-size: 0.8125rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
   text-decoration: none;
 }
-.btn-ghost:hover { border-color: var(--color-gold); background-color: rgba(201,168,76,0.08); }
+.btn-ghost:hover {
+  border-color: var(--color-gold);
+  background-color: var(--color-gold);
+  color: var(--color-navy-deep);
+}
 
 /* ── Focus-visible (accessibility) ── */
 .btn-primary:focus-visible,
@@ -188,4 +200,156 @@ button:focus-visible {
 article:hover .pillar-number {
   color: var(--color-gold);
 }
+
+/* ── Assistant Widget Custom Restrained Integration ── */
+.society-assistant {
+  --assistant-accent: var(--color-gold) !important;
+  --assistant-accent-text: var(--color-navy-deep) !important;
+  --assistant-surface: var(--color-surface-card) !important;
+  --assistant-text: var(--color-text-primary) !important;
+  --assistant-muted: var(--color-text-secondary) !important;
+  --assistant-border: var(--color-border) !important;
+}
+
+.society-assistant .assistant-toggle {
+  border-radius: 0 !important;
+  background: var(--color-navy-deep) !important;
+  color: var(--color-gold) !important;
+  border: 1px solid var(--color-gold) !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.18) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.society-assistant .assistant-toggle:hover {
+  background: var(--color-gold) !important;
+  color: var(--color-navy-deep) !important;
+  transform: translateY(-2px) !important;
+}
+
+.society-assistant .assistant-panel {
+  border-radius: 0 !important;
+  border: 1px solid var(--color-gold) !important;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15) !important;
+}
+
+.society-assistant .assistant-header {
+  border-radius: 0 !important;
+  background: var(--color-navy-deep) !important;
+  border-bottom: 1px solid var(--color-gold) !important;
+  color: var(--color-text-on-dark) !important;
+  padding: 1.25rem 1rem !important;
+}
+
+.society-assistant .assistant-header h2 {
+  color: var(--color-text-on-dark) !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+}
+
+.society-assistant .assistant-eyebrow {
+  color: var(--color-gold) !important;
+  letter-spacing: 0.12em !important;
+  font-size: 0.7rem !important;
+}
+
+.society-assistant .assistant-reset,
+.society-assistant .assistant-close {
+  border-radius: 0 !important;
+  border: 1px solid var(--color-border-dark) !important;
+  background: var(--color-navy) !important;
+  color: var(--color-text-on-dark) !important;
+  transition: all 0.2s ease !important;
+}
+
+.society-assistant .assistant-reset:hover,
+.society-assistant .assistant-close:hover {
+  background: var(--color-gold) !important;
+  color: var(--color-navy-deep) !important;
+  border-color: var(--color-gold) !important;
+}
+
+.society-assistant .assistant-intro {
+  border-radius: 0 !important;
+  border: 1px solid var(--color-border) !important;
+  background: var(--color-surface-alt) !important;
+  padding: 1rem !important;
+}
+
+.society-assistant .assistant-intro p {
+  color: var(--color-text-secondary) !important;
+  font-size: 0.85rem !important;
+  line-height: 1.5 !important;
+}
+
+.society-assistant .assistant-starter {
+  border-radius: 0 !important;
+  border: 1px solid var(--color-border) !important;
+  background: var(--color-surface) !important;
+  color: var(--color-text-primary) !important;
+  font-size: 0.76rem !important;
+  transition: all 0.2s ease !important;
+  padding: 0.5rem 0.85rem !important;
+}
+
+.society-assistant .assistant-starter:hover {
+  border-color: var(--color-gold) !important;
+  background: rgba(201, 168, 76, 0.04) !important;
+  color: var(--color-gold-dark) !important;
+}
+
+.society-assistant .assistant-message {
+  border-radius: 0 !important;
+  font-size: 0.875rem !important;
+  padding: 0.85rem 1rem !important;
+}
+
+.society-assistant .assistant-message.user {
+  background: var(--color-navy-deep) !important;
+  color: var(--color-text-on-dark) !important;
+  border: 1px solid var(--color-border-dark) !important;
+}
+
+.society-assistant .assistant-message.assistant {
+  background: var(--color-surface-card) !important;
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+.society-assistant .assistant-form {
+  background: var(--color-surface-alt) !important;
+  border-top: 1px solid var(--color-border) !important;
+  padding: 1rem !important;
+}
+
+.society-assistant .assistant-input {
+  border-radius: 0 !important;
+  border: 1px solid var(--color-border) !important;
+  background: var(--color-surface-card) !important;
+  color: var(--color-text-primary) !important;
+  font-size: 0.875rem !important;
+}
+
+.society-assistant .assistant-input:focus {
+  border-color: var(--color-gold) !important;
+  outline: none !important;
+}
+
+.society-assistant .assistant-send {
+  border-radius: 0 !important;
+  background: var(--color-navy-deep) !important;
+  color: var(--color-gold) !important;
+  border: 1px solid var(--color-gold) !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.2s ease !important;
+  padding: 0 1.25rem !important;
+}
+
+.society-assistant .assistant-send:hover {
+  background: var(--color-gold) !important;
+  color: var(--color-navy-deep) !important;
+}
+
 

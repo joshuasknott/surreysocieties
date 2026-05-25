@@ -18,7 +18,7 @@ const society = getSocietyById('business')!;
     <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
     
     <div class="mx-auto max-w-6xl relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-      <div class="reveal">
+      <div class="flex-1">
         <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight mb-8">
           Become a Member
         </h1>
@@ -32,7 +32,7 @@ const society = getSocietyById('business')!;
             rel="noopener noreferrer"
             class="btn-primary rounded-none"
           >
-            Join via Students' Union <span aria-hidden="true">→</span>
+            Join via Students' Union <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
@@ -72,19 +72,19 @@ const society = getSocietyById('business')!;
           <div class="flex flex-col gap-6">
             <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-6">
               <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">Instagram</span>
-              <span class="text-gold" aria-hidden="true">→</span>
+              <span class="text-gold" aria-hidden="true">&rarr;</span>
             </a>
             <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-6">
               <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">LinkedIn</span>
-              <span class="text-gold" aria-hidden="true">→</span>
+              <span class="text-gold" aria-hidden="true">&rarr;</span>
             </a>
             <a href={`mailto:${society.contactEmail}`} class="group flex items-center justify-between border-b border-border pb-6">
               <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">Email</span>
-              <span class="text-gold" aria-hidden="true">→</span>
+              <span class="text-gold" aria-hidden="true">&rarr;</span>
             </a>
             <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-6">
               <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">Students' Union</span>
-              <span class="text-gold" aria-hidden="true">→</span>
+              <span class="text-gold" aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </div>
