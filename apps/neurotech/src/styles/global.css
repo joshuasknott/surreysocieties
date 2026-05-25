@@ -1,63 +1,70 @@
 @import "tailwindcss";
 
-/* Surrey Neurotech Society — Clean, Accessible, Flowing
-   Identity: Scientific Journal meets Interactive Museum
-   Palette: Teal/Cyan primary, Slate surfaces */
+/* Surrey Neurotech Society — Deep Navy & Gold
+   Identity: Premium Scientific/Neural Interface
+   Palette: Deep Navy foundation, Brushed Gold accents, controlled Cyan/Blue signal pulses */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  /* Brand colours — Teal/Cyan identity */
-  --color-slate-900: #0A0F14;
-  --color-slate-800: #1E293B;
-  --color-slate-600: #475569;
-  --color-slate-200: #E2E8F0;
-  --color-slate-50: #F1F5F9;
-  --color-white: #FAFAFA;
-
-  --color-teal-600: #0D9488;
-  --color-teal-500: #14B8A6;
-  --color-teal-400: #2DD4BF;
-  --color-teal-700: #0F766E;
-  --color-teal-50: #F0FDFA;
-  --color-teal-100: #CCFBF1;
+  /* Brand colours — Deep Navy & Gold foundation */
+  --color-navy-950: #030712;
+  --color-navy-900: #070e20;
+  --color-navy-800: #0d1b3e;
+  --color-navy-700: #14285c;
+  --color-navy-600: #1a3476;
+  
+  --color-gold-500: #d4af37;
+  --color-gold-600: #b8860b;
+  --color-gold-400: #ebd382;
+  --color-gold-300: #f3e5ab;
+  --color-gold-200: #f7eed0;
+  --color-gold-100: #fbf6e8;
+  
+  --color-cyan-500: #06b6d4;
+  --color-cyan-400: #22d3ee;
+  --color-blue-500: #3b82f6;
 
   /* Semantic surfaces */
-  --color-background: var(--color-white);
-  --color-surface: var(--color-slate-50);
-  --color-surface-dark: var(--color-slate-900);
+  --color-background: var(--color-navy-950);
+  --color-surface: var(--color-navy-900);
+  --color-surface-dark: var(--color-navy-950);
   
   /* Text */
-  --color-text-primary: var(--color-slate-900);
-  --color-text-secondary: var(--color-slate-600);
-  --color-text-on-dark: var(--color-white);
-  --color-text-on-dark-secondary: var(--color-slate-200);
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #94A3B8;
+  --color-text-on-dark: #FAFAFA;
+  --color-text-on-dark-secondary: #94A3B8;
 
   /* Accents */
-  --color-accent-primary: var(--color-teal-500);
-  --color-accent-secondary: var(--color-teal-400);
+  --color-accent-primary: var(--color-gold-500);
+  --color-accent-secondary: var(--color-cyan-500);
 }
 
 @layer base {
   :root {
-    --color-slate-900: #0A0F14;
-    --color-slate-800: #1E293B;
-    --color-slate-600: #475569;
-    --color-slate-200: #E2E8F0;
-    --color-slate-50: #F1F5F9;
-    --color-white: #FAFAFA;
-
-    --color-teal-600: #0D9488;
-    --color-teal-500: #14B8A6;
-    --color-teal-400: #2DD4BF;
-    --color-teal-700: #0F766E;
-    --color-teal-50: #F0FDFA;
-    --color-teal-100: #CCFBF1;
+    --color-navy-950: #030712;
+    --color-navy-900: #070e20;
+    --color-navy-800: #0d1b3e;
+    --color-navy-700: #14285c;
+    --color-navy-600: #1a3476;
+    
+    --color-gold-500: #d4af37;
+    --color-gold-600: #b8860b;
+    --color-gold-400: #ebd382;
+    --color-gold-300: #f3e5ab;
+    --color-gold-200: #f7eed0;
+    --color-gold-100: #fbf6e8;
+    
+    --color-cyan-500: #06b6d4;
+    --color-cyan-400: #22d3ee;
+    --color-blue-500: #3b82f6;
   }
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background-color: var(--color-navy-950);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -72,14 +79,14 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-white);
-  color: var(--color-slate-900);
+  background-color: var(--color-navy-950);
+  color: #F1F5F9;
   line-height: 1.6;
 }
 
 /* ── Focus-visible (accessibility) ── */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--color-teal-500);
+  outline: 2px solid var(--color-gold-500);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -87,15 +94,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* ── Utility Classes ── */
 
 .gradient-bg {
-  background: linear-gradient(135deg, var(--color-white), var(--color-slate-50));
+  background: linear-gradient(135deg, var(--color-navy-950), var(--color-navy-900));
 }
 
 .gradient-dark {
-  background: linear-gradient(135deg, var(--color-slate-900), var(--color-slate-800));
+  background: linear-gradient(135deg, var(--color-navy-900), var(--color-navy-800));
 }
 
-.gradient-text {
-  background: linear-gradient(to right, var(--color-teal-500), var(--color-teal-400));
+.gradient-text-gold {
+  background: linear-gradient(135deg, var(--color-gold-200), var(--color-gold-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-text-signal {
+  background: linear-gradient(135deg, var(--color-cyan-400), var(--color-blue-500));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -108,6 +122,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .smooth-transition {
   transition: all 0.3s ease-in-out;
+}
+
+/* Neural Wave grid line animations */
+.signal-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
 }
 
 /* ── Scroll reveal animation ── */

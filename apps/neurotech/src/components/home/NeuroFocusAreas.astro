@@ -1,11 +1,11 @@
 ---
 ---
 
-<section id="explore-neuro" class="bg-[#fafafa] text-slate-900 py-24 relative z-10">
+<section id="explore-neuro" class="bg-navy-950 text-slate-100 py-24 relative z-10 border-t border-navy-800">
   <div class="mx-auto max-w-6xl px-6">
     <div class="mb-16">
-      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 text-gradient">Our Focus Areas</h2>
-      <p class="text-lg text-slate-600 max-w-2xl">
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-gold-100 to-gold-500 bg-clip-text text-transparent">Our Focus Areas</h2>
+      <p class="text-lg text-slate-400 max-w-2xl font-light">
         We bridge the gap between the human mind and technology through neuroscience foundations, brain-computer interfaces, advanced signal analysis, and human-first ethics.
       </p>
     </div>
@@ -13,7 +13,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
       <!-- CARD 1: Understand the Brain (Span 2) -->
-      <article class="bento-card md:col-span-2 lg:col-span-2 flex flex-col md:flex-row gap-8 group ml-card-wrapper" style="--card-brand-color: var(--color-teal-500);">
+      <article class="bento-card md:col-span-2 lg:col-span-2 flex flex-col md:flex-row gap-8 group ml-card-wrapper" style="--card-brand-color: var(--color-gold-500);">
         <!-- Cybernetic Corner Brackets -->
         <div class="corner-tick top-left"></div>
         <div class="corner-tick top-right"></div>
@@ -23,46 +23,46 @@
         <div class="bento-glow"></div>
         
         <div class="bento-content md:w-1/2 flex flex-col justify-center min-h-[220px]">
-          <h3 class="text-2xl sm:text-3xl font-bold mb-4 tracking-tight text-slate-900">Understand the Brain</h3>
-          <p class="text-slate-600 text-base leading-relaxed mb-6">
+          <h3 class="text-2xl sm:text-3xl font-bold mb-4 tracking-tight text-white group-hover:text-gold-300 transition-colors">Understand the Brain</h3>
+          <p class="text-slate-400 text-base leading-relaxed mb-6 font-light">
             We map voluntary thoughts and cognitive pathways. Learn how the cortex functions and how brain waves form the basis of all mental-digital connections.
           </p>
           
           <!-- Lobe Info Panel -->
-          <div id="bento-brain-info" class="bg-slate-50 border border-slate-200/60 rounded-xl p-4 min-h-[120px] flex flex-col justify-center transition-all duration-300">
+          <div id="bento-brain-info" class="bg-navy-950/60 border border-navy-800 rounded-xl p-4 min-h-[120px] flex flex-col justify-center transition-all duration-300">
             <div id="bento-brain-default">
-              <div class="inline-flex items-center gap-1.5 text-teal-600 font-semibold text-xs tracking-wider uppercase mb-1">
+              <div class="inline-flex items-center gap-1.5 text-gold-500 font-semibold text-xs tracking-wider uppercase mb-1">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                 Interactive Lobe Map
               </div>
-              <p class="text-xs text-slate-500 leading-relaxed">
+              <p class="text-xs text-slate-400 leading-relaxed font-light">
                 Hover or tap the brain regions on the diagram to explore their functions and neurotech applications.
               </p>
             </div>
             <div id="bento-brain-active" class="hidden">
-              <h4 id="bento-lobe-title" class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
+              <h4 id="bento-lobe-title" class="text-sm font-bold text-white mb-1 flex items-center gap-2">
                 <span id="bento-lobe-indicator" class="w-2.5 h-2.5 rounded-full"></span>
                 <span>Lobe Name</span>
               </h4>
-              <p id="bento-lobe-desc" class="text-xs text-slate-500 leading-relaxed mb-2"></p>
-              <p id="bento-lobe-app" class="text-[11px] text-teal-700 font-medium border-t border-slate-200/50 pt-2"></p>
+              <p id="bento-lobe-desc" class="text-xs text-slate-400 leading-relaxed mb-2 font-light"></p>
+              <p id="bento-lobe-app" class="text-[11px] text-cyan-400 font-medium border-t border-navy-800 pt-2"></p>
             </div>
           </div>
         </div>
         
-        <div class="bento-visual md:w-1/2 min-h-[260px] md:min-h-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-slate-50/50">
+        <div class="bento-visual md:w-1/2 min-h-[260px] md:min-h-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-navy-950/30">
           <div class="generative-grid"></div>
           <div class="scan-sweep"></div>
 
           <div class="visual-brain w-full h-full relative flex items-center justify-center p-4">
             <svg class="brain-svg w-full h-full max-w-[280px] max-h-[240px]" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="b-frontal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14B8A6" /><stop offset="100%" stop-color="#0F766E" /></linearGradient>
-                <linearGradient id="b-parietal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3B82F6" /><stop offset="100%" stop-color="#1D4ED8" /></linearGradient>
-                <linearGradient id="b-occipital" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8B5CF6" /><stop offset="100%" stop-color="#6D28D9" /></linearGradient>
-                <linearGradient id="b-temporal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10B981" /><stop offset="100%" stop-color="#047857" /></linearGradient>
-                <linearGradient id="b-cerebellum" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F43F5E" /><stop offset="100%" stop-color="#BE123C" /></linearGradient>
-                <linearGradient id="b-stem" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#64748B" /><stop offset="100%" stop-color="#334155" /></linearGradient>
+                <linearGradient id="b-frontal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ebd382" /><stop offset="100%" stop-color="#d4af37" /></linearGradient>
+                <linearGradient id="b-parietal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f3e5ab" /><stop offset="100%" stop-color="#b8860b" /></linearGradient>
+                <linearGradient id="b-occipital" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ebd382" /><stop offset="100%" stop-color="#c9a84c" /></linearGradient>
+                <linearGradient id="b-temporal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f7eed0" /><stop offset="100%" stop-color="#d4af37" /></linearGradient>
+                <linearGradient id="b-cerebellum" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ebd382" /><stop offset="100%" stop-color="#b8860b" /></linearGradient>
+                <linearGradient id="b-stem" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14285c" /><stop offset="100%" stop-color="#0d1b3e" /></linearGradient>
                 
                 <filter id="bento-glow" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="8" result="blur" />
@@ -71,7 +71,7 @@
               </defs>
 
               <!-- Connection Lines/Paths -->
-              <g class="neural-pathways opacity-25" stroke="#94A3B8" stroke-width="1.2" fill="none" stroke-dasharray="3 4">
+              <g class="neural-pathways opacity-25" stroke="#475569" stroke-width="1.2" fill="none" stroke-dasharray="3 4">
                 <path d="M 120 180 Q 180 150 250 160" />
                 <path d="M 100 120 Q 150 80 220 90" />
                 <path d="M 220 90 Q 280 120 320 180" />
@@ -81,61 +81,61 @@
               <!-- Interactive Brain Lobes -->
               <g class="brain-lobes-group">
                 <!-- Brain Stem -->
-                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-white stroke-[1.5] hover:stroke-teal-400"
+                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-navy-950 stroke-[1.5] hover:stroke-gold-400"
                   d="M 230 220 Q 235 260 220 290 L 250 290 Q 260 260 255 220 Z"
                   fill="url(#b-stem)"
                   data-title="Brainstem"
-                  data-color="#64748B"
+                  data-color="#14285c"
                   data-desc="Monitors autonomic tasks such as pulse rate and respiration cycles."
                   data-app="Targeted for understanding foundational neural states and reflex actions."
                 />
 
                 <!-- Cerebellum -->
-                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-white stroke-[1.5] hover:stroke-teal-400"
+                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-navy-950 stroke-[1.5] hover:stroke-gold-400"
                   d="M 250 190 Q 320 180 330 230 Q 330 260 280 260 Q 240 260 245 220 Z"
                   fill="url(#b-cerebellum)"
                   data-title="Cerebellum"
-                  data-color="#F43F5E"
+                  data-color="#ebd382"
                   data-desc="Refines physical coordination, balance, and precision motor timing."
                   data-app="Crucial for refining motor prosthetic smooth movements in BCI decoding."
                 />
 
                 <!-- Occipital Lobe -->
-                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-white stroke-[1.5] hover:stroke-teal-400"
+                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-navy-950 stroke-[1.5] hover:stroke-gold-400"
                   d="M 270 90 Q 340 100 350 160 Q 355 190 320 190 Q 280 180 270 140 Z"
                   fill="url(#b-occipital)"
                   data-title="Occipital Lobe"
-                  data-color="#8B5CF6"
-                  data-desc="The visual brain. Interprets shape, color, motion, and visual recognition."
+                  data-color="#ebd382"
+                  data-desc="The visual brain. Interprets shape, colour, motion, and visual recognition."
                   data-app="Targeted by visual cortical prosthetics aiming to restore basic sight."
                 />
 
                 <!-- Temporal Lobe -->
-                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-white stroke-[1.5] hover:stroke-teal-400"
+                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-navy-950 stroke-[1.5] hover:stroke-gold-400"
                   d="M 160 160 Q 180 140 230 140 Q 280 150 270 190 Q 240 220 190 200 Q 150 180 160 160 Z"
                   fill="url(#b-temporal)"
                   data-title="Temporal Lobe"
-                  data-color="#10B981"
+                  data-color="#f7eed0"
                   data-desc="Responsible for hearing, memory formations, and speech recognition."
                   data-app="Explored by memory prosthetic research and auditory neural interfaces."
                 />
 
                 <!-- Parietal Lobe -->
-                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-white stroke-[1.5] hover:stroke-teal-400"
+                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-navy-950 stroke-[1.5] hover:stroke-gold-400"
                   d="M 180 40 Q 260 30 300 90 Q 260 130 220 140 Q 170 100 180 40 Z"
                   fill="url(#b-parietal)"
                   data-title="Parietal Lobe"
-                  data-color="#3B82F6"
+                  data-color="#f3e5ab"
                   data-desc="Governs tactile senses (touch, pressure, temperature) and spatial navigation."
                   data-app="Essential for providing sensory feedback, allowing users to 'feel' BCI devices."
                 />
 
                 <!-- Frontal Lobe -->
-                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-white stroke-[1.5] hover:stroke-teal-400"
+                <path class="bento-lobe-path transition-all duration-300 cursor-pointer stroke-navy-950 stroke-[1.5] hover:stroke-gold-400"
                   d="M 180 40 Q 140 50 100 100 Q 80 150 120 180 Q 150 160 160 160 Q 180 140 220 140 Q 170 100 180 40 Z"
                   fill="url(#b-frontal)"
                   data-title="Frontal Lobe"
-                  data-color="#14B8A6"
+                  data-color="#ebd382"
                   data-desc="The seat of decision making, reasoning, and voluntary motion. Contains the primary Motor Cortex."
                   data-app="The primary driver for motor BCIs, enabling users to move cursors by thinking."
                 />
@@ -158,7 +158,7 @@
       </article>
 
       <!-- CARD 2: Translate Thought to Action (Span 1) -->
-      <article class="bento-card col-span-1 flex flex-col gap-6 group" style="--card-brand-color: var(--color-teal-500);">
+      <article class="bento-card col-span-1 flex flex-col gap-6 group" style="--card-brand-color: var(--color-gold-500);">
         <div class="corner-tick top-left"></div>
         <div class="corner-tick top-right"></div>
         <div class="corner-tick bottom-left"></div>
@@ -166,31 +166,31 @@
 
         <div class="bento-glow"></div>
         
-        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-slate-50/50">
+        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-navy-950/30">
           <div class="generative-grid"></div>
           <div class="scan-sweep"></div>
           
           <div class="bci-simulation w-full h-full relative flex items-center justify-center p-4">
             <svg class="bci-svg w-full h-full max-w-[200px]" viewBox="0 0 200 140" fill="none">
               <!-- Mind Node -->
-              <circle cx="35" cy="70" r="16" class="mind-node animate-pulse" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="1.5" />
-              <path d="M 30,66 A 6,6 0 0,1 40,66" stroke="#14B8A6" stroke-width="2" stroke-linecap="round" />
-              <circle cx="35" cy="76" r="3" fill="#14B8A6" />
+              <circle cx="35" cy="70" r="16" class="mind-node animate-pulse" fill="#0a142c" stroke="#14285c" stroke-width="1.5" />
+              <path d="M 30,66 A 6,6 0 0,1 40,66" stroke="#d4af37" stroke-width="2" stroke-linecap="round" />
+              <circle cx="35" cy="76" r="3" fill="#d4af37" />
               
               <!-- Device Node -->
-              <circle cx="165" cy="70" r="16" class="device-node" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="1.5" />
+              <circle cx="165" cy="70" r="16" class="device-node" fill="#0a142c" stroke="#14285c" stroke-width="1.5" />
               <!-- Device Icon: Smart Bulb -->
-              <path id="bulb-icon" d="M165,60 C159.5,60 157,64 157,68 C157,72.5 161,75 161,78 L169,78 C169,75 173,72.5 173,68 C173,64 170.5,60 165,60 Z" fill="none" stroke="#64748B" stroke-width="1.5" stroke-linejoin="round" />
-              <line x1="162" y1="81" x2="168" y2="81" stroke="#64748B" stroke-width="1.5" />
-              <line x1="163.5" y1="84" x2="166.5" y2="84" stroke="#64748B" stroke-width="1.5" />
+              <path id="bulb-icon" d="M165,60 C159.5,60 157,64 157,68 C157,72.5 161,75 161,78 L169,78 C169,75 173,72.5 173,68 C173,64 170.5,60 165,60 Z" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linejoin="round" />
+              <line x1="162" y1="81" x2="168" y2="81" stroke="#94a3b8" stroke-width="1.5" />
+              <line x1="163.5" y1="84" x2="166.5" y2="84" stroke="#94a3b8" stroke-width="1.5" />
 
               <!-- Connected signal wave path -->
-              <path id="bento-bci-wave" d="M 51,70 Q 79,70 108,70 T 149,70" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+              <path id="bento-bci-wave" d="M 51,70 Q 79,70 108,70 T 149,70" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round" />
             </svg>
             
             <!-- Concentrate Status bubble overlay -->
             <div id="bento-bci-bubble" class="bci-status-bubble font-mono">
-              <span class="bubble-dot bg-[#94a3b8] animate-ping"></span>
+              <span class="bubble-dot bg-[#475569] animate-ping"></span>
               <span class="bubble-text">Resting...</span>
             </div>
           </div>
@@ -198,19 +198,19 @@
         
         <div class="bento-content mt-auto flex-1 flex flex-col justify-between">
           <div>
-            <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-slate-900">Thought to Action</h3>
-            <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-white group-hover:text-gold-300 transition-colors">Thought to Action</h3>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-4 font-light">
               Brain-Computer Interfaces capture motor intentions and translate them into commands that trigger smart external devices.
             </p>
           </div>
-          <button id="bento-bci-btn" class="w-full py-2.5 bg-slate-900 hover:bg-teal-600 text-white font-bold rounded-xl transition-all select-none hover:shadow-[0_4px_16px_rgba(20,184,166,0.3)] active:scale-[0.98] text-xs sm:text-sm tracking-wide uppercase">
+          <button id="bento-bci-btn" class="w-full py-2.5 bg-navy-800 hover:bg-gold-500 text-white hover:text-navy-950 font-bold rounded-xl transition-all border border-navy-700 hover:border-gold-500 select-none hover:shadow-[0_4px_16px_rgba(212,175,55,0.25)] active:scale-[0.98] text-xs sm:text-sm tracking-wide uppercase cursor-pointer">
             Concentrate (Hold)
           </button>
         </div>
       </article>
 
-      <!-- CARD 3: Recognize Patterns (Span 1) -->
-      <article class="bento-card col-span-1 flex flex-col gap-6 group" style="--card-brand-color: var(--color-teal-500);">
+      <!-- CARD 3: Recognise Patterns (Span 1) -->
+      <article class="bento-card col-span-1 flex flex-col gap-6 group" style="--card-brand-color: var(--color-gold-500);">
         <div class="corner-tick top-left"></div>
         <div class="corner-tick top-right"></div>
         <div class="corner-tick bottom-left"></div>
@@ -218,32 +218,63 @@
 
         <div class="bento-glow"></div>
         
-        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-slate-50/50">
+        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-navy-950/30">
           <div class="generative-grid"></div>
           <div class="scan-sweep"></div>
           
-          <div id="bento-scatter-canvas" class="w-full h-full relative flex items-center justify-center p-4">
-            <!-- Scatter dots injected via JS -->
-            <div class="scatter-grid-center w-[120px] h-[120px] rounded-full border border-dashed border-slate-200/50 absolute pointer-events-none scale-0 transition-transform duration-500 group-hover:scale-100 flex items-center justify-center">
-              <div class="w-[80px] h-[80px] rounded-full border border-dashed border-teal-200/30"></div>
-            </div>
-            
-            <div class="pattern-badge font-mono opacity-0 group-hover:opacity-100 transition-all duration-300">
-              Noise Decoded: 98%
+          <div class="pattern-simulation w-full h-full relative flex items-center justify-center p-4">
+            <svg class="pattern-svg w-full h-full max-w-[240px]" viewBox="0 0 200 140" fill="none">
+              <!-- Grid overlay inside bento visual -->
+              <g stroke="rgba(212,175,55,0.08)" stroke-width="1">
+                <line x1="20" y1="35" x2="180" y2="35" />
+                <line x1="20" y1="70" x2="180" y2="70" />
+                <line x1="20" y1="105" x2="180" y2="105" />
+                <line x1="50" y1="20" x2="50" y2="120" />
+                <line x1="100" y1="20" x2="100" y2="120" />
+                <line x1="150" y1="20" x2="150" y2="120" />
+              </g>
+
+              <!-- Chaotic Noisy EEG signal path (Gray/Navy, fades on hover) -->
+              <path class="raw-noise-path stroke-slate-500 opacity-60 transition-all duration-500 group-hover:opacity-10 group-hover:stroke-slate-650" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M 20,70 L 30,55 L 35,85 L 42,40 L 48,95 L 55,60 L 62,80 L 68,45 L 75,90 L 82,55 L 88,75 L 95,50 L 102,95 L 108,60 L 115,80 L 122,45 L 128,90 L 135,55 L 142,85 L 148,40 L 155,95 L 162,60 L 168,80 L 180,70" />
+
+              <!-- Clean, Decoded Golden Wave path (Alpha wave, sweeps and glows on hover) -->
+              <path class="decoded-wave-path stroke-gold-500 opacity-20 group-hover:opacity-100 group-hover:stroke-[2.5] transition-all duration-500 ease-out" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M 20,70 Q 40,30 60,70 T 100,70 T 140,70 T 180,70" />
+
+              <!-- Active pulse nodes (Highlighting target channels decoded by ML, glowing cyan/blue) -->
+              <g class="decoded-nodes opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <circle cx="60" cy="70" r="4.5" fill="#06b6d4" class="animate-ping" style="transform-origin: 60px 70px;" />
+                <circle cx="60" cy="70" r="3" fill="#06b6d4" stroke="#ffffff" stroke-width="1" />
+                
+                <circle cx="100" cy="70" r="4.5" fill="#3b82f6" class="animate-ping" style="transform-origin: 100px 70px; animation-delay: 0.3s;" />
+                <circle cx="100" cy="70" r="3" fill="#3b82f6" stroke="#ffffff" stroke-width="1" />
+                
+                <circle cx="140" cy="70" r="4.5" fill="#06b6d4" class="animate-ping" style="transform-origin: 140px 70px; animation-delay: 0.6s;" />
+                <circle cx="140" cy="70" r="3" fill="#06b6d4" stroke="#ffffff" stroke-width="1" />
+              </g>
+
+              <!-- Decoded label -->
+              <text x="25" y="25" class="fill-slate-500 font-mono text-[8px] uppercase tracking-wider opacity-60">Input: EEG_RAW</text>
+              <text x="135" y="25" class="fill-gold-500 font-mono text-[8px] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-500">Filter: 12Hz</text>
+            </svg>
+
+            <div class="pattern-badge font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 border border-gold-500/25 bg-gold-500/5 text-gold-500">
+              Noise Decoded: 98.4%
             </div>
           </div>
         </div>
         
         <div class="bento-content mt-auto">
-          <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-slate-900">Recognize Patterns</h3>
-          <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-2">
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-white group-hover:text-gold-300 transition-colors">Recognise Patterns</h3>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-2 font-light">
             Apply intelligent machine learning algorithms to isolate meaningful thoughts and patterns out of chaotic brainwaves and raw noise.
           </p>
         </div>
       </article>
 
       <!-- CARD 4: Innovate Responsibly (Span 1) -->
-      <article class="bento-card col-span-1 flex flex-col gap-6 group" style="--card-brand-color: var(--color-teal-500);">
+      <article class="bento-card col-span-1 flex flex-col gap-6 group" style="--card-brand-color: var(--color-gold-500);">
         <div class="corner-tick top-left"></div>
         <div class="corner-tick top-right"></div>
         <div class="corner-tick bottom-left"></div>
@@ -251,44 +282,44 @@
 
         <div class="bento-glow"></div>
         
-        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-slate-50/50">
+        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-navy-950/30">
           <div class="generative-grid"></div>
           <div class="scan-sweep"></div>
           
           <div class="privacy-simulation w-full h-full relative flex items-center justify-center p-4">
             <svg class="privacy-svg w-full h-full max-w-[200px]" viewBox="0 0 200 140" fill="none">
               <!-- Grid line / Pipeline path -->
-              <line x1="20" y1="70" x2="180" y2="70" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round" />
+              <line x1="20" y1="70" x2="180" y2="70" stroke="#14285c" stroke-width="1.5" stroke-linecap="round" />
               
               <!-- Privacy Shield -->
               <g class="privacy-shield">
                 <!-- Shield Base -->
-                <path d="M 90,40 C 90,40 100,36 100,32 C 100,36 110,40 110,40 C 110,75 100,95 100,98 C 100,95 90,75 90,40 Z" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2" class="shield-body transition-all duration-300" />
-                <path d="M 96,65 L 100,69 L 106,62" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shield-check transition-all duration-300" />
+                <path d="M 90,40 C 90,40 100,36 100,32 C 100,36 110,40 110,40 C 110,75 100,95 100,98 C 100,95 90,75 90,40 Z" fill="#0a142c" stroke="#14285c" stroke-width="2" class="shield-body transition-all duration-300" />
+                <path d="M 96,65 L 100,69 L 106,62" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shield-check transition-all duration-300" />
               </g>
 
               <!-- Flowing particles representing raw requests/signals -->
-              <circle cx="25" cy="70" r="4.5" fill="#E2E8F0" class="flow-dot flow-dot-1" />
-              <circle cx="55" cy="70" r="4.5" fill="#E2E8F0" class="flow-dot flow-dot-2" />
+              <circle cx="25" cy="70" r="4.5" fill="#14285c" class="flow-dot flow-dot-1" />
+              <circle cx="55" cy="70" r="4.5" fill="#14285c" class="flow-dot flow-dot-2" />
               
               <!-- Soft protecting forcefield circle -->
-              <circle cx="100" cy="55" r="42" class="forcefield-ring" stroke="#2DD4BF" stroke-width="1.5" stroke-dasharray="4 6" />
+              <circle cx="100" cy="55" r="42" class="forcefield-ring" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="4 6" />
             </svg>
 
-            <div class="privacy-badge font-mono">Cognitive Privacy</div>
+            <div class="privacy-badge font-mono border border-gold-500/25 bg-gold-500/5 text-gold-500">Cognitive Privacy</div>
           </div>
         </div>
         
         <div class="bento-content mt-auto">
-          <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-slate-900">Innovate Responsibly</h3>
-          <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-2">
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-white group-hover:text-gold-300 transition-colors">Innovate Responsibly</h3>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-2 font-light">
             Establish solid ethical foundations. We discuss neuro-privacy, mental integrity, and standard regulations to build safe futures.
           </p>
         </div>
       </article>
 
       <!-- CARD 5: Connect & Build Together (Span 1) -->
-      <article class="bento-card col-span-1 flex flex-col gap-6 group md:col-span-2 lg:col-span-1" style="--card-brand-color: var(--color-teal-500);">
+      <article class="bento-card col-span-1 flex flex-col gap-6 group md:col-span-2 lg:col-span-1" style="--card-brand-color: var(--color-gold-500);">
         <div class="corner-tick top-left"></div>
         <div class="corner-tick top-right"></div>
         <div class="corner-tick bottom-left"></div>
@@ -296,59 +327,59 @@
 
         <div class="bento-glow"></div>
         
-        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-slate-50/50">
+        <div class="bento-visual h-48 sm:h-56 w-full rounded-2xl relative overflow-hidden flex items-center justify-center bg-navy-950/30">
           <div class="generative-grid"></div>
           <div class="scan-sweep"></div>
           
           <div class="colab-simulation w-full h-full relative flex items-center justify-center p-4">
             <svg class="colab-svg w-full h-full max-w-[200px]" viewBox="0 0 200 140" fill="none">
               <!-- Network Connections (Dendrites) -->
-              <path d="M 40,40 L 100,70 M 40,100 L 100,70 M 160,40 L 100,70 M 160,100 L 100,70" stroke="#E2E8F0" stroke-width="2" class="synapse-link" />
+              <path d="M 40,40 L 100,70 M 40,100 L 100,70 M 160,40 L 100,70 M 160,100 L 100,70" stroke="#14285c" stroke-width="2" class="synapse-link" />
               
               <!-- Core Synapse Node -->
-              <circle cx="100" cy="70" r="10" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="1.5" class="center-synapse transition-all duration-300" />
+              <circle cx="100" cy="70" r="10" fill="#0a142c" stroke="#14285c" stroke-width="1.5" class="center-synapse transition-all duration-300" />
               
               <!-- Avatar Nodes (Members) -->
               <g class="member-node node-m1" transform="translate(40, 40)">
-                <circle cx="0" cy="0" r="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
-                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#14B8A6" stroke-width="1.2" />
-                <circle cx="0" cy="-2" r="3.5" fill="#14B8A6" />
+                <circle cx="0" cy="0" r="10" fill="#0a142c" stroke="#14285c" stroke-width="1.2" />
+                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#ebd382" stroke-width="1.2" />
+                <circle cx="0" cy="-2" r="3.5" fill="#ebd382" />
               </g>
 
               <g class="member-node node-m2" transform="translate(40, 100)">
-                <circle cx="0" cy="0" r="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
-                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#3B82F6" stroke-width="1.2" />
-                <circle cx="0" cy="-2" r="3.5" fill="#3B82F6" />
+                <circle cx="0" cy="0" r="10" fill="#0a142c" stroke="#14285c" stroke-width="1.2" />
+                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#ebd382" stroke-width="1.2" />
+                <circle cx="0" cy="-2" r="3.5" fill="#ebd382" />
               </g>
 
               <g class="member-node node-m3" transform="translate(160, 40)">
-                <circle cx="0" cy="0" r="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
-                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#8B5CF6" stroke-width="1.2" />
-                <circle cx="0" cy="-2" r="3.5" fill="#8B5CF6" />
+                <circle cx="0" cy="0" r="10" fill="#0a142c" stroke="#14285c" stroke-width="1.2" />
+                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#ebd382" stroke-width="1.2" />
+                <circle cx="0" cy="-2" r="3.5" fill="#ebd382" />
               </g>
 
               <g class="member-node node-m4" transform="translate(160, 100)">
-                <circle cx="0" cy="0" r="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
-                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#10B981" stroke-width="1.2" />
-                <circle cx="0" cy="-2" r="3.5" fill="#10B981" />
+                <circle cx="0" cy="0" r="10" fill="#0a142c" stroke="#14285c" stroke-width="1.2" />
+                <path d="M -6,5 A 6,6 0 0,1 6,5" stroke="#ebd382" stroke-width="1.2" />
+                <circle cx="0" cy="-2" r="3.5" fill="#ebd382" />
               </g>
               
               <!-- Transmitters flowing in -->
-              <circle cx="40" cy="40" r="3.5" fill="#14B8A6" class="neuro-transmitter pulse-nt-1" />
-              <circle cx="40" cy="100" r="3.5" fill="#3B82F6" class="neuro-transmitter pulse-nt-2" />
-              <circle cx="160" cy="40" r="3.5" fill="#8B5CF6" class="neuro-transmitter pulse-nt-3" />
-              <circle cx="160" cy="100" r="3.5" fill="#10B981" class="neuro-transmitter pulse-nt-4" />
+              <circle cx="40" cy="40" r="3.5" fill="#06b6d4" class="neuro-transmitter pulse-nt-1" />
+              <circle cx="40" cy="100" r="3.5" fill="#3b82f6" class="neuro-transmitter pulse-nt-2" />
+              <circle cx="160" cy="40" r="3.5" fill="#06b6d4" class="neuro-transmitter pulse-nt-3" />
+              <circle cx="160" cy="100" r="3.5" fill="#3b82f6" class="neuro-transmitter pulse-nt-4" />
             </svg>
 
-            <div class="colab-badge font-mono opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="colab-badge font-mono border border-gold-500/25 bg-gold-500/5 text-gold-500">
               Synapses pulsing
             </div>
           </div>
         </div>
         
         <div class="bento-content mt-auto">
-          <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-slate-900">Build Together</h3>
-          <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-2">
+          <h3 class="text-xl sm:text-2xl font-bold mb-3 tracking-tight text-white group-hover:text-gold-300 transition-colors">Build Together</h3>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-2 font-light">
             Bring ideas to life in active hardware build sessions, paper reviews, hackathons, and cross-degree prototype sessions.
           </p>
         </div>
@@ -361,29 +392,23 @@
 <style>
   /* Color Mix Helpers */
   :root {
-    --color-teal-500: #14B8A6;
-    --bento-visual-bg: #f8fafc;
-    --bento-visual-border: #e2e8f0;
-    --bento-visual-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
-    --bento-grid-color: rgba(15, 23, 42, 0.02);
-    --bento-wire-color: rgba(15, 23, 42, 0.08);
-    --bento-wire-hover: rgba(15, 23, 42, 0.16);
-    --bento-node-bg: #ffffff;
-    --bento-node-border: rgba(15, 23, 42, 0.08);
-    --bento-text-light: #64748b;
-    --bento-canvas-card: #ffffff;
-  }
-
-  .text-gradient {
-    background: linear-gradient(135deg, #0f172a 40%, #0d9488 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    --color-gold-500: #d4af37;
+    --bento-visual-bg: #070e20;
+    --bento-visual-border: #14285c;
+    --bento-visual-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+    --bento-grid-color: rgba(212, 175, 55, 0.03);
+    --bento-wire-color: rgba(212, 175, 55, 0.1);
+    --bento-wire-hover: rgba(212, 175, 55, 0.25);
+    --bento-node-bg: #0a142c;
+    --bento-node-border: rgba(212, 175, 55, 0.15);
+    --bento-text-light: #94a3b8;
+    --bento-canvas-card: #0a142c;
   }
 
   .bento-card {
     position: relative;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: #0a142c;
+    border: 1px solid #14285c;
     border-radius: 2rem;
     padding: 2.25rem;
     overflow: hidden;
@@ -391,17 +416,17 @@
                 border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     backdrop-filter: blur(12px);
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 
-                0 4px 24px rgba(0, 0, 0, 0.02);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 
+                0 4px 24px rgba(0, 0, 0, 0.3);
   }
 
   /* Deep Interactive Hover Lift & Glow */
   .bento-card:hover {
     transform: translateY(-5px);
-    border-color: color-mix(in srgb, var(--card-brand-color) 45%, #e2e8f0);
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9),
-                0 16px 40px -10px rgba(15, 23, 42, 0.08),
-                0 0 28px color-mix(in srgb, var(--card-brand-color) 10%, transparent);
+    border-color: color-mix(in srgb, var(--card-brand-color) 45%, #14285c);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                0 16px 40px -10px rgba(3, 7, 18, 0.5),
+                0 0 28px color-mix(in srgb, var(--card-brand-color) 12%, transparent);
   }
 
   /* Corner Brackets */
@@ -409,8 +434,8 @@
     position: absolute;
     width: 8px;
     height: 8px;
-    border-color: #cbd5e1;
-    opacity: 0.2;
+    border-color: #1e3a8a;
+    opacity: 0.3;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
   }
@@ -457,7 +482,7 @@
 
   .bento-card:hover .bento-visual {
     border-color: color-mix(in srgb, var(--card-brand-color) 30%, var(--bento-visual-border));
-    background: #ffffff;
+    background: #081026;
   }
 
   /* Technical Grid Background */
@@ -477,9 +502,9 @@
     inset: 0;
     background: linear-gradient(to right, 
       transparent 0%, 
-      rgba(20, 184, 166, 0.0) 30%, 
-      rgba(20, 184, 166, 0.08) 50%, 
-      rgba(59, 130, 246, 0.08) 52%,
+      rgba(212, 175, 55, 0.0) 30%, 
+      rgba(212, 175, 55, 0.06) 50%, 
+      rgba(6, 182, 212, 0.06) 52%,
       transparent 70%
     );
     transform: translateX(-100%);
@@ -500,16 +525,16 @@
      CARD 1: BRAIN EXPLORER
   ────────────────────────────────────────────────────────── */
   .bento-lobe-path {
-    filter: drop-shadow(0px 3px 4px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0px 3px 4px rgba(0, 0, 0, 0.4));
   }
 
   .brain-lobes-group:hover .bento-lobe-path:not(:hover) {
-    opacity: 0.35;
+    opacity: 0.25;
     filter: grayscale(40%) drop-shadow(0px 0px 0px transparent);
   }
 
   .bento-lobe-path:hover {
-    filter: drop-shadow(0 0 8px var(--color-teal-500));
+    filter: drop-shadow(0 0 8px var(--color-gold-500));
     transform: translateY(-1px);
   }
 
@@ -542,16 +567,16 @@
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     white-space: nowrap;
   }
 
   .bento-card:hover .bci-status-bubble {
-    color: var(--color-teal-500);
-    border-color: color-mix(in srgb, var(--color-teal-500) 30%, transparent);
-    background: color-mix(in srgb, var(--color-teal-500) 4%, #ffffff);
-    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.08);
+    color: var(--color-gold-500);
+    border-color: color-mix(in srgb, var(--color-gold-500) 30%, transparent);
+    background: color-mix(in srgb, var(--color-gold-500) 4%, #0a142c);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.12);
   }
 
   .bubble-dot {
@@ -565,9 +590,9 @@
     transform-origin: 35px 70px;
   }
   .bento-card:hover .mind-node {
-    fill: color-mix(in srgb, var(--color-teal-500) 10%, #ffffff);
-    stroke: var(--color-teal-500);
-    box-shadow: 0 0 10px rgba(20, 184, 166, 0.3);
+    fill: color-mix(in srgb, var(--color-gold-500) 10%, #0a142c);
+    stroke: var(--color-gold-500);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
   }
 
   .device-node {
@@ -577,36 +602,34 @@
 
   /* BCI Active States */
   .bci-active .mind-node {
-    fill: color-mix(in srgb, var(--color-teal-500) 25%, #ffffff) !important;
-    stroke: var(--color-teal-500) !important;
+    fill: color-mix(in srgb, var(--color-gold-500) 25%, #0a142c) !important;
+    stroke: var(--color-gold-500) !important;
     transform: scale(1.15);
-    filter: drop-shadow(0 0 6px var(--color-teal-500));
+    filter: drop-shadow(0 0 6px var(--color-gold-500));
   }
 
   .bci-active .device-node {
-    fill: color-mix(in srgb, var(--color-teal-500) 20%, #ffffff) !important;
-    stroke: var(--color-teal-500) !important;
+    fill: color-mix(in srgb, var(--color-gold-500) 20%, #0a142c) !important;
+    stroke: var(--color-gold-500) !important;
     transform: scale(1.15);
-    filter: drop-shadow(0 0 10px var(--color-teal-500));
+    filter: drop-shadow(0 0 10px var(--color-gold-500));
   }
 
   .bci-active #bulb-icon {
-    stroke: var(--color-teal-500) !important;
-    fill: color-mix(in srgb, var(--color-teal-500) 40%, transparent) !important;
-    filter: drop-shadow(0 0 6px var(--color-teal-500));
+    stroke: var(--color-gold-500) !important;
+    fill: color-mix(in srgb, var(--color-gold-500) 40%, transparent) !important;
+    filter: drop-shadow(0 0 6px var(--color-gold-500));
   }
 
   /* ──────────────────────────────────────────────────────────
-     CARD 3: RECOGNIZE PATTERNS
+     CARD 3: RECOGNISE PATTERNS
   ────────────────────────────────────────────────────────── */
-  .bento-scatter-dot {
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    opacity: 0.75;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  .pattern-simulation {
+    overflow: visible;
+  }
+  
+  .pattern-svg {
+    overflow: visible;
   }
 
   .pattern-badge {
@@ -615,9 +638,9 @@
     right: 0.75rem;
     font-size: 0.6rem;
     font-weight: 700;
-    color: var(--color-teal-500);
-    border: 1px solid color-mix(in srgb, var(--color-teal-500) 20%, #e2e8f0);
-    background: color-mix(in srgb, var(--color-teal-500) 5%, #ffffff);
+    color: var(--color-gold-500);
+    border: 1px solid color-mix(in srgb, var(--color-gold-500) 20%, #14285c);
+    background: color-mix(in srgb, var(--color-gold-500) 5%, #0a142c);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     z-index: 2;
@@ -639,19 +662,19 @@
   }
 
   .bento-card:hover .shield-body {
-    fill: color-mix(in srgb, var(--color-teal-500) 15%, #ffffff);
-    stroke: var(--color-teal-500);
+    fill: color-mix(in srgb, var(--color-gold-500) 15%, #0a142c);
+    stroke: var(--color-gold-500);
     transform: scale(1.08);
-    filter: drop-shadow(0 0 6px var(--color-teal-500));
+    filter: drop-shadow(0 0 6px var(--color-gold-500));
   }
 
   .bento-card:hover .shield-check {
-    stroke: var(--color-teal-500);
+    stroke: var(--color-gold-500);
   }
 
   .forcefield-ring {
     transform-origin: 100px 55px;
-    opacity: 0.1;
+    opacity: 0.15;
     transition: all 0.6s ease;
   }
 
@@ -662,7 +685,7 @@
 
   @keyframes force-pulse {
     from { transform: scale(1); opacity: 0.4; }
-    to { transform: scale(1.06); opacity: 0.7; filter: drop-shadow(0 0 4px var(--color-teal-500)); }
+    to { transform: scale(1.06); opacity: 0.7; filter: drop-shadow(0 0 4px #06b6d4); }
   }
 
   .flow-dot {
@@ -673,11 +696,11 @@
   .flow-dot-2 { animation-delay: 2s; }
 
   @keyframes privacy-flow {
-    0% { cx: 20px; opacity: 0; fill: #cbd5e1; }
+    0% { cx: 20px; opacity: 0; fill: #14285c; }
     10% { opacity: 0.8; }
     /* blocked at shield border around x=90 */
-    42% { cx: 88px; opacity: 0.8; fill: #cbd5e1; transform: scale(1); }
-    46% { cx: 90px; opacity: 0; fill: var(--color-teal-500); transform: scale(0.6); }
+    42% { cx: 88px; opacity: 0.8; fill: #14285c; transform: scale(1); }
+    46% { cx: 90px; opacity: 0; fill: var(--color-gold-500); transform: scale(0.6); }
     100% { cx: 90px; opacity: 0; }
   }
 
@@ -700,10 +723,10 @@
 
   .bento-card:hover .privacy-badge {
     opacity: 1;
-    color: var(--color-teal-500);
-    border-color: color-mix(in srgb, var(--color-teal-500) 35%, transparent);
-    background: color-mix(in srgb, var(--color-teal-500) 4%, #ffffff);
-    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.08);
+    color: var(--color-gold-500);
+    border-color: color-mix(in srgb, var(--color-gold-500) 35%, transparent);
+    background: color-mix(in srgb, var(--color-gold-500) 4%, #0a142c);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.12);
   }
 
   /* ──────────────────────────────────────────────────────────
@@ -722,7 +745,7 @@
   }
 
   .bento-card:hover .synapse-link {
-    stroke: color-mix(in srgb, var(--color-teal-500) 25%, #cbd5e1);
+    stroke: color-mix(in srgb, var(--color-gold-500) 25%, #14285c);
   }
 
   .center-synapse {
@@ -730,10 +753,10 @@
   }
 
   .bento-card:hover .center-synapse {
-    fill: color-mix(in srgb, var(--color-teal-500) 30%, #ffffff);
-    stroke: var(--color-teal-500);
+    fill: color-mix(in srgb, var(--color-gold-500) 30%, #0a142c);
+    stroke: var(--color-gold-500);
     transform: scale(1.22);
-    filter: drop-shadow(0 0 8px var(--color-teal-500));
+    filter: drop-shadow(0 0 8px var(--color-gold-500));
   }
 
   /* Pulsing transmitter sparks */
@@ -775,9 +798,9 @@
     transform: translateX(-50%);
     font-size: 0.6rem;
     font-weight: 700;
-    color: var(--color-teal-500);
-    border: 1px solid color-mix(in srgb, var(--color-teal-500) 20%, #e2e8f0);
-    background: color-mix(in srgb, var(--color-teal-500) 5%, #ffffff);
+    color: var(--color-gold-500);
+    border: 1px solid color-mix(in srgb, var(--color-gold-500) 20%, #14285c);
+    background: color-mix(in srgb, var(--color-gold-500) 5%, #0a142c);
     padding: 0.25rem 0.55rem;
     border-radius: 4px;
     z-index: 2;
@@ -816,6 +839,8 @@
     .forcefield-ring { animation: none; opacity: 0.2; }
     .neuro-transmitter { animation: none; transform: translate(30px, 15px); opacity: 0.5; }
     .colab-cursor { display: none; }
+    .raw-noise-path { transition: none; }
+    .decoded-wave-path { transition: none; }
   }
 </style>
 
@@ -833,19 +858,18 @@
 
   const showLobeInfo = (target: SVGElement) => {
     const title = target.getAttribute('data-title');
-    const color = target.getAttribute('data-color') || '#14B8A6';
+    const color = target.getAttribute('data-color') || '#d4af37';
     const desc = target.getAttribute('data-desc');
     const app = target.getAttribute('data-app');
 
     if (lobeTitle && title) lobeTitle.lastElementChild!.textContent = title;
     if (lobeIndicator && color) {
       lobeIndicator.style.backgroundColor = color;
-      // also apply shadow glow
       lobeIndicator.style.boxShadow = `0 0 8px ${color}`;
     }
     if (lobeDesc && desc) lobeDesc.textContent = desc;
     if (lobeApp && app) {
-      lobeApp.innerHTML = `<span class="font-bold text-slate-800">Neurotech Link:</span> ${app}`;
+      lobeApp.innerHTML = `<span class="font-bold text-slate-200">Neurotech Link:</span> ${app}`;
     }
 
     if (defaultPanel && activePanel) {
@@ -916,12 +940,10 @@
         const svgPath = path as SVGPathElement;
         const length = svgPath.getTotalLength();
 
-        // Create 2 synapse particles per path
         for (let i = 0; i < 2; i++) {
           const particle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
           particle.setAttribute("r", "2");
-          // Choose elegant theme colors
-          particle.setAttribute("fill", i === 0 ? "#14B8A6" : "#3B82F6");
+          particle.setAttribute("fill", i === 0 ? "#06b6d4" : "#3b82f6");
           particle.setAttribute("opacity", "0.9");
           synapseGroup.appendChild(particle);
 
@@ -955,7 +977,6 @@
     let isPressing = false;
     let amplitude = 2;
     let time = 0;
-    let activeStateIndex = 0;
 
     const startConcentrating = () => {
       isPressing = true;
@@ -967,7 +988,6 @@
       isPressing = false;
       bciBtn.textContent = 'Concentrate (Hold)';
       bciVisualContainer.classList.remove('bci-active');
-      activeStateIndex = 0;
     };
 
     bciBtn.addEventListener('mousedown', startConcentrating);
@@ -987,35 +1007,32 @@
         time += isPressing ? 0.35 : 0.08;
       }
 
-      // Update Wave form
       let pathD = `M 51,70 `;
       for (let x = 51; x <= 149; x += 3) {
-        // Draw elegant sine waves with fading edges
-        const fade = Math.sin((x - 51) / 98 * Math.PI); // 0 at start/end, 1 at peak
+        const fade = Math.sin((x - 51) / 98 * Math.PI);
         const y = 70 + Math.sin(x * 0.16 - time) * amplitude * fade;
         pathD += `L ${x},${y} `;
       }
       bciWavePath.setAttribute('d', pathD);
 
-      // State cycling logic based on amplitude
       if (amplitude > 20) {
-        bciWavePath.setAttribute('stroke', '#14B8A6');
+        bciWavePath.setAttribute('stroke', '#06b6d4');
         bciWavePath.setAttribute('stroke-width', '3');
         if (bubbleDot && bubbleText) {
-          bubbleDot.className = 'bubble-dot bg-teal-400 animate-ping';
+          bubbleDot.className = 'bubble-dot bg-cyan-400 animate-ping';
           
           if (amplitude > 26) {
             bubbleText.textContent = 'Light Triggered! 💡';
-            bubbleDot.className = 'bubble-dot bg-teal-500 animate-pulse';
+            bubbleDot.className = 'bubble-dot bg-cyan-500 animate-pulse';
           } else {
             bubbleText.textContent = 'Decoding motor intent...';
           }
         }
       } else {
-        bciWavePath.setAttribute('stroke', '#94A3B8');
+        bciWavePath.setAttribute('stroke', '#475569');
         bciWavePath.setAttribute('stroke-width', '2');
         if (bubbleDot && bubbleText) {
-          bubbleDot.className = 'bubble-dot bg-slate-400 animate-ping';
+          bubbleDot.className = 'bubble-dot bg-slate-500 animate-ping';
           bubbleText.textContent = isPressing ? 'Focusing...' : 'Resting...';
         }
       }
@@ -1024,74 +1041,5 @@
     };
 
     animateBCI();
-  }
-
-  // --- CARD 3: RECOGNIZE PATTERNS SCATTER TRANSITIONS ---
-  const scatterContainer = document.getElementById('bento-scatter-canvas');
-  if (scatterContainer) {
-    const numDots = 42;
-    const dots: HTMLDivElement[] = [];
-
-    // Defining 3 cluster targets
-    const clusters = [
-      { x: 35, y: 35, color: 'bg-teal-400' },
-      { x: 65, y: 75, color: 'bg-blue-400' },
-      { x: 70, y: 35, color: 'bg-violet-400' }
-    ];
-
-    // Create the dots
-    for (let i = 0; i < numDots; i++) {
-      const dot = document.createElement('div');
-      const cluster = clusters[i % clusters.length];
-
-      // Random original positions
-      const ox = Math.random() * 80 + 10;
-      const oy = Math.random() * 80 + 10;
-
-      // Target positions inside clusters
-      const tx = cluster.x + (Math.random() * 14 - 7);
-      const ty = cluster.y + (Math.random() * 14 - 7);
-
-      dot.className = `bento-scatter-dot ${cluster.color}`;
-      dot.style.left = `${ox}%`;
-      dot.style.top = `${oy}%`;
-
-      // Save coords as datasets
-      dot.dataset.ox = ox.toString();
-      dot.dataset.oy = oy.toString();
-      dot.dataset.tx = tx.toString();
-      dot.dataset.ty = ty.toString();
-
-      dots.push(dot);
-      scatterContainer.appendChild(dot);
-    }
-
-    // Interactive Trigger: card hover (handled globally by CSS group-hover or JS)
-    const card = scatterContainer.closest('.bento-card');
-    if (card) {
-      card.addEventListener('mouseenter', () => {
-        dots.forEach(dot => {
-          const tx = dot.dataset.tx;
-          const ty = dot.dataset.ty;
-          if (tx && ty) {
-            dot.style.left = `${tx}%`;
-            dot.style.top = `${ty}%`;
-            dot.style.boxShadow = `0 0 8px rgba(20, 184, 166, 0.4)`;
-          }
-        });
-      });
-
-      card.addEventListener('mouseleave', () => {
-        dots.forEach(dot => {
-          const ox = dot.dataset.ox;
-          const oy = dot.dataset.oy;
-          if (ox && oy) {
-            dot.style.left = `${ox}%`;
-            dot.style.top = `${oy}%`;
-            dot.style.boxShadow = 'none';
-          }
-        });
-      });
-    }
   }
 </script>
