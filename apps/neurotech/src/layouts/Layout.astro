@@ -3,11 +3,12 @@ import BaseLayout from '@surreysocieties/ui/components/BaseLayout';
 import AssistantWidget from '@surreysocieties/ui/components/AssistantWidget';
 import { ASSISTANT_CONFIGS } from '@surreysocieties/ui';
 import { getSocietyById } from '@surreysocieties/admin/config';
+import { Image } from 'astro:assets';
+import neurotechLogo from '../assets/neurotech-logo.png';
 
 interface Props {
   title: string;
   description: string;
-  /** Absolute URL to OG share image. Defaults to site-wide fallback. */
   ogImage?: string;
 }
 
@@ -16,19 +17,20 @@ const { title, description, ogImage } = Astro.props;
 const society = getSocietyById('neurotech')!;
 const assistantConfig = ASSISTANT_CONFIGS.neurotech;
 const siteName = society.name;
-const fullTitle = `${title} — ${siteName}`;
+const fullTitle = `${title} | ${siteName}`;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/committee', label: 'Committee' },
   { href: '/events', label: 'Events' },
-  { href: '/join', label: 'Join' },
+  { href: '/committee', label: 'Committee' },
 ];
+
+const isCurrent = (href: string) =>
+  currentPath === href || (href !== '/' && currentPath.startsWith(href));
 ---
 
 <BaseLayout
@@ -37,173 +39,177 @@ const navLinks = [
   ogImage={ogImage}
   canonicalUrl={canonicalUrl}
   htmlClass="motion-safe:scroll-smooth"
-  bodyClass="bg-navy-950 text-slate-100 font-sans min-h-screen flex flex-col smooth-transition"
+  bodyClass="bg-neuro-ivory text-neuro-ink font-sans min-h-screen flex flex-col"
+  extraFontHrefs={[
+    'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,750;9..144,850&display=swap',
+  ]}
 >
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-navy-900 focus:text-gold-500 focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 shadow-lg rounded-lg border border-gold-500/20">
+  <script slot="head" is:inline>
+    document.documentElement.classList.add('js-enabled');
+  </script>
+
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neuro-paper focus:text-neuro-ink focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold shadow-lg rounded-md">
     Skip to content
   </a>
 
-  <!-- Navigation -->
-  <nav class="sticky top-0 z-50 bg-navy-950/85 backdrop-blur-md border-b border-navy-800" aria-label="Main navigation">
-    <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 group">
-        <img
-          src="/logos/neurotech-logo.png"
-          alt="Surrey Neurotech Society"
-          width="36"
-          height="36"
-          class="h-9 w-9 rounded-full ring-2 ring-gold-500/30 group-hover:ring-gold-500/60 transition-all duration-300"
+  <nav class="neuro-site-nav sticky top-0 z-50" role="navigation" aria-label="Main navigation">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6">
+      <a href="/" class="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold" aria-label="Surrey Neurotech Society home">
+        <Image
+          src={neurotechLogo}
+          alt=""
+          width={46}
+          height={46}
+          class="h-11 w-11 shrink-0 rounded-md object-contain"
+          format="webp"
         />
-        <span class="text-white font-bold text-lg tracking-tight hidden sm:block">
-          Surrey <span class="text-gold-500">Neurotech</span> Society
+        <span class="neuro-site-nav__brand hidden min-w-0 whitespace-nowrap text-sm font-extrabold uppercase sm:block lg:text-base">
+          Surrey Neurotech Society
         </span>
       </a>
 
-      <!-- Desktop nav -->
-      <div class="hidden md:flex items-center gap-1">
-        {navLinks.map(link => (
+      <div class="hidden items-center gap-1 md:flex">
+        {navLinks.map((link) => (
           <a
             href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
             class:list={[
-              'px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border',
-              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                ? 'text-gold-500 bg-gold-500/10 border-gold-500/25 shadow-[0_0_12px_rgba(212,175,55,0.05)]'
-                : 'text-slate-300 border-transparent hover:text-gold-300 hover:bg-white/5 hover:border-white/5',
+              'rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors',
+              isCurrent(link.href)
+                ? 'bg-neuro-gold/10 text-neuro-gold'
+                : 'text-neuro-ink hover:text-neuro-teal',
             ]}
           >
             {link.label}
           </a>
         ))}
+        <a href="/join" class="neuro-btn-primary ml-3 px-5 py-2 text-xs">
+          Join
+        </a>
       </div>
 
-      <!-- Mobile menu button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden text-slate-200 p-2 hover:bg-navy-800 hover:text-white rounded-lg transition-colors border border-transparent active:border-navy-700"
+        class="rounded-md p-3 text-neuro-ink transition-colors hover:text-neuro-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold md:hidden"
         aria-label="Open navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <svg class="h-5 w-5" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="hidden h-5 w-5" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18 18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
 
-    <!-- Mobile nav -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-navy-800 bg-navy-900">
-      <div class="px-6 py-4 flex flex-col gap-1.5">
-        {navLinks.map(link => (
+    <div id="mobile-menu" class="hidden border-t border-neuro-line bg-neuro-paper md:hidden">
+      <div class="flex flex-col px-5 py-3">
+        {navLinks.map((link) => (
           <a
             href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
             class:list={[
-              'px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 border',
-              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                ? 'text-gold-500 bg-gold-500/10 border-gold-500/20'
-                : 'text-slate-300 border-transparent hover:text-gold-300 hover:bg-white/5',
+              'rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors',
+              isCurrent(link.href)
+                ? 'bg-neuro-gold/10 text-neuro-gold'
+                : 'text-neuro-ink hover:text-neuro-teal',
             ]}
           >
             {link.label}
           </a>
         ))}
+        <a href="/join" class="neuro-btn-primary mt-3 w-full text-sm">
+          Join via Surrey Students' Union
+        </a>
       </div>
     </div>
   </nav>
 
-  <!-- Main content -->
   <main id="main-content" class="flex-1" tabindex="-1">
     <slot />
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-navy-950/40 text-slate-300 border-t border-navy-800">
-    <div class="mx-auto max-w-6xl px-6 py-12">
-      <div class="grid sm:grid-cols-3 gap-8 mb-8">
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <img
-              src="/logos/neurotech-logo.png"
-              alt=""
-              width="32"
-              height="32"
-              class="h-8 w-8 rounded-full"
-            />
-            <span class="text-white font-bold">Surrey Neurotech Society</span>
+  <footer class="border-t border-neuro-line-dark bg-neuro-deep text-neuro-on-dark-muted">
+    <div class="mx-auto max-w-7xl px-5 py-16 sm:px-6">
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <div class="mb-6 flex items-center gap-4">
+            <Image src={neurotechLogo} alt="" width={50} height={50} class="h-12 w-12 rounded-md object-contain" format="webp" loading="lazy" />
+            <div>
+              <p class="neuro-serif text-2xl text-neuro-on-dark">Surrey Neurotech Society</p>
+              <p class="mt-1 text-sm text-neuro-gold">Established {society.establishedYear}</p>
+            </div>
           </div>
-          <p class="text-sm leading-relaxed text-slate-400">
-            A student-led society under Surrey Students' Union. Exploring neuroscience, technology, brain-computer interfaces, and human-centred innovation.
+          <p class="max-w-md border-l border-neuro-gold/60 pl-5 text-sm leading-7">
+            The university's first neurotechnology society, connecting students across psychology, computing, engineering, and beyond with the cutting-edge of neuroscience, AI, and responsible innovation.
           </p>
-          <p class="mt-3 text-xs font-semibold uppercase tracking-wider text-gold-500">Established {society.establishedYear}</p>
         </div>
-        <div>
-          <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Pages</h4>
-          <div class="flex flex-col gap-2">
-            {navLinks.map(link => (
-              <a href={link.href} class="text-sm text-slate-400 hover:text-gold-400 transition-colors">{link.label}</a>
+
+        <div class="lg:col-span-3 lg:col-start-7">
+          <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold">Explore</h2>
+          <div class="flex flex-col items-start gap-3">
+            {navLinks.map((link) => (
+              <a href={link.href} class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">{link.label}</a>
             ))}
+            <a href="/join" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Join</a>
           </div>
         </div>
-        <div>
-          <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Connect</h4>
-          <div class="flex flex-col gap-2 text-sm text-slate-400">
-            <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition-colors">Instagram</a>
-            <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition-colors">LinkedIn</a>
-            <a href={`mailto:${society.contactEmail}`} class="hover:text-gold-400 transition-colors">Email</a>
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition-colors">Surrey Students' Union</a>
-            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition-colors">Membership</a>
+
+        <div class="lg:col-span-3">
+          <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold">Connect</h2>
+          <div class="flex flex-col items-start gap-3">
+            {society.socials.instagram && (
+              <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Instagram</a>
+            )}
+            {society.socials.linkedin && (
+              <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">LinkedIn</a>
+            )}
+            <a href={`mailto:${society.contactEmail}`} class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Email</a>
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Students' Union</a>
+            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Membership</a>
           </div>
         </div>
       </div>
-      <div class="border-t border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <p>&copy; {new Date().getFullYear()} Surrey Neurotech Society. A student society at the University of Surrey.</p>
-        <p>{society.domain}</p>
+
+      <div class="mt-12 flex flex-col gap-3 border-t border-neuro-line-dark pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
+        <p>&copy; {new Date().getFullYear()} Surrey Neurotech Society. A society of Surrey Students' Union.</p>
+        <p class="font-semibold text-neuro-gold/80">{society.domain}</p>
       </div>
     </div>
   </footer>
 
   <AssistantWidget config={assistantConfig} endpoint="/api/assistant/chat" />
 
-  <!--
-    Neurotech-specific: Lenis fluid scroll + GSAP ScrollTrigger integration.
-    Kept here (not in BaseLayout) because it is unique to this app.
-    The mobile-menu toggle from BaseLayout runs first; this script runs after.
-  -->
   <script>
-    import Lenis from 'lenis';
-    import gsap from 'gsap';
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
 
-    // No theme logic needed
-    const mobileMenuButton = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    mobileMenuButton?.addEventListener('click', () => {
-      const isOpen = mobileMenu?.classList.toggle('hidden') === false;
-      mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
-      mobileMenuButton.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    btn?.addEventListener('click', () => {
+      const willOpen = menu?.classList.contains('hidden') ?? false;
+      menu?.classList.toggle('hidden', !willOpen);
+      hamburger?.classList.toggle('hidden', willOpen);
+      closeIcon?.classList.toggle('hidden', !willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+      btn.setAttribute('aria-label', willOpen ? 'Close navigation menu' : 'Open navigation menu');
     });
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!prefersReducedMotion) {
-      // Initialize Lenis for fluid, organic scrolling
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-      });
-
-      // Sync GSAP with Lenis
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0, 0);
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    } else {
+      document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
     }
   </script>
 </BaseLayout>
-

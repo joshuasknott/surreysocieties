@@ -1,15 +1,29 @@
 ---
 export const prerender = false;
-import Layout from '../layouts/Layout.astro';
-import NeuroFocusAreas from '../components/home/NeuroFocusAreas.astro';
+import { Image } from 'astro:assets';
+import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
+import Layout from '../layouts/Layout.astro';
+import discoveryHero from '../assets/generated/neurotech-discovery-hero.png';
+import talksThumb from '../assets/generated/neurotech-talks-thumb.png';
+import workshopsThumb from '../assets/generated/neurotech-workshops-thumb.png';
+import projectsThumb from '../assets/generated/neurotech-projects-thumb.png';
+import socialsThumb from '../assets/generated/neurotech-socials-thumb.png';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
+const society = getSocietyById(SOCIETY_ID)!;
 
 const events: any[] = (
   await queryPublicConvex<any[]>('events:listPublished', { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
+
+const committee: any[] = (
+  await queryPublicConvex<any[]>('committee:listActive', { societySlug: SOCIETY_ID }, [])
+).sort((a: any, b: any) =>
+  (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
+  || (a.name || '').localeCompare(b.name || '')
+);
 
 const formatEventDate = (date?: string) => {
   if (!date) return 'Date TBC';
@@ -21,445 +35,346 @@ const formatEventDate = (date?: string) => {
     year: 'numeric',
   });
 };
+
+const getInitials = (name?: string, role?: string) => {
+  const source = (name || role || '?').trim();
+  const words = source.split(/\s+/).filter(Boolean);
+  if (words.length === 0) return '?';
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+};
+
+const journeyCards = [
+  {
+    title: 'Learn',
+    copy: 'Friendly explainers, talks, and workshops that make brain science and technology easier to approach.',
+    href: '/events',
+  },
+  {
+    title: 'Meet',
+    copy: 'Connect with curious students from different courses who want to explore ideas together.',
+    href: '/committee',
+  },
+  {
+    title: 'Build responsibly',
+    copy: 'Discuss how technology can help people while keeping ethics, inclusion, and wellbeing in view.',
+    href: '/about',
+  },
+];
+
+const activityCards = [
+  {
+    title: 'Talks and discussions',
+    copy: 'Student-led sessions and invited conversations about neurotechnology, society, and the future.',
+    image: talksThumb,
+    alt: 'Students listening to a friendly neurotechnology discussion.',
+  },
+  {
+    title: 'Workshops',
+    copy: 'Guided sessions for learning vocabulary, tools, and ideas at a beginner-friendly pace.',
+    image: workshopsThumb,
+    alt: 'Students collaborating at a bright workshop table.',
+  },
+  {
+    title: 'Projects',
+    copy: 'Collaborative experiments with ideas, prototypes, and responsible design questions.',
+    image: projectsThumb,
+    alt: 'Students discussing an abstract neurotechnology project on a laptop.',
+  },
+  {
+    title: 'Socials',
+    copy: 'Relaxed ways to meet people, share interests, and find your place in the society.',
+    image: socialsThumb,
+    alt: 'Students chatting in a relaxed society social space.',
+  },
+];
+
+const principles = [
+  {
+    title: 'Curiosity first',
+    copy: 'No one should need to arrive fluent in neuroscience, code, or hardware before they can take part.',
+  },
+  {
+    title: 'Evidence over hype',
+    copy: 'Ambitious ideas are welcome, but claims should be handled with context, uncertainty, and care.',
+  },
+  {
+    title: 'People before devices',
+    copy: 'Privacy, consent, accessibility, wellbeing, and power should stay visible whenever brain data or interfaces are discussed.',
+  },
+  {
+    title: 'Interdisciplinary by default',
+    copy: 'Psychology, computing, engineering, biomedical sciences, design, ethics, and curious beginners all belong in the same room.',
+  },
+];
+
+const concepts = [
+  {
+    title: 'Neuron',
+    copy: 'A specialist cell that communicates through signals.',
+    detail: 'A useful first step is learning how nervous systems pass information through measurable processes.',
+  },
+  {
+    title: 'Signal',
+    copy: 'A pattern that can carry information.',
+    detail: 'Signals need context. Measurement, noise, uncertainty, interpretation, and responsible use all matter.',
+  },
+  {
+    title: 'Interface',
+    copy: 'A bridge between people, biological systems, and technology.',
+    detail: 'Interfaces should make control, feedback, accessibility, and safety easier to understand.',
+  },
+  {
+    title: 'Consent',
+    copy: 'An informed, voluntary agreement to take part or share data.',
+    detail: 'Responsible neurotechnology keeps privacy, withdrawal, and power imbalance visible from the start.',
+  },
+];
 ---
 
-<Layout title="Home" description="Surrey Neurotech Society — Demystifying neurotechnology. Connecting the human mind with technology through accessible exploration of BCIs, AI, and ethics.">
-
-  <!-- Hero -->
-  <section class="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32 bg-gradient-to-b from-navy-950 to-navy-900 border-b border-navy-800">
-    <div class="absolute inset-0 neuro-hero-grid pointer-events-none" aria-hidden="true"></div>
-    
-    <div class="mx-auto max-w-7xl px-6 relative z-10 w-full">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        <div class="flex flex-col items-start max-w-3xl z-10">
-          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6 text-white">
-            Connecting the human mind with <span class="bg-gradient-to-r from-gold-200 to-gold-500 bg-clip-text text-transparent">technology.</span>
+<Layout
+  title="Home"
+  description="Surrey Neurotech Society - a student-led University of Surrey society for curious students exploring neuroscience, AI, brain-computer interfaces, signals, ethics, and responsible innovation."
+>
+  <section class="neuro-hero neuro-hero--home" aria-labelledby="neuro-hero-title">
+    <div class="neuro-hero__inner neuro-hero__inner--home">
+      <div class="neuro-hero-grid">
+        <div class="reveal">
+          <p class="neuro-eyebrow">Discover - Learn - Create - Impact</p>
+          <h1 id="neuro-hero-title" class="neuro-serif neuro-hero-title">
+            Curious minds.<br />Real connections.<br /><span>Neurotech for good.</span>
           </h1>
-          
-          <p class="text-xl sm:text-2xl text-slate-350 leading-relaxed font-light mb-8 max-w-2xl">
-            Demystifying neurotechnology through neuroscience foundations, brain-computer interface concepts, signal processing, research literacy, and responsible innovation.
+          <p class="neuro-hero-copy">
+            Surrey Neurotech Society is a student community exploring the science of the brain and building technology that makes a positive difference.
           </p>
-          
-          <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href="/join" class="inline-flex items-center justify-center px-8 py-4 bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold rounded-xl transition-all shadow-[0_4px_20px_rgba(212,175,55,0.35)] hover:shadow-[0_8px_30px_rgba(212,175,55,0.5)] text-base">
-              Become a Member
+          <div class="neuro-action-row">
+            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-primary">
+              Join the society
             </a>
-            <a href="/events" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-gold-500/10 hover:text-gold-300 hover:border-gold-500/30 text-white font-semibold rounded-xl border border-white/10 transition-all text-base backdrop-blur-sm">
-              Discover Events
+            <a href="#what-we-explore" class="neuro-btn-secondary">
+              Explore our focus areas
             </a>
           </div>
+          <p class="neuro-open-note">Open to all students. All backgrounds. All levels.</p>
+        </div>
 
-          <div class="mt-12 flex flex-col sm:flex-row sm:items-center gap-4 text-slate-400 text-sm">
-            <span class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-gold-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-              No experience required
-            </span>
-            <span class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-gold-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-              All degrees welcome
-            </span>
-          </div>
-        </div>
-        
-        <div id="hero-canvas-container" class="relative w-full aspect-square lg:aspect-auto lg:h-[620px] flex items-center justify-center pointer-events-none" aria-label="Animated neural brain signal visual">
-          <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-auto" style="touch-action: none;"></canvas>
-          <div id="hero-fallback" class="hidden absolute inset-0 items-center justify-center pointer-events-none">
-             <!-- Static Beautiful SVG fallback for reduced motion -->
-             <svg class="w-full h-full max-w-[280px] opacity-80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M100 20C140 20 170 50 170 90C170 130 140 180 100 180C60 180 30 130 30 90C30 50 60 20 100 20Z" stroke="url(#paint0_linear)" stroke-width="2" stroke-dasharray="4 4" />
-                <path d="M100 40C120 40 140 60 140 90C140 120 120 150 100 150C80 150 60 120 60 90C60 60 80 40 100 40Z" stroke="#d4af37" stroke-width="1.5" />
-                <circle cx="100" cy="90" r="20" fill="#d4af37" fill-opacity="0.1" stroke="#d4af37" stroke-width="2"/>
-                <defs>
-                  <linearGradient id="paint0_linear" x1="30" y1="20" x2="170" y2="180" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#d4af37"/>
-                    <stop offset="1" stop-color="#FAFAFA" stop-opacity="0.1"/>
-                  </linearGradient>
-                </defs>
-             </svg>
-          </div>
-        </div>
+        <figure class="neuro-discovery-stage reveal" aria-label="Students gathered around a friendly neurotechnology discussion visual">
+          <Image
+            src={discoveryHero}
+            alt="Students in a bright common room discussing around a calm brain and signal visual."
+            width={1536}
+            height={864}
+            class="neuro-discovery-image"
+            loading="eager"
+            format="webp"
+          />
+          <figcaption>
+            <span>Exploring the brain.</span>
+            <strong>Building a better future.</strong>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Bento Focus Areas -->
-  <NeuroFocusAreas />
-
-  <!-- Events Preview -->
-  <section class="py-24 px-6 bg-navy-900/40 border-t border-navy-800">
-    <div class="mx-auto max-w-5xl">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
-        <div>
-          <h2 class="text-4xl font-bold text-white tracking-tight">Upcoming Sessions</h2>
-          <p class="mt-4 text-lg text-slate-400 font-light">Join us for deep dives, workshops, and discussions.</p>
-        </div>
-        <a href="/events" class="inline-flex items-center justify-center px-6 py-3 bg-navy-800 hover:bg-gold-500 hover:text-navy-950 text-gold-500 font-semibold rounded-xl border border-gold-500/20 transition-all cursor-pointer shadow-sm hover:shadow-[0_0_15px_rgba(212,175,55,0.15)]">
-          View All Events
-        </a>
+  <section id="what-we-explore" class="neuro-section neuro-section--mist" aria-labelledby="mission-title">
+    <div class="neuro-shell">
+      <div class="neuro-journey-heading reveal">
+        <p class="neuro-eyebrow">Your journey with us</p>
+        <h2 id="mission-title" class="neuro-serif">Three ways we grow together.</h2>
       </div>
 
-      <div class="flex flex-col gap-6">
-        {events.length === 0 ? (
-          <div class="bg-navy-950/60 border border-navy-800 p-10 rounded-3xl text-center">
-            <div class="w-16 h-16 bg-gold-500/10 text-gold-500 border border-gold-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+      <div class="neuro-journey-grid">
+        {journeyCards.map((card, index) => (
+          <article class="neuro-journey-card reveal">
+            <span class="neuro-journey-card__mark">{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="neuro-serif">{card.title}</h3>
+              <p>{card.copy}</p>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-3">Our Event Formats</h3>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-8 font-light">
-              We host a variety of sessions designed for all experience levels. Here's what you can expect:
-            </p>
-            <div class="grid sm:grid-cols-3 gap-6 text-left">
-              <div class="bg-navy-900/60 p-6 rounded-2xl border border-navy-800 shadow-sm hover:border-gold-500/20 transition-colors">
-                <h4 class="font-bold text-white mb-2">Beginner Workshops</h4>
-                <p class="text-slate-400 text-sm font-light">Hands-on introductions to signal processing and machine learning.</p>
-              </div>
-              <div class="bg-navy-900/60 p-6 rounded-2xl border border-navy-800 shadow-sm hover:border-gold-500/20 transition-colors">
-                <h4 class="font-bold text-white mb-2">Guest Lectures</h4>
-                <p class="text-slate-400 text-sm font-light">Insights from industry leaders and researchers in neurotech.</p>
-              </div>
-              <div class="bg-navy-900/60 p-6 rounded-2xl border border-navy-800 shadow-sm hover:border-gold-500/20 transition-colors">
-                <h4 class="font-bold text-white mb-2">Ethics Panels</h4>
-                <p class="text-slate-400 text-sm font-light">Discussions on the societal and ethical impact of cognitive interfaces.</p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          events.slice(0, 3).map((event: any) => (
-            <div class="group flex flex-col sm:flex-row gap-6 p-6 sm:p-8 rounded-3xl border border-navy-800 bg-navy-950/40 hover:border-gold-500/35 hover:bg-navy-900/40 hover:shadow-[0_4px_30px_rgba(3,7,18,0.4)] transition-all duration-300">
-              <div class="flex-shrink-0 w-24">
-                <span class="block text-sm font-bold text-gold-500 mb-1">{formatEventDate(event.date)}</span>
-                <span class="inline-block text-xs font-medium text-slate-300 bg-navy-800 px-3 py-1 rounded-full">{event.category || 'Event'}</span>
-              </div>
+            <a href={card.href} aria-label={`Explore ${card.title.toLowerCase()}`}>
+              <span aria-hidden="true">Open</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="neuro-section neuro-section--paper" aria-labelledby="activities-title">
+    <div class="neuro-shell">
+      <div class="neuro-activities-layout">
+        <div class="neuro-section-heading neuro-section-heading--left reveal">
+          <p class="neuro-eyebrow">What we do</p>
+          <h2 id="activities-title" class="neuro-serif">Explore. Discuss. Create. Together.</h2>
+          <p>
+            From neuroscience to interfaces and AI, we bring big ideas to life through events, projects, and conversation.
+          </p>
+        </div>
+
+        <div class="neuro-activity-card-grid">
+          {activityCards.map((activity) => (
+            <article class="neuro-activity-card reveal">
+              <Image
+                src={activity.image}
+                alt={activity.alt}
+                width={1536}
+                height={1152}
+                loading="lazy"
+                format="webp"
+              />
               <div>
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-gold-400 transition-colors">{event.title}</h3>
-                <p class="text-slate-400 leading-relaxed text-lg font-light">{event.description || 'Details coming soon.'}</p>
+                <h3>{activity.title}</h3>
+                <p>{activity.copy}</p>
               </div>
-            </div>
-          ))
-        )}
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Join CTA -->
-  <section class="bg-gradient-to-b from-navy-900 to-navy-950 text-white py-32 px-6 text-center relative overflow-hidden border-t border-navy-800">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
-    <div class="mx-auto max-w-3xl relative z-10">
-      <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-gold-100 to-gold-400 bg-clip-text text-transparent">Ready to explore the mind?</h2>
-      <p class="text-xl text-slate-450 mb-10 leading-relaxed font-light">
-        Join our community of students building the future of human-computer interaction. No prior experience needed.
-      </p>
-      <a href="/join" class="inline-flex items-center justify-center px-10 py-5 bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold rounded-2xl transition-all shadow-[0_8px_30px_rgba(212,175,55,0.3)] hover:shadow-[0_12px_40px_rgba(212,175,55,0.45)] text-lg">
-        Join the Society Today
-      </a>
+  <section class="neuro-section neuro-section--deep neuro-section--responsibility" aria-labelledby="principles-title">
+    <div class="neuro-shell">
+      <div class="neuro-principles-layout">
+        <div class="reveal">
+          <h2 id="principles-title" class="neuro-serif">
+            Responsible neurotechnology needs clear rules.
+          </h2>
+          <p>
+            Neurotechnology is exciting because it touches minds, bodies, data, devices, and society at once. That makes careful thinking part of the work, not an optional extra.
+          </p>
+        </div>
+
+        <div class="neuro-principle-rail reveal">
+          {principles.map((principle) => (
+            <article>
+              <h3>{principle.title}</h3>
+              <p>{principle.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
-  <style>
-    .neuro-hero-grid {
-      background-image:
-        linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(circle at 66% 45%, black, transparent 72%);
-      opacity: 0.8;
-    }
-  </style>
+  <section class="neuro-section neuro-section--paper" aria-labelledby="concepts-title">
+    <div class="neuro-shell">
+      <div class="neuro-feature-grid neuro-feature-grid--balanced">
+        <div class="neuro-section-heading neuro-section-heading--left reveal">
+          <h2 id="concepts-title" class="neuro-serif">Big ideas, plain language.</h2>
+          <p>
+            Technical vocabulary should be a doorway, not a wall. Tap a concept to see how the society frames it for newcomers.
+          </p>
+          <a href="/about" class="neuro-btn-secondary">Learn about the society</a>
+        </div>
 
+        <div class="neuro-concept-accordion reveal">
+          {concepts.map((concept, index) => (
+            <details name="concepts" {...(index === 0 ? { open: true } : {})}>
+              <summary>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{concept.title}</strong>
+                <em>{concept.copy}</em>
+              </summary>
+              <p>{concept.detail}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="neuro-section neuro-section--mist" aria-labelledby="updates-title">
+    <div class="neuro-shell">
+      <div class="neuro-updates-header reveal">
+        <h2 id="updates-title" class="neuro-serif">What's happening and who's involved.</h2>
+        <p>
+          Confirmed events and the student team running the society. Check back for updates on talks, workshops, socials, and more.
+        </p>
+      </div>
+
+      <div class="neuro-update-rail">
+        <section class="reveal" aria-labelledby="events-title">
+          <h3 id="events-title" class="neuro-serif">Events</h3>
+
+          {events.length > 0 ? (
+            <div class="neuro-ledger neuro-ledger--compact">
+              {events.slice(0, 2).map((event: any) => (
+                <article class="neuro-row">
+                  <div>
+                    <time>{formatEventDate(event.date)}</time>
+                    <p class="neuro-row__meta">{event.category || 'Event'}</p>
+                  </div>
+                  <div>
+                    <h4 class="neuro-serif">{event.title}</h4>
+                    <p>{event.description || 'Details will be confirmed soon.'}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="neuro-empty neuro-empty--flat">
+              <h4 class="neuro-serif">Events will appear once confirmed.</h4>
+              <p>
+                Talks, workshops, socials, and collaboration updates will be published here when the details are ready.
+              </p>
+            </div>
+          )}
+          <a href="/events" class="neuro-link-row">See all events <span aria-hidden="true">Open</span></a>
+        </section>
+
+        <section class="reveal" aria-labelledby="committee-preview-title">
+          <h3 id="committee-preview-title" class="neuro-serif">Committee</h3>
+
+          {committee.length > 0 ? (
+            <div class="neuro-mini-people neuro-mini-people--flat">
+              {committee.slice(0, 4).map((member: any) => (
+                <article>
+                  {member.imageUrl ? (
+                    <img src={member.imageUrl} alt={member.name || member.role} />
+                  ) : (
+                    <div>{getInitials(member.name, member.role)}</div>
+                  )}
+                  <h4>{member.name}</h4>
+                  <p>{member.role}</p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="neuro-empty neuro-empty--flat">
+              <h4 class="neuro-serif">Committee details will appear once confirmed.</h4>
+              <p>
+                Confirmed names, roles, and contact details are shown once they are available through the society data.
+              </p>
+            </div>
+          )}
+          <a href="/committee" class="neuro-link-row">Meet the committee <span aria-hidden="true">Open</span></a>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="neuro-final-cta" aria-labelledby="join-title">
+    <div class="neuro-shell">
+      <div class="neuro-final-cta__inner">
+        <div>
+          <h2 id="join-title" class="neuro-serif">
+            Ready to explore neurotechnology with other curious students?
+          </h2>
+          <p>
+            Whether you want to learn, meet people, discuss big questions, or help shape future events, Surrey Neurotech is open to all.
+          </p>
+        </div>
+        <div class="neuro-final-actions">
+          <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-primary">Join the society</a>
+          {society.socials.instagram && (
+            <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="neuro-btn-dark">Instagram</a>
+          )}
+          <a href={`mailto:${society.contactEmail}`} class="neuro-btn-dark">Ask anything</a>
+          <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-dark">Students' Union</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
-
-<script>
-  import * as THREE from 'three';
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // --- Three.js 3D Mathematical Neural Brain (Hero) ---
-  const initHeroCanvas = () => {
-    const canvasContainer = document.getElementById('hero-canvas-container');
-    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
-    if (!canvas || !canvasContainer) return;
-
-    const getDimensions = () => ({
-      width: canvasContainer.clientWidth,
-      height: canvasContainer.clientHeight
-    });
-
-    let { width, height } = getDimensions();
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.z = 180;
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const brainGroup = new THREE.Group();
-    scene.add(brainGroup);
-
-    // Mathematical Brain Generator
-    const generateBrainPoint = () => {
-      const isLeft = Math.random() > 0.5;
-      const sign = isLeft ? -1 : 1;
-      const rand = Math.random();
-
-      if (rand < 0.82) {
-        // --- CEREBRUM (Main hemispheres) ---
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(Math.random() * 2 - 1);
-        
-        const rx = 36;
-        const ry = 42;
-        const rz = 52;
-
-        // Realistic convoluted brain folds (Gyri / Sulci)
-        const folds = Math.sin(theta * 7.5) * Math.cos(phi * 7.5) * 4.2
-                    + Math.sin(theta * 16) * Math.sin(phi * 16) * 1.5;
-
-        const r = 1.0 + folds / ry;
-
-        let x = rx * Math.sin(phi) * Math.cos(theta) * r;
-        let y = ry * Math.sin(phi) * Math.sin(theta) * r;
-        let z = rz * Math.cos(phi) * r;
-
-        // Shape Hemispheres & Longitudinal Fissure
-        x = Math.abs(x);
-        x += 3.2; // Fissure gap
-        x *= sign;
-
-        // Compress temporal & bottom lobes
-        if (y < 0) {
-          y *= 0.82;
-        }
-
-        // Taper towards the front (positive z)
-        const frontalTaper = 1.0 - (z > 0 ? (z / rz) * 0.12 : 0);
-        x *= frontalTaper;
-        y *= frontalTaper;
-
-        return { x, y, z };
-      } else if (rand < 0.96) {
-        // --- CEREBELLUM (Lower back structure) ---
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(Math.random() * 2 - 1);
-        
-        const crx = 18;
-        const cry = 13;
-        const crz = 18;
-
-        const folia = Math.sin(y * 1.8) * 1.0;
-        const r = 1.0 + folia / cry;
-
-        let x = crx * Math.sin(phi) * Math.cos(theta) * r;
-        let y = cry * Math.sin(phi) * Math.sin(theta) * r;
-        let z = crz * Math.cos(phi) * r;
-
-        x = Math.abs(x) + 2.0;
-        x *= sign;
-        y -= 26; // Position below cerebrum
-        z -= 26; // Position at back
-
-        return { x, y, z };
-      } else {
-        // --- BRAIN STEM (Stem extending down) ---
-        const y = -26 - Math.random() * 24;
-        const angle = Math.random() * Math.PI * 2;
-        const stemRadius = 5.0 * (1.0 + (y + 26) / 55); // Taper
-        const r = Math.sqrt(Math.random()) * stemRadius;
-        
-        const x = r * Math.cos(angle);
-        const z = -10 + r * Math.sin(angle);
-
-        return { x, y, z };
-      }
-    };
-
-    const particleCount = 1800;
-    const particles = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const originalPositions = new Float32Array(particleCount * 3);
-    const phases = new Float32Array(particleCount);
-    const speedScale = new Float32Array(particleCount);
-    const colors = new Float32Array(particleCount * 3);
-
-    const cGold = new THREE.Color(0xd4af37);
-    const cCream = new THREE.Color(0xf3e5ab);
-    const cWhite = new THREE.Color(0xffffff);
-    const cCyan = new THREE.Color(0x06b6d4); // Controlled signal accent
-
-    for (let i = 0; i < particleCount; i++) {
-      const pt = generateBrainPoint();
-      positions[i * 3] = pt.x;
-      positions[i * 3 + 1] = pt.y;
-      positions[i * 3 + 2] = pt.z;
-
-      originalPositions[i * 3] = pt.x;
-      originalPositions[i * 3 + 1] = pt.y;
-      originalPositions[i * 3 + 2] = pt.z;
-
-      phases[i] = Math.random() * Math.PI * 2;
-      speedScale[i] = 0.6 + Math.random() * 1.4;
-
-      let activeColor = cGold;
-      const colRand = Math.random();
-      if (colRand < 0.22) {
-        activeColor = cWhite;
-      } else if (colRand < 0.52) {
-        activeColor = cCream;
-      } else if (colRand < 0.68) {
-        activeColor = cCyan;
-      }
-      colors[i * 3] = activeColor.r;
-      colors[i * 3 + 1] = activeColor.g;
-      colors[i * 3 + 2] = activeColor.b;
-    }
-
-    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const pMaterial = new THREE.PointsMaterial({
-      size: 1.8,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.85,
-      blending: THREE.AdditiveBlending
-    });
-
-    const particleSystem = new THREE.Points(particles, pMaterial);
-    brainGroup.add(particleSystem);
-
-    // Neural Connection Lines - controlled cyan/blue communication links
-    const connectionPositions: number[] = [];
-    const maxConnections = 2;
-    const maxDist = 20;
-    const minDist = 4;
-
-    for (let i = 0; i < particleCount; i++) {
-      let connectionsCount = 0;
-      for (let attempt = 0; attempt < 35; attempt++) {
-        const j = Math.floor(Math.random() * particleCount);
-        if (i === j) continue;
-
-        const ax = originalPositions[i * 3];
-        const ay = originalPositions[i * 3 + 1];
-        const az = originalPositions[i * 3 + 2];
-        const bx = originalPositions[j * 3];
-        const by = originalPositions[j * 3 + 1];
-        const bz = originalPositions[j * 3 + 2];
-
-        const dx = ax - bx;
-        const dy = ay - by;
-        const dz = az - bz;
-        const distSq = dx*dx + dy*dy + dz*dz;
-
-        if (distSq > minDist*minDist && distSq < maxDist*maxDist) {
-          connectionPositions.push(ax, ay, az, bx, by, bz);
-          connectionsCount++;
-          if (connectionsCount >= maxConnections) break;
-        }
-      }
-    }
-
-    const connectionGeo = new THREE.BufferGeometry();
-    connectionGeo.setAttribute('position', new THREE.Float32BufferAttribute(connectionPositions, 3));
-    
-    const connectionMaterial = new THREE.LineBasicMaterial({
-      color: 0x06b6d4, // Cyan signal line
-      transparent: true,
-      opacity: 0.1,
-      blending: THREE.AdditiveBlending
-    });
-
-    const connections = new THREE.LineSegments(connectionGeo, connectionMaterial);
-    brainGroup.add(connections);
-
-    let targetRotationX = 0;
-    let targetRotationY = 0;
-
-    canvasContainer.addEventListener('mousemove', (event) => {
-      const rect = canvasContainer.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-      targetRotationY = x * 0.45;
-      targetRotationX = -y * 0.45;
-    });
-
-    const resizeRenderer = () => {
-      const w = canvasContainer.clientWidth;
-      const h = canvasContainer.clientHeight;
-      if (w > 0 && h > 0) {
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h, false);
-      } else {
-        const rect = canvasContainer.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0) {
-          camera.aspect = rect.width / rect.height;
-          camera.updateProjectionMatrix();
-          renderer.setSize(rect.width, rect.height, false);
-        }
-      }
-    };
-
-    window.addEventListener('resize', resizeRenderer);
-
-    let time = 0;
-    const animate = () => {
-      requestAnimationFrame(animate);
-      time += 0.01;
-
-      const currentWidth = canvasContainer.clientWidth;
-      const currentHeight = canvasContainer.clientHeight;
-      if (currentWidth > 0 && currentHeight > 0) {
-        if (canvas.width !== currentWidth || canvas.height !== currentHeight) {
-          resizeRenderer();
-        }
-      } else {
-        const rect = canvasContainer.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0 && (canvas.width !== rect.width || canvas.height !== rect.height)) {
-          resizeRenderer();
-        }
-      }
-
-      brainGroup.rotation.y += (targetRotationY - brainGroup.rotation.y) * 0.05;
-      brainGroup.rotation.x += (targetRotationX - brainGroup.rotation.x) * 0.05;
-      brainGroup.rotation.y += 0.002;
-
-      const posAttribute = particles.getAttribute('position');
-      for (let i = 0; i < particleCount; i++) {
-        const ox = originalPositions[i * 3];
-        const oy = originalPositions[i * 3 + 1];
-        const oz = originalPositions[i * 3 + 2];
-        const phase = phases[i];
-        const speed = speedScale[i];
-
-        const wave = Math.sin(time * 1.6 * speed + phase) * 1.3;
-        const len = Math.sqrt(ox*ox + oy*oy + oz*oz);
-
-        if (len > 0) {
-          posAttribute.setXYZ(
-            i,
-            ox + (ox / len) * wave,
-            oy + (oy / len) * wave,
-            oz + (oz / len) * wave
-          );
-        }
-      }
-      posAttribute.needsUpdate = true;
-
-      renderer.render(scene, camera);
-    };
-
-    resizeRenderer();
-    animate();
-  };
-
-  if (prefersReducedMotion) {
-    const canvas = document.getElementById('hero-canvas');
-    const fallback = document.getElementById('hero-fallback');
-    if (canvas) canvas.style.display = 'none';
-    if (fallback) fallback.classList.remove('hidden');
-    if (fallback) fallback.classList.add('flex');
-  } else {
-    initHeroCanvas();
-  }
-</script>

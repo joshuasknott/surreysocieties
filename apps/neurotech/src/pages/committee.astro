@@ -1,303 +1,199 @@
 ---
 export const prerender = false;
-import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
+import Layout from '../layouts/Layout.astro';
+import bciHardwareCutout from '../assets/generated/neurotech-bci-hardware-cutout.png';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
+const society = getSocietyById(SOCIETY_ID)!;
 
-// Fetch committee
-const committee: any[] = (await queryPublicConvex<any[]>("committee:listActive", { societySlug: SOCIETY_ID }, []))
-  .sort((a: any, b: any) =>
-    (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
-    || (a.name || '').localeCompare(b.name || '')
-  );
+const committee: any[] = (
+  await queryPublicConvex<any[]>('committee:listActive', { societySlug: SOCIETY_ID }, [])
+).sort((a: any, b: any) =>
+  (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
+  || (a.name || '').localeCompare(b.name || '')
+);
+
+const pastCommittee: any[] = (
+  await queryPublicConvex<any[]>('committee:listPast', { societySlug: SOCIETY_ID }, [])
+).sort((a: any, b: any) =>
+  (b.yearLabel || '').localeCompare(a.yearLabel || '') ||
+  (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
+  (a.name || '').localeCompare(b.name || '')
+);
+
+const pastCommitteeYears = [...new Set(pastCommittee.map((member) => member.yearLabel))];
 
 const getInitials = (name?: string, role?: string) => {
   const source = (name || role || '?').trim();
   const words = source.split(/\s+/).filter(Boolean);
   if (words.length === 0) return '?';
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-  return words.slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
 };
+
+const involvement = [
+  {
+    title: 'Join the community',
+    copy: 'Membership keeps you connected to confirmed society activity through the official Union route.',
+  },
+  {
+    title: 'Show up and ask questions',
+    copy: 'Events, socials, and discussions are the simplest way to understand the society and meet other curious students.',
+  },
+  {
+    title: 'Step forward when roles open',
+    copy: 'When elections, projects, or calls for involvement are announced, active members can use those routes to contribute.',
+  },
+];
 ---
 
-<Layout title="Committee" description="Meet the student committee running Surrey Neurotech Society.">
+<Layout
+  title="Committee"
+  description="Meet the student committee running Surrey Neurotech Society and view confirmed current and past committee records."
+>
+  <section class="neuro-hero" aria-labelledby="committee-title">
+    <div class="neuro-hero__inner">
+      <div class="neuro-subhero-grid">
+        <div class="neuro-subhero-copy reveal">
+          <h1 id="committee-title" class="neuro-serif">
+            Meet the team behind Surrey Neurotech.
+          </h1>
+          <p>
+            The students driving events, projects, and collaborations — building a lasting infrastructure for neurotechnology at Surrey.
+          </p>
+        </div>
 
-  <!-- Premium Header -->
-  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-24 sm:py-32 px-6 relative overflow-hidden border-b border-navy-800">
-    <!-- Glowing background elements -->
-    <div class="absolute inset-0 pointer-events-none opacity-30" aria-hidden="true">
-        <div class="absolute top-[-10%] right-[10%] w-[60vw] h-[60vw] bg-gold-500/5 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] left-[10%] w-[50vw] h-[50vw] bg-cyan-500/5 rounded-full blur-[100px]"></div>
-    </div>
-    
-    <div class="mx-auto max-w-5xl relative z-10 text-center">
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">
-        Meet the <span class="bg-gradient-to-r from-gold-200 to-gold-500 bg-clip-text text-transparent">Team</span>
-      </h1>
-      <p class="text-xl text-slate-350 leading-relaxed font-light max-w-2xl mx-auto">
-        The students driving conceptual BCI research, workshops, and neurotech exploration at Surrey.
-      </p>
+        <figure class="neuro-cutout-stage neuro-cutout-stage--subhero reveal" aria-label="Brain-computer interface hardware">
+          <Image
+            src={bciHardwareCutout}
+            alt="Brain-computer interface hardware board with electrode leads and control device."
+            width={1536}
+            height={1024}
+            class="neuro-cutout neuro-cutout--subhero-brain"
+            loading="eager"
+            format="webp"
+          />
+        </figure>
+      </div>
     </div>
   </section>
 
-  <!-- Committee Roster Section -->
-  <section class="py-24 px-6 bg-navy-950 min-h-[60vh] border-b border-navy-800">
-    <div class="mx-auto max-w-6xl">
-      
-      {committee.length === 0 ? (
-        
-        <!-- HIGH FIDELITY EMPTY STATE / ELECTIONS FALLBACK -->
-        <div class="w-full bg-navy-900/40 rounded-3xl p-8 sm:p-16 text-center text-white shadow-2xl relative overflow-hidden border border-navy-800">
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
-          
-          <div class="grid lg:grid-cols-12 gap-12 items-center relative z-10">
-            
-            <!-- Axon Core SVG Interactive -->
-            <div class="lg:col-span-6 w-full flex justify-center items-center min-h-[300px]">
-              <div class="w-full max-w-[420px] aspect-square rounded-3xl bg-navy-950/60 border border-navy-800 relative flex items-center justify-center p-4">
-                
-                <svg class="w-full h-full overflow-visible" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" id="axon-recruitment-svg">
-                  <defs>
-                    <filter id="axon-glow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="8" result="blur" />
-                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                  </defs>
+  <section class="neuro-section neuro-section--mist" aria-labelledby="active-committee-title">
+    <div class="neuro-shell">
+      <div class="neuro-feature-grid mb-12">
+        <div class="neuro-section-heading neuro-section-heading--left reveal">
+          <h2 id="active-committee-title" class="neuro-serif">
+            The current team.
+          </h2>
+          <p>
+            Our committee brings together students from across disciplines — united by a shared passion for exploring how neuroscience and technology intersect.
+          </p>
+          <a href={`mailto:${society.contactEmail}`} class="neuro-btn-secondary">
+            Contact the society
+          </a>
+        </div>
 
-                  <!-- Network Connectors -->
-                  <g fill="none" stroke-width="1.5" class="opacity-40">
-                    <path id="axon-path-1" d="M 200,200 Q 150,150 100,100" class="stroke-navy-800" />
-                    <path id="axon-path-2" d="M 200,200 Q 250,150 300,100" class="stroke-navy-800" />
-                    <path id="axon-path-3" d="M 200,200 Q 150,250 100,300" class="stroke-navy-800" />
-                    <path id="axon-path-4" d="M 200,200 Q 250,250 300,300" class="stroke-navy-800" />
-                  </g>
+        <div class="neuro-signal-panel reveal" aria-label="Committee focus areas">
+          <span>Events</span>
+          <span>Members</span>
+          <span>Projects</span>
+        </div>
+      </div>
 
-                  <!-- Floating Particles along axons -->
-                  <g fill="none" stroke-width="2" class="axon-pulses pointer-events-none"></g>
-
-                  <!-- Central Nucleus -->
-                  <g>
-                    <circle cx="200" cy="200" r="30" class="fill-navy-950 stroke-gold-500 stroke-2 drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]" />
-                    <circle cx="200" cy="200" r="8" class="fill-gold-500 animate-pulse" />
-                  </g>
-
-                  <!-- President Node -->
-                  <g class="recruitment-node cursor-pointer group" tabindex="0" role="button" aria-label="President position info"
-                     data-title="Society President"
-                     data-desc="Lead core society operations, establish strategic sponsor relationships, organize team pipelines, and coordinate events with Surrey SU."
-                     data-time="Time commitment: ~4-6 hours / week">
-                    <circle cx="100" cy="100" r="24" class="fill-navy-950 stroke-navy-800 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-navy-900 group-focus:stroke-gold-500" />
-                    <text x="100" y="105" class="text-xl pointer-events-none" text-anchor="middle">👑</text>
-                    <text x="100" y="65" class="fill-slate-450 font-sans text-[9px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">PRESIDENT</text>
-                  </g>
-
-                  <!-- Treasurer Node -->
-                  <g class="recruitment-node cursor-pointer group" tabindex="0" role="button" aria-label="Treasurer position info"
-                     data-title="Treasurer & Sourcing"
-                     data-desc="Supervise budget accounts, draft corporate sponsorship pitches, acquire conceptual BCI kit inventory, and handle society grant allocations."
-                     data-time="Time commitment: ~2-3 hours / week">
-                    <circle cx="300" cy="100" r="24" class="fill-navy-950 stroke-navy-800 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-navy-900 group-focus:stroke-gold-500" />
-                    <text x="300" y="105" class="text-xl pointer-events-none" text-anchor="middle">💰</text>
-                    <text x="300" y="65" class="fill-slate-450 font-sans text-[9px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">TREASURER</text>
-                  </g>
-
-                  <!-- Tech Lead Node -->
-                  <g class="recruitment-node cursor-pointer group" tabindex="0" role="button" aria-label="Technical Lead position info"
-                     data-title="Technical / Workshop Lead"
-                     data-desc="Lead conceptual hardware build sessions, manage GitHub codebases, prepare Python signal processing tutorials, and discuss cortex-interface principles."
-                     data-time="Time commitment: ~3-5 hours / week">
-                    <circle cx="100" cy="300" r="24" class="fill-navy-950 stroke-navy-800 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-navy-900 group-focus:stroke-gold-500" />
-                    <text x="100" y="305" class="text-xl pointer-events-none" text-anchor="middle">💻</text>
-                    <text x="100" y="342" class="fill-slate-450 font-sans text-[9px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">TECH LEAD</text>
-                  </g>
-
-                  <!-- Marketing Node -->
-                  <g class="recruitment-node cursor-pointer group" tabindex="0" role="button" aria-label="Marketing and Design position info"
-                     data-title="Marketing & Design Coordinator"
-                     data-desc="Produce elegant design assets, oversee online presence and social platforms, write public newsletters, and run event recruitment campaigns."
-                     data-time="Time commitment: ~2-3 hours / week">
-                    <circle cx="300" cy="300" r="24" class="fill-navy-950 stroke-navy-800 stroke-2 transition-all duration-300 group-hover:stroke-gold-500 group-hover:fill-navy-900 group-focus:stroke-gold-500" />
-                    <text x="300" y="305" class="text-xl pointer-events-none" text-anchor="middle">🎨</text>
-                    <text x="300" y="342" class="fill-slate-450 font-sans text-[9px] font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity uppercase text-center" text-anchor="middle">MARKETING</text>
-                  </g>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Detail panel & call to action -->
-            <div class="lg:col-span-6 text-left flex flex-col justify-center">
-              <span class="inline-flex items-center gap-1.5 text-gold-500 font-bold font-mono text-xs uppercase tracking-widest mb-3">
-                <span class="w-2 h-2 rounded-full bg-gold-500 animate-ping"></span>
-                Elections Forming Now
-              </span>
-              
-              <div class="min-h-[170px]" id="role-panel" aria-live="polite">
-                <div id="role-default">
-                  <h2 class="text-3xl sm:text-4xl font-bold mb-4 tracking-tight text-white">Run for Office</h2>
-                  <p class="text-slate-350 leading-relaxed font-light text-base mb-6">
-                    We are currently building our core student leadership team. Click or hover the active role nodes on the axon map to read role descriptions and join the next generation of pioneers.
-                  </p>
+      {committee.length > 0 ? (
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 reveal">
+          {committee.map((member) => (
+            <article class="neuro-panel overflow-hidden">
+              {member.imageUrl ? (
+                <img src={member.imageUrl} alt={member.name || member.role} class="aspect-[4/3] w-full object-cover" />
+              ) : (
+                <div class="flex aspect-[4/3] w-full items-center justify-center bg-neuro-deep neuro-serif text-5xl text-neuro-gold">
+                  {getInitials(member.name, member.role)}
                 </div>
-                
-                <div id="role-active" class="hidden">
-                  <h3 class="text-2xl font-bold text-white mb-2" id="role-title">Role Title</h3>
-                  <p class="text-slate-350 text-sm leading-relaxed mb-3 font-light" id="role-desc">Role description</p>
-                  <p class="text-xs text-gold-450 font-semibold mb-6" id="role-time font-mono">Time</p>
-                </div>
+              )}
+              <div class="p-5">
+                <h3 class="neuro-serif text-2xl text-neuro-ink">{member.name}</h3>
+                <p class="mt-1 text-sm font-bold uppercase text-neuro-navy">{member.role}</p>
+                {member.bio && <p class="mt-4 text-base leading-7 text-neuro-muted">{member.bio}</p>}
+                {(member.email || member.linkedIn) && (
+                  <div class="mt-5 flex flex-wrap gap-3">
+                    {member.email && <a href={`mailto:${member.email}`} class="text-sm font-bold text-neuro-navy hover:text-neuro-deep">Email</a>}
+                    {member.linkedIn && <a href={member.linkedIn} target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-neuro-navy hover:text-neuro-deep">LinkedIn</a>}
+                  </div>
+                )}
               </div>
-
-              <div class="flex flex-wrap gap-4 mt-4">
-                <a href="/join" class="inline-flex items-center justify-center px-6 py-3 bg-gold-500 hover:bg-gold-600 active:scale-95 text-navy-950 font-bold rounded-xl transition-all shadow-lg text-sm cursor-pointer">
-                  Join Surrey Neurotech
-                </a>
-                <a href="https://surreyunion.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 border border-navy-800 hover:border-gold-500 hover:bg-white/5 active:scale-95 text-white font-medium rounded-xl transition-all text-sm">
-                  Union Elections Portal
-                </a>
-              </div>
-            </div>
-
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="neuro-empty reveal">
+          <h2 class="mb-3 neuro-serif text-3xl text-neuro-ink">Committee details coming soon.</h2>
+          <p class="neuro-prose">
+            We're a student-led society. Names, roles, and contact details will appear here once the team is confirmed for the current year.
+          </p>
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a href="/join" class="neuro-btn-primary">Become a member</a>
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-secondary">Students' Union page</a>
           </div>
         </div>
-
-      ) : (
-
-        <!-- ROSTER GRID -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
-          {committee.map((member, index) => {
-            return (
-              <div class="bg-navy-900/40 border border-navy-800 rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:border-gold-500/30 hover:shadow-[0_4px_30px_rgba(3,7,18,0.4)] hover:-translate-y-2 flex flex-col items-center text-center group relative overflow-hidden">
-                <!-- Glowing accent dot -->
-                <div class="absolute top-3 right-3 w-2 h-2 rounded-full bg-navy-800 group-hover:bg-gold-500 group-hover:scale-125 transition-all duration-300 pointer-events-none" aria-hidden="true"></div>
-                
-                <!-- Avatar circle -->
-                <div class="w-40 h-40 rounded-full bg-navy-950 mb-6 flex items-center justify-center text-slate-400 text-3xl font-bold shadow-lg overflow-hidden relative border-2 border-navy-850 group-hover:border-gold-500/50 transition-all duration-500">
-                  {member.imageUrl ? (
-                    <img src={member.imageUrl} alt={member.name || member.role} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  ) : (
-                    <span class="font-sans text-slate-200 uppercase tracking-widest">{getInitials(member.name, member.role)}</span>
-                  )}
-                </div>
-
-                <!-- Member Metadata -->
-                <h3 class="text-xl font-bold text-white mb-1 tracking-tight group-hover:text-gold-300 transition-colors">{member.name}</h3>
-                
-                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-500 text-xs font-semibold uppercase tracking-wider mb-4">
-                  {member.role}
-                </span>
-
-                {member.bio && (
-                  <p class="text-sm text-slate-400 leading-relaxed font-light">{member.bio}</p>
-                )}
-
-              </div>
-            );
-          })}
-        </div>
       )}
-      
     </div>
   </section>
 
+  <section class="neuro-dark-band px-5 py-20 text-neuro-on-dark sm:px-6 sm:py-28" aria-labelledby="involvement-title">
+    <div class="neuro-shell">
+      <div class="mb-12 max-w-3xl reveal">
+        <h2 id="involvement-title" class="neuro-serif text-4xl leading-tight sm:text-5xl">
+          Leadership grows from participation.
+        </h2>
+      </div>
+      <div class="neuro-principle-rail reveal">
+        {involvement.map((item, index) => (
+          <article>
+            <h3>{String(index + 1).padStart(2, '0')} {item.title}</h3>
+            <p>{item.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="neuro-section neuro-section--paper" aria-labelledby="past-committee-title">
+    <div class="neuro-shell">
+      <div class="mb-12 max-w-3xl reveal">
+        <h2 id="past-committee-title" class="neuro-serif text-4xl leading-tight text-neuro-ink sm:text-5xl">
+          Past committee records.
+        </h2>
+      </div>
+
+      {pastCommittee.length > 0 ? (
+        <div class="space-y-12 reveal">
+          {pastCommitteeYears.map((yearLabel) => (
+            <section class="neuro-panel p-6">
+              <h3 class="mb-6 border-b border-neuro-line pb-4 neuro-serif text-2xl text-neuro-ink">{yearLabel}</h3>
+              <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" role="list">
+                {pastCommittee.filter((member) => member.yearLabel === yearLabel).map((member) => (
+                  <li class="border-l border-neuro-gold pl-4" role="listitem">
+                    <p class="neuro-serif text-xl text-neuro-ink">{member.name}</p>
+                    <p class="mt-1 text-sm font-bold uppercase text-neuro-soft">{member.role}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <div class="neuro-empty reveal">
+          <h3 class="mb-3 neuro-serif text-2xl text-neuro-ink">Past committee records will appear once confirmed.</h3>
+          <p class="neuro-prose">
+            Historical records are only shown when they have been added through the society admin system.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
 </Layout>
-
-<script>
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Axon Map fallbacks and interaction scripts
-  const nodes = document.querySelectorAll('.recruitment-node');
-  const defaultPanel = document.getElementById('role-default');
-  const activePanel = document.getElementById('role-active');
-  const roleTitle = document.getElementById('role-title');
-  const roleDesc = document.getElementById('role-desc');
-  const roleTime = document.getElementById('role-time');
-
-  const showRole = (el: SVGElement) => {
-    const title = el.getAttribute('data-title') || '';
-    const desc = el.getAttribute('data-desc') || '';
-    const time = el.getAttribute('data-time') || '';
-
-    if (roleTitle) roleTitle.textContent = title;
-    if (roleDesc) roleDesc.textContent = desc;
-    if (roleTime) roleTime.textContent = time;
-
-    if (defaultPanel && activePanel) {
-      defaultPanel.classList.add('hidden');
-      activePanel.classList.remove('hidden');
-    }
-
-    nodes.forEach(n => {
-      const circle = n.querySelector('circle');
-      if (circle) {
-        if (n === el) {
-          circle.classList.replace('stroke-navy-800', 'stroke-gold-500');
-          circle.classList.replace('fill-navy-950', 'fill-gold-500/10');
-          circle.setAttribute('filter', 'url(#axon-glow)');
-        } else {
-          circle.classList.replace('stroke-gold-500', 'stroke-navy-800');
-          circle.classList.replace('fill-gold-500/10', 'fill-navy-950');
-          circle.removeAttribute('filter');
-        }
-      }
-    });
-  };
-
-  const resetRole = () => {
-    if (defaultPanel && activePanel) {
-      defaultPanel.classList.remove('hidden');
-      activePanel.classList.add('hidden');
-    }
-    nodes.forEach(n => {
-      const circle = n.querySelector('circle');
-      if (circle) {
-        circle.classList.replace('stroke-gold-500', 'stroke-navy-800');
-        circle.classList.replace('fill-gold-500/10', 'fill-navy-950');
-        circle.removeAttribute('filter');
-      }
-    });
-  };
-
-  nodes.forEach(node => {
-    const svgEl = node as SVGElement;
-    svgEl.addEventListener('mouseenter', () => showRole(svgEl));
-    svgEl.addEventListener('focus', () => showRole(svgEl));
-    svgEl.addEventListener('mouseleave', resetRole);
-    svgEl.addEventListener('blur', resetRole);
-  });
-
-  // Animated Axon Pulses along curves
-  const pulseGroup = document.querySelector('.axon-pulses');
-  if (!prefersReducedMotion && pulseGroup) {
-    const paths = [
-      document.getElementById('axon-path-1') as any,
-      document.getElementById('axon-path-2') as any,
-      document.getElementById('axon-path-3') as any,
-      document.getElementById('axon-path-4') as any
-    ];
-
-    paths.forEach((path) => {
-      if (!path) return;
-      const length = path.getTotalLength();
-      
-      const pulse = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      pulse.setAttribute("r", "2");
-      pulse.setAttribute("fill", "#06b6d4"); // Glowing active cyan
-      pulse.setAttribute("filter", "url(#axon-glow)");
-      pulseGroup.appendChild(pulse);
-
-      let progress = Math.random();
-      const speed = 0.003;
-
-      const animatePulse = () => {
-        progress += speed;
-        if (progress > 1) progress = 0;
-        const pt = path.getPointAtLength(progress * length);
-        pulse.setAttribute("cx", pt.x.toString());
-        pulse.setAttribute("cy", pt.y.toString());
-        requestAnimationFrame(animatePulse);
-      };
-      requestAnimationFrame(animatePulse);
-    });
-  }
-</script>
