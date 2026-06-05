@@ -1,14 +1,27 @@
 ---
 export const prerender = false;
-import Layout from '../layouts/Layout.astro';
+import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import BrandIcon from '../components/BrandIcon.astro';
+import heroStag from '../assets/business-stag-hero.png';
+import homeDirection from '../assets/generated/business-home-direction.png';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'business';
+const society = getSocietyById(SOCIETY_ID)!;
 
 const events: any[] = (
   await queryPublicConvex<any[]>('events:listPublished', { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
+
+const committee: any[] = (
+  await queryPublicConvex<any[]>('committee:listActive', { societySlug: SOCIETY_ID }, [])
+).sort((a: any, b: any) =>
+  (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
+  || (a.name || '').localeCompare(b.name || '')
+);
 
 const formatEventDate = (date?: string) => {
   if (!date) return 'Date TBC';
@@ -21,347 +34,299 @@ const formatEventDate = (date?: string) => {
   });
 };
 
-const pillars = [
+const getInitials = (name?: string, role?: string) => {
+  const source = (name || role || '?').trim();
+  const words = source.split(/\s+/).filter(Boolean);
+  if (words.length === 0) return '?';
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+};
+
+const focusAreas = [
   {
-    number: '01',
     title: 'Careers',
-    copy: 'Practical support for commercial awareness, applications, interviews, workplace confidence, and choosing a direction after Surrey.',
+    copy: 'Explore career paths, prepare with purpose, and connect with professionals.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1"/><path d="M4 7h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 12h6"/></svg>',
   },
   {
-    number: '02',
     title: 'Enterprise',
-    copy: 'Structured space to discuss ideas, pitching, founders, early-stage ventures, and how students can think more commercially.',
+    copy: 'Turn ideas into action through workshops, challenges, and real-world projects.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4.5 19.5c3.8-.9 7-2.8 9.7-5.5s4.6-5.9 5.3-9.5c-3.6.7-6.8 2.6-9.5 5.3s-4.6 5.9-5.5 9.7Z"/><path d="M9 15 5 19"/><path d="M14.5 5.5l4 4"/></svg>',
   },
   {
-    number: '03',
     title: 'Networking',
-    copy: 'A society environment for meeting ambitious peers and making professional conversations feel less intimidating.',
+    copy: 'Meet peers and build relationships that open doors across industries.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 11a3 3 0 0 1 3 3"/><path d="M16.5 20H22a5 5 0 0 0-5-5"/></svg>',
   },
   {
-    number: '04',
     title: 'Skills',
-    copy: 'Sessions around presentation, negotiation, leadership, CVs, and the everyday behaviours that make students more employable.',
+    copy: 'Build confidence in the core skills that support your future success.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 20V10"/><path d="M12 20V4"/><path d="M19 20v-7"/><path d="M3 20h18"/></svg>',
   },
 ];
 
-const pathway = [
-  'Understand career routes and commercial language.',
-  'Practise the skills that interviews and team projects test.',
-  'Meet students with similar ambition across different courses.',
-  'Use society events as a repeatable professional development habit.',
+const homeHighlights = [
+  {
+    value: '2021',
+    label: 'Established at Surrey',
+  },
+  {
+    value: '4',
+    label: 'Core membership pillars',
+  },
+  {
+    value: 'All',
+    label: 'Courses welcome',
+  },
+];
+
+const memberPath = [
+  'Find people who are also thinking seriously about careers, enterprise, and confidence.',
+  'Use talks, workshops, socials, and committee updates to turn broad ambition into practical next steps.',
+  'Leave each touchpoint with clearer language, stronger connections, and a better sense of direction.',
+];
+
+const connectLinks = [
+  {
+    label: 'Instagram',
+    detail: '@surreybusinesssociety',
+    href: society.socials.instagram,
+    icon: 'instagram',
+  },
+  {
+    label: 'LinkedIn',
+    detail: 'Surrey Business Society',
+    href: society.socials.linkedin,
+    icon: 'linkedin',
+  },
+  {
+    label: 'Email',
+    detail: society.contactEmail,
+    href: `mailto:${society.contactEmail}`,
+    icon: 'email',
+  },
+  {
+    label: 'Students\' Union',
+    detail: 'Our society page',
+    href: society.studentsUnionUrl,
+    icon: 'union',
+  },
 ];
 ---
 
 <Layout
   title="Home"
-  description="Surrey Business Society - professional development, commercial awareness, enterprise, networking, and skills for University of Surrey students."
+  description="Surrey Business Society - careers, enterprise, networking, commercial awareness, and practical confidence for University of Surrey students."
 >
+  <section class="club-hero" aria-labelledby="business-hero-title">
+    <div class="club-hero__inner">
+      <div class="grid min-w-0 items-center gap-12 lg:grid-cols-[minmax(0,0.58fr)_minmax(26rem,0.42fr)] lg:gap-8">
+        <div class="reveal min-w-0">
+          <h1 id="business-hero-title" class="heading-serif max-w-4xl text-4xl leading-none text-text-on-dark sm:text-6xl lg:text-7xl">
+            Find your circle.<br /><span class="text-gold">Build your direction.</span>
+          </h1>
+          <p class="mt-7 max-w-2xl border-l border-gold/60 pl-5 text-lg leading-8 text-text-on-dark-secondary">
+            A Surrey student community for careers, enterprise, networking, and practical business confidence.
+          </p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              Join the society
+            </a>
+            <a href="/events" class="btn-dark">
+              See upcoming events
+            </a>
+          </div>
+          <div class="club-stat-strip mt-10 max-w-3xl">
+            {homeHighlights.map((item) => (
+              <div>
+                <p class="font-serif text-3xl font-bold text-gold">{item.value}</p>
+                <p class="text-xs font-bold uppercase text-text-on-dark-secondary">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-  <section class="business-hero" aria-labelledby="business-hero-title">
-    <div class="business-hero__grid" aria-hidden="true"></div>
-    <div class="business-hero__inner">
-      <div class="business-hero__copy">
-        <h1 id="business-hero-title" class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05]">
-          Professional confidence for commercially minded students.
-        </h1>
-        <p class="mt-8 text-lg text-text-on-dark-secondary leading-relaxed max-w-2xl border-l border-gold/50 pl-5">
-          Surrey Business Society helps students build career direction, enterprise thinking, useful networks, and practical workplace skills without assuming prior business experience.
-        </p>
-        <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="/join" class="btn-primary">Become a member <span aria-hidden="true">&rarr;</span></a>
-          <a href="/events" class="btn-ghost">View events <span aria-hidden="true">&rarr;</span></a>
+        <div class="business-hero-stag-wrap reveal min-w-0">
+          <img src={heroStag.src} alt="" class="business-hero-stag" loading="eager" aria-hidden="true" />
         </div>
       </div>
     </div>
   </section>
 
-  <section class="py-24 sm:py-32 px-6 bg-surface" aria-labelledby="business-pillars-title">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
-        <div class="lg:col-span-5 reveal">
-          <p class="eyebrow mb-5" style="color:var(--color-gold-dark)">The offer</p>
-          <h2 id="business-pillars-title" class="font-serif text-4xl sm:text-5xl font-bold leading-tight text-text-primary">
-            Four ways the society supports your next step.
-          </h2>
-        </div>
-        <p class="lg:col-span-7 reveal text-lg text-text-secondary leading-loose max-w-3xl">
-          The programme is intentionally practical: understand commercial contexts, practise professional skills, meet people beyond your course, and use events as a structured way to build confidence.
+  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="business-focus-title">
+    <div class="business-shell">
+      <div class="business-section-title mx-auto mb-12 max-w-3xl reveal">
+        <h2 id="business-focus-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
+          Four pillars. Real opportunities.
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-base leading-7 text-text-secondary">
+          We focus on areas that matter to every student's future. No jargon. No gatekeeping. Just practical progress together.
         </p>
       </div>
 
-      <div class="business-pillar-list reveal">
-        {pillars.map((pillar) => (
-          <article>
-            <span>{pillar.number}</span>
-            <h3>{pillar.title}</h3>
-            <p>{pillar.copy}</p>
+      <div class="business-feature business-feature--home mb-16 reveal">
+        <div class="business-feature__media">
+          <Image
+            src={homeDirection}
+            alt="An illustrated university desk scene with a compass, campus map, and portfolio materials."
+            class="business-feature__image"
+            loading="lazy"
+          />
+        </div>
+        <div class="business-feature__body">
+          <h3 class="heading-serif text-3xl leading-tight text-text-primary sm:text-4xl">
+            From curious to commercially confident.
+          </h3>
+          <ol class="business-path-list mt-7" role="list">
+            {memberPath.map((item, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <p>{item}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <div class="business-pillar-grid reveal">
+        {focusAreas.map((area, index) => (
+          <article class="business-pillar">
+            <span class="business-icon-disc" set:html={area.icon} />
+            <h3 class="mb-4 font-serif text-2xl font-bold text-text-primary">{area.title}</h3>
+            <p class="text-sm leading-6 text-text-secondary">{area.copy}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="business-pathway" aria-labelledby="business-pathway-title">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-        <div class="lg:col-span-4 reveal">
-          <p class="eyebrow mb-5">Member pathway</p>
-          <h2 id="business-pathway-title" class="font-serif text-4xl sm:text-5xl font-bold leading-tight">
-            A clearer professional route.
-          </h2>
-        </div>
-        <ol class="lg:col-span-8 business-pathway__steps reveal">
-          {pathway.map((item, index) => (
-            <li>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <p>{item}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
-  </section>
+  <div class="business-ornament bg-surface" aria-hidden="true">
+    <svg viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M40 56V28"/>
+      <path d="M40 28c-8-16-20-24-36-26"/>
+      <path d="M40 28c8-16 20-24 36-26"/>
+      <path d="M18 8c-6-4-12-6-18-7"/>
+      <path d="M62 8c6-4 12-6 18-7"/>
+      <path d="M28 14c-6 0-13-2-18-6"/>
+      <path d="M52 14c6 0 13-2 18-6"/>
+    </svg>
+  </div>
 
-  <section class="py-24 sm:py-32 px-6 bg-surface" aria-labelledby="business-events-title">
-    <div class="mx-auto max-w-6xl">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 reveal">
-        <div>
-          <p class="eyebrow mb-5" style="color:var(--color-gold-dark)">Programme</p>
-          <h2 id="business-events-title" class="font-serif text-4xl sm:text-5xl font-bold text-text-primary">
-            Events with a practical purpose.
+  <section class="bg-surface-alt px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="business-events-title">
+    <div class="business-shell">
+      <div class="business-split-feature">
+        <div class="reveal">
+          <h2 id="business-events-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
+            Upcoming events
           </h2>
-        </div>
-        <a href="/events" class="text-sm font-bold uppercase tracking-widest text-gold-dark hover:text-navy-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">
-          View all events
-        </a>
-      </div>
-
-      {events.length > 0 ? (
-        <div class="business-events reveal">
-          {events.slice(0, 3).map((event: any) => (
-            <article>
-              <div>
-                <time>{formatEventDate(event.date)}</time>
-                <span>{event.category || 'Event'}</span>
-              </div>
-              <div>
-                <h3>{event.title}</h3>
-                <p>{event.description || 'Details will be confirmed soon.'}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div class="business-empty reveal">
-          <h3>Events will appear here once confirmed.</h3>
-          <p>
-            Until the next schedule is published, expect the society to focus on careers, enterprise, professional networking, and practical student skill development.
+          <div class="mt-5 h-1 w-16 bg-gold"></div>
+          <p class="mt-6 max-w-sm text-base leading-7 text-text-secondary">
+            Workshops, talks, socials and more. Check back soon for confirmed events.
           </p>
-          <a href="/join" class="btn-primary">Join for updates <span aria-hidden="true">&rarr;</span></a>
+          <a href="/events" class="btn-secondary mt-7">See all events</a>
         </div>
-      )}
-    </div>
-  <section class="py-24 sm:py-32 px-6 bg-surface-alt border-t border-border" aria-labelledby="business-partnership-title">
-    <div class="mx-auto max-w-6xl">
-      <div class="border border-gold p-8 sm:p-12 bg-surface-card relative overflow-hidden reveal">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-dot-dark opacity-10 pointer-events-none" aria-hidden="true"></div>
-        <div class="grid lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-8">
-            <p class="eyebrow mb-4" style="color:var(--color-gold-dark)">Partnerships</p>
-            <h2 id="business-partnership-title" class="font-serif text-3xl sm:text-4xl font-bold text-text-primary mb-4">
-              Connect with Outstanding Surrey Talent
-            </h2>
-            <p class="text-base text-text-secondary leading-relaxed max-w-2xl">
-              Surrey Business Society provides a direct pathway for employers, founders, and industry leaders to engage with ambitious, career-ready students across all university departments. We coordinate corporate relations, mock interviews, panels, and skills development.
-            </p>
+
+        {events.length > 0 ? (
+          <div class="ledger-list reveal">
+            {events.slice(0, 3).map((event: any) => (
+              <article class="ledger-row">
+                <div>
+                  <time class="block font-bold text-text-primary">{formatEventDate(event.date)}</time>
+                  <p class="ledger-row__meta mt-2">{event.category || 'Event'}</p>
+                </div>
+                <div>
+                  <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{event.title}</h3>
+                  <p class="max-w-3xl text-base leading-7 text-text-secondary">{event.description || 'Details will be confirmed soon.'}</p>
+                </div>
+              </article>
+            ))}
           </div>
-          <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 lg:items-end">
-            <a href="mailto:ussu.bizsoc@surrey.ac.uk" class="btn-primary w-full text-center">Get in Touch <span aria-hidden="true">&rarr;</span></a>
-            <a href="/join" class="btn-ghost text-navy-deep border-navy/30 hover:border-navy-deep w-full text-center">About Membership</a>
+        ) : (
+          <div class="business-dashed-panel business-dashed-panel--light reveal">
+            <div>
+              <span class="business-icon-disc mx-auto" set:html={'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M4 10h16"/></svg>'} />
+              <p class="mt-5 text-lg leading-7 text-text-secondary">Events will appear here<br />once confirmed.</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   </section>
 
+  <section class="business-dark-pattern px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="business-committee-title">
+    <div class="business-shell">
+      <div class="business-split-feature">
+        <div class="reveal">
+          <h2 id="business-committee-title" class="heading-serif text-4xl leading-tight text-text-on-dark sm:text-5xl">
+            Our committee
+          </h2>
+          <div class="mt-5 h-1 w-16 bg-gold"></div>
+          <p class="mt-6 max-w-sm text-base leading-7 text-text-on-dark-secondary">
+            Run by students, for students. Details are added once confirmed.
+          </p>
+          <a href="/committee" class="btn-dark mt-7">Meet the committee</a>
+        </div>
+
+        {committee.length > 0 ? (
+          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 reveal">
+            {committee.slice(0, 4).map((member: any) => (
+              <article class="club-panel--dark p-5">
+                {member.imageUrl ? (
+                  <img src={member.imageUrl} alt={member.name || member.role} class="mb-5 aspect-[4/5] w-full rounded-md object-cover" />
+                ) : (
+                  <div class="mb-5 flex aspect-[4/5] w-full items-center justify-center rounded-md bg-navy font-serif text-4xl font-bold text-gold">
+                    {getInitials(member.name, member.role)}
+                  </div>
+                )}
+                <h3 class="font-serif text-xl font-bold text-text-on-dark">{member.name}</h3>
+                <p class="mt-1 text-sm font-bold uppercase text-gold">{member.role}</p>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="business-dashed-panel reveal">
+            <div>
+              <span class="business-icon-disc mx-auto" set:html={'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 11a3 3 0 0 1 3 3"/><path d="M16.5 20H22a5 5 0 0 0-5-5"/></svg>'} />
+              <p class="mt-5 text-lg leading-7 text-text-on-dark-secondary">Committee details will appear<br />here once confirmed.</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="business-cta-band px-5 py-16 sm:px-6" aria-labelledby="business-join-title">
+    <div class="business-shell relative z-10">
+      <div class="mx-auto max-w-4xl text-center reveal">
+        <h2 id="business-join-title" class="heading-serif text-4xl leading-tight text-text-on-dark sm:text-5xl">
+          Ready to be part of something bigger?
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-text-on-dark-secondary">
+          Join a supportive community and build your future with purpose.
+        </p>
+        <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="btn-primary mt-7">Join the society</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface px-5 py-16 sm:px-6" aria-labelledby="business-connect-title">
+    <div class="business-shell">
+      <div class="business-section-title mx-auto mb-10 max-w-2xl text-center reveal">
+        <h2 id="business-connect-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
+          Let's connect
+        </h2>
+      </div>
+      <div class="business-connect-grid reveal">
+        {connectLinks.map((link) => (
+          link.href && (
+            <a href={link.href} target={link.href.startsWith('mailto:') ? undefined : '_blank'} rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'} class="business-connect-item">
+              <BrandIcon name={link.icon} />
+              <span class="font-serif text-xl font-bold">{link.label}</span>
+              <span class="mt-2 max-w-full break-words text-sm text-text-secondary">{link.detail}</span>
+            </a>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
 </Layout>
-
-<style>
-  .business-hero {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-navy-deep);
-    color: var(--color-text-on-dark);
-    border-bottom: 1px solid var(--color-border-dark);
-  }
-
-  .business-hero__grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(201, 168, 76, 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201, 168, 76, 0.1) 1px, transparent 1px);
-    background-size: 72px 72px;
-    mask-image: linear-gradient(to bottom, black, transparent 82%);
-    pointer-events: none;
-  }
-
-  .business-hero__inner {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 72rem);
-    margin: 0 auto;
-    padding: 8rem 1.5rem 7rem;
-  }
-
-  .business-hero__copy {
-    max-width: 56rem;
-  }
-
-  .business-pillar-list {
-    border-top: 1px solid var(--color-border-dark);
-  }
-
-  .business-pillar-list span {
-    color: rgba(15, 23, 42, 0.08);
-    font-size: 3.5rem;
-    line-height: 1;
-    font-weight: 900;
-    transition: color 0.3s ease;
-  }
-
-  .business-pillar-list article:hover span {
-    color: var(--color-gold);
-  }
-
-  .business-pillar-list article {
-    display: grid;
-    grid-template-columns: 7rem minmax(10rem, 0.35fr) minmax(0, 1fr);
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--color-border);
-    transition: background-color 0.3s ease;
-  }
-
-  .business-pillar-list article:hover {
-    background-color: rgba(201, 168, 76, 0.03);
-  }
-
-  .business-pillar-list h3 {
-    margin: 0;
-    color: var(--color-text-primary);
-    font-family: var(--font-serif);
-    font-size: 1.8rem;
-    line-height: 1.2;
-  }
-
-  .business-pillar-list p {
-    margin: 0;
-    color: var(--color-text-secondary);
-    line-height: 1.75;
-    font-size: 1.02rem;
-  }
-
-  .business-pathway {
-    background: var(--color-navy-deep);
-    color: var(--color-text-on-dark);
-    padding: 6rem 0;
-    border-block: 1px solid var(--color-border-dark);
-  }
-
-  .business-pathway__steps {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid rgba(201, 168, 76, 0.32);
-  }
-
-  .business-pathway__steps li {
-    display: grid;
-    grid-template-columns: 4rem minmax(0, 1fr);
-    gap: 1.5rem;
-    padding: 1.35rem 0;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.22);
-  }
-
-  .business-pathway__steps span {
-    color: var(--color-gold);
-    font-weight: 800;
-  }
-
-  .business-pathway__steps p {
-    margin: 0;
-    color: var(--color-text-on-dark-secondary);
-    line-height: 1.7;
-    font-size: 1.08rem;
-  }
-
-  .business-events {
-    border-top: 1px solid var(--color-border-dark);
-  }
-
-  .business-events article {
-    display: grid;
-    grid-template-columns: 13rem minmax(0, 1fr);
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .business-events time,
-  .business-events span {
-    display: block;
-  }
-
-  .business-events time {
-    color: var(--color-text-primary);
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-  }
-
-  .business-events span {
-    color: var(--color-gold-dark);
-    font-size: 0.76rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .business-events h3,
-  .business-empty h3 {
-    margin: 0 0 0.75rem;
-    color: var(--color-text-primary);
-    font-family: var(--font-serif);
-    font-size: 1.75rem;
-    line-height: 1.2;
-  }
-
-  .business-events p,
-  .business-empty p {
-    margin: 0;
-    color: var(--color-text-secondary);
-    line-height: 1.75;
-  }
-
-  .business-empty {
-    border: 1px solid var(--color-border);
-    background: var(--color-surface-card);
-    padding: 2rem;
-    max-width: 48rem;
-  }
-
-  .business-empty .btn-primary {
-    margin-top: 1.5rem;
-  }
-
-  @media (max-width: 900px) {
-    .business-pillar-list article,
-    .business-events article {
-      grid-template-columns: 1fr;
-    }
-
-    .business-hero__inner {
-      padding-top: 6rem;
-    }
-  }
-</style>

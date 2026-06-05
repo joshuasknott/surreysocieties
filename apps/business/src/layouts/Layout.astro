@@ -3,6 +3,8 @@ import BaseLayout from '@surreysocieties/ui/components/BaseLayout';
 import AssistantWidget from '@surreysocieties/ui/components/AssistantWidget';
 import { ASSISTANT_CONFIGS } from '@surreysocieties/ui';
 import { getSocietyById } from '@surreysocieties/admin/config';
+import { Image } from 'astro:assets';
+import sbsLogo from '../assets/sbs-logo.png';
 
 interface Props {
   title: string;
@@ -15,17 +17,20 @@ const { title, description, ogImage } = Astro.props;
 const society = getSocietyById('business')!;
 const assistantConfig = ASSISTANT_CONFIGS.business;
 const siteName = society.name;
-const fullTitle = `${title} — ${siteName}`;
+const fullTitle = `${title} | ${siteName}`;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { href: '/',          label: 'Home' },
-  { href: '/about',     label: 'About' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/events', label: 'Events' },
   { href: '/committee', label: 'Committee' },
-  { href: '/events',    label: 'Events' },
 ];
+
+const isCurrent = (href: string) =>
+  currentPath === href || (href !== '/' && currentPath.startsWith(href));
 ---
 
 <BaseLayout
@@ -36,143 +41,109 @@ const navLinks = [
   htmlClass="motion-safe:scroll-smooth"
   bodyClass="bg-surface text-text-primary font-sans min-h-screen flex flex-col"
   extraFontHrefs={[
-    'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap',
+    'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap',
   ]}
 >
   <script slot="head" is:inline>
     document.documentElement.classList.add('js-enabled');
   </script>
 
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-surface focus:text-text-primary focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold shadow-lg">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-surface focus:text-text-primary focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold shadow-lg rounded-md">
     Skip to content
   </a>
 
-  <!-- Navigation -->
-  <nav class="sticky top-0 z-50 bg-navy-deep border-b border-border-dark" role="navigation" aria-label="Main navigation">
-    <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 group" aria-label="Surrey Business Society — Home">
-        <img
-          src="/logos/sbs-logo.png"
+  <nav class="business-nav sticky top-0 z-50 text-text-on-dark backdrop-blur" role="navigation" aria-label="Main navigation">
+    <div class="mx-auto flex h-24 max-w-7xl items-center justify-between px-5 sm:px-6">
+      <a href="/" class="business-logo-link flex min-w-0 items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold" aria-label="Surrey Business Society home">
+        <Image
+          src={sbsLogo}
           alt=""
-          width="32"
-          height="32"
-          class="h-8 w-8"
-          aria-hidden="true"
+          width={52}
+          height={52}
+          class="h-12 w-12 shrink-0 rounded-full"
+          format="webp"
         />
-        <span class="text-text-on-dark font-semibold text-sm tracking-widest uppercase hidden sm:block border-l border-border-dark pl-3">
-          Surrey <span class="text-gold">Business</span> Society
+        <span class="hidden min-w-0 flex-col leading-tight sm:flex">
+          <span class="whitespace-nowrap text-[0.82rem] font-bold uppercase text-gold">Surrey Business Society</span>
+          <span class="mt-0.5 text-[0.65rem] font-semibold uppercase text-text-on-dark-secondary">Est. {society.establishedYear}</span>
         </span>
       </a>
 
-      <!-- Desktop nav -->
-      <div class="hidden md:flex items-stretch h-full gap-1">
-        {navLinks.map(link => (
+      <div class="hidden items-center gap-9 md:flex">
+        {navLinks.map((link) => (
           <a
             href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
             class:list={[
-              'px-4 flex items-center text-xs font-semibold tracking-widest uppercase transition-colors',
-              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                ? 'text-gold'
+              'business-nav-link text-sm font-bold transition-colors',
+              isCurrent(link.href)
+                ? 'business-nav-link--active text-text-on-dark'
+                : 'text-text-on-dark hover:text-gold',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="/join" class="business-nav-link text-sm font-bold text-text-on-dark hover:text-gold">
+          Join
+        </a>
+      </div>
+
+      <button
+        id="mobile-menu-btn"
+        class="rounded-md p-3 text-text-on-dark transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold md:hidden"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="h-5 w-5" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="hidden h-5 w-5" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden border-t border-gold/20 bg-navy-deep md:hidden">
+      <div class="flex flex-col px-5 py-3">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            aria-current={isCurrent(link.href) ? 'page' : undefined}
+            class:list={[
+              'rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors',
+              isCurrent(link.href)
+                ? 'bg-white/10 text-gold'
                 : 'text-text-on-dark-secondary hover:text-text-on-dark',
             ]}
           >
             {link.label}
           </a>
         ))}
-        <a
-          href="/join"
-          class="ml-4 my-auto px-5 py-2 text-xs font-bold tracking-widest uppercase text-navy-deep bg-gold hover:bg-gold-light transition-colors"
-        >
-          Join
+        <a href="/join" class="btn-primary mt-3 w-full text-sm">
+          Join via Surrey Students' Union
         </a>
-      </div>
-
-      <!-- Mobile menu button -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden text-text-on-dark p-2 hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <svg class="w-5 h-5" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg class="w-5 h-5 hidden" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile nav -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-border-dark bg-navy-deep">
-      <div class="flex flex-col py-1">
-        {navLinks.map(link => (
-          <a
-            href={link.href}
-            class:list={[
-              'px-6 py-4 text-xs font-semibold tracking-widest uppercase transition-colors border-b border-border-dark/30',
-              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                ? 'text-gold bg-navy'
-                : 'text-text-on-dark-secondary hover:text-text-on-dark hover:bg-navy-light/10',
-            ]}
-          >
-            {link.label}
-          </a>
-        ))}
-        <div class="px-6 py-4 bg-navy/20">
-          <a
-            href="/join"
-            class="block text-center py-3 text-xs font-bold tracking-widest uppercase text-navy-deep bg-gold hover:bg-gold-light transition-colors"
-          >
-            Join
-          </a>
-        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Main content -->
   <main id="main-content" class="flex-1" tabindex="-1">
     <slot />
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-navy-deep text-text-on-dark-secondary border-t border-border-dark">
-    <div class="mx-auto max-w-6xl px-6 py-16">
-      <div class="grid sm:grid-cols-12 gap-10 mb-12">
-        <div class="sm:col-span-5 lg:col-span-4">
-          <div class="flex items-center gap-3 mb-5">
-            <img src="/logos/sbs-logo.png" alt="" width="28" height="28" class="h-7 w-7" aria-hidden="true" />
-            <span class="text-text-on-dark font-semibold uppercase tracking-widest text-xs">Surrey Business Society</span>
-          </div>
-          <p class="text-sm leading-relaxed border-l border-gold pl-4 text-text-on-dark-secondary max-w-xs">
-            A student-led professional network under Surrey Students' Union. Building community across careers, enterprise, and commercial thinking.
-          </p>
-          <p class="mt-5 text-[10px] font-bold uppercase tracking-widest text-gold/70">Est. {society.establishedYear}</p>
-        </div>
-        <div class="sm:col-span-3 lg:col-span-2 lg:col-start-7">
-          <h4 class="text-[10px] font-bold uppercase tracking-widest text-gold/80 mb-4">Navigation</h4>
-          <div class="flex flex-col gap-2.5">
-            {navLinks.map(link => (
-              <a href={link.href} class="text-xs font-medium hover:text-white transition-colors">{link.label}</a>
-            ))}
-          </div>
-        </div>
-        <div class="sm:col-span-4 lg:col-span-3">
-          <h4 class="text-[10px] font-bold uppercase tracking-widest text-gold/80 mb-4">Connect</h4>
-          <div class="flex flex-col gap-2.5 text-xs font-medium">
-            <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
-            <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
-            <a href={`mailto:${society.contactEmail}`} class="hover:text-white transition-colors">Email</a>
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Surrey Students' Union</a>
-            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Join via USSU</a>
-          </div>
-        </div>
+  <footer class="business-footer border-t border-border-dark bg-navy-deep text-text-on-dark-secondary">
+    <div class="mx-auto max-w-7xl px-5 py-16 sm:px-6">
+      <div class="flex items-center gap-4">
+        <Image src={sbsLogo} alt="" width={64} height={64} class="h-16 w-16 rounded-full" format="webp" loading="lazy" />
+        <p class="text-sm font-extrabold uppercase leading-tight text-gold">Surrey<br />Business<br />Society</p>
       </div>
-      <div class="border-t border-border-dark pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
-        <p>&copy; {new Date().getFullYear()} Surrey Business Society. A society of Surrey Students' Union.</p>
-        <p class="text-gold/60 tracking-widest uppercase text-[10px]">{society.domain}</p>
+
+      <div class="business-footer__bottom">
+        <p>
+          Surrey Business Society is a student-led society at the University of Surrey, run in partnership with Surrey Students' Union.
+        </p>
+        <p>&copy; {new Date().getFullYear()} Surrey Business Society.<br />All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -180,25 +151,33 @@ const navLinks = [
   <AssistantWidget config={assistantConfig} endpoint="/api/assistant/chat" />
 
   <script>
-    // Mobile menu toggle — no theme logic
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const hamburger = document.getElementById('hamburger-icon');
     const closeIcon = document.getElementById('close-icon');
 
     btn?.addEventListener('click', () => {
-      const isOpen = menu?.classList.toggle('hidden') === false;
-      hamburger?.classList.toggle('hidden', isOpen);
-      closeIcon?.classList.toggle('hidden', !isOpen);
-      btn.setAttribute('aria-expanded', String(isOpen));
-      btn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      const willOpen = menu?.classList.contains('hidden') ?? false;
+      menu?.classList.toggle('hidden', !willOpen);
+      hamburger?.classList.toggle('hidden', willOpen);
+      closeIcon?.classList.toggle('hidden', !willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+      btn.setAttribute('aria-label', willOpen ? 'Close navigation menu' : 'Open navigation menu');
     });
 
-    // CSS-driven scroll reveal
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
-      { threshold: 0.12 }
-    );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    } else {
+      document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
+    }
   </script>
 </BaseLayout>

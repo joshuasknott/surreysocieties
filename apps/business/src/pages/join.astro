@@ -1,138 +1,239 @@
 ---
 export const prerender = true;
 import { getSocietyById } from '@surreysocieties/admin/config';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import BrandIcon from '../components/BrandIcon.astro';
+import joinMembership from '../assets/generated/business-join-membership.png';
 import '../styles/global.css';
 
 const society = getSocietyById('business')!;
+
+const steps = [
+  {
+    title: 'Open the official membership page',
+    copy: 'Membership is handled through Surrey Students\' Union, so the checkout page is the source of truth for current details.',
+  },
+  {
+    title: 'Complete the Union process',
+    copy: 'Follow the Union checkout flow so your membership is recorded against the society properly.',
+  },
+  {
+    title: 'Follow the society channels',
+    copy: 'Use Instagram, LinkedIn, and this website for confirmed events, committee updates, and contact routes.',
+  },
+];
+
+const membershipBenefits = [
+  {
+    title: 'A clearer start',
+    copy: 'Use the society as a practical entry point into careers, enterprise, networking, and commercial awareness.',
+  },
+  {
+    title: 'A real student circle',
+    copy: 'Meet peers across courses who are also building confidence around professional life after Surrey.',
+  },
+  {
+    title: 'Official updates',
+    copy: 'Stay close to confirmed events, committee information, and contact routes without relying on rumour or placeholders.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Do I need to study business?',
+    answer: 'No. The society is intended for students across the University of Surrey who want to build commercial confidence, career direction, enterprise thinking, or professional skills.',
+  },
+  {
+    question: 'Where are membership details confirmed?',
+    answer: 'The official Surrey Students\' Union membership page is the source of truth for checkout, pricing, and any current membership details.',
+  },
+  {
+    question: 'Where will events appear?',
+    answer: 'Confirmed events are published on the Events page. Social channels may also share updates, but this site should avoid showing event-like placeholders.',
+  },
+  {
+    question: 'How can I contact the society?',
+    answer: `Use the official society email: ${society.contactEmail}. You can also follow the society on Instagram and LinkedIn.`,
+  },
+];
+
+const connectLinks = [
+  {
+    label: 'Instagram',
+    action: 'Open',
+    href: society.socials.instagram,
+    icon: 'instagram',
+  },
+  {
+    label: 'LinkedIn',
+    action: 'Open',
+    href: society.socials.linkedin,
+    icon: 'linkedin',
+  },
+  {
+    label: 'Email',
+    action: 'Send',
+    href: `mailto:${society.contactEmail}`,
+    icon: 'email',
+  },
+  {
+    label: 'Students\' Union',
+    action: 'Open',
+    href: society.studentsUnionUrl,
+    icon: 'union',
+  },
+  {
+    label: 'Membership',
+    action: 'Join',
+    href: society.membershipUrl,
+    icon: 'union',
+  },
+];
 ---
 
 <Layout
-  title="Become a Member"
-  description="Join Surrey Business Society - find out how to become a member, what you'll get, and how to connect with us."
+  title="Join"
+  description="Join Surrey Business Society through Surrey Students' Union and connect with the society's official channels."
 >
-
-  <!-- Section 1: Hero & Value (Split layout) -->
-  <section class="bg-navy-deep text-text-on-dark pt-32 pb-24 sm:pt-40 sm:pb-32 px-6 border-b border-border-dark relative">
-    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
-    <div class="absolute bottom-0 left-0 w-full h-px bg-gold/30" aria-hidden="true"></div>
-    
-    <div class="mx-auto max-w-6xl relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-      <div class="flex-1">
-        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight mb-8">
-          Become a Member
-        </h1>
-        <p class="text-lg text-text-on-dark-secondary leading-relaxed mb-10 max-w-xl">
-          Membership is open to all University of Surrey students through Surrey Students' Union. No prior business knowledge is required—only ambition and a willingness to learn.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a
-            href={society.membershipUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary rounded-none"
-          >
-            Join via Students' Union <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      </div>
-      
-      <div class="reveal">
-        <h2 class="text-xs font-bold uppercase tracking-widest text-gold-dark mb-6 border-b border-border-dark pb-4">Membership Privileges</h2>
-        <ul class="space-y-6 text-base text-text-on-dark-secondary" role="list">
-          <li class="flex items-start">
-            <span class="text-gold font-bold mr-4">—</span>
-            <span>Access to confirmed careers events, founder discussions, and guest sessions when they are scheduled.</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-gold font-bold mr-4">—</span>
-            <span>Opportunities to meet other commercially minded students through structured and informal society activity.</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-gold font-bold mr-4">—</span>
-            <span>Practical skills workshops covering commercial awareness, applications, interviews, presentation, and negotiation.</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-gold font-bold mr-4">—</span>
-            <span>The opportunity to run for committee positions and directly shape the society's strategy.</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2: Contact & FAQ -->
-  <section class="py-24 sm:py-32 px-6 bg-surface">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid lg:grid-cols-12 gap-16 lg:gap-24">
-
-        <!-- Contact Links -->
-        <div class="lg:col-span-4 reveal">
-          <h2 class="font-serif text-3xl font-bold text-text-primary mb-8">Connect</h2>
-          <div class="flex flex-col gap-6">
-            <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-6">
-              <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">Instagram</span>
-              <span class="text-gold" aria-hidden="true">&rarr;</span>
+  <section class="club-hero" aria-labelledby="join-title">
+    <div class="club-hero__inner">
+      <div class="grid items-start gap-12 lg:grid-cols-[minmax(0,0.52fr)_minmax(24rem,0.48fr)] lg:gap-16">
+        <div class="reveal">
+          <h1 id="join-title" class="heading-serif text-5xl leading-none text-text-on-dark sm:text-6xl lg:text-7xl">
+            Become part of the Business Society circle.
+          </h1>
+          <p class="mt-7 max-w-2xl border-l border-gold/60 pl-5 text-lg leading-8 text-text-on-dark-secondary">
+            Membership is open to University of Surrey students through Surrey Students' Union. No prior business knowledge is required.
+          </p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              Join via Students' Union
             </a>
-            <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-6">
-              <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">LinkedIn</span>
-              <span class="text-gold" aria-hidden="true">&rarr;</span>
-            </a>
-            <a href={`mailto:${society.contactEmail}`} class="group flex items-center justify-between border-b border-border pb-6">
-              <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">Email</span>
-              <span class="text-gold" aria-hidden="true">&rarr;</span>
-            </a>
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-6">
-              <span class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors">Students' Union</span>
-              <span class="text-gold" aria-hidden="true">&rarr;</span>
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="btn-dark">
+              View Union page
             </a>
           </div>
         </div>
 
-        <!-- FAQ via <details> -->
-        <div class="lg:col-span-8 reveal">
-          <h2 class="font-serif text-3xl font-bold text-text-primary mb-8">Frequently Asked Questions</h2>
-          <div class="border-t border-border-dark">
-            {[
-              {
-                q: 'Do I need to be studying a business degree?',
-                a: 'Absolutely not. The society is explicitly cross-disciplinary. Commercial skills, strategic thinking, and a strong professional network are vital whether you are studying engineering, law, the arts, or the sciences.',
-              },
-              {
-                q: 'How much does membership cost?',
-                a: 'Membership fees are standardised and administered by the Surrey Students\' Union. Current pricing is always listed directly on the official union checkout page.',
-              },
-              {
-                q: 'How long does membership last?',
-                a: 'Standard membership lasts for the duration of the academic year. You will need to renew your membership each autumn to retain access to events and voting rights.',
-              },
-              {
-                q: 'How can I join the committee?',
-                a: 'Committee positions are determined via democratic elections held annually through the Students\' Union. To be eligible to run or vote, you must first be an active, registered member of the society.',
-              },
-            ].map(({ q, a }) => (
-              <details class="group border-b border-border-dark py-6">
-                <summary class="flex justify-between items-center cursor-pointer list-none focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4">
-                  <h3 class="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-gold-dark transition-colors pr-8">{q}</h3>
-                  <span class="text-gold shrink-0 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">+</span>
-                </summary>
-                <div class="mt-6 text-base text-text-secondary leading-relaxed max-w-3xl">
-                  <p>{a}</p>
-                </div>
-              </details>
-            ))}
+        <aside class="business-membership-snapshot text-text-on-dark reveal" aria-label="Official membership details">
+          <div class="business-membership-snapshot__details">
+            <dl class="space-y-5">
+              <div>
+                <dt class="text-sm font-bold uppercase text-gold">Established</dt>
+                <dd class="mt-1 font-serif text-3xl font-bold">{society.establishedYear}</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-bold uppercase text-gold">Email</dt>
+                <dd class="mt-1 break-words text-text-on-dark-secondary">{society.contactEmail}</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-bold uppercase text-gold">Membership</dt>
+                <dd class="mt-1 text-text-on-dark-secondary">Managed by Surrey Students' Union</dd>
+              </div>
+            </dl>
           </div>
-          
-          <style>
-            /* Hide the default marker for Webkit */
-            details > summary::-webkit-details-marker {
-              display: none;
-            }
-          </style>
-        </div>
-
+          <div class="business-membership-snapshot__media">
+            <Image
+              src={joinMembership}
+              alt="An illustrated membership desk scene with a phone checkout shape, welcome envelope, and navy notebooks."
+              class="business-membership-snapshot__image"
+              loading="eager"
+            />
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 
+  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="join-steps-title">
+    <div class="business-shell">
+      <div class="mb-12 max-w-3xl reveal">
+        <h2 id="join-steps-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
+          Three simple steps, all through official routes.
+        </h2>
+      </div>
+
+      <div class="business-expectation-grid mb-12 reveal">
+        {membershipBenefits.map((item) => (
+          <article>
+            <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{item.title}</h3>
+            <p class="text-base leading-7 text-text-secondary">{item.copy}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="ledger-list reveal">
+        {steps.map((step, index) => (
+          <article class="ledger-row">
+            <p class="ledger-row__meta">{String(index + 1).padStart(2, '0')}</p>
+            <div>
+              <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{step.title}</h3>
+              <p class="max-w-3xl text-base leading-7 text-text-secondary">{step.copy}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="business-ornament bg-surface-alt" aria-hidden="true">
+    <svg viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M40 56V28"/>
+      <path d="M40 28c-8-16-20-24-36-26"/>
+      <path d="M40 28c8-16 20-24 36-26"/>
+      <path d="M18 8c-6-4-12-6-18-7"/>
+      <path d="M62 8c6-4 12-6 18-7"/>
+      <path d="M28 14c-6 0-13-2-18-6"/>
+      <path d="M52 14c6 0 13-2 18-6"/>
+    </svg>
+  </div>
+
+  <section class="bg-surface-alt px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="connect-title">
+    <div class="business-shell">
+      <div class="grid gap-12 lg:grid-cols-[0.36fr_0.64fr] lg:gap-16">
+        <div class="reveal">
+          <h2 id="connect-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
+            Stay close to confirmed updates.
+          </h2>
+        </div>
+
+        <div class="club-panel p-6 reveal">
+          {connectLinks.map((link) => (
+            link.href && (
+              <a href={link.href} target={link.href.startsWith('mailto:') ? undefined : '_blank'} rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'} class="link-row">
+                <span class="link-row__main">
+                  <BrandIcon name={link.icon} />
+                  <span>{link.label}</span>
+                </span>
+                <span aria-hidden="true">{link.action}</span>
+              </a>
+            )
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="faq-title">
+    <div class="business-shell">
+      <div class="mb-12 max-w-3xl reveal">
+        <h2 id="faq-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
+          Practical answers before you join.
+        </h2>
+      </div>
+
+      <div class="club-panel divide-y divide-border reveal">
+        {faqs.map((item) => (
+          <details class="group p-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-5">
+              <h3 class="font-serif text-xl font-bold text-text-primary">{item.question}</h3>
+              <span class="text-2xl font-bold text-gold transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-5 max-w-3xl text-base leading-7 text-text-secondary">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
 </Layout>

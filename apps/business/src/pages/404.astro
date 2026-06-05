@@ -5,30 +5,22 @@ import '../styles/global.css';
 ---
 
 <Layout
-  title="404 — Page Not Found"
-  description="The page you're looking for doesn't exist on the Surrey Business Society website."
+  title="404 - Page Not Found"
+  description="The page you're looking for does not exist on the Surrey Business Society website."
 >
-  <section class="bg-navy-deep text-text-on-dark relative overflow-hidden flex items-center justify-center min-h-[72vh] border-b border-border-dark">
-    <div class="bg-dot-dark absolute inset-0 pointer-events-none opacity-50" aria-hidden="true"></div>
-    <div class="mx-auto max-w-3xl px-6 py-24 text-center relative z-10">
-
-      <p class="eyebrow mb-8 justify-center" style="color:var(--color-gold)">Error 404</p>
-
-      <h1 class="font-serif text-8xl sm:text-[9rem] font-bold tracking-tight leading-none mb-8 text-gold">
-        404
-      </h1>
-
-      <p class="text-text-on-dark-secondary text-base leading-relaxed max-w-md mx-auto border-l border-gold/40 pl-4 text-left mb-10">
-        The page you're looking for doesn't exist. It may have been moved or the URL may be incorrect.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/" class="btn-primary">
-          Return Home <span aria-hidden="true">&rarr;</span>
-        </a>
-        <a href="/events" class="btn-ghost">
-          View Events
-        </a>
+  <section class="club-hero min-h-[72vh]" aria-labelledby="not-found-title">
+    <div class="club-hero__inner flex min-h-[72vh] items-center">
+      <div class="mx-auto max-w-3xl text-center reveal">
+        <h1 id="not-found-title" class="heading-serif text-7xl leading-none text-gold sm:text-8xl lg:text-9xl">
+          Wrong room.
+        </h1>
+        <p class="mx-auto mt-8 max-w-xl text-lg leading-8 text-text-on-dark-secondary">
+          This page is not part of the society site. Head back to the homepage or check the confirmed events page.
+        </p>
+        <div class="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="/" class="btn-primary">Return home</a>
+          <a href="/events" class="btn-dark">View events</a>
+        </div>
       </div>
     </div>
   </section>

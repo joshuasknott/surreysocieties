@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 690 680" fill="none">
+  <defs>
+    <filter id="shadow" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="9" dy="12" stdDeviation="6" flood-color="#020916" flood-opacity=".72"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M246 338c31-46 77-73 137-82 57-8 113 3 168 33-34 33-75 57-123 71-43 13-87 17-132 12l-50-34Z" fill="#0f2240" stroke="#0f2240" stroke-width="18"/>
+    <path d="M246 338c31-46 77-73 137-82 57-8 113 3 168 33-34 33-75 57-123 71-43 13-87 17-132 12l-50-34Z" stroke="#d6b75a" stroke-width="2.2"/>
+    <path d="M306 370c-35 35-58 80-69 136-8 39-8 78-1 117" stroke="#0f2240" stroke-width="18"/>
+    <path d="M306 370c-35 35-58 80-69 136-8 39-8 78-1 117" stroke="#d6b75a" stroke-width="2.2"/>
+    <path d="M420 352c-44 43-69 96-75 161-4 41-1 79 9 114" stroke="#0f2240" stroke-width="18"/>
+    <path d="M420 352c-44 43-69 96-75 161-4 41-1 79 9 114" stroke="#d6b75a" stroke-width="2.2"/>
+    <path d="M252 338c-47-8-89-2-126 18 19 25 46 50 80 75 45-5 88-17 128-36" fill="#0f2240" stroke="#0f2240" stroke-width="18"/>
+    <path d="M252 338c-47-8-89-2-126 18 19 25 46 50 80 75 45-5 88-17 128-36" stroke="#d6b75a" stroke-width="2.2"/>
+    <path d="M205 405c29-16 60-25 94-28" stroke="#d6b75a" stroke-width="2.2"/>
+    <path d="M182 451c9 24 23 46 42 66" stroke="#d6b75a" stroke-width="2.2"/>
+    <path d="M463 375c56 39 91 91 104 156" stroke="#d6b75a" stroke-width="2.2"/>
+  </g>
+  <g filter="url(#shadow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M311 260c-38-60-51-121-40-184" stroke="#0f2240" stroke-width="18"/>
+    <path d="M311 260c-38-60-51-121-40-184" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M276 87c-50 2-88-16-113-54" stroke="#0f2240" stroke-width="18"/>
+    <path d="M276 87c-50 2-88-16-113-54" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M249 149c-49 8-91-5-126-39" stroke="#0f2240" stroke-width="18"/>
+    <path d="M249 149c-49 8-91-5-126-39" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M291 208c-58 15-107 5-146-31" stroke="#0f2240" stroke-width="18"/>
+    <path d="M291 208c-58 15-107 5-146-31" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M360 246c-32-83-26-157 17-222" stroke="#0f2240" stroke-width="18"/>
+    <path d="M360 246c-32-83-26-157 17-222" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M381 27c60 14 107 48 142 102" stroke="#0f2240" stroke-width="18"/>
+    <path d="M381 27c60 14 107 48 142 102" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M421 212c66-28 118-70 157-125" stroke="#0f2240" stroke-width="18"/>
+    <path d="M421 212c66-28 118-70 157-125" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M580 90c56 30 89 78 99 145" stroke="#0f2240" stroke-width="18"/>
+    <path d="M580 90c56 30 89 78 99 145" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M500 285c58-14 108-44 150-90" stroke="#0f2240" stroke-width="18"/>
+    <path d="M500 285c58-14 108-44 150-90" stroke="#d6b75a" stroke-width="2.35"/>
+    <path d="M653 198c36 56 40 113 13 171" stroke="#0f2240" stroke-width="18"/>
+    <path d="M653 198c36 56 40 113 13 171" stroke="#d6b75a" stroke-width="2.35"/>
+  </g>
+  <g stroke="#d6b75a" stroke-width="2.1" opacity=".78" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M488 540h70v-86"/>
+    <path d="M558 454h56v-63"/>
+    <path d="M525 625h78v-72"/>
+    <circle cx="488" cy="540" r="12" fill="#0f2240"/>
+    <circle cx="558" cy="454" r="12" fill="#0f2240"/>
+    <circle cx="614" cy="391" r="12" fill="#0f2240"/>
+    <circle cx="525" cy="625" r="12" fill="#0f2240"/>
+    <circle cx="603" cy="553" r="12" fill="#0f2240"/>
+  </g>
+  <g fill="#d6b75a" opacity=".76">
+    <circle cx="540" cy="628" r="3"/>
+    <circle cx="570" cy="628" r="3"/>
+    <circle cx="600" cy="628" r="3"/>
+    <circle cx="630" cy="628" r="3"/>
+    <circle cx="540" cy="656" r="3"/>
+    <circle cx="570" cy="656" r="3"/>
+    <circle cx="600" cy="656" r="3"/>
+    <circle cx="630" cy="656" r="3"/>
+  </g>
+</svg>
