@@ -76,7 +76,7 @@ const isCurrent = (href: string) =>
             class:list={[
               'rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors',
               isCurrent(link.href)
-                ? 'bg-neuro-gold/10 text-neuro-gold'
+                ? 'bg-neuro-gold/10 text-neuro-gold-ink'
                 : 'text-neuro-ink hover:text-neuro-teal',
             ]}
           >
@@ -113,7 +113,7 @@ const isCurrent = (href: string) =>
             class:list={[
               'rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors',
               isCurrent(link.href)
-                ? 'bg-neuro-gold/10 text-neuro-gold'
+                ? 'bg-neuro-gold/10 text-neuro-gold-ink'
                 : 'text-neuro-ink hover:text-neuro-teal',
             ]}
           >
@@ -121,7 +121,7 @@ const isCurrent = (href: string) =>
           </a>
         ))}
         <a href="/join" class="neuro-btn-primary mt-3 w-full text-sm">
-          Join via Surrey Students' Union
+          Join
         </a>
       </div>
     </div>

@@ -10,6 +10,7 @@
   --color-neuro-deep: #02112b;
   --color-neuro-blue: #24456f;
   --color-neuro-gold: #d4af37;
+  --color-neuro-gold-ink: #735200;
   --color-neuro-gold-soft: #f1dc91;
   --color-neuro-cyan: #68d3dd;
   --color-neuro-teal: #0b766f;
@@ -2169,7 +2170,7 @@ details > summary::-webkit-details-marker {
 }
 
 .neuro-hero--home .neuro-hero-title span {
-  color: var(--color-neuro-gold);
+  color: var(--color-neuro-gold-ink);
   font-style: normal;
 }
 
