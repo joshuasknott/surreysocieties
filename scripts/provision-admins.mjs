@@ -36,7 +36,7 @@ const admins = [
   },
   {
     slug: "ai",
-    name: "AI Society Admin",
+    name: "Surrey AI Society Admin",
     email: "ussu.aianddatascience@surrey.ac.uk",
     passwordEnv: "AI_ADMIN_INITIAL_PASSWORD",
     metadata: {

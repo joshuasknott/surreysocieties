@@ -18,7 +18,7 @@ Status values:
 - Do not edit backend/schema files unless the task explicitly owns Convex.
 - Do not delete media until replacement references are confirmed and QA passes.
 - Do not invent events, committee members, partnerships, sponsors, speakers, equipment access, lab access, achievements, or dates.
-- Current product direction: only AI Society keeps public light/dark theme switching. Business Society and Neurotech Society must not add or keep public theme toggles, `data-theme` systems, or localStorage theme preferences.
+- Current product direction: only Surrey AI Society keeps public light/dark theme switching. Business Society and Neurotech Society must not add or keep public theme toggles, `data-theme` systems, or localStorage theme preferences.
 - Visual hierarchy: AI should be the most visually overengineered site, Neurotech second-most, and Business the most professional/basic.
 - Use the known society facts in `AUDIT_PACK.md` unless a later research pack provides verified replacements.
 - Every task must leave a handoff note using the template at the end of this file.

@@ -34,12 +34,12 @@ Use this data until a later research pack supersedes it.
 
 Cross-site visual/content hierarchy:
 
-- AI Society should feel the most visually overengineered while staying honest, educational, and beginner-friendly.
+- Surrey AI Society should feel the most visually overengineered while staying honest, educational, and beginner-friendly.
 - Neurotech Society should be second-most visually overengineered and should lean into interactive brain/neural visuals without implying verified lab access, research access, or equipment access.
 - Business Society should be the most professional/basic, with premium editorial polish rather than SaaS, glass-card, or generic startup clutter.
-- Only AI Society should reference or support public light/dark theme switching. Do not write copy or QA notes that imply Business or Neurotech have public dark mode.
+- Only Surrey AI Society should reference or support public light/dark theme switching. Do not write copy or QA notes that imply Business or Neurotech have public dark mode.
 
-AI Society:
+Surrey AI Society:
 
 - Core promise: make AI understandable, practical, and responsible for Surrey students across disciplines.
 - Tone: clear, modern, technical but beginner-friendly.
@@ -62,7 +62,7 @@ Neurotech Society:
 
 ## Pillar And Stream IA
 
-AI Society pillars:
+Surrey AI Society pillars:
 
 - Learn: beginner-friendly AI, ML, NLP, generative AI, computer vision.
 - Build: hackathons, build nights, projects, prototypes.
@@ -153,7 +153,7 @@ Shared:
 AI SEO topics:
 
 - Surrey Artificial Intelligence Society.
-- AI and Data Science Society if aligned with union naming.
+- Surrey AI Society if aligned with union naming.
 - AI workshops, machine learning, generative AI, responsible AI, student society, University of Surrey.
 
 Business SEO topics:
@@ -185,7 +185,7 @@ Create or update a research pack before writing copy that depends on these facts
 - TODO: Confirm society-owned photos/videos approved for public use.
 - TODO: Confirm whether Business has sponsorship packages or sponsor contacts.
 - TODO: Confirm whether Neurotech has access to specific EEG/BCI equipment before making equipment claims.
-- TODO: Confirm whether AI Society should publicly use `AI and Data Science Society` naming in any SEO or union references.
+- TODO: Confirm whether Surrey AI Society should publicly use `Surrey Artificial Intelligence Society` naming in any SEO or union references.
 - TODO: Confirm any official brand guidelines from societies or Students' Union.
 
 ## Link And CTA Rules

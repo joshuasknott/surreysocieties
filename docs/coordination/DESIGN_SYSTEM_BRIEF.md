@@ -2,9 +2,9 @@
 
 This brief guides future frontend/design agents. The project goal is refinement and professionalisation, not a full rebuild. The three society sites should feel like part of one Surrey student-society ecosystem without becoming identical.
 
-Current product direction supersedes older theme guidance: AI Society is the only public society site that should keep light/dark theme switching. Business Society and Neurotech Society must not add or keep public theme toggles, `data-theme` switching, or localStorage theme preference systems.
+Current product direction supersedes older theme guidance: Surrey AI Society is the only public society site that should keep light/dark theme switching. Business Society and Neurotech Society must not add or keep public theme toggles, `data-theme` switching, or localStorage theme preference systems.
 
-Visual ambition hierarchy: AI Society should be the most visually overengineered, Neurotech Society should be second-most visually overengineered, and Business Society should be the most professional/basic.
+Visual ambition hierarchy: Surrey AI Society should be the most visually overengineered, Neurotech Society should be second-most visually overengineered, and Business Society should be the most professional/basic.
 
 ## Shared Design Principles
 
@@ -30,7 +30,7 @@ Visual ambition hierarchy: AI Society should be the most visually overengineered
 
 ## Theme Requirements
 
-AI Society:
+Surrey AI Society:
 
 - Keep the existing light/dark theme system in `apps/ai/src/styles/global.css` and `apps/ai/src/layouts/Layout.astro`.
 - Preserve the clean technical palette: white/black surfaces, cyan, purple, graphite.
@@ -116,7 +116,7 @@ Admin-specific:
 
 ## Per-Society Visual Direction
 
-AI Society:
+Surrey AI Society:
 
 - Personality: precise, modern, technical, welcoming, accessible to beginners.
 - Visual language: the most visually overengineered of the three sites, with layered technical systems, data/graph motifs, cyan/purple accents, precise motion, and clear educational interactions.

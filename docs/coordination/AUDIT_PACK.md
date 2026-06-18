@@ -53,7 +53,7 @@ Use these facts as canonical until a later research pack supersedes them. Do not
 
 Current product direction update:
 
-- Only AI Society should keep public light/dark theme switching.
+- Only Surrey AI Society should keep public light/dark theme switching.
 - Business Society and Neurotech Society must not add or keep public theme toggles, `data-theme` systems, or persisted theme preferences.
 - Visual hierarchy for future redesigns is AI > Neurotech > Business: AI most visually overengineered, Neurotech second-most with interactive brain/neural visuals, Business most professional/basic with premium editorial polish.
 - No future work may invent events, committee members, sponsors, speakers, equipment access, lab access, or impact claims to make pages feel complete.
@@ -382,7 +382,7 @@ Admin:
 
 ## Current Theme Status
 
-AI Society:
+Surrey AI Society:
 
 - `apps/ai/src/styles/global.css` defines light and dark tokens via `:root` and `:root[data-theme="dark"]`.
 - `apps/ai/src/layouts/Layout.astro` initializes theme before paint, stores preference in `localStorage` under `surrey-ai-theme`, and exposes a theme toggle.
@@ -416,14 +416,14 @@ AI feature files:
 
 Findings:
 
-- AI Society has a server-side Gemini integration.
+- Surrey AI Society has a server-side Gemini integration.
 - `gemini.ts` enables AI only when `AI_FEATURES_ENABLED === "true"` and `GEMINI_API_KEY` exists.
 - API key is read from `process.env.GEMINI_API_KEY` server-side only; no public env key was found for Gemini.
 - Default model is `gemini-2.0-flash-lite` unless `AI_MODEL` overrides it.
 - Timeout defaults to 4000 ms and is capped at 10000 ms.
 - API route supports `remix-studio`, `task-relay`, `build-sprint`, `ml-explain`, `cv-explain`, and `ethics-assess`.
 - If Gemini is disabled or fails, the route returns deterministic local fallback data from `trackLabFallbacks.ts`.
-- This AI feature is AI Society-specific and does not appear in Business or Neurotech.
+- This AI feature is Surrey AI Society-specific and does not appear in Business or Neurotech.
 
 Risks:
 

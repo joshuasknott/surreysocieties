@@ -2,6 +2,7 @@
 export const prerender = false;
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
+import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import BrandIcon from '../components/BrandIcon.astro';
@@ -13,11 +14,11 @@ const SOCIETY_ID = 'business';
 const society = getSocietyById(SOCIETY_ID)!;
 
 const events: any[] = (
-  await queryPublicConvex<any[]>('events:listPublished', { societySlug: SOCIETY_ID }, [])
+  await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
 
 const committee: any[] = (
-  await queryPublicConvex<any[]>('committee:listActive', { societySlug: SOCIETY_ID }, [])
+  await queryPublicConvex(api.committee.listActive, { societySlug: SOCIETY_ID }, [])
 ).sort((a: any, b: any) =>
   (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
   || (a.name || '').localeCompare(b.name || '')

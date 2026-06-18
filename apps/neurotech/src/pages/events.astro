@@ -3,6 +3,7 @@ export const prerender = false;
 import { Image } from 'astro:assets';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
+import { api } from '../../../../convex/_generated/api.js';
 import Layout from '../layouts/Layout.astro';
 import eegWorkstationCutout from '../assets/generated/neurotech-eeg-workstation-cutout.png';
 import '../styles/global.css';
@@ -11,7 +12,7 @@ const SOCIETY_ID = 'neurotech';
 const society = getSocietyById(SOCIETY_ID)!;
 
 const events: any[] = (
-  await queryPublicConvex<any[]>('events:listPublished', { societySlug: SOCIETY_ID }, [])
+  await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
 
 const categories = [...new Set(events.map((event) => event.category || 'Event'))];
