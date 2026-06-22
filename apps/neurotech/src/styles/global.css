@@ -111,6 +111,10 @@ body::selection { background: var(--color-neuro-gold); color: var(--color-neuro-
   width: 100%;
   z-index: 0;
 }
+.neuro-hero--about .neuro-hero__image { object-position: 76% center; }
+.neuro-hero--events .neuro-hero__image,
+.neuro-hero--committee .neuro-hero__image,
+.neuro-hero--join .neuro-hero__image { object-position: 72% center; }
 .neuro-hero::before {
   background:
     repeating-linear-gradient(168deg, transparent 0 2.4rem, rgba(0, 180, 216, 0.1) 2.45rem, transparent 2.52rem),
@@ -521,10 +525,26 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 
 @media (max-width: 760px) {
   .neuro-hero__image { object-position: 67% center; }
+  .neuro-hero--about .neuro-hero__image { object-position: 81% center; }
+  .neuro-hero--events .neuro-hero__image,
+  .neuro-hero--committee .neuro-hero__image,
+  .neuro-hero--join .neuro-hero__image { object-position: 78% center; }
+  .neuro-home-hero .neuro-hero__image { object-position: 38% center; }
   .neuro-hero { min-height: auto; }
   .neuro-hero__inner { padding-block: 5rem 4rem; }
-  .neuro-subhero-copy h1 { font-size: clamp(2.85rem, 13vw, 4rem); }
-  .neuro-home-hero__inner { min-height: auto; padding-bottom: 3rem; padding-top: 4.5rem; }
+  .neuro-subhero-copy h1 {
+    font-size: clamp(2.35rem, 10vw, 3rem);
+    line-height: 1.02;
+    overflow-wrap: anywhere;
+  }
+  .neuro-home-hero::before {
+    background:
+      linear-gradient(180deg, rgba(2, 13, 30, 0.98) 0%, rgba(2, 13, 30, 0.9) 42%, rgba(2, 13, 30, 0.72) 100%),
+      radial-gradient(circle at 18% 32%, rgba(0, 180, 216, 0.14), transparent 18rem);
+  }
+  .neuro-home-hero__inner { min-height: auto; padding-bottom: 2.5rem; padding-top: 3.8rem; }
+  .neuro-home-hero__copy { max-width: 100%; }
+  .neuro-home-hero h1 { font-size: clamp(3rem, 15vw, 3.8rem); }
   .neuro-home-route-list { grid-template-columns: 1fr; margin-top: 2rem; max-width: 100%; }
   .neuro-home-route + .neuro-home-route { border-left: 1px solid rgba(168, 220, 231, 0.28); border-top: 0; }
   .neuro-home-route { min-height: 0; }
