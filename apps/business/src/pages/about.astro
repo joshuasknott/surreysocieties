@@ -1,210 +1,94 @@
 ---
 export const prerender = true;
+
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import aboutCollaboration from '../assets/generated/business-about-collaboration.png';
+import collaboration from '../assets/generated/business-about-collaboration.png';
 import '../styles/global.css';
 
 const society = getSocietyById('business')!;
 
 const principles = [
-  {
-    title: 'Commercial confidence',
-    copy: 'We help students understand business language, workplace expectations, and the practical judgement behind strong professional decisions.',
-  },
-  {
-    title: 'Interdisciplinary access',
-    copy: 'Business Society is for students across the university, not only students on business degrees. Commercial awareness is useful in every field.',
-  },
-  {
-    title: 'Student-led direction',
-    copy: 'The society is shaped by its committee and members, with official society activity handled through Surrey Students\' Union processes.',
-  },
-  {
-    title: 'Useful, confirmed activity',
-    copy: 'Events, committee information, and opportunities should be published when confirmed, not dressed up with placeholder claims.',
-  },
+  { title: 'Curiosity first', copy: 'You can arrive with questions, not a finished career plan.' },
+  { title: 'Practical confidence', copy: 'The useful work is in trying, asking, presenting, and improving.' },
+  { title: 'Open networks', copy: 'Good connections should feel possible, not exclusive.' },
 ];
 
-const areas = [
-  'Careers and applications',
-  'Enterprise and ideas',
-  'Networking confidence',
-  'Presentation and communication',
-  'Commercial awareness',
-  'Community across courses',
-];
-
-const expectations = [
-  {
-    title: 'Accessible starting points',
-    copy: 'Sessions and resources should help students who are new to business language as well as those already planning a commercial career.',
-  },
-  {
-    title: 'Useful relationships',
-    copy: 'The society should make it easier to meet peers, committee members, speakers, and collaborators without networking feeling forced.',
-  },
-  {
-    title: 'Professional habits',
-    copy: 'Members build small repeatable habits: asking sharper questions, preparing better applications, and speaking with more confidence.',
-  },
-];
-
-const memberTypes = [
-  'Students preparing for placements, internships, or graduate roles.',
-  'Founders, freelancers, and project builders testing early ideas.',
-  'Students outside business courses who want commercial awareness.',
-  'Anyone looking for a friendly route into professional confidence.',
+const forStudents = [
+  { title: 'Business students', copy: 'Connect your course with people, opportunities, and practical experience.' },
+  { title: 'Non-business students', copy: 'Learn the commercial language that helps your discipline travel further.' },
+  { title: 'Career explorers', copy: 'Build a clearer sense of the paths, skills, and conversations worth pursuing.' },
 ];
 ---
 
-<Layout
-  title="About"
-  description="Learn about Surrey Business Society, a University of Surrey student society for careers, enterprise, networking, and practical business confidence."
->
-  <section class="club-hero" aria-labelledby="about-title">
-    <div class="club-hero__inner">
-      <div class="max-w-4xl reveal">
-        <h1 id="about-title" class="heading-serif text-5xl leading-none text-text-on-dark sm:text-6xl lg:text-7xl">
-          Business confidence,<br /><span class="text-gold">without the jargon.</span>
-        </h1>
-        <p class="mt-7 max-w-2xl border-l border-gold/60 pl-5 text-lg leading-8 text-text-on-dark-secondary">
-          Surrey Business Society exists to make careers, enterprise, networking, and commercial thinking feel clearer and more approachable for University of Surrey students.
-        </p>
-      </div>
+<Layout title="About" description="Surrey Business Society helps University of Surrey students build commercial confidence, explore enterprise, and form useful connections.">
+  <section class="business-hero business-hero--page" aria-labelledby="about-title">
+    <Image src={collaboration} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
+    <div class="business-shell business-hero__content">
+      <p class="business-hero__eyebrow business-reveal">About the society</p>
+      <h1 id="about-title" class="business-reveal">Business confidence, without the performance.</h1>
+      <p class="business-hero__lede business-reveal">We make careers, enterprise, and commercial thinking more approachable for students who want a clearer way in.</p>
     </div>
   </section>
 
-  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="mission-title">
+  <section class="business-section business-section--paper" aria-labelledby="purpose-title">
     <div class="business-shell">
-      <div class="grid gap-12 lg:grid-cols-[0.4fr_0.6fr] lg:gap-20">
-        <div class="reveal">
-          <h2 id="mission-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-            Practical professional confidence, not corporate theatre.
-          </h2>
+      <div class="business-intro business-reveal">
+        <div>
+          <p class="business-eyebrow">What we are here for</p>
+          <h2 id="purpose-title" class="business-intro__lead">A society for students becoming more commercially confident.</h2>
         </div>
-
-        <div class="business-prose reveal">
-          <p>
-            Business can feel vague from the outside: commercial awareness, networking, applications, interviews, enterprise, and confidence are often spoken about as if everyone already knows what they mean.
-          </p>
-          <p>
-            Surrey Business Society gives students a clearer place to start. The society brings together people who want to understand careers and enterprise in a practical way, whether they study business, engineering, science, law, arts, computing, or something else entirely.
-          </p>
-          <p>
-            The goal is simple: help Surrey students become more informed, more comfortable in professional settings, and more connected to peers who are also thinking seriously about their next step.
-          </p>
-        </div>
-      </div>
-
-      <div class="business-feature mt-16 reveal">
-        <div class="business-feature__media">
-          <Image
-            src={aboutCollaboration}
-            alt="An illustrated business planning desk with notebooks, charts, and warm navy and gold details."
-            class="business-feature__image"
-            loading="lazy"
-          />
-        </div>
-        <div class="business-feature__body">
-          <h3 class="heading-serif text-3xl leading-tight text-text-primary sm:text-4xl">
-            A business society for every Surrey student with a next step to shape.
-          </h3>
-          <ul class="business-check-list mt-7" role="list">
-            {memberTypes.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
+        <div class="business-intro__body business-copy">
+          <p>Business can feel like a private language: careers, networking, interviews, enterprise, commercial awareness. We exist to make that language easier to learn and use.</p>
+          <p>Our focus is simple: give Surrey students more context, more practice, and more people to learn alongside.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-surface-alt px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="principles-title">
+  <section class="business-section business-section--ink" aria-labelledby="principles-title">
     <div class="business-shell">
-      <div class="business-section-title mx-auto mb-12 max-w-3xl reveal">
-        <h2 id="principles-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-          Clear principles for a student-run society.
-        </h2>
+      <div class="business-section__heading business-reveal">
+        <div>
+          <p class="business-eyebrow">How we work</p>
+          <h2 id="principles-title" class="business-title">Keep it useful. Keep it open.</h2>
+        </div>
       </div>
-
-      <div class="ledger-list reveal">
+      <div class="business-lines business-reveal">
         {principles.map((principle, index) => (
-          <article class="ledger-row">
-            <p class="ledger-row__meta">{String(index + 1).padStart(2, '0')}</p>
-            <div>
-              <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{principle.title}</h3>
-              <p class="max-w-3xl text-base leading-7 text-text-secondary">{principle.copy}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div class="business-expectation-grid mt-12 reveal">
-        {expectations.map((item) => (
-          <article>
-            <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{item.title}</h3>
-            <p class="text-base leading-7 text-text-secondary">{item.copy}</p>
+          <article class="business-line">
+            <span class="business-line__number">0{index + 1}</span>
+            <h3>{principle.title}</h3>
+            <p>{principle.copy}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <div class="business-ornament bg-surface-alt" aria-hidden="true">
-    <svg viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M40 56V28"/>
-      <path d="M40 28c-8-16-20-24-36-26"/>
-      <path d="M40 28c8-16 20-24 36-26"/>
-      <path d="M18 8c-6-4-12-6-18-7"/>
-      <path d="M62 8c6-4 12-6 18-7"/>
-      <path d="M28 14c-6 0-13-2-18-6"/>
-      <path d="M52 14c6 0 13-2 18-6"/>
-    </svg>
-  </div>
-
-  <section class="business-dark-pattern px-5 py-20 text-text-on-dark sm:px-6 sm:py-28" aria-labelledby="areas-title">
-    <div class="business-shell">
-      <div class="grid gap-12 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
-        <div class="reveal">
-          <h2 id="areas-title" class="heading-serif text-4xl leading-tight sm:text-5xl">
-            The society sits where ambition meets practice.
-          </h2>
-        </div>
-
-        <div class="business-chip-grid sm:grid-cols-2 reveal" role="list">
-          {areas.map((area) => (
-            <div class="business-chip" role="listitem">
-              <p class="font-bold text-text-on-dark">{area}</p>
-            </div>
-          ))}
-        </div>
+  <section class="business-section business-section--paper-light" aria-labelledby="students-title">
+    <div class="business-shell business-feature-split business-reveal">
+      <div>
+        <p class="business-eyebrow">Who it is for</p>
+        <h2 id="students-title" class="business-title">Any Surrey student with an idea of where they could go next.</h2>
+        <p class="business-copy" style="margin-top: 1.25rem;">You do not have to fit a particular mould to belong here. The point is to learn, contribute, and make your own direction stronger.</p>
       </div>
+      <ul class="business-list" role="list">
+        {forStudents.map((student, index) => (
+          <li><span>0{index + 1}</span><div><strong>{student.title}</strong><p>{student.copy}</p></div></li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="union-title">
-    <div class="business-shell">
-      <div class="club-panel grid gap-10 p-6 sm:p-10 lg:grid-cols-[0.48fr_0.52fr] lg:p-12">
-        <div class="reveal">
-          <h2 id="union-title" class="heading-serif text-4xl leading-tight text-text-primary">
-            Student-led and connected to Surrey Students' Union.
-          </h2>
-        </div>
-        <div class="business-prose reveal">
-          <p>
-            The society operates as part of the student society ecosystem at the University of Surrey. Membership is handled through Surrey Students' Union, and official society links should point students to the relevant Union pages.
-          </p>
-          <p>
-            Committee and event details are published on this site once confirmed, so members can trust that the public pages reflect real society information.
-          </p>
-          <div class="business-action-strip mt-7">
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">Students' Union page</a>
-            <a href="/join" class="btn-primary">Become a member</a>
-          </div>
-        </div>
+  <section class="business-join-band" aria-labelledby="about-join-title">
+    <div class="business-shell business-join-band__inner">
+      <div>
+        <h2 id="about-join-title">Bring the questions. We will make room for them.</h2>
+        <p>Membership is handled through Surrey Students' Union.</p>
       </div>
+      <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
     </div>
   </section>
 </Layout>

@@ -44,10 +44,6 @@ const isCurrent = (href: string) =>
     'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,750;9..144,850&display=swap',
   ]}
 >
-  <script slot="head" is:inline>
-    document.documentElement.classList.add('js-enabled');
-  </script>
-
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neuro-paper focus:text-neuro-ink focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold shadow-lg rounded-md">
     Skip to content
   </a>
@@ -76,21 +72,21 @@ const isCurrent = (href: string) =>
             class:list={[
               'rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors',
               isCurrent(link.href)
-                ? 'bg-neuro-gold/10 text-neuro-gold-ink'
-                : 'text-neuro-ink hover:text-neuro-teal',
+                ? 'bg-neuro-gold/15 text-neuro-gold'
+                : 'text-neuro-on-dark-muted hover:text-neuro-gold',
             ]}
           >
             {link.label}
           </a>
         ))}
         <a href="/join" class="neuro-btn-primary ml-3 px-5 py-2 text-xs">
-          Join
+          Join the society
         </a>
       </div>
 
       <button
         id="mobile-menu-btn"
-        class="rounded-md p-3 text-neuro-ink transition-colors hover:text-neuro-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold md:hidden"
+        class="rounded-md p-3 text-neuro-on-dark-muted transition-colors hover:text-neuro-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold md:hidden"
         aria-label="Open navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -104,7 +100,7 @@ const isCurrent = (href: string) =>
       </button>
     </div>
 
-    <div id="mobile-menu" class="hidden border-t border-neuro-line bg-neuro-paper md:hidden">
+    <div id="mobile-menu" class="hidden border-t border-neuro-line-dark bg-neuro-deep md:hidden">
       <div class="flex flex-col px-5 py-3">
         {navLinks.map((link) => (
           <a
@@ -113,8 +109,8 @@ const isCurrent = (href: string) =>
             class:list={[
               'rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors',
               isCurrent(link.href)
-                ? 'bg-neuro-gold/10 text-neuro-gold-ink'
-                : 'text-neuro-ink hover:text-neuro-teal',
+                ? 'bg-neuro-gold/15 text-neuro-gold'
+                : 'text-neuro-on-dark-muted hover:text-neuro-gold',
             ]}
           >
             {link.label}
@@ -183,14 +179,10 @@ const isCurrent = (href: string) =>
   <AssistantWidget config={assistantConfig} endpoint="/api/assistant/chat" />
 
   <script>
-    import { animate } from 'animejs';
-
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const hamburger = document.getElementById('hamburger-icon');
     const closeIcon = document.getElementById('close-icon');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     btn?.addEventListener('click', () => {
       const willOpen = menu?.classList.contains('hidden') ?? false;
       menu?.classList.toggle('hidden', !willOpen);
@@ -206,14 +198,6 @@ const isCurrent = (href: string) =>
     const revealElement = (element: HTMLElement) => {
       element.classList.add('visible');
 
-      if (prefersReducedMotion) return;
-
-      animate(element, {
-        opacity: [0, 1],
-        y: [18, 0],
-        duration: 680,
-        ease: 'outCubic',
-      });
     };
 
     if ('IntersectionObserver' in window) {

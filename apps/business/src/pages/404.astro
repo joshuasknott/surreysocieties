@@ -4,24 +4,13 @@ import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
 ---
 
-<Layout
-  title="404 - Page Not Found"
-  description="The page you're looking for does not exist on the Surrey Business Society website."
->
-  <section class="club-hero min-h-[72vh]" aria-labelledby="not-found-title">
-    <div class="club-hero__inner flex min-h-[72vh] items-center">
-      <div class="mx-auto max-w-3xl text-center reveal">
-        <h1 id="not-found-title" class="heading-serif text-7xl leading-none text-gold sm:text-8xl lg:text-9xl">
-          Page not found.
-        </h1>
-        <p class="mx-auto mt-8 max-w-xl text-lg leading-8 text-text-on-dark-secondary">
-          This page could not be found on the society site. Head back to the homepage or check the confirmed events page.
-        </p>
-        <div class="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-          <a href="/" class="btn-primary">Return home</a>
-          <a href="/events" class="btn-dark">View events</a>
-        </div>
-      </div>
+<Layout title="Page not found" description="The page you are looking for does not exist on the Surrey Business Society website.">
+  <section class="business-hero business-hero--page" aria-labelledby="not-found-title">
+    <div class="business-shell business-hero__content">
+      <p class="business-hero__eyebrow business-reveal">404</p>
+      <h1 id="not-found-title" class="business-reveal">This page has moved on.</h1>
+      <p class="business-hero__lede business-reveal">Head home, explore the events page, or find out how to join the society.</p>
+      <div class="business-hero__actions business-reveal"><a href="/" class="business-button">Return home</a><a href="/events" class="business-button business-button--outline">View events</a></div>
     </div>
   </section>
 </Layout>

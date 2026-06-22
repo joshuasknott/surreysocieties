@@ -4,8 +4,9 @@ import { Image } from 'astro:assets';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
+import { Brain, Cpu, Dna, Lightbulb, PencilRuler, Scale } from 'lucide-astro';
 import Layout from '../layouts/Layout.astro';
-import brainCenterpiece from '../assets/generated/neurotech-brain-centerpiece.png';
+import homeHero from '../assets/generated/neurotech-home-neural-hero.png';
 import talksThumb from '../assets/generated/neurotech-talks-thumb.png';
 import workshopsThumb from '../assets/generated/neurotech-workshops-thumb.png';
 import projectsThumb from '../assets/generated/neurotech-projects-thumb.png';
@@ -19,192 +20,177 @@ const events: any[] = (
   await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
 
-const committee: any[] = (
-  await queryPublicConvex(api.committee.listActive, { societySlug: SOCIETY_ID }, [])
-).sort((a: any, b: any) =>
-  (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
-  || (a.name || '').localeCompare(b.name || '')
-);
+const eventMessage = events[0]?.title || 'Events will appear once confirmed.';
 
-const formatEventDate = (date?: string) => {
-  if (!date) return 'Date TBC';
-  const parsed = new Date(`${date}T00:00:00`);
-  if (Number.isNaN(parsed.getTime())) return date;
-  return parsed.toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
-};
-
-const getInitials = (name?: string, role?: string) => {
-  const source = (name || role || '?').trim();
-  const words = source.split(/\s+/).filter(Boolean);
-  if (words.length === 0) return '?';
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
-};
-
-const journeyCards = [
+const approachSteps = [
   {
     title: 'Learn',
-    copy: 'Friendly explainers, talks, and workshops that make brain science and technology easier to approach.',
+    copy: 'Friendly talks, workshops, and explainers.',
     href: '/events',
   },
   {
     title: 'Meet',
-    copy: 'Connect with curious students from different courses who want to explore ideas together.',
+    copy: 'Connect with curious students from every course.',
     href: '/committee',
   },
   {
     title: 'Build responsibly',
-    copy: 'Discuss how technology can help people while keeping ethics, inclusion, and wellbeing in view.',
+    copy: 'Ethics, inclusion, and wellbeing stay at the centre.',
     href: '/about',
   },
 ];
 
+const disciplines = [
+  { title: 'Psychology', copy: 'Understanding minds and behaviour.', icon: Brain },
+  { title: 'Computing', copy: 'Algorithms, data and intelligent systems.', icon: Cpu },
+  { title: 'Bioscience', copy: 'Cells, systems and the biology of the brain.', icon: Dna },
+  { title: 'Design', copy: 'Human-centred design and creative solutions.', icon: PencilRuler },
+  { title: 'Ethics', copy: 'Questions of fairness, privacy, consent and impact.', icon: Scale },
+  { title: 'Curious beginners', copy: "You don't need experience — just curiosity.", icon: Lightbulb },
+];
+
 const activityCards = [
   {
-    title: 'Talks and discussions',
-    copy: 'Student-led sessions and invited conversations about neurotechnology, society, and the future.',
+    title: 'Talks & Events',
+    copy: 'Expert speakers from academia, startups and industry share insights into emerging developments in neurotech, AI and cognitive science.',
     image: talksThumb,
-    alt: 'Students listening to a friendly neurotechnology discussion.',
+    alt: 'Students listening to a neurotechnology discussion.',
+    number: '01',
   },
   {
     title: 'Workshops',
-    copy: 'Guided sessions for learning vocabulary, tools, and ideas at a beginner-friendly pace.',
+    copy: 'Practical experiences including workshops, journal clubs and projects such as building brain-computer interfaces.',
     image: workshopsThumb,
-    alt: 'Students collaborating at a bright workshop table.',
+    alt: 'Students collaborating at a workshop table.',
+    number: '02',
   },
   {
-    title: 'Projects',
-    copy: 'Collaborative experiments with ideas, prototypes, and responsible design questions.',
+    title: 'Inter-University Collaborations',
+    copy: 'Large-scale events including hackathons, symposiums and networking initiatives with other leading neurotech societies.',
     image: projectsThumb,
-    alt: 'Students discussing an abstract neurotechnology project on a laptop.',
+    alt: 'Students presenting at a neurotechnology event.',
+    number: '03',
   },
   {
-    title: 'Socials',
-    copy: 'Relaxed ways to meet people, share interests, and find your place in the society.',
+    title: 'Socials & Community',
+    copy: 'Informal social events and an active virtual community to support discussion, collaboration and connection.',
     image: socialsThumb,
-    alt: 'Students chatting in a relaxed society social space.',
-  },
-];
-
-const principles = [
-  {
-    title: 'Curiosity first',
-    copy: 'No one should need to arrive fluent in neuroscience, code, or hardware before they can take part.',
-  },
-  {
-    title: 'Evidence over hype',
-    copy: 'Ambitious ideas are welcome, but claims should be handled with context, uncertainty, and care.',
-  },
-  {
-    title: 'People before devices',
-    copy: 'Privacy, consent, accessibility, wellbeing, and power should stay visible whenever brain data or interfaces are discussed.',
-  },
-  {
-    title: 'Interdisciplinary by default',
-    copy: 'Psychology, computing, engineering, biomedical sciences, design, ethics, and curious beginners all belong in the same room.',
-  },
-];
-
-const concepts = [
-  {
-    title: 'Neuron',
-    copy: 'A specialist cell that communicates through signals.',
-    detail: 'A useful first step is learning how nervous systems pass information through measurable processes.',
-  },
-  {
-    title: 'Signal',
-    copy: 'A pattern that can carry information.',
-    detail: 'Signals need context. Measurement, noise, uncertainty, interpretation, and responsible use all matter.',
-  },
-  {
-    title: 'Interface',
-    copy: 'A bridge between people, biological systems, and technology.',
-    detail: 'Interfaces should make control, feedback, accessibility, and safety easier to understand.',
-  },
-  {
-    title: 'Consent',
-    copy: 'An informed, voluntary agreement to take part or share data.',
-    detail: 'Responsible neurotechnology keeps privacy, withdrawal, and power imbalance visible from the start.',
+    alt: 'Students chatting at a society social.',
+    number: '04',
   },
 ];
 ---
 
 <Layout
   title="Home"
-  description="Surrey Neurotech Society - a student-led University of Surrey society for curious students exploring neuroscience, AI, brain-computer interfaces, signals, ethics, and responsible innovation."
+  description="Surrey Neurotech Society — a student-led University of Surrey society for curious students exploring neuroscience, AI, brain-computer interfaces, signals, ethics, and responsible innovation."
 >
-  <section class="neuro-hero neuro-hero--home" aria-labelledby="neuro-hero-title">
-    <div class="neuro-hero__inner neuro-hero__inner--home">
-      <div class="neuro-hero-grid">
-        <div class="reveal">
-          <p class="neuro-eyebrow">Discover - Learn - Create - Impact</p>
-          <h1 id="neuro-hero-title" class="neuro-serif neuro-hero-title">
-            Curious minds.<br />Real connections.<br /><span>Neurotech for good.</span>
-          </h1>
-          <p class="neuro-hero-copy">
-            Surrey Neurotech Society is a student community exploring the science of the brain and building technology that makes a positive difference.
-          </p>
-          <div class="neuro-action-row">
-            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-primary">
-              Join the society
-            </a>
-            <a href="#what-we-explore" class="neuro-btn-secondary">
-              Explore our focus areas
-            </a>
-          </div>
-          <p class="neuro-open-note">Open to all students. All backgrounds. All levels.</p>
+  <section class="neuro-home-hero" aria-labelledby="neuro-hero-title">
+    <Image
+      src={homeHero}
+      alt=""
+      aria-hidden="true"
+      class="neuro-hero__image"
+      widths={[640, 960, 1440, 1800]}
+      sizes="100vw"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      format="webp"
+      quality={70}
+    />
+    <div class="neuro-home-hero__inner">
+      <div class="neuro-home-hero__copy reveal">
+        <h1 id="neuro-hero-title" class="neuro-serif">
+          Neurotech,<br /><span>for good.</span>
+        </h1>
+        <div class="neuro-home-title-rule" aria-hidden="true"></div>
+        <p>
+          Surrey Neurotech Society is the University of Surrey's first student group dedicated to neurotechnology and the fourth in the UK. We connect students across neuroscience, AI and technology to explore how they can work together to enhance human potential.
+        </p>
+        <div class="neuro-home-hero-actions">
+          <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-btn neuro-home-btn--gold">
+            Join the society <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#what-we-explore" class="neuro-home-btn neuro-home-btn--outline">
+            Explore focus areas <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
+        <p class="neuro-home-open-note">Open to all students. All backgrounds. All levels.</p>
+      </div>
 
-        <figure class="neuro-brain-stage" aria-label="A realistic brain alive with connected signals">
-          <div class="neuro-brain-stage__halo" aria-hidden="true"></div>
-          <div class="neuro-brain-orbit neuro-brain-orbit--one" aria-hidden="true"></div>
-          <div class="neuro-brain-orbit neuro-brain-orbit--two" aria-hidden="true"></div>
-          <div class="neuro-brain-orbit neuro-brain-orbit--three" aria-hidden="true"></div>
-          <div class="neuro-brain-signal-field" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <div class="neuro-brain-depth-field" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <div class="neuro-brain-float">
-            <div class="neuro-brain-parallax">
-              <Image
-                src={brainCenterpiece}
-                alt="Realistic human brain with cyan and gold neural signal paths."
-                width={1536}
-                height={1024}
-                class="neuro-brain-centerpiece"
-                loading="eager"
-                format="webp"
-              />
-            </div>
-          </div>
-        </figure>
+      <a href="/events" class="neuro-home-event-strip reveal" aria-label="View confirmed events">
+        <span class="neuro-home-event-strip__mark" aria-hidden="true">Now</span>
+        <span><strong>What's happening</strong><span class="neuro-home-event-strip__message">{eventMessage}</span></span>
+        <span class="neuro-home-event-strip__link">See events &rarr;</span>
+      </a>
+
+      <nav class="neuro-home-route-list reveal" aria-label="How to get involved">
+        {approachSteps.map((step, index) => (
+          <a href={step.href} class="neuro-home-route">
+            <span class="neuro-home-route__index" aria-hidden="true">0{index + 1}</span>
+            <span><strong>{step.title}</strong><small>{step.copy}</small></span>
+            <span class="neuro-home-route__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        ))}
+      </nav>
+
+    </div>
+  </section>
+
+  <section id="what-we-explore" class="neuro-home-pathways" aria-labelledby="pathways-title">
+    <div class="neuro-home-pathways__inner">
+      <div class="neuro-home-pathways__heading reveal">
+        <span class="neuro-home-kicker">Many doors into neurotech</span>
+        <h2 id="pathways-title" class="neuro-serif">Different paths. Shared curiosity.</h2>
+        <div class="neuro-home-title-rule" aria-hidden="true"></div>
+      </div>
+      <div class="neuro-home-pathway-track">
+        {disciplines.map((discipline) => {
+          const Icon = discipline.icon;
+          return (
+            <article class="neuro-home-pathway reveal">
+              <span class="neuro-home-pathway__mark"><Icon size={28} strokeWidth={1.45} aria-hidden="true" /></span>
+              <h3>{discipline.title}</h3>
+              <p>{discipline.copy}</p>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
 
-  <section id="what-we-explore" class="neuro-section neuro-section--mist" aria-labelledby="mission-title">
-    <div class="neuro-shell">
-      <div class="neuro-journey-heading reveal">
-        <p class="neuro-eyebrow">Your journey with us</p>
-        <h2 id="mission-title" class="neuro-serif">Three ways we grow together.</h2>
+  <section class="neuro-home-activities" aria-labelledby="activities-title">
+    <div class="neuro-home-activities__inner">
+      <div class="neuro-home-activities__intro reveal">
+        <span class="neuro-home-kicker neuro-home-kicker--blue">What we do together</span>
+        <h2 id="activities-title" class="neuro-serif">Explore. Discuss.<br />Create. Together.</h2>
+        <div class="neuro-home-title-rule" aria-hidden="true"></div>
+        <p>
+          We bring big ideas to life through events, projects and community. There's something for everyone, whether you're here to learn, build or just get curious.
+        </p>
+        <a href="/events" class="neuro-home-btn neuro-home-btn--blue">See all events <span aria-hidden="true">&rarr;</span></a>
       </div>
 
-      <div class="neuro-journey-grid">
-        {journeyCards.map((card, index) => (
-          <article class="neuro-journey-card reveal">
-            <span class="neuro-journey-card__mark">{String(index + 1).padStart(2, '0')}</span>
-            <div>
-              <h3 class="neuro-serif">{card.title}</h3>
-              <p>{card.copy}</p>
+      <div class="neuro-home-activity-list">
+        {activityCards.map((activity) => (
+          <article class="neuro-home-activity reveal">
+            <span class="neuro-home-activity__number" aria-hidden="true">{activity.number}</span>
+            <div class="neuro-home-activity__copy">
+              <h3 class="neuro-serif">{activity.title}</h3>
+              <p>{activity.copy}</p>
             </div>
-            <a href={card.href} aria-label={`Explore ${card.title.toLowerCase()}`}>
-              <span aria-hidden="true">Open</span>
+            <Image
+              src={activity.image}
+              alt={activity.alt}
+              widths={[360, 600, 960]}
+              sizes="(min-width: 761px) 16rem, calc(100vw - 4.6rem)"
+              loading="lazy"
+              format="webp"
+              quality={65}
+            />
+            <a href="/events" aria-label={`Learn more about ${activity.title}`} class="neuro-home-activity__arrow">
+              <span aria-hidden="true">&rarr;</span>
             </a>
           </article>
         ))}
@@ -212,266 +198,20 @@ const concepts = [
     </div>
   </section>
 
-  <section class="neuro-section neuro-section--paper" aria-labelledby="activities-title">
-    <div class="neuro-shell">
-      <div class="neuro-activities-layout">
-        <div class="neuro-section-heading neuro-section-heading--left reveal">
-          <p class="neuro-eyebrow">What we do</p>
-          <h2 id="activities-title" class="neuro-serif">Explore. Discuss. Create. Together.</h2>
-          <p>
-            From neuroscience to interfaces and AI, we bring big ideas to life through events, projects, and conversation.
-          </p>
-        </div>
-
-        <div class="neuro-activity-card-grid">
-          {activityCards.map((activity) => (
-            <article class="neuro-activity-card reveal">
-              <Image
-                src={activity.image}
-                alt={activity.alt}
-                width={1536}
-                height={1152}
-                loading="lazy"
-                format="webp"
-              />
-              <div>
-                <h3>{activity.title}</h3>
-                <p>{activity.copy}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="neuro-section neuro-section--deep neuro-section--responsibility" aria-labelledby="principles-title">
-    <div class="neuro-shell">
-      <div class="neuro-principles-layout">
-        <div class="reveal">
-          <h2 id="principles-title" class="neuro-serif">
-            Responsible neurotechnology needs clear rules.
-          </h2>
-          <p>
-            Neurotechnology is exciting because it touches minds, bodies, data, devices, and society at once. That makes careful thinking part of the work, not an optional extra.
-          </p>
-        </div>
-
-        <div class="neuro-principle-rail reveal">
-          {principles.map((principle) => (
-            <article>
-              <h3>{principle.title}</h3>
-              <p>{principle.copy}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="neuro-section neuro-section--paper" aria-labelledby="concepts-title">
-    <div class="neuro-shell">
-      <div class="neuro-feature-grid neuro-feature-grid--balanced">
-        <div class="neuro-section-heading neuro-section-heading--left reveal">
-          <h2 id="concepts-title" class="neuro-serif">Big ideas, plain language.</h2>
-          <p>
-            Technical vocabulary should be a doorway, not a wall. Tap a concept to see how the society frames it for newcomers.
-          </p>
-          <a href="/about" class="neuro-btn-secondary">Learn about the society</a>
-        </div>
-
-        <div class="neuro-concept-accordion reveal">
-          {concepts.map((concept, index) => (
-            <details name="concepts" {...(index === 0 ? { open: true } : {})}>
-              <summary>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{concept.title}</strong>
-                <em>{concept.copy}</em>
-              </summary>
-              <p>{concept.detail}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="neuro-section neuro-section--mist" aria-labelledby="updates-title">
-    <div class="neuro-shell">
-      <div class="neuro-updates-header reveal">
-        <h2 id="updates-title" class="neuro-serif">What's happening and who's involved.</h2>
-        <p>
-          Confirmed events and the student team running the society. Check back for updates on talks, workshops, socials, and more.
-        </p>
-      </div>
-
-      <div class="neuro-update-rail">
-        <section class="reveal" aria-labelledby="events-title">
-          <h3 id="events-title" class="neuro-serif">Events</h3>
-
-          {events.length > 0 ? (
-            <div class="neuro-ledger neuro-ledger--compact">
-              {events.slice(0, 2).map((event: any) => (
-                <article class="neuro-row">
-                  <div>
-                    <time>{formatEventDate(event.date)}</time>
-                    <p class="neuro-row__meta">{event.category || 'Event'}</p>
-                  </div>
-                  <div>
-                    <h4 class="neuro-serif">{event.title}</h4>
-                    <p>{event.description || 'Details will be confirmed soon.'}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div class="neuro-empty neuro-empty--flat">
-              <h4 class="neuro-serif">Events will appear once confirmed.</h4>
-              <p>
-                Talks, workshops, socials, and collaboration updates will be published here when the details are ready.
-              </p>
-            </div>
-          )}
-          <a href="/events" class="neuro-link-row">See all events <span aria-hidden="true">Open</span></a>
-        </section>
-
-        <section class="reveal" aria-labelledby="committee-preview-title">
-          <h3 id="committee-preview-title" class="neuro-serif">Committee</h3>
-
-          {committee.length > 0 ? (
-            <div class="neuro-mini-people neuro-mini-people--flat">
-              {committee.slice(0, 4).map((member: any) => (
-                <article>
-                  {member.imageUrl ? (
-                    <img src={member.imageUrl} alt={member.name || member.role} />
-                  ) : (
-                    <div>{getInitials(member.name, member.role)}</div>
-                  )}
-                  <h4>{member.name}</h4>
-                  <p>{member.role}</p>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div class="neuro-empty neuro-empty--flat">
-              <h4 class="neuro-serif">Committee details will appear once confirmed.</h4>
-              <p>
-                Confirmed names, roles, and contact details are shown once they are available through the society data.
-              </p>
-            </div>
-          )}
-          <a href="/committee" class="neuro-link-row">Meet the committee <span aria-hidden="true">Open</span></a>
-        </section>
-      </div>
-    </div>
-  </section>
-
-  <section class="neuro-final-cta" aria-labelledby="join-title">
-    <div class="neuro-shell">
-      <div class="neuro-final-cta__inner">
-        <div>
-          <h2 id="join-title" class="neuro-serif">
-            Ready to explore neurotechnology with other curious students?
-          </h2>
-          <p>
-            Whether you want to learn, meet people, discuss big questions, or help shape future events, Surrey Neurotech is open to all.
-          </p>
-        </div>
-        <div class="neuro-final-actions">
-          <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-primary">Join the society</a>
-          {society.socials.instagram && (
-            <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="neuro-btn-dark">Instagram</a>
-          )}
-          <a href={`mailto:${society.contactEmail}`} class="neuro-btn-dark">Ask anything</a>
-          <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-dark">Students' Union</a>
-        </div>
-      </div>
+  <section class="neuro-home-action-rail" aria-label="More ways to get involved">
+    <div class="neuro-home-action-rail__inner">
+      <a href="/events" class="neuro-home-action-rail__item">
+        <span class="neuro-home-action-rail__index" aria-hidden="true">01</span>
+        <span><strong>Events</strong><small>See upcoming talks, workshops and socials.</small><em>See events &rarr;</em></span>
+      </a>
+      <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-action-rail__item">
+        <span class="neuro-home-action-rail__index" aria-hidden="true">02</span>
+        <span><strong>Join</strong><small>Become a member and get involved.</small><em>Join the society &rarr;</em></span>
+      </a>
+      <a href="/committee" class="neuro-home-action-rail__item">
+        <span class="neuro-home-action-rail__index" aria-hidden="true">03</span>
+        <span><strong>Committee</strong><small>Meet the student team leading the society.</small><em>Meet the committee &rarr;</em></span>
+      </a>
     </div>
   </section>
 </Layout>
-
-<script>
-  import { animate, stagger } from 'animejs';
-
-  const brainStage = document.querySelector<HTMLElement>('.neuro-brain-stage');
-  const brainFloat = brainStage?.querySelector<HTMLElement>('.neuro-brain-float');
-  const brainParallax = brainStage?.querySelector<HTMLElement>('.neuro-brain-parallax');
-  const halo = brainStage?.querySelector<HTMLElement>('.neuro-brain-stage__halo');
-  const orbits = brainStage?.querySelectorAll<HTMLElement>('.neuro-brain-orbit');
-  const signalNodes = brainStage?.querySelectorAll<HTMLElement>('.neuro-brain-signal-field span');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (brainStage && !prefersReducedMotion) {
-    animate(brainStage, {
-      opacity: [0, 1],
-      scale: [0.94, 1],
-      duration: 1100,
-      ease: 'outExpo',
-    });
-
-    if (brainFloat) {
-      animate(brainFloat, {
-        y: [-8, 8],
-        rotate: [-0.7, 0.7],
-        duration: 5200,
-        alternate: true,
-        loop: true,
-        ease: 'inOutSine',
-      });
-    }
-
-    if (halo) {
-      animate(halo, {
-        scale: [0.9, 1.08],
-        opacity: [0.48, 0.82],
-        duration: 3100,
-        alternate: true,
-        loop: true,
-        ease: 'inOutSine',
-      });
-    }
-
-    if (orbits?.length) {
-      animate(orbits, {
-        rotate: (_target, index) => index % 2 === 0 ? 360 : -360,
-        duration: (_target, index) => 15000 + index * 3200,
-        delay: stagger(180),
-        loop: true,
-        ease: 'linear',
-      });
-    }
-
-    if (signalNodes?.length) {
-      animate(signalNodes, {
-        opacity: [0.2, 1, 0.2],
-        scale: [0.65, 1.4, 0.65],
-        duration: 2100,
-        delay: stagger(280),
-        loop: true,
-        ease: 'inOutSine',
-      });
-    }
-
-    let frame = 0;
-    brainStage.addEventListener('pointermove', (event) => {
-      if (!brainParallax) return;
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const bounds = brainStage.getBoundingClientRect();
-        const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-        const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
-        brainParallax.style.setProperty('--brain-shift-x', `${x * 10}px`);
-        brainParallax.style.setProperty('--brain-shift-y', `${y * 8}px`);
-        brainParallax.style.setProperty('--brain-tilt-x', `${y * -1.5}deg`);
-        brainParallax.style.setProperty('--brain-tilt-y', `${x * 2}deg`);
-      });
-    });
-
-    brainStage.addEventListener('pointerleave', () => {
-      brainParallax?.style.removeProperty('--brain-shift-x');
-      brainParallax?.style.removeProperty('--brain-shift-y');
-      brainParallax?.style.removeProperty('--brain-tilt-x');
-      brainParallax?.style.removeProperty('--brain-tilt-y');
-    });
-  }
-</script>

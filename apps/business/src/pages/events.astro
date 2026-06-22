@@ -1,5 +1,6 @@
 ---
 export const prerender = false;
+
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
@@ -8,237 +9,123 @@ import Layout from '../layouts/Layout.astro';
 import eventsProgramme from '../assets/generated/business-events-programme.png';
 import '../styles/global.css';
 
-const SOCIETY_ID = 'business';
-const society = getSocietyById(SOCIETY_ID)!;
-
-const events: any[] = (
-  await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
-).filter((event: any) => event.status === 'published');
-
+const society = getSocietyById('business')!;
+const events: any[] = (await queryPublicConvex(api.events.listPublished, { societySlug: 'business' }, []))
+  .filter((event: any) => event.status === 'published');
 const categories = [...new Set(events.map((event) => event.category || 'Event'))];
 
 const formatEventDate = (date?: string) => {
-  if (!date) return 'Date TBC';
+  if (!date) return 'Date to be confirmed';
   const parsed = new Date(`${date}T00:00:00`);
-  if (Number.isNaN(parsed.getTime())) return date;
-  return parsed.toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+  return Number.isNaN(parsed.getTime()) ? date : parsed.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
 };
 
-const formatEventTime = (event: any) => {
-  if (!event.startTime) return '';
-  return `${event.startTime}${event.endTime ? ` - ${event.endTime}` : ''}`;
-};
+const formatEventTime = (event: any) => event.startTime ? `${event.startTime}${event.endTime ? `–${event.endTime}` : ''}` : '';
 
-const programmeLanes = [
-  {
-    title: 'Career direction',
-    copy: 'Sessions that help students understand sectors, applications, interviews, and professional expectations.',
-  },
-  {
-    title: 'Enterprise thinking',
-    copy: 'Conversations around ideas, pitching, venture-building, and how commercial opportunities are shaped.',
-  },
-  {
-    title: 'Networking confidence',
-    copy: 'Formats that make meeting peers and speaking professionally feel more approachable.',
-  },
-  {
-    title: 'Practical skills',
-    copy: 'Workshops focused on communication, CVs, commercial awareness, presentation, and leadership habits.',
-  },
-];
-
-const eventFormats = [
-  {
-    title: 'Skill workshops',
-    copy: 'Practical sessions for CVs, applications, interviews, presentations, and commercial awareness.',
-  },
-  {
-    title: 'Speaker evenings',
-    copy: 'Talks and Q&A formats that help members understand real sectors, routes, and professional stories.',
-  },
-  {
-    title: 'Enterprise sessions',
-    copy: 'Idea-focused activity around pitching, customer thinking, problem framing, and early venture confidence.',
-  },
-  {
-    title: 'Social connection',
-    copy: 'Low-pressure ways to meet other students who are also building career direction and professional confidence.',
-  },
+const formats = [
+  { title: 'Talks and panels', copy: 'Meet people with experience worth hearing from.' },
+  { title: 'Workshops', copy: 'Build a practical skill rather than just collecting advice.' },
+  { title: 'Challenges', copy: 'Try ideas in a setting where learning matters more than polish.' },
+  { title: 'Socials', copy: 'Meet peers without the awkwardness of forced networking.' },
 ];
 ---
 
-<Layout
-  title="Events"
-  description="Confirmed Surrey Business Society events, programme updates, and practical careers, enterprise, networking, and skills activity."
->
-  <section class="club-hero" aria-labelledby="events-title">
-    <div class="club-hero__inner">
-      <div class="max-w-4xl reveal">
-        <h1 id="events-title" class="heading-serif text-5xl leading-none text-text-on-dark sm:text-6xl lg:text-7xl">
-          Events with<br /><span class="text-gold">a practical purpose.</span>
-        </h1>
-        <p class="mt-7 max-w-2xl border-l border-gold/60 pl-5 text-lg leading-8 text-text-on-dark-secondary">
-          Confirmed society events appear here. Every listing should help members understand what is happening, where it is happening, and how to take part.
-        </p>
+<Layout title="Events" description="See confirmed Surrey Business Society events, workshops, talks, and networking opportunities.">
+  <section class="business-hero business-hero--page" aria-labelledby="events-title">
+    <Image src={eventsProgramme} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
+    <div class="business-shell business-hero__content">
+      <p class="business-hero__eyebrow business-reveal">Events</p>
+      <h1 id="events-title" class="business-reveal">The rooms where ideas become useful.</h1>
+      <p class="business-hero__lede business-reveal">Confirmed talks, workshops, and opportunities are listed here with the details you need to take part.</p>
+      <div class="business-hero__actions business-reveal">
+        <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-button">Follow updates</a>
+        <a href="/join" class="business-button business-button--outline">Join the society</a>
       </div>
     </div>
   </section>
 
-  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="event-ledger-title">
+  <section class="business-section business-section--paper" aria-labelledby="programme-title">
     <div class="business-shell">
-      <div class="business-feature mb-16 reveal">
-        <div class="business-feature__media">
-          <Image
-            src={eventsProgramme}
-            alt="An illustrated event planning board with calendar cards, lanyards, notebooks, and a lecture room backdrop."
-            class="business-feature__image"
-            loading="lazy"
-          />
+      <div class="business-section__heading business-reveal">
+        <div>
+          <p class="business-eyebrow">What's on</p>
+          <h2 id="programme-title" class="business-title">Confirmed events.</h2>
         </div>
-        <div class="business-feature__body">
-          <h2 class="heading-serif text-3xl leading-tight text-text-primary sm:text-4xl">
-            A programme built around useful reasons to show up.
-          </h2>
-          <div class="business-mini-grid mt-7">
-            {eventFormats.map((format) => (
-              <article>
-                <h3>{format.title}</h3>
-                <p>{format.copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
+        <p>Dates, locations, and joining details only appear once they are ready to stand behind.</p>
       </div>
 
-      <div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div class="reveal">
-          <h2 id="event-ledger-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-            The society programme, once published.
-          </h2>
-        </div>
-        <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="btn-secondary reveal">
-          Follow updates
-        </a>
-      </div>
-
-      {events.length > 0 ? (
+      {events.length ? (
         <>
           {categories.length > 1 && (
-            <div class="mb-8 flex flex-wrap gap-3 reveal" aria-label="Filter events by category">
-              <button type="button" class="btn-primary text-sm" data-event-filter="all" aria-pressed="true">All</button>
-              {categories.map((category) => (
-                <button type="button" class="btn-secondary text-sm" data-event-filter={category} aria-pressed="false">{category}</button>
-              ))}
+            <div class="business-filter-bar business-reveal" aria-label="Filter events by category">
+              <button type="button" class="business-filter-button is-active" data-event-filter="all" aria-pressed="true">All</button>
+              {categories.map((category) => <button type="button" class="business-filter-button" data-event-filter={category} aria-pressed="false">{category}</button>)}
             </div>
           )}
-
-          <div class="ledger-list reveal" data-event-list>
+          <div class="business-event-list business-reveal" data-event-list>
             {events.map((event) => (
-              <article class="ledger-row" data-event-card data-category={event.category || 'Event'}>
+              <article class="business-event-row" data-event-card data-category={event.category || 'Event'}>
+                <div class="business-event-row__meta">
+                  <time>{formatEventDate(event.date)}</time>
+                  {formatEventTime(event) && <span>{formatEventTime(event)}</span>}
+                  {event.location && <span>{event.location}</span>}
+                </div>
                 <div>
-                  <p class="ledger-row__meta">{event.category || 'Event'}</p>
-                  <time class="mt-3 block font-bold text-text-primary">{formatEventDate(event.date)}</time>
-                  {formatEventTime(event) && (
-                    <p class="mt-2 text-sm font-semibold text-text-muted">{formatEventTime(event)}</p>
-                  )}
-                  {event.location && (
-                    <p class="mt-2 text-sm font-semibold text-text-muted">{event.location}</p>
-                  )}
+                  <h3>{event.title}</h3>
+                  <p>{event.description || 'Further details will be shared soon.'}</p>
                 </div>
-                <div class="grid gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
-                  <div>
-                    <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{event.title}</h3>
-                    {event.description ? (
-                      <p class="max-w-3xl text-base leading-7 text-text-secondary">{event.description}</p>
-                    ) : (
-                      <p class="max-w-3xl text-base leading-7 text-text-secondary">Further details will be confirmed soon.</p>
-                    )}
-                  </div>
-                  {event.registrationUrl && (
-                    <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm">
-                      Register
-                    </a>
-                  )}
-                </div>
+                {event.registrationUrl && <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" class="business-button business-event-row__action">Register</a>}
               </article>
             ))}
           </div>
         </>
       ) : (
-        <div class="business-dashed-panel business-dashed-panel--light reveal">
+        <div class="business-empty business-reveal">
+          <h3>No public events are listed yet.</h3>
           <div>
-            <span class="business-icon-disc mx-auto" set:html={'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M4 10h16"/></svg>'} />
-            <h2 class="mt-5 font-serif text-3xl font-bold text-text-primary">Events will appear here once confirmed.</h2>
-            <p class="mx-auto mt-3 max-w-xl text-base leading-7 text-text-secondary">
-              The public schedule is kept factual. When a date, location, and joining route are ready, they will be listed here with the details members need.
-            </p>
-            <div class="business-action-strip mt-7 justify-center">
-              <a href="/join" class="btn-primary">Join for updates</a>
-              <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">Students' Union page</a>
-            </div>
+            <p>When the next event has a confirmed date and joining route, it will be published here. Follow the society for the fastest updates.</p>
+            <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-text-link" style="display: inline-block; margin-top: 1rem;">Follow on Instagram</a>
           </div>
         </div>
       )}
     </div>
   </section>
 
-  <div class="business-ornament bg-surface" aria-hidden="true">
-    <svg viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M40 56V28"/>
-      <path d="M40 28c-8-16-20-24-36-26"/>
-      <path d="M40 28c8-16 20-24 36-26"/>
-      <path d="M18 8c-6-4-12-6-18-7"/>
-      <path d="M62 8c6-4 12-6 18-7"/>
-      <path d="M28 14c-6 0-13-2-18-6"/>
-      <path d="M52 14c6 0 13-2 18-6"/>
-    </svg>
-  </div>
-
-  <section class="bg-surface-alt px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="programme-lanes-title">
+  <section class="business-section business-section--ink" aria-labelledby="formats-title">
     <div class="business-shell">
-      <div class="business-section-title mx-auto mb-12 max-w-3xl reveal">
-        <h2 id="programme-lanes-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-          What the events are designed to support.
-        </h2>
+      <div class="business-section__heading business-reveal">
+        <div>
+          <p class="business-eyebrow">Event formats</p>
+          <h2 id="formats-title" class="business-title">More than a calendar.</h2>
+        </div>
+        <p>Each format has one job: make a useful next step easier to find.</p>
       </div>
-
-      <div class="programme-grid reveal">
-        {programmeLanes.map((lane) => (
-          <article>
-            <h3 class="mb-4 font-serif text-2xl font-bold text-text-primary">{lane.title}</h3>
-            <p class="text-base leading-7 text-text-secondary">{lane.copy}</p>
-          </article>
+      <div class="business-lines business-lines--four business-reveal">
+        {formats.map((format, index) => (
+          <article class="business-line"><span class="business-line__number">0{index + 1}</span><h3>{format.title}</h3><p>{format.copy}</p></article>
         ))}
       </div>
     </div>
   </section>
 
+  <section class="business-join-band" aria-labelledby="events-join-title">
+    <div class="business-shell business-join-band__inner">
+      <div><h2 id="events-join-title">Want the updates in one place?</h2><p>Become a member, then keep an eye on the events calendar and society channels.</p></div>
+      <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
+    </div>
+  </section>
+
   <script>
-    const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-event-filter]'));
-    const eventCards = Array.from(document.querySelectorAll<HTMLElement>('[data-event-card]'));
-
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const activeCategory = button.dataset.eventFilter || 'all';
-
-        filterButtons.forEach((candidate) => {
-          const isActive = candidate === button;
-          candidate.setAttribute('aria-pressed', String(isActive));
-          candidate.classList.toggle('btn-primary', isActive);
-          candidate.classList.toggle('btn-secondary', !isActive);
-        });
-
-        eventCards.forEach((card) => {
-          const shouldShow = activeCategory === 'all' || card.dataset.category === activeCategory;
-          card.toggleAttribute('hidden', !shouldShow);
-        });
+    const filters = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-event-filter]'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-event-card]'));
+    filters.forEach((filter) => filter.addEventListener('click', () => {
+      const active = filter.dataset.eventFilter || 'all';
+      filters.forEach((candidate) => {
+        const selected = candidate === filter;
+        candidate.classList.toggle('is-active', selected);
+        candidate.setAttribute('aria-pressed', String(selected));
       });
-    });
+      cards.forEach((card) => card.toggleAttribute('hidden', active !== 'all' && card.dataset.category !== active));
+    }));
   </script>
 </Layout>

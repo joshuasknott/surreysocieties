@@ -1,9 +1,9 @@
 ---
 export const prerender = true;
-import { Image } from 'astro:assets';
 import { getSocietyById } from '@surreysocieties/admin/config';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import brainCutout from '../assets/generated/neurotech-realistic-brain-cutout.png';
+import aboutHero from '../assets/generated/neurotech-about-hero.png';
 import '../styles/global.css';
 
 const society = getSocietyById('neurotech')!;
@@ -28,12 +28,30 @@ const principles = [
 ];
 
 const work = [
-  'Hands-on workshops, journal clubs, and brain-computer interface projects',
-  'Expert speakers from academia, startups, AI, and cognitive science',
-  'Hackathons, symposiums, and inter-university collaborations',
-  'Research, internship, and industry networking opportunities',
-  'Social events and active online community on WhatsApp and beyond',
-  'Advocating for more neurotech teaching and research at Surrey',
+  {
+    title: 'Hands-On Learning',
+    copy: 'We offer practical experiences including workshops, journal clubs, and projects such as building brain-computer interfaces.',
+  },
+  {
+    title: 'Talks and Events',
+    copy: 'We host expert speakers from academia, startups, and industry to share insights into emerging developments in neurotech, AI, and cognitive science.',
+  },
+  {
+    title: 'Inter-University Collaborations',
+    copy: 'We are planning large-scale events including hackathons, symposiums, and networking initiatives with other leading related societies.',
+  },
+  {
+    title: 'Networking and Industry Links',
+    copy: 'We create opportunities to connect students with researchers and companies, opening doors to internships, research collaborations, and career insights.',
+  },
+  {
+    title: 'Socials and Community',
+    copy: 'We run informal social events and maintain an active virtual community on platforms such as WhatsApp to support discussion, collaboration, and connection.',
+  },
+  {
+    title: 'Shaping the Future of Neurotech at Surrey',
+    copy: "We're advocating for more neurotech teaching and research opportunities at the university, helping build a lasting infrastructure for future students.",
+  },
 ];
 ---
 
@@ -41,34 +59,40 @@ const work = [
   title="About"
   description="Learn about Surrey Neurotech Society, the University of Surrey student society connecting neuroscience, AI, brain-computer interfaces, ethics, and responsible innovation."
 >
-  <section class="neuro-hero" aria-labelledby="about-title">
+  <section class="neuro-hero neuro-hero--about" aria-labelledby="about-title">
+    <Image
+      src={aboutHero}
+      alt=""
+      aria-hidden="true"
+      class="neuro-hero__image"
+      widths={[640, 960, 1440, 1800]}
+      sizes="100vw"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      format="webp"
+      quality={70}
+    />
     <div class="neuro-hero__inner">
       <div class="neuro-subhero-grid">
         <div class="neuro-subhero-copy reveal">
+          <span class="neuro-eyebrow neuro-eyebrow--gold">About the society</span>
           <h1 id="about-title" class="neuro-serif">
             The university's first neurotechnology society.
           </h1>
           <p>
-            We're the fourth society of our kind in the entire country — connecting students with neuroscience, AI, brain-computer interfaces, signal processing, and the ethics that matter.
+            Surrey Neurotech Society is the university's first student group dedicated to neurotechnology and the fourth in the entire country. We bring together students from psychology, computer science, engineering, biomedical sciences, and more to explore how technology and neuroscience can work together to enhance human potential.
           </p>
+          <div class="neuro-action-row">
+            <a href="/join" class="neuro-btn-primary">Join the society</a>
+            <a href="/events" class="neuro-btn-secondary">See events</a>
+          </div>
         </div>
-
-        <figure class="neuro-cutout-stage neuro-cutout-stage--subhero reveal" aria-label="Anatomical brain model with signal pathways">
-          <Image
-            src={brainCutout}
-            alt="Anatomical brain model with signal paths."
-            width={1536}
-            height={1024}
-            class="neuro-cutout neuro-cutout--subhero-brain"
-            loading="eager"
-            format="webp"
-          />
-        </figure>
       </div>
     </div>
   </section>
 
-  <section class="neuro-section neuro-section--mist" aria-labelledby="mission-title">
+  <section class="neuro-section neuro-section--bluewash" aria-labelledby="mission-title">
     <div class="neuro-shell">
       <div class="neuro-mission-grid">
         <div class="reveal">
@@ -78,10 +102,10 @@ const work = [
         </div>
         <div class="neuro-prose reveal">
           <p>
-            Our mission is to connect students with the cutting-edge of neuroscience, AI, and technology. We bring together students from psychology, computer science, engineering, biomedical sciences, and more to explore how technology and neuroscience can enhance human potential.
+            Our mission is to position Surrey at the forefront of neurotechnology innovation — connecting students with the cutting edge of neuroscience, AI, and technology.
           </p>
           <p>
-            Whether you're looking to build brain-computer interfaces, understand signal processing, discuss the ethics of neurotechnology, or simply learn something new — this is the place.
+            Whether you're looking to build, research, network, or just learn, Surrey Neurotech is open to all. No experience needed — only curiosity and drive.
           </p>
         </div>
       </div>
@@ -91,7 +115,8 @@ const work = [
           <article class="neuro-row neuro-row--activity">
             <p class="neuro-row__meta">{String(index + 1).padStart(2, '0')}</p>
             <div>
-              <h3 class="neuro-serif">{item}</h3>
+              <h3 class="neuro-serif">{item.title}</h3>
+              <p class="mt-2 text-base leading-relaxed text-neuro-muted">{item.copy}</p>
             </div>
           </article>
         ))}

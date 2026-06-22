@@ -1,11 +1,11 @@
 ---
 export const prerender = false;
-import { Image } from 'astro:assets';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import eegWorkstationCutout from '../assets/generated/neurotech-eeg-workstation-cutout.png';
+import eventsHero from '../assets/generated/neurotech-events-hero.png';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
@@ -36,20 +36,20 @@ const formatEventTime = (event: any) => {
 
 const programmeThemes = [
   {
-    title: 'Introductory neurotechnology learning',
-    copy: 'Sessions that help students understand brain, interface, data, and ethics vocabulary from the ground up.',
+    title: 'Hands-On Learning',
+    copy: 'We offer practical experiences including workshops, journal clubs, and projects such as building brain-computer interfaces.',
   },
   {
-    title: 'Journal clubs and careful discussion',
-    copy: 'Formats for exploring papers, claims, case studies, emerging questions, and uncertainty with evidence and context.',
+    title: 'Talks and Events',
+    copy: 'We host expert speakers from academia, startups, and industry to share insights into emerging developments in neurotech, AI, and cognitive science.',
   },
   {
-    title: 'Workshops and building sessions',
-    copy: 'Practical activity around EEG, signal processing, brain-computer interface concepts, and accessible prototyping.',
+    title: 'Inter-University Collaborations',
+    copy: 'We are planning large-scale events including hackathons, symposiums, and networking initiatives with other leading related societies.',
   },
   {
-    title: 'Collaboration beyond one course',
-    copy: 'Inter-university plans, hackathons, symposiums, socials, and conversations with related student societies.',
+    title: 'Networking and Industry Links',
+    copy: 'We create opportunities to connect students with researchers and companies, opening doors to internships, research collaborations, and career insights.',
   },
 ];
 ---
@@ -58,37 +58,46 @@ const programmeThemes = [
   title="Events"
   description="Confirmed Surrey Neurotech Society events and programme updates around accessible neurotechnology learning, discussion, and responsible innovation."
 >
-  <section class="neuro-hero" aria-labelledby="events-title">
+  <section class="neuro-hero neuro-hero--events" aria-labelledby="events-title">
+    <Image
+      src={eventsHero}
+      alt=""
+      aria-hidden="true"
+      class="neuro-hero__image"
+      widths={[640, 960, 1440, 1800]}
+      sizes="100vw"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      format="webp"
+      quality={70}
+    />
     <div class="neuro-hero__inner">
       <div class="neuro-subhero-grid">
         <div class="neuro-subhero-copy reveal">
+          <span class="neuro-eyebrow neuro-eyebrow--gold">Confirmed programme</span>
           <h1 id="events-title" class="neuro-serif">
             Events, talks, and workshops.
           </h1>
           <p>
             Our confirmed events appear here. From speaker nights to signal-processing workshops, find out what's happening and how to get involved.
           </p>
+          <div class="neuro-action-row">
+            <a href="/join" class="neuro-btn-primary">Join the society</a>
+            {society.socials.instagram && (
+              <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="neuro-btn-secondary">Follow updates</a>
+            )}
+          </div>
         </div>
-
-        <figure class="neuro-cutout-stage neuro-cutout-stage--subhero neuro-cutout-stage--subhero-signal reveal" aria-label="Portable EEG signal workstation">
-          <Image
-            src={eegWorkstationCutout}
-            alt="Portable EEG signal workstation with waveform traces, amplifier, leads, and electrodes."
-            width={1536}
-            height={1024}
-            class="neuro-cutout neuro-cutout--subhero-signal"
-            loading="eager"
-            format="webp"
-          />
-        </figure>
       </div>
     </div>
   </section>
 
-  <section class="neuro-section neuro-section--mist" aria-labelledby="event-ledger-title">
+  <section class="neuro-section neuro-section--bluewash" aria-labelledby="event-ledger-title">
     <div class="neuro-shell">
-      <div class="neuro-feature-grid mb-12">
+      <div class="mb-12 max-w-3xl">
         <div class="neuro-section-heading neuro-section-heading--left reveal">
+          <span class="neuro-eyebrow">Programme board</span>
           <h2 id="event-ledger-title" class="neuro-serif">
             What we're planning.
           </h2>
@@ -100,12 +109,6 @@ const programmeThemes = [
               Follow updates
             </a>
           )}
-        </div>
-
-        <div class="neuro-signal-panel reveal" aria-label="Programme signals">
-          <span>Signals</span>
-          <span>Interfaces</span>
-          <span>Discussion</span>
         </div>
       </div>
 

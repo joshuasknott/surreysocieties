@@ -1,248 +1,98 @@
 ---
 export const prerender = false;
+
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import committeeLeadership from '../assets/generated/business-committee-leadership.png';
+import leadership from '../assets/generated/business-committee-leadership.png';
 import '../styles/global.css';
 
-const SOCIETY_ID = 'business';
-const society = getSocietyById(SOCIETY_ID)!;
+const society = getSocietyById('business')!;
+const [committeeResult, pastCommitteeResult] = await Promise.all([
+  queryPublicConvex(api.committee.listActive, { societySlug: 'business' }, []),
+  queryPublicConvex(api.committee.listPast, { societySlug: 'business' }, []),
+]);
+const committee: any[] = committeeResult
+  .sort((a: any, b: any) => (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER) || (a.name || '').localeCompare(b.name || ''));
+const pastCommittee: any[] = pastCommitteeResult
+  .sort((a: any, b: any) => (b.yearLabel || '').localeCompare(a.yearLabel || '') || (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER));
+const pastYears = [...new Set(pastCommittee.map((member) => member.yearLabel || 'Previous committee'))];
 
-const committee: any[] = (
-  await queryPublicConvex(api.committee.listActive, { societySlug: SOCIETY_ID }, [])
-).sort((a: any, b: any) =>
-  (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
-  || (a.name || '').localeCompare(b.name || '')
-);
-
-const pastCommittee: any[] = (
-  await queryPublicConvex(api.committee.listPast, { societySlug: SOCIETY_ID }, [])
-).sort((a: any, b: any) =>
-  (b.yearLabel || '').localeCompare(a.yearLabel || '') ||
-  (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
-  (a.name || '').localeCompare(b.name || '')
-);
-
-const pastCommitteeYears = [...new Set(pastCommittee.map((member) => member.yearLabel))];
-
-const getInitials = (name?: string, role?: string) => {
-  const source = (name || role || '?').trim();
-  const words = source.split(/\s+/).filter(Boolean);
-  if (words.length === 0) return '?';
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-  return words.slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+const initials = (name?: string, role?: string) => {
+  const words = (name || role || '?').trim().split(/\s+/).filter(Boolean);
+  return words.length > 1 ? words.slice(0, 2).map((word) => word[0]).join('').toUpperCase() : (words[0] || '?').slice(0, 2).toUpperCase();
 };
 
-const involvement = [
-  {
-    title: 'Join first',
-    copy: 'Membership through Surrey Students\' Union keeps your connection to the society official.',
-  },
-  {
-    title: 'Follow updates',
-    copy: 'Committee, event, and involvement updates should appear through the website and official social channels once confirmed.',
-  },
-  {
-    title: 'Step forward',
-    copy: 'When roles or election information are confirmed, active members can use those routes to get involved.',
-  },
-];
-
-const committeePractices = [
-  {
-    title: 'Plan the programme',
-    copy: 'Shape events and updates around member value, practical confidence, and confirmed society routes.',
-  },
-  {
-    title: 'Represent members',
-    copy: 'Keep the society approachable, student-led, and responsive to what members actually need.',
-  },
-  {
-    title: 'Publish clearly',
-    copy: 'Keep public records, contact routes, and archive information accurate once details are confirmed.',
-  },
-];
-
-const recordTypes = [
-  'Current names and roles',
-  'Committee bios and contact links',
-  'Past committee archive',
-  'Official society contact route',
+const leadershipWork = [
+  { title: 'Set the direction', copy: 'Choose activity that gives members a useful reason to show up.' },
+  { title: 'Make things happen', copy: 'Turn good ideas into clear events, communication, and follow-through.' },
+  { title: 'Keep it open', copy: 'Make the society welcoming to people from every course and starting point.' },
 ];
 ---
 
-<Layout
-  title="Committee"
-  description="Meet the student committee running Surrey Business Society and view confirmed current and past committee records."
->
-  <section class="club-hero" aria-labelledby="committee-title">
-    <div class="club-hero__inner">
-      <div class="max-w-4xl reveal">
-        <h1 id="committee-title" class="heading-serif text-5xl leading-none text-text-on-dark sm:text-6xl lg:text-7xl">
-          Student leadership,<br /><span class="text-gold">published when confirmed.</span>
-        </h1>
-        <p class="mt-7 max-w-2xl border-l border-gold/60 pl-5 text-lg leading-8 text-text-on-dark-secondary">
-          Current and past committee records are shown once confirmed, so the leadership page stays factual and easy to trust.
-        </p>
+<Layout title="Committee" description="Meet the Surrey Business Society committee and see confirmed student leadership information.">
+  <section class="business-hero business-hero--page" aria-labelledby="committee-title">
+    <Image src={leadership} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
+    <div class="business-shell business-hero__content">
+      <p class="business-hero__eyebrow business-reveal">Committee</p>
+      <h1 id="committee-title" class="business-reveal">The students shaping the society.</h1>
+      <p class="business-hero__lede business-reveal">Surrey Business Society is student-led. Current committee information appears here when it has been confirmed.</p>
+      <div class="business-hero__actions business-reveal">
+        <a href={`mailto:${society.contactEmail}`} class="business-button">Contact the society</a>
+        <a href="/join" class="business-button business-button--outline">Become a member</a>
       </div>
     </div>
   </section>
 
-  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="active-committee-title">
+  <section class="business-section business-section--paper" aria-labelledby="current-title">
     <div class="business-shell">
-      <div class="business-feature mb-16 reveal">
-        <div class="business-feature__media">
-          <Image
-            src={committeeLeadership}
-            alt="An illustrated committee planning table with agendas, role cards, notebooks, and a gold stag detail."
-            class="business-feature__image"
-            loading="lazy"
-          />
-        </div>
-        <div class="business-feature__body">
-          <h2 class="heading-serif text-3xl leading-tight text-text-primary sm:text-4xl">
-            The committee keeps the society useful, organised, and accountable.
-          </h2>
-          <div class="business-mini-grid mt-7">
-            {committeePractices.map((item) => (
-              <article>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
+      <div class="business-section__heading business-reveal">
+        <div><p class="business-eyebrow">Current team</p><h2 id="current-title" class="business-title">Meet the committee.</h2></div>
+        <p>Names, roles, and contact details are only shown once the team has chosen to publish them.</p>
       </div>
-
-      <div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div class="reveal">
-          <h2 id="active-committee-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-            Confirmed active team.
-          </h2>
-        </div>
-        <a href={`mailto:${society.contactEmail}`} class="btn-secondary reveal">Contact the society</a>
-      </div>
-
-      {committee.length > 0 ? (
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 reveal">
+      {committee.length ? (
+        <div class="business-people-grid business-reveal">
           {committee.map((member) => (
-            <article class="club-panel overflow-hidden">
-              {member.imageUrl ? (
-                <img src={member.imageUrl} alt={member.name || member.role} class="aspect-[4/3] w-full object-cover" />
-              ) : (
-                <div class="flex aspect-[4/3] w-full items-center justify-center bg-navy-deep font-serif text-5xl font-bold text-gold">
-                  {getInitials(member.name, member.role)}
-                </div>
-              )}
-              <div class="p-5">
-                <h3 class="font-serif text-2xl font-bold text-text-primary">{member.name}</h3>
-                <p class="mt-1 text-sm font-bold uppercase text-gold-dark">{member.role}</p>
-                {member.bio && <p class="mt-4 text-base leading-7 text-text-secondary">{member.bio}</p>}
-                {(member.email || member.linkedIn) && (
-                  <div class="mt-5 flex flex-wrap gap-3">
-                    {member.email && <a href={`mailto:${member.email}`} class="text-sm font-bold text-gold-dark hover:text-navy-deep">Email</a>}
-                    {member.linkedIn && <a href={member.linkedIn} target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-gold-dark hover:text-navy-deep">LinkedIn</a>}
-                  </div>
-                )}
-              </div>
+            <article class="business-person">
+              {member.imageUrl ? <img src={member.imageUrl} alt={member.name || member.role || 'Committee member'} class="business-person__portrait" /> : <div class="business-person__initials" aria-hidden="true">{initials(member.name, member.role)}</div>}
+              <h3>{member.name || member.role}</h3>
+              {member.role && <p class="business-person__role">{member.role}</p>}
+              {member.bio && <p class="business-person__bio">{member.bio}</p>}
+              {(member.email || member.linkedIn) && <div class="business-person__links">{member.email && <a href={`mailto:${member.email}`}>Email</a>}{member.linkedIn && <a href={member.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}</div>}
             </article>
           ))}
         </div>
       ) : (
-        <div class="business-dashed-panel business-dashed-panel--light reveal">
-          <div>
-            <span class="business-icon-disc mx-auto" set:html={'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 11a3 3 0 0 1 3 3"/><path d="M16.5 20H22a5 5 0 0 0-5-5"/></svg>'} />
-            <h2 class="mt-5 font-serif text-3xl font-bold text-text-primary">Committee details will appear here once confirmed.</h2>
-            <p class="mx-auto mt-3 max-w-xl text-base leading-7 text-text-secondary">
-              The society remains student-led. Confirmed names, roles, images, and contact details will be published here when available.
-            </p>
-            <div class="business-action-strip mt-7 justify-center">
-              <a href="/join" class="btn-primary">Become a member</a>
-              <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">Students' Union page</a>
-            </div>
-          </div>
-        </div>
+        <div class="business-empty business-reveal"><h3>The current committee will be introduced here soon.</h3><div><p>The society remains student-led. Names and roles will appear once they are ready to be shared publicly.</p><a href={`mailto:${society.contactEmail}`} class="business-text-link" style="display: inline-block; margin-top: 1rem;">Email the society</a></div></div>
       )}
     </div>
   </section>
 
-  <section class="business-dark-pattern px-5 py-20 text-text-on-dark sm:px-6 sm:py-28" aria-labelledby="involvement-title">
+  <section class="business-section business-section--ink" aria-labelledby="leadership-title">
     <div class="business-shell">
-      <div class="mb-12 max-w-3xl reveal">
-        <h2 id="involvement-title" class="heading-serif text-4xl leading-tight sm:text-5xl">
-          Leadership starts with being present.
-        </h2>
-        <p class="mt-5 max-w-2xl text-base leading-7 text-text-on-dark-secondary">
-          Committee opportunities depend on official society processes. This page keeps the public record tidy while pointing members toward the routes that matter.
-        </p>
-      </div>
-      <div class="programme-grid reveal">
-        {involvement.map((item, index) => (
-          <article>
-            <p class="mb-6 font-serif text-4xl font-bold text-gold">{String(index + 1).padStart(2, '0')}</p>
-            <h3 class="mb-3 font-serif text-2xl font-bold text-text-on-dark">{item.title}</h3>
-            <p class="text-base leading-7 text-text-on-dark-secondary">{item.copy}</p>
-          </article>
-        ))}
-      </div>
-
-      <div class="business-chip-grid mt-10 sm:grid-cols-4 reveal" role="list" aria-label="Committee record types">
-        {recordTypes.map((item) => (
-          <div class="business-chip" role="listitem">
-            <p class="font-bold text-text-on-dark">{item}</p>
-          </div>
-        ))}
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Student leadership</p><h2 id="leadership-title" class="business-title">What the committee is here to do.</h2></div></div>
+      <div class="business-lines business-reveal">
+        {leadershipWork.map((item, index) => <article class="business-line"><span class="business-line__number">0{index + 1}</span><h3>{item.title}</h3><p>{item.copy}</p></article>)}
       </div>
     </div>
   </section>
 
-  <div class="business-ornament bg-surface-alt" aria-hidden="true">
-    <svg viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M40 56V28"/>
-      <path d="M40 28c-8-16-20-24-36-26"/>
-      <path d="M40 28c8-16 20-24 36-26"/>
-      <path d="M18 8c-6-4-12-6-18-7"/>
-      <path d="M62 8c6-4 12-6 18-7"/>
-      <path d="M28 14c-6 0-13-2-18-6"/>
-      <path d="M52 14c6 0 13-2 18-6"/>
-    </svg>
-  </div>
-
-  <section class="bg-surface-alt px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="past-committee-title">
+  <section class="business-section business-section--paper-light" aria-labelledby="archive-title">
     <div class="business-shell">
-      <div class="business-section-title mx-auto mb-12 max-w-3xl reveal">
-        <h2 id="past-committee-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-          Past committee records.
-        </h2>
-      </div>
-
-      {pastCommittee.length > 0 ? (
-        <div class="space-y-12 reveal">
-          {pastCommitteeYears.map((yearLabel) => (
-            <section class="club-panel p-6">
-              <h3 class="mb-6 border-b border-border pb-4 font-serif text-2xl font-bold text-text-primary">{yearLabel}</h3>
-              <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" role="list">
-                {pastCommittee.filter((member) => member.yearLabel === yearLabel).map((member) => (
-                  <li class="border-l border-gold pl-4" role="listitem">
-                    <p class="font-serif text-xl font-bold text-text-primary">{member.name}</p>
-                    <p class="mt-1 text-sm font-bold uppercase text-text-muted">{member.role}</p>
-                  </li>
-                ))}
-              </ol>
-            </section>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Archive</p><h2 id="archive-title" class="business-title">Past committees.</h2></div><p>A simple record of the students who have helped lead the society.</p></div>
+      {pastCommittee.length ? (
+        <div class="business-archive business-reveal">
+          {pastYears.map((year) => (
+            <section class="business-archive__year"><h3>{year}</h3><div class="business-archive__names">{pastCommittee.filter((member) => (member.yearLabel || 'Previous committee') === year).map((member) => <div><strong>{member.name}</strong><span>{member.role}</span></div>)}</div></section>
           ))}
         </div>
-      ) : (
-        <div class="empty-state reveal">
-          <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">Past committee records will appear once confirmed.</h3>
-          <p class="business-prose">
-            Historical records are only shown when they have been added through the society admin system.
-          </p>
-        </div>
-      )}
+      ) : <div class="business-empty business-reveal"><h3>The archive is waiting for its first entries.</h3><p>Past committee records will appear here as they are added.</p></div>}
     </div>
+  </section>
+
+  <section class="business-join-band" aria-labelledby="committee-join-title">
+    <div class="business-shell business-join-band__inner"><div><h2 id="committee-join-title">Leadership starts by showing up.</h2><p>Join the society, meet the team, and find the parts you want to help shape.</p></div><a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a></div>
   </section>
 </Layout>

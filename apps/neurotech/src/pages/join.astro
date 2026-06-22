@@ -1,7 +1,9 @@
 ---
 export const prerender = true;
 import { getSocietyById } from '@surreysocieties/admin/config';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import joinHero from '../assets/generated/neurotech-join-hero.png';
 import '../styles/global.css';
 
 const society = getSocietyById('neurotech')!;
@@ -17,7 +19,7 @@ const steps = [
   },
   {
     title: 'Follow the society channels',
-    copy: 'Use Instagram, LinkedIn, and this website for confirmed events, speaker updates, socials, and contact routes.',
+    copy: 'Follow @SurreyNeurotech on Instagram and check this website for confirmed events, speaker updates, socials, and connection routes.',
   },
 ];
 
@@ -45,39 +47,47 @@ const faqs = [
   title="Join"
   description="Join Surrey Neurotech Society through Surrey Students' Union and connect with the society's official channels."
 >
-  <section class="neuro-hero" aria-labelledby="join-title">
+  <section class="neuro-hero neuro-hero--join" aria-labelledby="join-title">
+    <Image
+      src={joinHero}
+      alt=""
+      aria-hidden="true"
+      class="neuro-hero__image"
+      widths={[640, 960, 1440, 1800]}
+      sizes="100vw"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      format="webp"
+      quality={70}
+    />
     <div class="neuro-hero__inner">
       <div class="neuro-subhero-grid">
         <div class="neuro-subhero-copy reveal">
+          <span class="neuro-eyebrow neuro-eyebrow--gold">Membership pathway</span>
           <h1 id="join-title" class="neuro-serif">
             Join Surrey Neurotech Society.
           </h1>
           <p>
-            Open to all University of Surrey students — no neuroscience, coding, or electronics background required. All you need is curiosity and drive.
+            Whether you want to build, research, network, or just learn, Surrey Neurotech is open to all — no experience needed. Follow us on Instagram @SurreyNeurotech for updates and upcoming events.
           </p>
           <div class="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-primary">
               Join via Students' Union
             </a>
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-dark">
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-secondary">
               View Union page
             </a>
           </div>
-        </div>
-
-        <div class="neuro-join-pathway reveal" aria-label="Membership pathway">
-          <span>Join</span>
-          <span>Attend</span>
-          <span>Build</span>
-          <span>Lead</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="neuro-section neuro-section--mist" aria-labelledby="join-steps-title">
+  <section class="neuro-section neuro-section--bluewash" aria-labelledby="join-steps-title">
     <div class="neuro-shell">
       <div class="mb-12 max-w-3xl reveal">
+        <span class="neuro-eyebrow">Official route</span>
           <h2 id="join-steps-title" class="neuro-serif text-4xl leading-tight text-neuro-ink sm:text-5xl">
           Three simple steps through official routes.
         </h2>

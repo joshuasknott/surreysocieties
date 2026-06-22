@@ -1,26 +1,27 @@
 ---
 export const prerender = false;
-import { Image } from 'astro:assets';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import bciHardwareCutout from '../assets/generated/neurotech-bci-hardware-cutout.png';
+import committeeHero from '../assets/generated/neurotech-committee-hero.png';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
 const society = getSocietyById(SOCIETY_ID)!;
 
-const committee: any[] = (
-  await queryPublicConvex(api.committee.listActive, { societySlug: SOCIETY_ID }, [])
-).sort((a: any, b: any) =>
+const [committeeResult, pastCommitteeResult] = await Promise.all([
+  queryPublicConvex(api.committee.listActive, { societySlug: SOCIETY_ID }, []),
+  queryPublicConvex(api.committee.listPast, { societySlug: SOCIETY_ID }, []),
+]);
+
+const committee: any[] = committeeResult.sort((a: any, b: any) =>
   (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER)
   || (a.name || '').localeCompare(b.name || '')
 );
 
-const pastCommittee: any[] = (
-  await queryPublicConvex(api.committee.listPast, { societySlug: SOCIETY_ID }, [])
-).sort((a: any, b: any) =>
+const pastCommittee: any[] = pastCommitteeResult.sort((a: any, b: any) =>
   (b.yearLabel || '').localeCompare(a.yearLabel || '') ||
   (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
   (a.name || '').localeCompare(b.name || '')
@@ -56,74 +57,75 @@ const involvement = [
   title="Committee"
   description="Meet the student committee running Surrey Neurotech Society and view confirmed current and past committee records."
 >
-  <section class="neuro-hero" aria-labelledby="committee-title">
+  <section class="neuro-hero neuro-hero--committee" aria-labelledby="committee-title">
+    <Image
+      src={committeeHero}
+      alt=""
+      aria-hidden="true"
+      class="neuro-hero__image"
+      widths={[640, 960, 1440, 1800]}
+      sizes="100vw"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      format="webp"
+      quality={70}
+    />
     <div class="neuro-hero__inner">
       <div class="neuro-subhero-grid">
         <div class="neuro-subhero-copy reveal">
+          <span class="neuro-eyebrow neuro-eyebrow--gold">Student-led</span>
           <h1 id="committee-title" class="neuro-serif">
             Meet the team behind Surrey Neurotech.
           </h1>
           <p>
-            The students driving events, projects, and collaborations — building a lasting infrastructure for neurotechnology at Surrey.
+            The students driving events, projects, and collaborations — building a lasting home for neurotechnology at Surrey. Meet the people shaping what the society becomes this year.
           </p>
+          <div class="neuro-action-row">
+            <a href="/join" class="neuro-btn-primary">Join the society</a>
+            <a href={`mailto:${society.contactEmail}`} class="neuro-btn-secondary">Contact the society</a>
+          </div>
         </div>
-
-        <figure class="neuro-cutout-stage neuro-cutout-stage--subhero reveal" aria-label="Brain-computer interface hardware">
-          <Image
-            src={bciHardwareCutout}
-            alt="Brain-computer interface hardware board with electrode leads and control device."
-            width={1536}
-            height={1024}
-            class="neuro-cutout neuro-cutout--subhero-brain"
-            loading="eager"
-            format="webp"
-          />
-        </figure>
       </div>
     </div>
   </section>
 
-  <section class="neuro-section neuro-section--mist" aria-labelledby="active-committee-title">
+  <section class="neuro-section neuro-section--bluewash" aria-labelledby="active-committee-title">
     <div class="neuro-shell">
-      <div class="neuro-feature-grid mb-12">
+      <div class="mb-12 max-w-3xl">
         <div class="neuro-section-heading neuro-section-heading--left reveal">
+          <span class="neuro-eyebrow">People and purpose</span>
           <h2 id="active-committee-title" class="neuro-serif">
             The current team.
           </h2>
           <p>
-            Our committee brings together students from across disciplines — united by a shared passion for exploring how neuroscience and technology intersect.
+            Our committee brings together students from psychology, computer science, engineering, biomedical sciences, and more — united by a shared curiosity about how technology and neuroscience can work together.
           </p>
           <a href={`mailto:${society.contactEmail}`} class="neuro-btn-secondary">
             Contact the society
           </a>
         </div>
-
-        <div class="neuro-signal-panel reveal" aria-label="Committee focus areas">
-          <span>Events</span>
-          <span>Members</span>
-          <span>Projects</span>
-        </div>
       </div>
 
       {committee.length > 0 ? (
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 reveal">
+        <div class="neuro-atlas-people-grid reveal">
           {committee.map((member) => (
-            <article class="neuro-panel overflow-hidden">
+            <article class="neuro-atlas-person">
               {member.imageUrl ? (
-                <img src={member.imageUrl} alt={member.name || member.role} class="aspect-[4/3] w-full object-cover" />
+                <img src={member.imageUrl} alt={member.name || member.role} class="aspect-[4/3] w-full object-cover rounded-lg shadow-sm" />
               ) : (
-                <div class="flex aspect-[4/3] w-full items-center justify-center bg-neuro-deep neuro-serif text-5xl text-neuro-gold">
+                <div class="flex aspect-[4/3] w-full items-center justify-center bg-neuro-deep neuro-serif text-5xl text-neuro-gold rounded-lg shadow-sm">
                   {getInitials(member.name, member.role)}
                 </div>
               )}
-              <div class="p-5">
+              <div class="mt-5">
                 <h3 class="neuro-serif text-2xl text-neuro-ink">{member.name}</h3>
                 <p class="mt-1 text-sm font-bold uppercase text-neuro-navy">{member.role}</p>
-                {member.bio && <p class="mt-4 text-base leading-7 text-neuro-muted">{member.bio}</p>}
+                {member.bio && <p class="mt-3 text-base leading-relaxed text-neuro-muted">{member.bio}</p>}
                 {(member.email || member.linkedIn) && (
-                  <div class="mt-5 flex flex-wrap gap-3">
-                    {member.email && <a href={`mailto:${member.email}`} class="text-sm font-bold text-neuro-navy hover:text-neuro-deep">Email</a>}
-                    {member.linkedIn && <a href={member.linkedIn} target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-neuro-navy hover:text-neuro-deep">LinkedIn</a>}
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    {member.email && <a href={`mailto:${member.email}`} class="text-sm font-bold text-neuro-navy hover:text-neuro-cyan transition-colors">Email</a>}
+                    {member.linkedIn && <a href={member.linkedIn} target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-neuro-navy hover:text-neuro-cyan transition-colors">LinkedIn</a>}
                   </div>
                 )}
               </div>
@@ -174,11 +176,11 @@ const involvement = [
       {pastCommittee.length > 0 ? (
         <div class="space-y-12 reveal">
           {pastCommitteeYears.map((yearLabel) => (
-            <section class="neuro-panel p-6">
-              <h3 class="mb-6 border-b border-neuro-line pb-4 neuro-serif text-2xl text-neuro-ink">{yearLabel}</h3>
-              <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            <section class="border-t border-neuro-line pt-8 pb-10">
+              <h3 class="mb-6 neuro-serif text-2xl text-neuro-ink">{yearLabel}</h3>
+              <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
                 {pastCommittee.filter((member) => member.yearLabel === yearLabel).map((member) => (
-                  <li class="border-l border-neuro-gold pl-4" role="listitem">
+                  <li class="border-l-2 border-neuro-gold pl-4" role="listitem">
                     <p class="neuro-serif text-xl text-neuro-ink">{member.name}</p>
                     <p class="mt-1 text-sm font-bold uppercase text-neuro-soft">{member.role}</p>
                   </li>

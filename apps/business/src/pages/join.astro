@@ -1,238 +1,80 @@
 ---
 export const prerender = true;
+
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import BrandIcon from '../components/BrandIcon.astro';
-import joinMembership from '../assets/generated/business-join-membership.png';
+import membership from '../assets/generated/business-join-membership.png';
 import '../styles/global.css';
 
 const society = getSocietyById('business')!;
 
-const steps = [
-  {
-    title: 'Open the official membership page',
-    copy: 'Membership is handled through Surrey Students\' Union, so the checkout page is the source of truth for current details.',
-  },
-  {
-    title: 'Complete the Union process',
-    copy: 'Follow the Union checkout flow so your membership is recorded against the society properly.',
-  },
-  {
-    title: 'Follow the society channels',
-    copy: 'Use Instagram, LinkedIn, and this website for confirmed events, committee updates, and contact routes.',
-  },
+const joinSteps = [
+  { title: 'Open the Union membership page', copy: 'Membership is officially handled through Surrey Students’ Union.' },
+  { title: 'Complete your membership', copy: 'Check the current details and finish the Union checkout process.' },
+  { title: 'Stay in the loop', copy: 'Use the events page and society channels for confirmed activity and updates.' },
 ];
 
-const membershipBenefits = [
-  {
-    title: 'A clearer start',
-    copy: 'Use the society as a practical entry point into careers, enterprise, networking, and commercial awareness.',
-  },
-  {
-    title: 'A real student circle',
-    copy: 'Meet peers across courses who are also building confidence around professional life after Surrey.',
-  },
-  {
-    title: 'Official updates',
-    copy: 'Stay close to confirmed events, committee information, and contact routes without relying on rumour or placeholders.',
-  },
+const reasons = [
+  { title: 'Career context', copy: 'Make applications, industries, and workplace expectations easier to understand.' },
+  { title: 'Enterprise thinking', copy: 'Learn how to make an idea clearer, test it, and bring other people into it.' },
+  { title: 'A stronger network', copy: 'Meet students beyond your course who are interested in where they could go next.' },
 ];
 
 const faqs = [
-  {
-    question: 'Do I need to study business?',
-    answer: 'No. The society is intended for students across the University of Surrey who want to build commercial confidence, career direction, enterprise thinking, or professional skills.',
-  },
-  {
-    question: 'Where are membership details confirmed?',
-    answer: 'The official Surrey Students\' Union membership page is the source of truth for checkout, pricing, and any current membership details.',
-  },
-  {
-    question: 'Where will events appear?',
-    answer: 'Confirmed events are published on the Events page. Social channels may also share updates, but this site should avoid showing event-like placeholders.',
-  },
-  {
-    question: 'How can I contact the society?',
-    answer: `Use the official society email: ${society.contactEmail}. You can also follow the society on Instagram and LinkedIn.`,
-  },
-];
-
-const connectLinks = [
-  {
-    label: 'Instagram',
-    action: 'Open',
-    href: society.socials.instagram,
-    icon: 'instagram',
-  },
-  {
-    label: 'LinkedIn',
-    action: 'Open',
-    href: society.socials.linkedin,
-    icon: 'linkedin',
-  },
-  {
-    label: 'Email',
-    action: 'Send',
-    href: `mailto:${society.contactEmail}`,
-    icon: 'email',
-  },
-  {
-    label: 'Students\' Union',
-    action: 'Open',
-    href: society.studentsUnionUrl,
-    icon: 'union',
-  },
-  {
-    label: 'Membership',
-    action: 'Join',
-    href: society.membershipUrl,
-    icon: 'union',
-  },
+  { question: 'Do I need to study business?', answer: 'No. Surrey Business Society is open to students from every course.' },
+  { question: 'Where is membership handled?', answer: 'Membership is handled through the official Surrey Students’ Union page.' },
+  { question: 'How much does it cost?', answer: 'The Students’ Union page has the current membership price and terms.' },
+  { question: 'Where are events published?', answer: 'Confirmed public events appear on the Events page and through the society’s social channels.' },
 ];
 ---
 
-<Layout
-  title="Join"
-  description="Join Surrey Business Society through Surrey Students' Union and connect with the society's official channels."
->
-  <section class="club-hero" aria-labelledby="join-title">
-    <div class="club-hero__inner">
-      <div class="grid items-start gap-12 lg:grid-cols-[minmax(0,0.52fr)_minmax(24rem,0.48fr)] lg:gap-16">
-        <div class="reveal">
-          <h1 id="join-title" class="heading-serif text-5xl leading-none text-text-on-dark sm:text-6xl lg:text-7xl">
-            Become part of the Business Society circle.
-          </h1>
-          <p class="mt-7 max-w-2xl border-l border-gold/60 pl-5 text-lg leading-8 text-text-on-dark-secondary">
-            Membership is open to University of Surrey students through Surrey Students' Union. No prior business knowledge is required.
-          </p>
-          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
-              Join via Students' Union
-            </a>
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="btn-dark">
-              View Union page
-            </a>
-          </div>
-        </div>
-
-        <aside class="business-membership-snapshot text-text-on-dark reveal" aria-label="Official membership details">
-          <div class="business-membership-snapshot__details">
-            <dl class="space-y-5">
-              <div>
-                <dt class="text-sm font-bold uppercase text-gold">Established</dt>
-                <dd class="mt-1 font-serif text-3xl font-bold">{society.establishedYear}</dd>
-              </div>
-              <div>
-                <dt class="text-sm font-bold uppercase text-gold">Email</dt>
-                <dd class="mt-1 break-words text-text-on-dark-secondary">{society.contactEmail}</dd>
-              </div>
-              <div>
-                <dt class="text-sm font-bold uppercase text-gold">Membership</dt>
-                <dd class="mt-1 text-text-on-dark-secondary">Managed by Surrey Students' Union</dd>
-              </div>
-            </dl>
-          </div>
-          <div class="business-membership-snapshot__media">
-            <Image
-              src={joinMembership}
-              alt="An illustrated membership desk scene with a phone checkout shape, welcome envelope, and navy notebooks."
-              class="business-membership-snapshot__image"
-              loading="eager"
-            />
-          </div>
-        </aside>
+<Layout title="Join" description="Join Surrey Business Society through Surrey Students' Union and connect with a student community for careers, enterprise, networking, and practical business confidence.">
+  <section class="business-hero business-hero--page" aria-labelledby="join-title">
+    <Image src={membership} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
+    <div class="business-shell business-hero__content">
+      <p class="business-hero__eyebrow business-reveal">Membership</p>
+      <h1 id="join-title" class="business-reveal">Join the business community at Surrey.</h1>
+      <p class="business-hero__lede business-reveal">Become a member through Surrey Students' Union, then use the society to find people, events, and opportunities worth acting on.</p>
+      <div class="business-hero__actions business-reveal">
+        <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join via the Union</a>
+        <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="business-button business-button--outline">Union page</a>
       </div>
     </div>
   </section>
 
-  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="join-steps-title">
+  <section class="business-section business-section--paper" aria-labelledby="steps-title">
     <div class="business-shell">
-      <div class="mb-12 max-w-3xl reveal">
-        <h2 id="join-steps-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-          Three simple steps, all through official routes.
-        </h2>
-      </div>
-
-      <div class="business-expectation-grid mb-12 reveal">
-        {membershipBenefits.map((item) => (
-          <article>
-            <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{item.title}</h3>
-            <p class="text-base leading-7 text-text-secondary">{item.copy}</p>
-          </article>
-        ))}
-      </div>
-
-      <div class="ledger-list reveal">
-        {steps.map((step, index) => (
-          <article class="ledger-row">
-            <p class="ledger-row__meta">{String(index + 1).padStart(2, '0')}</p>
-            <div>
-              <h3 class="mb-3 font-serif text-2xl font-bold text-text-primary">{step.title}</h3>
-              <p class="max-w-3xl text-base leading-7 text-text-secondary">{step.copy}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">How to join</p><h2 id="steps-title" class="business-title">Three straightforward steps.</h2></div><p>The official membership flow lives with Surrey Students' Union. Everything after that begins here.</p></div>
+      <ol class="business-steps business-reveal">
+        {joinSteps.map((step, index) => <li class="business-step"><span class="business-step__number">0{index + 1}</span><h3>{step.title}</h3><p>{step.copy}</p></li>)}
+      </ol>
+      <div class="business-hero__actions business-reveal" style="margin-top: 2rem;"><a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button business-button--red">Open membership page</a><a href={`mailto:${society.contactEmail}`} class="business-button business-button--ink">Ask a question</a></div>
     </div>
   </section>
 
-  <div class="business-ornament bg-surface-alt" aria-hidden="true">
-    <svg viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M40 56V28"/>
-      <path d="M40 28c-8-16-20-24-36-26"/>
-      <path d="M40 28c8-16 20-24 36-26"/>
-      <path d="M18 8c-6-4-12-6-18-7"/>
-      <path d="M62 8c6-4 12-6 18-7"/>
-      <path d="M28 14c-6 0-13-2-18-6"/>
-      <path d="M52 14c6 0 13-2 18-6"/>
-    </svg>
-  </div>
-
-  <section class="bg-surface-alt px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="connect-title">
+  <section class="business-section business-section--ink" aria-labelledby="why-membership-title">
     <div class="business-shell">
-      <div class="grid gap-12 lg:grid-cols-[0.36fr_0.64fr] lg:gap-16">
-        <div class="reveal">
-          <h2 id="connect-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-            Stay close to confirmed updates.
-          </h2>
-        </div>
-
-        <div class="club-panel p-6 reveal">
-          {connectLinks.map((link) => (
-            link.href && (
-              <a href={link.href} target={link.href.startsWith('mailto:') ? undefined : '_blank'} rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'} class="link-row">
-                <span class="link-row__main">
-                  <BrandIcon name={link.icon} />
-                  <span>{link.label}</span>
-                </span>
-                <span aria-hidden="true">{link.action}</span>
-              </a>
-            )
-          ))}
-        </div>
-      </div>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Why membership</p><h2 id="why-membership-title" class="business-title">Join for access. Stay for momentum.</h2></div></div>
+      <div class="business-lines business-reveal">{reasons.map((reason, index) => <article class="business-line"><span class="business-line__number">0{index + 1}</span><h3>{reason.title}</h3><p>{reason.copy}</p></article>)}</div>
     </div>
   </section>
 
-  <section class="bg-surface px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="faq-title">
-    <div class="business-shell">
-      <div class="mb-12 max-w-3xl reveal">
-        <h2 id="faq-title" class="heading-serif text-4xl leading-tight text-text-primary sm:text-5xl">
-          Practical answers before you join.
-        </h2>
-      </div>
+  <section class="business-section business-section--paper-light" aria-labelledby="questions-title">
+    <div class="business-shell business-feature-split business-reveal">
+      <div><p class="business-eyebrow">Questions</p><h2 id="questions-title" class="business-title">The useful details.</h2><p class="business-copy" style="margin-top: 1.25rem;">If your question is not covered here, email the society and the committee will point you in the right direction.</p></div>
+      <div class="business-faq">{faqs.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+    </div>
+  </section>
 
-      <div class="club-panel divide-y divide-border reveal">
-        {faqs.map((item) => (
-          <details class="group p-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-5">
-              <h3 class="font-serif text-xl font-bold text-text-primary">{item.question}</h3>
-              <span class="text-2xl font-bold text-gold transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-            </summary>
-            <p class="mt-5 max-w-3xl text-base leading-7 text-text-secondary">{item.answer}</p>
-          </details>
-        ))}
+  <section class="business-section business-section--red" aria-labelledby="connect-title">
+    <div class="business-shell business-reveal">
+      <p class="business-eyebrow">Stay connected</p>
+      <h2 id="connect-title" class="business-title">Follow the updates where they land.</h2>
+      <div class="business-contact-line">
+        <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={`mailto:${society.contactEmail}`}>{society.contactEmail}</a>
       </div>
     </div>
   </section>
