@@ -181,6 +181,16 @@ summary:focus-visible {
 .business-hero h1 { font-size: clamp(3rem, 7vw, 5.8rem); line-height: 0.94; max-width: 12ch; }
 .business-hero--page h1 { font-size: clamp(3rem, 6vw, 5rem); }
 .business-hero__lede { color: rgba(255, 250, 241, 0.86); font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.65; margin-top: 1.65rem; max-width: 37rem; }
+.business-launch-note {
+  border-left: 2px solid var(--gold);
+  color: rgba(255, 250, 241, 0.82);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.55;
+  margin-top: 1.15rem;
+  max-width: 34rem;
+  padding-left: 1rem;
+}
 .business-hero__actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
 
 .business-fact-row { background: var(--ink); color: var(--paper-light); }

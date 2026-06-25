@@ -20,12 +20,12 @@ const events: any[] = (
   await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
 
-const eventMessage = events[0]?.title || 'Events will appear once confirmed.';
+const eventMessage = events[0]?.title || 'New website and launch updates arriving this September.';
 
 const approachSteps = [
   {
     title: 'Learn',
-    copy: 'Friendly talks, workshops, and explainers.',
+    copy: 'Friendly talks, workshops, and explainers from September.',
     href: '/events',
   },
   {
@@ -42,7 +42,7 @@ const approachSteps = [
 
 const disciplines = [
   { title: 'Psychology', copy: 'Understanding minds and behaviour.', icon: Brain },
-  { title: 'Computing', copy: 'Algorithms, data and intelligent systems.', icon: Cpu },
+  { title: 'Computing', copy: 'Algorithms, data, artificial intelligence and intelligent systems.', icon: Cpu },
   { title: 'Bioscience', copy: 'Cells, systems and the biology of the brain.', icon: Dna },
   { title: 'Design', copy: 'Human-centred design and creative solutions.', icon: PencilRuler },
   { title: 'Ethics', copy: 'Questions of fairness, privacy, consent and impact.', icon: Scale },
@@ -52,28 +52,28 @@ const disciplines = [
 const activityCards = [
   {
     title: 'Talks & Events',
-    copy: 'Expert speakers from academia, startups and industry share insights into emerging developments in neurotech, AI and cognitive science.',
+    copy: 'A clear place to discover talks, explainers and emerging ideas in neurotech, artificial intelligence and cognitive science.',
     image: talksThumb,
     alt: 'Students listening to a neurotechnology discussion.',
     number: '01',
   },
   {
     title: 'Workshops',
-    copy: 'Practical experiences including workshops, journal clubs and projects such as building brain-computer interfaces.',
+    copy: 'Workshop and journal club updates will be easier to find once the new website launches in September.',
     image: workshopsThumb,
     alt: 'Students collaborating at a workshop table.',
     number: '02',
   },
   {
     title: 'Inter-University Collaborations',
-    copy: 'Large-scale events including hackathons, symposiums and networking initiatives with other leading neurotech societies.',
+    copy: 'Future collaborations, projects and networking opportunities will be gathered into one student-friendly space.',
     image: projectsThumb,
     alt: 'Students presenting at a neurotechnology event.',
     number: '03',
   },
   {
     title: 'Socials & Community',
-    copy: 'Informal social events and an active virtual community to support discussion, collaboration and connection.',
+    copy: 'Socials and community updates will help curious students find their way into the society.',
     image: socialsThumb,
     alt: 'Students chatting at a society social.',
     number: '04',
@@ -83,7 +83,7 @@ const activityCards = [
 
 <Layout
   title="Home"
-  description="Surrey Neurotech Society — a student-led University of Surrey society for curious students exploring neuroscience, AI, brain-computer interfaces, signals, ethics, and responsible innovation."
+  description="Surrey Neurotech Society - a student-led University of Surrey society for curious students exploring neuroscience, artificial intelligence, brain-computer interfaces, signals, ethics, and responsible innovation."
 >
   <section class="neuro-home-hero" aria-labelledby="neuro-hero-title">
     <Image
@@ -101,22 +101,23 @@ const activityCards = [
     />
     <div class="neuro-home-hero__inner">
       <div class="neuro-home-hero__copy reveal">
+        <span class="neuro-home-kicker">New website launching this September</span>
         <h1 id="neuro-hero-title" class="neuro-serif">
           Neurotech,<br /><span>for good.</span>
         </h1>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          Surrey Neurotech Society is the University of Surrey's first student group dedicated to neurotechnology and the fourth in the UK. We connect students across neuroscience, AI and technology to explore how they can work together to enhance human potential.
+          Welcome to the new Surrey Neurotech Society website: a home for students curious about neuroscience, artificial intelligence, brain-computer interfaces, ethics, and responsible innovation.
         </p>
         <div class="neuro-home-hero-actions">
           <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-btn neuro-home-btn--gold">
             Join the society <span aria-hidden="true">&rarr;</span>
           </a>
           <a href="#what-we-explore" class="neuro-home-btn neuro-home-btn--outline">
-            Explore focus areas <span aria-hidden="true">&rarr;</span>
+            See what's coming <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
-        <p class="neuro-home-open-note">Open to all students. All backgrounds. All levels.</p>
+        <p class="neuro-home-open-note">Open to all students. All backgrounds. All levels. Launching in September.</p>
       </div>
 
       <a href="/events" class="neuro-home-event-strip reveal" aria-label="View confirmed events">
@@ -163,11 +164,11 @@ const activityCards = [
   <section class="neuro-home-activities" aria-labelledby="activities-title">
     <div class="neuro-home-activities__inner">
       <div class="neuro-home-activities__intro reveal">
-        <span class="neuro-home-kicker neuro-home-kicker--blue">What we do together</span>
+        <span class="neuro-home-kicker neuro-home-kicker--blue">What the website will bring together</span>
         <h2 id="activities-title" class="neuro-serif">Explore. Discuss.<br />Create. Together.</h2>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          We bring big ideas to life through events, projects and community. There's something for everyone, whether you're here to learn, build or just get curious.
+          From September, the new website will make it easier to find talks, workshops, socials, updates, resources, and ways to get involved.
         </p>
         <a href="/events" class="neuro-home-btn neuro-home-btn--blue">See all events <span aria-hidden="true">&rarr;</span></a>
       </div>
@@ -202,11 +203,11 @@ const activityCards = [
     <div class="neuro-home-action-rail__inner">
       <a href="/events" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">01</span>
-        <span><strong>Events</strong><small>See upcoming talks, workshops and socials.</small><em>See events &rarr;</em></span>
+        <span><strong>Events</strong><small>Follow launch updates, talks, workshops and socials.</small><em>See events &rarr;</em></span>
       </a>
       <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">02</span>
-        <span><strong>Join</strong><small>Become a member and get involved.</small><em>Join the society &rarr;</em></span>
+        <span><strong>Join</strong><small>Become a member and be ready for September.</small><em>Join the society &rarr;</em></span>
       </a>
       <a href="/committee" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">03</span>

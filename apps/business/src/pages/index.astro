@@ -26,6 +26,8 @@ const formatEventDate = (date?: string) => {
   return Number.isNaN(parsed.getTime()) ? date : parsed.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 };
 
+const launchMessage = 'New website launching this September';
+
 const reasonsToJoin = [
   { title: 'Find your direction', copy: 'Make careers, industries, and next steps feel less abstract.' },
   { title: 'Build confidence', copy: 'Practise the skills that help ideas travel: speaking, presenting, interviewing, and leading.' },
@@ -44,19 +46,20 @@ const focusAreas = [
   <section class="business-hero business-hero--home" aria-labelledby="business-hero-title">
     <Image src={homeDirection} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
     <div class="business-shell business-hero__content">
-      <p class="business-hero__eyebrow business-reveal">University of Surrey</p>
+      <p class="business-hero__eyebrow business-reveal">{launchMessage}</p>
       <h1 id="business-hero-title" class="business-reveal">Make business feel less abstract.</h1>
-      <p class="business-hero__lede business-reveal">A student community for clearer career direction, better ideas, and the confidence to put both into practice.</p>
+      <p class="business-hero__lede business-reveal">Welcome to the new Surrey Business Society website: a student-friendly home for career direction, enterprise, networking, confidence, and useful conversations.</p>
+      <p class="business-launch-note business-reveal">Launching in September with events, resources, committee updates, and simple ways to join.</p>
       <div class="business-hero__actions business-reveal">
         <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
-        <a href="/events" class="business-button business-button--outline">See events</a>
+        <a href="/events" class="business-button business-button--outline">Launch updates</a>
       </div>
     </div>
   </section>
 
   <section class="business-fact-row" aria-label="Society at a glance">
     <div class="business-fact-row__inner">
-      <div class="business-fact"><strong>{society.establishedYear}</strong><span>Established at Surrey</span></div>
+      <div class="business-fact"><strong>September</strong><span>Website launch</span></div>
       <div class="business-fact"><strong>All courses</strong><span>Welcome here</span></div>
       <div class="business-fact"><strong>Student-led</strong><span>Built with members</span></div>
     </div>
@@ -70,8 +73,8 @@ const focusAreas = [
           <h2 id="why-title" class="business-intro__lead">A useful place to start, whatever your course.</h2>
         </div>
         <div class="business-intro__body business-copy">
-          <p>You do not need a business degree, a polished plan, or a perfect pitch. You just need some curiosity about how careers, ideas, and organisations work.</p>
-          <p>We make room for the conversations and practical experience that help students move forward with more clarity.</p>
+          <p>You do not need a business degree, a polished plan, or a perfect pitch. The new site is being shaped for students who want business to feel clearer, more practical, and easier to enter.</p>
+          <p>From September, it will bring together the people, events, resources, and committee updates that help students move forward with more clarity.</p>
         </div>
       </div>
       <div class="business-lines business-reveal" style="margin-top: clamp(3rem, 7vw, 6rem);">
@@ -110,7 +113,7 @@ const focusAreas = [
   <section class="business-section business-section--paper-light" aria-label="Society updates">
     <div class="business-shell business-updates business-reveal">
       <section class="business-update" aria-labelledby="events-title">
-        <div class="business-update__top"><h3 id="events-title">Upcoming events</h3><a href="/events" class="business-text-link">All events</a></div>
+        <div class="business-update__top"><h3 id="events-title">Launch updates</h3><a href="/events" class="business-text-link">Events page</a></div>
         {events.length ? (
           events.slice(0, 2).map((event) => (
             <article class="business-event">
@@ -119,7 +122,7 @@ const focusAreas = [
               {event.location && <p>{event.location}</p>}
             </article>
           ))
-        ) : <p class="business-update__empty">Nothing is listed yet. Confirmed events will appear here as soon as they are ready.</p>}
+        ) : <p class="business-update__empty">The September launch programme is being prepared. Confirmed events and useful conversations will appear here as soon as they are ready.</p>}
       </section>
       <section class="business-update" aria-labelledby="committee-title">
         <div class="business-update__top"><h3 id="committee-title">The committee</h3><a href="/committee" class="business-text-link">Meet the team</a></div>
@@ -130,7 +133,7 @@ const focusAreas = [
               <h4>{member.name}</h4>
             </article>
           ))
-        ) : <p class="business-update__empty">The current committee will be introduced here once their details have been confirmed.</p>}
+        ) : <p class="business-update__empty">The student team will be introduced here as the new website gets ready for September.</p>}
       </section>
     </div>
   </section>
@@ -140,7 +143,7 @@ const focusAreas = [
     <div class="business-shell business-image-break__inner business-reveal">
       <p class="business-eyebrow">Built for practice</p>
       <h2 id="practical-title" class="business-quote">Better conversations. Stronger next steps.</h2>
-      <p>Events, ideas, and people are most valuable when they give you something concrete to act on.</p>
+      <p>The new website will make the society easier to understand, easier to join, and easier to use once launch activity begins.</p>
     </div>
   </section>
 
@@ -148,7 +151,7 @@ const focusAreas = [
     <div class="business-shell business-join-band__inner">
       <div>
         <h2 id="join-title">Start where you are.</h2>
-        <p>Join Surrey Business Society and find your next useful conversation.</p>
+        <p>Join Surrey Business Society and be ready for the new website launch in September.</p>
       </div>
       <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
     </div>
