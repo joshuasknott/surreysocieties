@@ -31,6 +31,7 @@ const MAX_STEP_TEXT_LENGTH = 8000;
 const MAX_CODE_LENGTH = 120000;
 const MAX_FILES = 5;
 const MAX_FILE_SIZE_B64 = 5_600_000;
+const AGENT_BUILDS_SERVER_SECRET_ENV = "AGENT_BUILDS_SERVER_SECRET";
 
 const MODEL_MAP: Record<string, string> = {
   flash: GEMINI_3_FLASH_MODEL,
@@ -346,6 +347,9 @@ async function saveBuild(
   model: string
 ): Promise<string | null> {
   try {
+    const serverSecret = getAgentBuildsServerSecret();
+    if (!serverSecret) return null;
+
     const client = createConvexClient();
     const id = await client.mutation(api.agentBuilds.create, {
       task,
@@ -360,6 +364,7 @@ async function saveBuild(
       reviewerOutput: output.reviewer.output,
       source,
       model,
+      serverSecret,
     });
     return typeof id === "string" ? id : null;
   } catch {
@@ -390,8 +395,11 @@ async function consumeBuilderRun(
   | { verified: false }
 > {
   try {
+    const serverSecret = getAgentBuildsServerSecret();
+    if (!serverSecret) return { verified: false };
+
     const client = createConvexClient();
-    const result = await client.mutation(api.agentBuilds.consumeRateLimit, { key });
+    const result = await client.mutation(api.agentBuilds.consumeRateLimit, { key, serverSecret });
     if (!isRecord(result) || typeof result.allowed !== "boolean") {
       return { verified: false };
     }
@@ -406,6 +414,10 @@ async function consumeBuilderRun(
   } catch {
     return { verified: false };
   }
+}
+
+function getAgentBuildsServerSecret(): string | null {
+  return process.env[AGENT_BUILDS_SERVER_SECRET_ENV]?.trim() || null;
 }
 
 function normalizeAgent(value: unknown, codeOutput: boolean): AgentExecution | null {
