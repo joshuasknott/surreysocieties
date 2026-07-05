@@ -1,5 +1,7 @@
 /// <reference path="../.astro/types.d.ts" />
 
+declare module "three";
+
 declare namespace App {
   interface Locals {
     convexClient?: any;
