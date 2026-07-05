@@ -15,7 +15,7 @@ interface Props {
 
 const { events } = Astro.props;
 
-const plannedFormats = ["Website launch", "Welcome session", "Workshops", "Build nights", "Talks"];
+const plannedFormats = ["Welcome sessions", "Workshops", "Build nights", "Talks", "Socials"];
 
 const formatEventDate = (date?: string) => {
   if (!date) return "Date TBC";
@@ -32,7 +32,7 @@ const formatEventDate = (date?: string) => {
   <div class="ai-section__inner">
     <div class="ai-section__header ai-section__header--split">
       <div>
-        <h2 id="events-preview-title" class="section-title">Launching in September</h2>
+        <h2 id="events-preview-title" class="section-title">Events and updates</h2>
       </div>
       <a href="/events" class="text-link">View all events &rarr;</a>
     </div>
@@ -42,14 +42,14 @@ const formatEventDate = (date?: string) => {
         <div class="event-empty">
           <h3>The first updates are being prepared.</h3>
           <p>
-            The new website will launch in September with clearer information about welcome activity, workshops, build nights, responsible artificial intelligence, careers, and ways to join.
+            Confirmed events will appear here with clearer information about welcome activity, workshops, build nights, responsible artificial intelligence, careers, and ways to join.
           </p>
           <div class="event-formats" aria-label="Likely event formats">
             {plannedFormats.map((format) => <span>{format}</span>)}
           </div>
           <div class="event-empty__actions">
             <a href="/join" class="btn-primary">Become a member</a>
-            <a href="/events" class="btn-secondary">Launch updates</a>
+            <a href="/events" class="btn-secondary">Events page</a>
           </div>
         </div>
       ) : (

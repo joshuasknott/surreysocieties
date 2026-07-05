@@ -20,12 +20,12 @@ const events: any[] = (
   await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
 ).filter((event: any) => event.status === 'published');
 
-const eventMessage = events[0]?.title || 'New website and launch updates arriving this September.';
+const eventMessage = events[0]?.title || 'Confirmed society updates will appear here first.';
 
 const approachSteps = [
   {
     title: 'Learn',
-    copy: 'Friendly talks, workshops, and explainers from September.',
+    copy: 'Friendly talks, workshops, and explainers when confirmed.',
     href: '/events',
   },
   {
@@ -59,7 +59,7 @@ const activityCards = [
   },
   {
     title: 'Workshops',
-    copy: 'Workshop and journal club updates will be easier to find once the new website launches in September.',
+    copy: 'Workshop and journal club updates will be listed here once confirmed.',
     image: workshopsThumb,
     alt: 'Students collaborating at a workshop table.',
     number: '02',
@@ -101,23 +101,23 @@ const activityCards = [
     />
     <div class="neuro-home-hero__inner">
       <div class="neuro-home-hero__copy reveal">
-        <span class="neuro-home-kicker">New website launching this September</span>
+        <span class="neuro-home-kicker">Student-led neurotech at Surrey</span>
         <h1 id="neuro-hero-title" class="neuro-serif">
           Neurotech,<br /><span>for good.</span>
         </h1>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          Welcome to the new Surrey Neurotech Society website: a home for students curious about neuroscience, artificial intelligence, brain-computer interfaces, ethics, and responsible innovation.
+          Welcome to Surrey Neurotech Society's online home: a place for students curious about neuroscience, artificial intelligence, brain-computer interfaces, ethics, and responsible innovation.
         </p>
         <div class="neuro-home-hero-actions">
           <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-btn neuro-home-btn--gold">
             Join the society <span aria-hidden="true">&rarr;</span>
           </a>
           <a href="#what-we-explore" class="neuro-home-btn neuro-home-btn--outline">
-            See what's coming <span aria-hidden="true">&rarr;</span>
+            Explore topics <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
-        <p class="neuro-home-open-note">Open to all students. All backgrounds. All levels. Launching in September.</p>
+        <p class="neuro-home-open-note">Open to all students. All backgrounds. All levels.</p>
       </div>
 
       <a href="/events" class="neuro-home-event-strip reveal" aria-label="View confirmed events">
@@ -164,11 +164,11 @@ const activityCards = [
   <section class="neuro-home-activities" aria-labelledby="activities-title">
     <div class="neuro-home-activities__inner">
       <div class="neuro-home-activities__intro reveal">
-        <span class="neuro-home-kicker neuro-home-kicker--blue">What the website will bring together</span>
+        <span class="neuro-home-kicker neuro-home-kicker--blue">What the society brings together</span>
         <h2 id="activities-title" class="neuro-serif">Explore. Discuss.<br />Create. Together.</h2>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          From September, the new website will make it easier to find talks, workshops, socials, updates, resources, and ways to get involved.
+          This website makes it easier to find talks, workshops, socials, updates, resources, and ways to get involved once details are confirmed.
         </p>
         <a href="/events" class="neuro-home-btn neuro-home-btn--blue">See all events <span aria-hidden="true">&rarr;</span></a>
       </div>
@@ -203,11 +203,11 @@ const activityCards = [
     <div class="neuro-home-action-rail__inner">
       <a href="/events" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">01</span>
-        <span><strong>Events</strong><small>Follow launch updates, talks, workshops and socials.</small><em>See events &rarr;</em></span>
+        <span><strong>Events</strong><small>Follow confirmed updates, talks, workshops and socials.</small><em>See events &rarr;</em></span>
       </a>
       <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">02</span>
-        <span><strong>Join</strong><small>Become a member and be ready for September.</small><em>Join the society &rarr;</em></span>
+        <span><strong>Join</strong><small>Become a member and stay close to society updates.</small><em>Join the society &rarr;</em></span>
       </a>
       <a href="/committee" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">03</span>
