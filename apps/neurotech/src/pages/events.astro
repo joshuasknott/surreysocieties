@@ -5,20 +5,19 @@ import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import eventsHero from '../assets/generated/neurotech-events-hero.png';
+import eventsHero from '../assets/generated/neurotech-events-campus-sketch-hero.optimized.webp';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
 const society = getSocietyById(SOCIETY_ID)!;
+Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
 
-const events: any[] = (
-  await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
-).filter((event: any) => event.status === 'published');
+const events: any[] = await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, []);
 
 const categories = [...new Set(events.map((event) => event.category || 'Event'))];
 
 const formatEventDate = (date?: string) => {
-  if (!date) return 'Date TBC';
+  if (!date) return 'Date not published';
   const parsed = new Date(`${date}T00:00:00`);
   if (Number.isNaN(parsed.getTime())) return date;
   return parsed.toLocaleDateString('en-GB', {
@@ -37,26 +36,26 @@ const formatEventTime = (event: any) => {
 const programmeThemes = [
   {
     title: 'Hands-On Learning',
-    copy: 'We offer practical experiences including workshops, journal clubs, and projects such as building brain-computer interfaces.',
+    copy: 'Practical workshops, journal clubs, and projects such as building brain-computer interfaces.',
   },
   {
     title: 'Talks and Events',
-    copy: 'We host expert speakers from academia, startups, and industry to share insights into emerging developments in neurotech, AI, and cognitive science.',
+    copy: 'Expert speakers from academia, startups, and industry sharing developments in neurotech, AI, and cognitive science.',
   },
   {
     title: 'Inter-University Collaborations',
-    copy: 'We are planning large-scale events including hackathons, symposiums, and networking initiatives with other leading related societies.',
+    copy: 'Hackathons, symposiums, and networking initiatives with other leading related societies.',
   },
   {
-    title: 'Networking and Industry Links',
-    copy: 'We create opportunities to connect students with researchers and companies, opening doors to internships, research collaborations, and career insights.',
+    title: 'Socials and Community',
+    copy: 'Informal events and community spaces that make it easier to meet people, ask questions, and get involved.',
   },
 ];
 ---
 
 <Layout
   title="Events"
-  description="Confirmed Surrey Neurotech Society events and programme updates around accessible neurotechnology learning, discussion, and responsible innovation."
+  description="Surrey Neurotech Society events, talks, workshops, socials, collaborations, and programme updates."
 >
   <section class="neuro-hero neuro-hero--events" aria-labelledby="events-title">
     <Image
@@ -70,17 +69,17 @@ const programmeThemes = [
       decoding="async"
       fetchpriority="high"
       format="webp"
-      quality={90}
+      quality={72}
     />
     <div class="neuro-hero__inner">
       <div class="neuro-subhero-grid">
         <div class="neuro-subhero-copy reveal">
-          <span class="neuro-eyebrow neuro-eyebrow--gold">Confirmed programme</span>
+          <span class="neuro-eyebrow neuro-eyebrow--gold">Programme</span>
           <h1 id="events-title" class="neuro-serif">
-            Events, talks, and workshops.
+            Events that make neurotechnology practical.
           </h1>
           <p>
-            Our confirmed events appear here. From speaker nights to signal-processing workshops, find out what's happening and how to get involved.
+            Find talks, workshops, journal clubs, socials, and collaborations connecting neuroscience, AI, technology, and student ambition.
           </p>
           <div class="neuro-action-row">
             <a href="/join" class="neuro-btn-primary">Join the society</a>
@@ -97,12 +96,12 @@ const programmeThemes = [
     <div class="neuro-shell">
       <div class="mb-12 max-w-3xl">
         <div class="neuro-section-heading neuro-section-heading--left reveal">
-          <span class="neuro-eyebrow">Programme board</span>
+          <span class="neuro-eyebrow">Upcoming activity</span>
           <h2 id="event-ledger-title" class="neuro-serif">
-            What we're planning.
+            What's coming up.
           </h2>
           <p>
-            Events are built around accessible learning, practical building, interdisciplinary discussion, and responsible innovation.
+            Dates, locations, and registration links appear here as soon as they are ready.
           </p>
           {society.socials.instagram && (
             <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="neuro-btn-secondary">
@@ -157,9 +156,9 @@ const programmeThemes = [
         </>
       ) : (
         <div class="neuro-empty reveal">
-          <h2 class="mb-3 neuro-serif text-3xl text-neuro-ink">Events coming soon.</h2>
+          <h2 class="mb-3 neuro-serif text-3xl text-neuro-ink">Upcoming events will appear here soon.</h2>
           <p class="neuro-prose">
-            We're working on an exciting programme of talks, workshops, socials, and collaborations. Join the society or follow our channels to be the first to know.
+            Join the society or follow our channels for talks, workshops, socials, and collaboration updates.
           </p>
           <div class="mt-7 flex flex-col gap-3 sm:flex-row">
             <a href="/join" class="neuro-btn-primary">Join for updates</a>
@@ -174,7 +173,7 @@ const programmeThemes = [
     <div class="neuro-shell">
       <div class="mb-12 max-w-3xl reveal">
           <h2 id="programme-themes-title" class="neuro-serif text-4xl leading-tight text-neuro-ink sm:text-5xl">
-            What our events look like.
+            What our programme includes.
         </h2>
       </div>
 

@@ -6,12 +6,12 @@ import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import eventsProgramme from '../assets/generated/business-events-programme.png';
+import heroImage from '../assets/generated/business-events-campus-sketch-hero.optimized.webp';
 import '../styles/global.css';
 
 const society = getSocietyById('business')!;
-const events: any[] = (await queryPublicConvex(api.events.listPublished, { societySlug: 'business' }, []))
-  .filter((event: any) => event.status === 'published');
+Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
+const events: any[] = await queryPublicConvex(api.events.listPublished, { societySlug: 'business' }, []);
 const categories = [...new Set(events.map((event) => event.category || 'Event'))];
 
 const formatEventDate = (date?: string) => {
@@ -20,23 +20,35 @@ const formatEventDate = (date?: string) => {
   return Number.isNaN(parsed.getTime()) ? date : parsed.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
 };
 
-const formatEventTime = (event: any) => event.startTime ? `${event.startTime}${event.endTime ? `–${event.endTime}` : ''}` : '';
+const formatEventTime = (event: any) => event.startTime ? `${event.startTime}${event.endTime ? `-${event.endTime}` : ''}` : '';
 
 const formats = [
-  { title: 'Talks and panels', copy: 'Meet people with experience worth hearing from.' },
-  { title: 'Workshops', copy: 'Build a practical skill rather than just collecting advice.' },
-  { title: 'Challenges', copy: 'Try ideas in a setting where learning matters more than polish.' },
-  { title: 'Socials', copy: 'Meet peers without the awkwardness of forced networking.' },
+  { title: 'Talks and panels', copy: 'Hear from founders, employers, alumni, and professionals with useful experience.' },
+  { title: 'Workshops', copy: 'Practise skills you can use in applications, interviews, projects, and workplaces.' },
+  { title: 'Challenges', copy: 'Test ideas, solve problems, and build confidence by doing the work.' },
+  { title: 'Networking', copy: 'Meet students and industry contacts in a setting built for conversation.' },
 ];
 ---
 
 <Layout title="Events" description="See confirmed Surrey Business Society events, workshops, talks, and networking opportunities.">
-  <section class="business-hero business-hero--page" aria-labelledby="events-title">
-    <Image src={eventsProgramme} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
+  <section class="business-hero business-hero--page business-hero--campus" aria-labelledby="events-title">
+    <Image
+      src={heroImage}
+      alt=""
+      aria-hidden="true"
+      class="business-hero__image"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      widths={[640, 960, 1280, 1600, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={70}
+    />
     <div class="business-shell business-hero__content">
       <p class="business-hero__eyebrow business-reveal">Events</p>
-      <h1 id="events-title" class="business-reveal">The rooms where ideas become useful.</h1>
-      <p class="business-hero__lede business-reveal">Confirmed talks, workshops, and opportunities are listed here with the details you need to take part.</p>
+      <h1 id="events-title" class="business-reveal">Business events for Surrey students.</h1>
+      <p class="business-hero__lede business-reveal">Talks, workshops, networking sessions, and opportunities that make careers, enterprise, and commercial skills easier to act on.</p>
       <div class="business-hero__actions business-reveal">
         <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-button">Follow updates</a>
         <a href="/join" class="business-button business-button--outline">Join the society</a>
@@ -48,10 +60,10 @@ const formats = [
     <div class="business-shell">
       <div class="business-section__heading business-reveal">
         <div>
-          <p class="business-eyebrow">What's on</p>
+          <p class="business-eyebrow">Upcoming</p>
           <h2 id="programme-title" class="business-title">Confirmed events.</h2>
         </div>
-        <p>Dates, locations, and joining details only appear once they are ready to stand behind.</p>
+        <p>Dates, locations, and sign-up details appear here once they are confirmed by the committee.</p>
       </div>
 
       {events.length ? (
@@ -81,9 +93,9 @@ const formats = [
         </>
       ) : (
         <div class="business-empty business-reveal">
-          <h3>No public events are listed yet.</h3>
+          <h3>No events are listed yet.</h3>
           <div>
-            <p>When the next event has a confirmed date and joining route, it will be published here. Follow the society for the fastest updates.</p>
+            <p>New talks, workshops, and networking opportunities will appear here once confirmed. Follow the society for updates.</p>
             <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-text-link" style="display: inline-block; margin-top: 1rem;">Follow on Instagram</a>
           </div>
         </div>
@@ -95,10 +107,10 @@ const formats = [
     <div class="business-shell">
       <div class="business-section__heading business-reveal">
         <div>
-          <p class="business-eyebrow">Event formats</p>
-          <h2 id="formats-title" class="business-title">More than a calendar.</h2>
+          <p class="business-eyebrow">Formats</p>
+          <h2 id="formats-title" class="business-title">What to expect.</h2>
         </div>
-        <p>Each format has one job: make a useful next step easier to find.</p>
+        <p>Each event is built to help members learn something, meet someone, or take a useful next step.</p>
       </div>
       <div class="business-lines business-lines--four business-reveal">
         {formats.map((format, index) => (
@@ -110,7 +122,7 @@ const formats = [
 
   <section class="business-join-band" aria-labelledby="events-join-title">
     <div class="business-shell business-join-band__inner">
-      <div><h2 id="events-join-title">Want the updates in one place?</h2><p>Become a member, then keep an eye on the events calendar and society channels.</p></div>
+      <div><h2 id="events-join-title">Want access to what comes next?</h2><p>Become a member, then follow the events calendar and society channels for confirmed activity.</p></div>
       <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
     </div>
   </section>

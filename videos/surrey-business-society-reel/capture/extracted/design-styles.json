@@ -1,0 +1,177 @@
+{
+  "typography": [
+    {
+      "role": "display",
+      "fontFamily": "Playfair Display",
+      "fontSize": "92.8px",
+      "fontWeight": "700",
+      "lineHeight": "87.232px",
+      "letterSpacing": "-3.248px",
+      "color": "#FFFCF6",
+      "sampleText": "Make business feel less abstract."
+    },
+    {
+      "role": "heading",
+      "fontFamily": "Playfair Display",
+      "fontSize": "64px",
+      "fontWeight": "700",
+      "lineHeight": "64.64px",
+      "letterSpacing": "-2.24px",
+      "color": "#FFFCF6",
+      "sampleText": "Four ways to build momentum."
+    },
+    {
+      "role": "heading-2",
+      "fontFamily": "Playfair Display",
+      "fontSize": "51.2px",
+      "fontWeight": "700",
+      "lineHeight": "51.2px",
+      "letterSpacing": "-1.536px",
+      "color": "#FFFCF6",
+      "sampleText": "Start where you are."
+    },
+    {
+      "role": "heading-2",
+      "fontFamily": "Playfair Display",
+      "fontSize": "50.4px",
+      "fontWeight": "700",
+      "lineHeight": "55.44px",
+      "letterSpacing": "-1.512px",
+      "color": "#071A2D",
+      "sampleText": "A useful place to start, whatever your course."
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Playfair Display",
+      "fontSize": "23.2px",
+      "fontWeight": "700",
+      "lineHeight": "25.52px",
+      "letterSpacing": "normal",
+      "color": "#071A2D",
+      "sampleText": "Find your direction"
+    },
+    {
+      "role": "body",
+      "fontFamily": "DM Sans",
+      "fontSize": "18.4px",
+      "fontWeight": "400",
+      "lineHeight": "30.36px",
+      "letterSpacing": "normal",
+      "color": "#FFFAF1",
+      "sampleText": "A student community for clearer career direction, better ide"
+    },
+    {
+      "role": "link",
+      "fontFamily": "DM Sans",
+      "fontSize": "12.64px",
+      "fontWeight": "700",
+      "lineHeight": "18.96px",
+      "letterSpacing": "0.316px",
+      "color": "#FFFCF6",
+      "sampleText": "Surrey Business Society"
+    },
+    {
+      "role": "body-small",
+      "fontFamily": "DM Sans",
+      "fontSize": "11.84px",
+      "fontWeight": "600",
+      "lineHeight": "17.76px",
+      "letterSpacing": "normal",
+      "color": "#FFFAF1",
+      "sampleText": "© 2026 Surrey Business Society"
+    }
+  ],
+  "spacing": {
+    "observed": [
+      3,
+      7,
+      10,
+      11,
+      16,
+      17,
+      20,
+      22,
+      32,
+      34,
+      44,
+      48,
+      68,
+      112,
+      120
+    ],
+    "baseUnit": 4
+  },
+  "radius": [
+    "50%"
+  ],
+  "shadows": [
+    {
+      "value": "rgba(15, 23, 42, 0.22) 0px 18px 45px 0px",
+      "count": 1
+    }
+  ],
+  "buttons": [
+    {
+      "label": "Join the society",
+      "background": "#D7A845",
+      "color": "#071A2D",
+      "padding": "11.2px 16.8px",
+      "borderRadius": "0px",
+      "border": "1px solid rgb(215, 168, 69)",
+      "boxShadow": "none",
+      "fontSize": "11.84px",
+      "fontWeight": "800",
+      "height": "44px"
+    },
+    {
+      "label": "See events",
+      "background": "#000000",
+      "color": "#FFFCF6",
+      "padding": "11.2px 16.8px",
+      "borderRadius": "0px",
+      "border": "1px solid rgba(255, 250, 241, 0.72)",
+      "boxShadow": "none",
+      "fontSize": "11.84px",
+      "fontWeight": "800",
+      "height": "44px"
+    },
+    {
+      "label": "button",
+      "background": "#C9A84C",
+      "color": "#0F172A",
+      "padding": "0px",
+      "borderRadius": "999px",
+      "border": "1px solid color(srgb 0.788235 0.658824 0.298039 / 0.54)",
+      "boxShadow": "rgba(15, 23, 42, 0.22) 0px 18px 45px 0px",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "56px"
+    }
+  ],
+  "cards": [
+    {
+      "label": "card",
+      "background": "#000000",
+      "color": "#071A2D",
+      "padding": "3.2px 34.4px 0px 0px",
+      "borderRadius": "0px",
+      "border": "",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "192px"
+    }
+  ],
+  "nav": {
+    "label": "navigation",
+    "background": "#071A2D",
+    "color": "#FFFCF6",
+    "padding": "0px",
+    "borderRadius": "0px",
+    "border": "",
+    "boxShadow": "none",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "height": "77px"
+  }
+}

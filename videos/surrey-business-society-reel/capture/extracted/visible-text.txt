@@ -1,0 +1,63 @@
+[a] Skip to content
+[span] Surrey Business Society
+[a] Committee
+[a] Committee
+[p] University of Surrey
+[h1] Make business feel less abstract.
+[p] A student community for clearer career direction, better ideas, and the confidence to put both into practice.
+[a] Join the society
+[a] See events
+[strong] 2021
+[span] Established at Surrey
+[strong] All courses
+[span] Welcome here
+[strong] Student-led
+[span] Built with members
+[p] Why join
+[h2] A useful place to start, whatever your course.
+[p] You do not need a business degree, a polished plan, or a perfect pitch. You just need some curiosity about how careers, ideas, and organisations work.
+[p] We make room for the conversations and practical experience that help students move forward with more clarity.
+[h3] Find your direction
+[p] Make careers, industries, and next steps feel less abstract.
+[h3] Build confidence
+[p] Practise the skills that help ideas travel: speaking, presenting, interviewing, and leading.
+[h3] Meet good people
+[p] Connect with students who are curious about business, enterprise, and what comes next.
+[p] What we focus on
+[h2] Four ways to build momentum.
+[p] One society, four practical routes into a more confident future.
+[h3] Careers
+[p] Better context for applications, workplaces, and commercial roles.
+[h3] Enterprise
+[p] A place to test ideas, learn from others, and start building.
+[h3] Networking
+[p] More natural routes into conversations, peers, and professional communities.
+[h3] Skills
+[p] Useful practice in communication, strategy, collaboration, and leadership.
+[h3] Upcoming events
+[a] All events
+[p] Nothing is listed yet. Confirmed events will appear here as soon as they are ready.
+[h3] The committee
+[a] Meet the team
+[p] The current committee will be introduced here once their details have been confirmed.
+[p] Built for practice
+[h2] Better conversations. Stronger next steps.
+[p] Events, ideas, and people are most valuable when they give you something concrete to act on.
+[h2] Start where you are.
+[p] Join Surrey Business Society and find your next useful conversation.
+[a] Join the society
+[a] Surrey Business Society
+[a] Instagram
+[a] LinkedIn
+[a] Join via the Union
+[small] © 2026 Surrey Business Society
+[p] Business Society
+[h2] Website assistant
+[button] Reset
+[p] A student-led professional network for careers, enterprise, commercial awareness, networking, and practical workplace skills.
+[button] What is Surrey Business Society about?
+[button] What events are coming up?
+[button] How can I get involved?
+[button] I am interested in startups. Where should I start?
+[label] Ask Business Society
+[button] Send

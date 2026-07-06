@@ -4,76 +4,82 @@ import { Image } from 'astro:assets';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
-import { Brain, Cpu, Dna, Lightbulb, PencilRuler, Scale } from 'lucide-astro';
 import Layout from '../layouts/Layout.astro';
-import homeHero from '../assets/generated/neurotech-home-neural-hero.png';
-import talksThumb from '../assets/generated/neurotech-talks-thumb.png';
-import workshopsThumb from '../assets/generated/neurotech-workshops-thumb.png';
-import projectsThumb from '../assets/generated/neurotech-projects-thumb.png';
-import socialsThumb from '../assets/generated/neurotech-socials-thumb.png';
+import homeHero from '../assets/generated/neurotech-cathedral-graduation-sketch-hero.optimized.webp';
+import talksThumb from '../assets/generated/neurotech-talks-refined-cover.optimized.webp';
+import workshopsThumb from '../assets/generated/neurotech-workshops-refined-cover.optimized.webp';
+import projectsThumb from '../assets/generated/neurotech-projects-refined-cover.optimized.webp';
+import socialsThumb from '../assets/generated/neurotech-socials-refined-cover.optimized.webp';
+import psychologyIcon from '../assets/generated/neurotech-path-psychology.optimized.webp';
+import computingIcon from '../assets/generated/neurotech-path-computing.optimized.webp';
+import bioscienceIcon from '../assets/generated/neurotech-path-bioscience.optimized.webp';
+import designIcon from '../assets/generated/neurotech-path-design.optimized.webp';
+import ethicsIcon from '../assets/generated/neurotech-path-ethics.optimized.webp';
+import beginnersIcon from '../assets/generated/neurotech-path-beginners.optimized.webp';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
 const society = getSocietyById(SOCIETY_ID)!;
+Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
 
 const events: any[] = (
   await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
-).filter((event: any) => event.status === 'published');
+);
 
-const eventMessage = events[0]?.title || 'New website and launch updates arriving this September.';
+const eventMessage = events[0]?.title || 'Events, workshops, socials, and society updates will appear here.';
 
 const approachSteps = [
   {
-    title: 'Learn',
-    copy: 'Friendly talks, workshops, and explainers from September.',
+    title: 'Build',
+    copy: 'Work on practical neurotech projects, including brain-computer interface ideas.',
     href: '/events',
   },
   {
-    title: 'Meet',
-    copy: 'Connect with curious students from every course.',
-    href: '/committee',
+    title: 'Research',
+    copy: 'Explore neuroscience, AI, cognitive science, ethics, and emerging tools.',
+    href: '/about',
   },
   {
-    title: 'Build responsibly',
-    copy: 'Ethics, inclusion, and wellbeing stay at the centre.',
-    href: '/about',
+    title: 'Connect',
+    copy: 'Meet students, researchers, startups, and societies working in the field.',
+    href: '/join',
   },
 ];
 
 const disciplines = [
-  { title: 'Psychology', copy: 'Understanding minds and behaviour.', icon: Brain },
-  { title: 'Computing', copy: 'Algorithms, data, artificial intelligence and intelligent systems.', icon: Cpu },
-  { title: 'Bioscience', copy: 'Cells, systems and the biology of the brain.', icon: Dna },
-  { title: 'Design', copy: 'Human-centred design and creative solutions.', icon: PencilRuler },
-  { title: 'Ethics', copy: 'Questions of fairness, privacy, consent and impact.', icon: Scale },
-  { title: 'Curious beginners', copy: "You don't need experience — just curiosity.", icon: Lightbulb },
+  { title: 'Psychology', copy: 'Minds, behaviour, cognition, and human experience.', image: psychologyIcon },
+  { title: 'Computing', copy: 'AI, data, signal processing, and intelligent systems.', image: computingIcon },
+  { title: 'Bioscience', copy: 'Brain biology, physiology, and biomedical discovery.', image: bioscienceIcon },
+  { title: 'Engineering', copy: 'Hardware, interfaces, sensors, and practical builds.', image: designIcon },
+  { title: 'Ethics', copy: 'Privacy, consent, access, safety, and real-world impact.', image: ethicsIcon },
+  { title: 'Beginners', copy: 'No experience needed - only curiosity and drive.', image: beginnersIcon },
 ];
 
 const activityCards = [
   {
-    title: 'Talks & Events',
-    copy: 'A clear place to discover talks, explainers and emerging ideas in neurotech, artificial intelligence and cognitive science.',
+    title: 'Hands-On Learning',
+    copy: 'Workshops, journal clubs, and projects such as building brain-computer interfaces.',
     image: talksThumb,
-    alt: 'Students listening to a neurotechnology discussion.',
+    alt: 'Students collaborating on a neurotechnology workshop.',
     number: '01',
   },
   {
-    title: 'Workshops',
-    copy: 'Workshop and journal club updates will be easier to find once the new website launches in September.',
+    title: 'Talks and Events',
+    copy: 'Expert speakers from academia, startups, and industry sharing developments in neurotech, AI, and cognitive science.',
     image: workshopsThumb,
-    alt: 'Students collaborating at a workshop table.',
+    alt: 'Students listening to a neurotechnology discussion.',
     number: '02',
   },
   {
-    title: 'Inter-University Collaborations',
-    copy: 'Future collaborations, projects and networking opportunities will be gathered into one student-friendly space.',
+    title: 'Inter-University Collaboration',
+    copy: 'Hackathons, symposiums, networking initiatives, and events with other leading related societies.',
     image: projectsThumb,
     alt: 'Students presenting at a neurotechnology event.',
     number: '03',
   },
   {
-    title: 'Socials & Community',
-    copy: 'Socials and community updates will help curious students find their way into the society.',
+    title: 'Networking and Community',
+    copy: 'Routes into researchers, companies, internships, research collaborations, career insight, and an active student community.',
     image: socialsThumb,
     alt: 'Students chatting at a society social.',
     number: '04',
@@ -83,7 +89,7 @@ const activityCards = [
 
 <Layout
   title="Home"
-  description="Surrey Neurotech Society - a student-led University of Surrey society for curious students exploring neuroscience, artificial intelligence, brain-computer interfaces, signals, ethics, and responsible innovation."
+  description="Surrey Neurotech Society is the University of Surrey's first student group dedicated to neurotechnology, connecting students with neuroscience, AI, technology, and human potential."
 >
   <section class="neuro-home-hero" aria-labelledby="neuro-hero-title">
     <Image
@@ -97,66 +103,75 @@ const activityCards = [
       decoding="async"
       fetchpriority="high"
       format="webp"
-      quality={90}
+      quality={72}
     />
     <div class="neuro-home-hero__inner">
       <div class="neuro-home-hero__copy reveal">
-        <span class="neuro-home-kicker">New website launching this September</span>
+        <span class="neuro-home-kicker">University of Surrey neurotechnology</span>
         <h1 id="neuro-hero-title" class="neuro-serif">
-          Neurotech,<br /><span>for good.</span>
+          Surrey Neurotech Society
         </h1>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          Welcome to the new Surrey Neurotech Society website: a home for students curious about neuroscience, artificial intelligence, brain-computer interfaces, ethics, and responsible innovation.
+          Positioning Surrey at the forefront of neurotechnology innovation by connecting students with the cutting edge of neuroscience, AI, and technology.
         </p>
         <div class="neuro-home-hero-actions">
           <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-btn neuro-home-btn--gold">
             Join the society <span aria-hidden="true">&rarr;</span>
           </a>
-          <a href="#what-we-explore" class="neuro-home-btn neuro-home-btn--outline">
-            See what's coming <span aria-hidden="true">&rarr;</span>
+          <a href="/events" class="neuro-home-btn neuro-home-btn--outline">
+            See events <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
-        <p class="neuro-home-open-note">Open to all students. All backgrounds. All levels. Launching in September.</p>
+        <p class="neuro-home-open-note">Open to all students - no experience needed, only curiosity and drive.</p>
       </div>
-
-      <a href="/events" class="neuro-home-event-strip reveal" aria-label="View confirmed events">
-        <span class="neuro-home-event-strip__mark" aria-hidden="true">Now</span>
-        <span><strong>What's happening</strong><span class="neuro-home-event-strip__message">{eventMessage}</span></span>
-        <span class="neuro-home-event-strip__link">See events &rarr;</span>
-      </a>
-
-      <nav class="neuro-home-route-list reveal" aria-label="How to get involved">
-        {approachSteps.map((step, index) => (
-          <a href={step.href} class="neuro-home-route">
-            <span class="neuro-home-route__index" aria-hidden="true">0{index + 1}</span>
-            <span><strong>{step.title}</strong><small>{step.copy}</small></span>
-            <span class="neuro-home-route__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        ))}
-      </nav>
-
     </div>
+  </section>
+
+  <section class="neuro-home-routes-band" aria-label="How to get involved">
+    <a href="/events" class="neuro-home-event-strip reveal" aria-label="View confirmed events">
+      <span class="neuro-home-event-strip__mark" aria-hidden="true">Live</span>
+      <span><strong>What's happening</strong><span class="neuro-home-event-strip__message">{eventMessage}</span></span>
+      <span class="neuro-home-event-strip__link">See events &rarr;</span>
+    </a>
+
+    <nav class="neuro-home-route-list reveal" aria-label="How to get involved">
+      {approachSteps.map((step, index) => (
+        <a href={step.href} class="neuro-home-route">
+          <span class="neuro-home-route__index" aria-hidden="true">0{index + 1}</span>
+          <span><strong>{step.title}</strong><small>{step.copy}</small></span>
+          <span class="neuro-home-route__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      ))}
+    </nav>
   </section>
 
   <section id="what-we-explore" class="neuro-home-pathways" aria-labelledby="pathways-title">
     <div class="neuro-home-pathways__inner">
       <div class="neuro-home-pathways__heading reveal">
-        <span class="neuro-home-kicker">Many doors into neurotech</span>
-        <h2 id="pathways-title" class="neuro-serif">Different paths. Shared curiosity.</h2>
+        <span class="neuro-home-kicker">Interdisciplinary by design</span>
+        <h2 id="pathways-title" class="neuro-serif">Neuroscience and technology need every discipline.</h2>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
       </div>
       <div class="neuro-home-pathway-track">
-        {disciplines.map((discipline) => {
-          const Icon = discipline.icon;
-          return (
-            <article class="neuro-home-pathway reveal">
-              <span class="neuro-home-pathway__mark"><Icon size={28} strokeWidth={1.45} aria-hidden="true" /></span>
-              <h3>{discipline.title}</h3>
-              <p>{discipline.copy}</p>
-            </article>
-          );
-        })}
+        {disciplines.map((discipline) => (
+          <article class="neuro-home-pathway reveal">
+            <span class="neuro-home-pathway__mark">
+              <Image
+                src={discipline.image}
+                alt=""
+                aria-hidden="true"
+                widths={[96, 160, 240]}
+                sizes="5.2rem"
+                loading="lazy"
+                format="webp"
+                quality={78}
+              />
+            </span>
+            <h3>{discipline.title}</h3>
+            <p>{discipline.copy}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -164,11 +179,11 @@ const activityCards = [
   <section class="neuro-home-activities" aria-labelledby="activities-title">
     <div class="neuro-home-activities__inner">
       <div class="neuro-home-activities__intro reveal">
-        <span class="neuro-home-kicker neuro-home-kicker--blue">What the website will bring together</span>
-        <h2 id="activities-title" class="neuro-serif">Explore. Discuss.<br />Create. Together.</h2>
+        <span class="neuro-home-kicker neuro-home-kicker--blue">What we do</span>
+        <h2 id="activities-title" class="neuro-serif">Build, learn, meet, and shape what comes next.</h2>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          From September, the new website will make it easier to find talks, workshops, socials, updates, resources, and ways to get involved.
+          Surrey Neurotech brings together hands-on learning, expert talks, collaborations, networking, socials, and advocacy for more neurotech opportunity at Surrey.
         </p>
         <a href="/events" class="neuro-home-btn neuro-home-btn--blue">See all events <span aria-hidden="true">&rarr;</span></a>
       </div>
@@ -188,7 +203,7 @@ const activityCards = [
               sizes="(min-width: 761px) 16rem, calc(100vw - 4.6rem)"
               loading="lazy"
               format="webp"
-              quality={90}
+              quality={76}
             />
             <a href="/events" aria-label={`Learn more about ${activity.title}`} class="neuro-home-activity__arrow">
               <span aria-hidden="true">&rarr;</span>
@@ -203,15 +218,15 @@ const activityCards = [
     <div class="neuro-home-action-rail__inner">
       <a href="/events" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">01</span>
-        <span><strong>Events</strong><small>Follow launch updates, talks, workshops and socials.</small><em>See events &rarr;</em></span>
+        <span><strong>Events</strong><small>Talks, workshops, socials, collaborations, and society updates.</small><em>See events &rarr;</em></span>
       </a>
       <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">02</span>
-        <span><strong>Join</strong><small>Become a member and be ready for September.</small><em>Join the society &rarr;</em></span>
+        <span><strong>Join</strong><small>Start building, researching, networking, or learning with us.</small><em>Join the society &rarr;</em></span>
       </a>
       <a href="/committee" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">03</span>
-        <span><strong>Committee</strong><small>Meet the student team leading the society.</small><em>Meet the committee &rarr;</em></span>
+        <span><strong>Committee</strong><small>Meet the students building neurotech infrastructure at Surrey.</small><em>Meet the committee &rarr;</em></span>
       </a>
     </div>
   </section>

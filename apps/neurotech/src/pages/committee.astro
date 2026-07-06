@@ -5,11 +5,12 @@ import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import committeeHero from '../assets/generated/neurotech-committee-hero.png';
+import committeeHero from '../assets/generated/neurotech-committee-campus-sketch-hero.optimized.webp';
 import '../styles/global.css';
 
 const SOCIETY_ID = 'neurotech';
 const society = getSocietyById(SOCIETY_ID)!;
+Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
 
 const [committeeResult, pastCommitteeResult] = await Promise.all([
   queryPublicConvex(api.committee.listActive, { societySlug: SOCIETY_ID }, []),
@@ -40,22 +41,22 @@ const getInitials = (name?: string, role?: string) => {
 const involvement = [
   {
     title: 'Join the community',
-    copy: 'Membership keeps you connected to confirmed society activity through the official Union route.',
+    copy: 'Membership keeps you connected to talks, workshops, socials, collaborations, and society opportunities.',
   },
   {
     title: 'Show up and ask questions',
-    copy: 'Events, socials, and discussions are the simplest way to understand the society and meet other curious students.',
+    copy: 'Events, socials, and discussions are the simplest way to understand the society and meet students across disciplines.',
   },
   {
     title: 'Step forward when roles open',
-    copy: 'When elections, projects, or calls for involvement are announced, active members can use those routes to contribute.',
+    copy: 'When elections, projects, or calls for involvement open, active members can help shape neurotech at Surrey.',
   },
 ];
 ---
 
 <Layout
   title="Committee"
-  description="Meet the student committee running Surrey Neurotech Society and view confirmed current and past committee records."
+  description="Meet the student committee building Surrey Neurotech Society and shaping neurotechnology opportunities at Surrey."
 >
   <section class="neuro-hero neuro-hero--committee" aria-labelledby="committee-title">
     <Image
@@ -69,7 +70,7 @@ const involvement = [
       decoding="async"
       fetchpriority="high"
       format="webp"
-      quality={90}
+      quality={72}
     />
     <div class="neuro-hero__inner">
       <div class="neuro-subhero-grid">
@@ -79,7 +80,7 @@ const involvement = [
             Meet the team behind Surrey Neurotech.
           </h1>
           <p>
-            The students driving events, projects, and collaborations — building a lasting home for neurotechnology at Surrey. Meet the people shaping what the society becomes this year.
+            The committee builds the programme, supports the community, and helps create a lasting student infrastructure for neurotechnology at Surrey.
           </p>
           <div class="neuro-action-row">
             <a href="/join" class="neuro-btn-primary">Join the society</a>
@@ -99,7 +100,7 @@ const involvement = [
             The current team.
           </h2>
           <p>
-            Our committee brings together students from psychology, computer science, engineering, biomedical sciences, and more — united by a shared curiosity about how technology and neuroscience can work together.
+            Meet the students leading events, collaborations, community, and society operations.
           </p>
           <a href={`mailto:${society.contactEmail}`} class="neuro-btn-secondary">
             Contact the society
@@ -136,7 +137,7 @@ const involvement = [
         <div class="neuro-empty reveal">
           <h2 class="mb-3 neuro-serif text-3xl text-neuro-ink">Committee details coming soon.</h2>
           <p class="neuro-prose">
-            We're a student-led society. Names, roles, and contact details will appear here once the team is confirmed for the current year.
+            We are a student-led society. Names, roles, and contact details will appear here once the committee publishes them.
           </p>
           <div class="mt-7 flex flex-col gap-3 sm:flex-row">
             <a href="/join" class="neuro-btn-primary">Become a member</a>
@@ -193,7 +194,7 @@ const involvement = [
         <div class="neuro-empty reveal">
           <h3 class="mb-3 neuro-serif text-2xl text-neuro-ink">Past committee records will appear once confirmed.</h3>
           <p class="neuro-prose">
-            Historical records are only shown when they have been added through the society admin system.
+            Historical records are only shown once committee members add them.
           </p>
         </div>
       )}

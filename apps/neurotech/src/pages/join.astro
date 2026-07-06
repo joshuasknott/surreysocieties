@@ -3,7 +3,7 @@ export const prerender = true;
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import joinHero from '../assets/generated/neurotech-join-hero.png';
+import joinHero from '../assets/generated/neurotech-join-campus-sketch-hero.optimized.webp';
 import '../styles/global.css';
 
 const society = getSocietyById('neurotech')!;
@@ -19,14 +19,14 @@ const steps = [
   },
   {
     title: 'Follow the society channels',
-    copy: 'Follow @SurreyNeurotech on Instagram and check this website for confirmed events, speaker updates, socials, and connection routes.',
+    copy: 'Follow @SurreyNeurotech on Instagram and check this website for events, socials, collaborations, and community updates.',
   },
 ];
 
 const faqs = [
   {
     question: 'Do I need a neuroscience or computing background?',
-    answer: 'No. The society is intended for curious University of Surrey students from any course. Prior specialist knowledge is not required.',
+    answer: 'No. Surrey Neurotech is open to all University of Surrey students. You only need curiosity and drive.',
   },
   {
     question: 'Where are membership details confirmed?',
@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     question: 'Where will events appear?',
-    answer: 'Confirmed events are published on the Events page. Social channels may also share updates, but this site avoids showing unconfirmed event listings.',
+    answer: 'Events are published on the Events page. Social channels may also share talks, workshops, socials, and collaboration updates.',
   },
   {
     question: 'How can I contact the society?',
@@ -45,7 +45,7 @@ const faqs = [
 
 <Layout
   title="Join"
-  description="Join Surrey Neurotech Society through Surrey Students' Union and connect with the society's official channels."
+  description="Join Surrey Neurotech Society to build, research, network, or learn about neurotechnology."
 >
   <section class="neuro-hero neuro-hero--join" aria-labelledby="join-title">
     <Image
@@ -59,17 +59,17 @@ const faqs = [
       decoding="async"
       fetchpriority="high"
       format="webp"
-      quality={90}
+      quality={72}
     />
     <div class="neuro-hero__inner">
       <div class="neuro-subhero-grid">
         <div class="neuro-subhero-copy reveal">
           <span class="neuro-eyebrow neuro-eyebrow--gold">Membership pathway</span>
           <h1 id="join-title" class="neuro-serif">
-            Join Surrey Neurotech Society.
+            Build, research, network, or just learn.
           </h1>
           <p>
-            Whether you want to build, research, network, or just learn, Surrey Neurotech is open to all — no experience needed. Follow us on Instagram @SurreyNeurotech for updates and upcoming events.
+            Surrey Neurotech is open to all - no experience needed. Join the society, follow @SurreyNeurotech, and step into the community.
           </p>
           <div class="mt-9 flex flex-col gap-3 sm:flex-row">
             <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-btn-primary">
@@ -88,7 +88,7 @@ const faqs = [
     <div class="neuro-shell">
       <div class="mb-12 max-w-3xl reveal">
         <span class="neuro-eyebrow">Official route</span>
-          <h2 id="join-steps-title" class="neuro-serif text-4xl leading-tight text-neuro-ink sm:text-5xl">
+        <h2 id="join-steps-title" class="neuro-serif text-4xl leading-tight text-neuro-ink sm:text-5xl">
           Three simple steps through official routes.
         </h2>
       </div>
@@ -112,10 +112,10 @@ const faqs = [
       <div class="neuro-community-grid">
         <div class="reveal">
           <h2 id="connect-title" class="neuro-serif">
-            Stay connected to talks, workshops, socials, and everything neurotech.
+            Stay connected to talks, workshops, socials, and neurotech opportunities.
           </h2>
           <p>
-            Membership is the clearest way in. Our channels help you keep up with events, ask questions, and connect with the community before your first session.
+            Membership is the clearest way in. Our channels help you keep up with events, ask questions, join discussions, and meet people before your first session.
           </p>
         </div>
 
@@ -168,7 +168,6 @@ const faqs = [
           </details>
         ))}
       </div>
-
     </div>
   </section>
 </Layout>

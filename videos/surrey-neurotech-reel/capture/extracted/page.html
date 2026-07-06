@@ -1,0 +1,2446 @@
+<!doctype html>
+<html lang="en" class="motion-safe:scroll-smooth">
+<head>
+<style data-vite-dev-id="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro?astro&amp;type=style&amp;index=0&amp;lang.css">.society-assistant[data-astro-cid-bq6mpggb]{position:fixed;right:1.25rem;bottom:1.25rem;z-index:90;color:var(--assistant-text);font-family:Inter,ui-sans-serif,system-ui,sans-serif}.assistant-toggle[data-astro-cid-bq6mpggb]{width:3.5rem;height:3.5rem;display:inline-flex;align-items:center;justify-content:center;border:1px solid color-mix(in srgb,var(--assistant-accent) 54%,transparent);border-radius:999px;background:var(--assistant-accent);color:var(--assistant-accent-text);box-shadow:0 18px 45px rgba(15,23,42,0.22);cursor:pointer;transition:transform 160ms ease,box-shadow 160ms ease}.assistant-toggle[data-astro-cid-bq6mpggb]:hover{transform:translateY(-2px);box-shadow:0 22px 52px rgba(15,23,42,0.26)}.assistant-toggle[data-astro-cid-bq6mpggb]:focus-visible,.assistant-close[data-astro-cid-bq6mpggb]:focus-visible,.assistant-reset[data-astro-cid-bq6mpggb]:focus-visible,.assistant-send[data-astro-cid-bq6mpggb]:focus-visible,.assistant-input[data-astro-cid-bq6mpggb]:focus-visible,.assistant-starter[data-astro-cid-bq6mpggb]:focus-visible{outline:2px solid var(--assistant-accent);outline-offset:3px}.assistant-toggle[data-astro-cid-bq6mpggb] svg[data-astro-cid-bq6mpggb]{width:1.55rem;height:1.55rem}.assistant-panel[data-astro-cid-bq6mpggb]{position:fixed;right:1.25rem;bottom:5.4rem;width:min(25.5rem,calc(100vw - 2.5rem));height:min(40rem,calc(100vh - 7rem));max-height:calc(100dvh - 7rem);display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--assistant-border);border-radius:1rem;background:var(--assistant-surface);box-shadow:0 24px 70px rgba(15,23,42,0.24)}.assistant-panel[data-astro-cid-bq6mpggb][hidden]{display:none}.assistant-header[data-astro-cid-bq6mpggb]{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:1rem;border-bottom:1px solid var(--assistant-border);background:color-mix(in srgb,var(--assistant-surface) 92%,var(--assistant-accent) 8%)}.assistant-eyebrow[data-astro-cid-bq6mpggb]{margin:0 0 0.2rem;color:var(--assistant-muted);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase}.assistant-header[data-astro-cid-bq6mpggb] h2[data-astro-cid-bq6mpggb]{margin:0;color:var(--assistant-text);font-size:1rem;line-height:1.2;font-weight:800;letter-spacing:0}.assistant-header-actions[data-astro-cid-bq6mpggb]{display:flex;align-items:center;gap:0.4rem}.assistant-reset[data-astro-cid-bq6mpggb],.assistant-close[data-astro-cid-bq6mpggb]{border:1px solid var(--assistant-border);background:var(--assistant-surface);color:var(--assistant-text);cursor:pointer}.assistant-reset[data-astro-cid-bq6mpggb]{min-height:2rem;padding:0 0.7rem;border-radius:999px;font-size:0.76rem;font-weight:700}.assistant-close[data-astro-cid-bq6mpggb]{width:2rem;height:2rem;display:inline-flex;align-items:center;justify-content:center;border-radius:999px}.assistant-close[data-astro-cid-bq6mpggb] svg[data-astro-cid-bq6mpggb]{width:1rem;height:1rem}.assistant-body[data-astro-cid-bq6mpggb]{flex:1;min-height:0;overflow-y:auto;padding:1rem}.assistant-intro[data-astro-cid-bq6mpggb]{margin-bottom:0.85rem;padding:0.85rem;border:1px solid var(--assistant-border);border-radius:0.8rem;background:color-mix(in srgb,var(--assistant-surface) 88%,var(--assistant-accent) 12%)}.assistant-intro[data-astro-cid-bq6mpggb] p[data-astro-cid-bq6mpggb]{margin:0;color:var(--assistant-muted);font-size:0.88rem;line-height:1.45}.assistant-starters[data-astro-cid-bq6mpggb]{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem}.assistant-starter[data-astro-cid-bq6mpggb]{max-width:100%;padding:0.55rem 0.7rem;border:1px solid var(--assistant-border);border-radius:999px;background:var(--assistant-surface);color:var(--assistant-text);font-size:0.78rem;line-height:1.25;cursor:pointer}.assistant-starter[data-astro-cid-bq6mpggb]:hover{border-color:color-mix(in srgb,var(--assistant-accent) 65%,var(--assistant-border))}.assistant-messages[data-astro-cid-bq6mpggb]{display:flex;flex-direction:column;gap:0.7rem}.assistant-message[data-astro-cid-bq6mpggb]{max-width:88%;padding:0.75rem 0.85rem;border-radius:0.9rem;font-size:0.9rem;line-height:1.45;white-space:pre-wrap;word-break:break-word}.assistant-message[data-astro-cid-bq6mpggb].user{align-self:flex-end;background:var(--assistant-accent);color:var(--assistant-accent-text);border-bottom-right-radius:0.25rem}.assistant-message[data-astro-cid-bq6mpggb].assistant,.assistant-message[data-astro-cid-bq6mpggb].loading,.assistant-message[data-astro-cid-bq6mpggb].error{align-self:flex-start;border:1px solid var(--assistant-border);background:color-mix(in srgb,var(--assistant-surface) 92%,#f8fafc 8%);color:var(--assistant-text);border-bottom-left-radius:0.25rem}.assistant-message[data-astro-cid-bq6mpggb].error{color:#991b1b;border-color:#fecaca;background:#fef2f2}.assistant-form[data-astro-cid-bq6mpggb]{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0.6rem;padding:0.85rem;border-top:1px solid var(--assistant-border);background:var(--assistant-surface)}.assistant-input[data-astro-cid-bq6mpggb]{min-height:2.55rem;max-height:7rem;resize:none;border:1px solid var(--assistant-border);border-radius:0.8rem;padding:0.7rem 0.8rem;color:var(--assistant-text);background:var(--assistant-surface);font:inherit;font-size:0.9rem;line-height:1.25}.assistant-send[data-astro-cid-bq6mpggb]{align-self:end;min-height:2.55rem;padding:0 0.95rem;border:1px solid var(--assistant-accent);border-radius:0.8rem;background:var(--assistant-accent);color:var(--assistant-accent-text);font-weight:800;cursor:pointer}.assistant-send[data-astro-cid-bq6mpggb]:disabled,.assistant-input[data-astro-cid-bq6mpggb]:disabled,.assistant-starter[data-astro-cid-bq6mpggb]:disabled{opacity:0.62;cursor:not-allowed}.sr-only[data-astro-cid-bq6mpggb]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media (max-width: 640px){.society-assistant[data-astro-cid-bq6mpggb]{right:1rem;bottom:1rem}.assistant-panel[data-astro-cid-bq6mpggb]{right:0.75rem;left:0.75rem;bottom:5.1rem;width:auto;height:min(38rem,calc(100vh - 6.25rem));max-height:calc(100dvh - 6.25rem);border-radius:1rem}}@media (prefers-reduced-motion: reduce){.assistant-toggle[data-astro-cid-bq6mpggb]{transition:none}}</style>
+<style data-vite-dev-id="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/styles/global.css">/*! tailwindcss v4.2.4 | MIT License | https://tailwindcss.com */
+@layer properties;
+@layer theme, base, components, utilities;
+@layer theme {
+  :root, :host {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    --spacing: 0.25rem;
+    --container-md: 28rem;
+    --container-2xl: 42rem;
+    --container-3xl: 48rem;
+    --container-7xl: 80rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --text-5xl: 3rem;
+    --text-5xl--line-height: 1;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --leading-tight: 1.25;
+    --leading-relaxed: 1.625;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+    --color-neuro-ink: #07162d;
+    --color-neuro-navy: #102856;
+    --color-neuro-deep: #02112b;
+    --color-neuro-gold: #d4af37;
+    --color-neuro-gold-ink: #735200;
+    --color-neuro-gold-soft: #f1dc91;
+    --color-neuro-cyan: #00b4d8;
+    --color-neuro-teal: #0b5f76;
+    --color-neuro-ivory: #f4f6f8;
+    --color-neuro-paper: #ffffff;
+    --color-neuro-line: #d2dbe0;
+    --color-neuro-line-dark: #28446e;
+    --color-neuro-muted: #3d5163;
+    --color-neuro-soft: #667c8c;
+    --color-neuro-on-dark: #fff8e8;
+    --color-neuro-on-dark-muted: #cbd8df;
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b, strong {
+    font-weight: bolder;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol, ul, menu {
+    list-style: none;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  button, input, select, optgroup, textarea, ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
+      }
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+  .visible {
+    visibility: visible;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .sticky {
+    position: sticky;
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .z-50 {
+    z-index: 50;
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-1 {
+    margin-top: calc(var(--spacing) * 1);
+  }
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
+  .mt-3 {
+    margin-top: calc(var(--spacing) * 3);
+  }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
+  .mt-5 {
+    margin-top: calc(var(--spacing) * 5);
+  }
+  .mt-7 {
+    margin-top: calc(var(--spacing) * 7);
+  }
+  .mt-9 {
+    margin-top: calc(var(--spacing) * 9);
+  }
+  .mt-12 {
+    margin-top: calc(var(--spacing) * 12);
+  }
+  .mb-3 {
+    margin-bottom: calc(var(--spacing) * 3);
+  }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  .mb-6 {
+    margin-bottom: calc(var(--spacing) * 6);
+  }
+  .mb-8 {
+    margin-bottom: calc(var(--spacing) * 8);
+  }
+  .mb-12 {
+    margin-bottom: calc(var(--spacing) * 12);
+  }
+  .ml-3 {
+    margin-left: calc(var(--spacing) * 3);
+  }
+  .block {
+    display: block;
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .hidden {
+    display: none;
+  }
+  .aspect-\[4\/3\] {
+    aspect-ratio: 4/3;
+  }
+  .h-5 {
+    height: calc(var(--spacing) * 5);
+  }
+  .h-11 {
+    height: calc(var(--spacing) * 11);
+  }
+  .h-12 {
+    height: calc(var(--spacing) * 12);
+  }
+  .h-20 {
+    height: calc(var(--spacing) * 20);
+  }
+  .min-h-\[72vh\] {
+    min-height: 72vh;
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  .w-5 {
+    width: calc(var(--spacing) * 5);
+  }
+  .w-11 {
+    width: calc(var(--spacing) * 11);
+  }
+  .w-12 {
+    width: calc(var(--spacing) * 12);
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-2xl {
+    max-width: var(--container-2xl);
+  }
+  .max-w-3xl {
+    max-width: var(--container-3xl);
+  }
+  .max-w-7xl {
+    max-width: var(--container-7xl);
+  }
+  .max-w-md {
+    max-width: var(--container-md);
+  }
+  .min-w-0 {
+    min-width: calc(var(--spacing) * 0);
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
+  .shrink-0 {
+    flex-shrink: 0;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .list-none {
+    list-style-type: none;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .items-start {
+    align-items: flex-start;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
+  }
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
+  }
+  .gap-5 {
+    gap: calc(var(--spacing) * 5);
+  }
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
+  }
+  .gap-12 {
+    gap: calc(var(--spacing) * 12);
+  }
+  .space-y-12 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 12) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 12) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .rounded-md {
+    border-radius: var(--radius-md);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
+  .border-b-0 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 0px;
+  }
+  .border-l {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
+  }
+  .border-l-2 {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 2px;
+  }
+  .border-neuro-gold {
+    border-color: var(--color-neuro-gold);
+  }
+  .border-neuro-gold\/60 {
+    border-color: color-mix(in srgb, #d4af37 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-neuro-gold) 60%, transparent);
+    }
+  }
+  .border-neuro-line {
+    border-color: var(--color-neuro-line);
+  }
+  .border-neuro-line-dark {
+    border-color: var(--color-neuro-line-dark);
+  }
+  .bg-neuro-deep {
+    background-color: var(--color-neuro-deep);
+  }
+  .bg-neuro-gold\/15 {
+    background-color: color-mix(in srgb, #d4af37 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-neuro-gold) 15%, transparent);
+    }
+  }
+  .bg-neuro-ivory {
+    background-color: var(--color-neuro-ivory);
+  }
+  .object-contain {
+    object-fit: contain;
+  }
+  .object-cover {
+    object-fit: cover;
+  }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
+  .p-5 {
+    padding: calc(var(--spacing) * 5);
+  }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+  .px-5 {
+    padding-inline: calc(var(--spacing) * 5);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
+  .py-16 {
+    padding-block: calc(var(--spacing) * 16);
+  }
+  .py-20 {
+    padding-block: calc(var(--spacing) * 20);
+  }
+  .pt-8 {
+    padding-top: calc(var(--spacing) * 8);
+  }
+  .pb-10 {
+    padding-bottom: calc(var(--spacing) * 10);
+  }
+  .pl-4 {
+    padding-left: calc(var(--spacing) * 4);
+  }
+  .pl-5 {
+    padding-left: calc(var(--spacing) * 5);
+  }
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .text-4xl {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+  .text-5xl {
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
+  }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .leading-7 {
+    --tw-leading: calc(var(--spacing) * 7);
+    line-height: calc(var(--spacing) * 7);
+  }
+  .leading-relaxed {
+    --tw-leading: var(--leading-relaxed);
+    line-height: var(--leading-relaxed);
+  }
+  .leading-tight {
+    --tw-leading: var(--leading-tight);
+    line-height: var(--leading-tight);
+  }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .font-extrabold {
+    --tw-font-weight: var(--font-weight-extrabold);
+    font-weight: var(--font-weight-extrabold);
+  }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  .whitespace-nowrap {
+    white-space: nowrap;
+  }
+  .text-neuro-gold {
+    color: var(--color-neuro-gold);
+  }
+  .text-neuro-gold-ink {
+    color: var(--color-neuro-gold-ink);
+  }
+  .text-neuro-gold\/80 {
+    color: color-mix(in srgb, #d4af37 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-neuro-gold) 80%, transparent);
+    }
+  }
+  .text-neuro-ink {
+    color: var(--color-neuro-ink);
+  }
+  .text-neuro-muted {
+    color: var(--color-neuro-muted);
+  }
+  .text-neuro-navy {
+    color: var(--color-neuro-navy);
+  }
+  .text-neuro-on-dark {
+    color: var(--color-neuro-on-dark);
+  }
+  .text-neuro-on-dark-muted {
+    color: var(--color-neuro-on-dark-muted);
+  }
+  .text-neuro-soft {
+    color: var(--color-neuro-soft);
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .shadow-lg {
+    --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-sm {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .group-open\:rotate-45 {
+    &:is(:where(.group):is([open], :popover-open, :open) *) {
+      rotate: 45deg;
+    }
+  }
+  .hover\:text-neuro-cyan {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neuro-cyan);
+      }
+    }
+  }
+  .hover\:text-neuro-gold {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neuro-gold);
+      }
+    }
+  }
+  .hover\:text-neuro-on-dark {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neuro-on-dark);
+      }
+    }
+  }
+  .focus\:not-sr-only {
+    &:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      clip-path: none;
+      white-space: normal;
+    }
+  }
+  .focus\:absolute {
+    &:focus {
+      position: absolute;
+    }
+  }
+  .focus\:top-4 {
+    &:focus {
+      top: calc(var(--spacing) * 4);
+    }
+  }
+  .focus\:left-4 {
+    &:focus {
+      left: calc(var(--spacing) * 4);
+    }
+  }
+  .focus\:z-\[100\] {
+    &:focus {
+      z-index: 100;
+    }
+  }
+  .focus\:bg-neuro-paper {
+    &:focus {
+      background-color: var(--color-neuro-paper);
+    }
+  }
+  .focus\:px-4 {
+    &:focus {
+      padding-inline: calc(var(--spacing) * 4);
+    }
+  }
+  .focus\:py-2 {
+    &:focus {
+      padding-block: calc(var(--spacing) * 2);
+    }
+  }
+  .focus\:font-semibold {
+    &:focus {
+      --tw-font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+  .focus\:text-neuro-ink {
+    &:focus {
+      color: var(--color-neuro-ink);
+    }
+  }
+  .focus\:outline-none {
+    &:focus {
+      --tw-outline-style: none;
+      outline-style: none;
+    }
+  }
+  .focus-visible\:ring-2 {
+    &:focus-visible {
+      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  .focus-visible\:ring-neuro-gold {
+    &:focus-visible {
+      --tw-ring-color: var(--color-neuro-gold);
+    }
+  }
+  .focus-visible\:outline-none {
+    &:focus-visible {
+      --tw-outline-style: none;
+      outline-style: none;
+    }
+  }
+  .motion-safe\:scroll-smooth {
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+  .sm\:block {
+    @media (width >= 40rem) {
+      display: block;
+    }
+  }
+  .sm\:grid-cols-2 {
+    @media (width >= 40rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .sm\:flex-row {
+    @media (width >= 40rem) {
+      flex-direction: row;
+    }
+  }
+  .sm\:items-center {
+    @media (width >= 40rem) {
+      align-items: center;
+    }
+  }
+  .sm\:justify-between {
+    @media (width >= 40rem) {
+      justify-content: space-between;
+    }
+  }
+  .sm\:px-6 {
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 6);
+    }
+  }
+  .sm\:py-28 {
+    @media (width >= 40rem) {
+      padding-block: calc(var(--spacing) * 28);
+    }
+  }
+  .sm\:text-5xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-5xl);
+      line-height: var(--tw-leading, var(--text-5xl--line-height));
+    }
+  }
+  .md\:flex {
+    @media (width >= 48rem) {
+      display: flex;
+    }
+  }
+  .md\:hidden {
+    @media (width >= 48rem) {
+      display: none;
+    }
+  }
+  .md\:grid-cols-\[minmax\(0\,1fr\)_auto\] {
+    @media (width >= 48rem) {
+      grid-template-columns: minmax(0,1fr) auto;
+    }
+  }
+  .md\:items-start {
+    @media (width >= 48rem) {
+      align-items: flex-start;
+    }
+  }
+  .lg\:col-span-3 {
+    @media (width >= 64rem) {
+      grid-column: span 3 / span 3;
+    }
+  }
+  .lg\:col-span-5 {
+    @media (width >= 64rem) {
+      grid-column: span 5 / span 5;
+    }
+  }
+  .lg\:col-start-7 {
+    @media (width >= 64rem) {
+      grid-column-start: 7;
+    }
+  }
+  .lg\:grid-cols-3 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .lg\:grid-cols-12 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+  .lg\:text-base {
+    @media (width >= 64rem) {
+      font-size: var(--text-base);
+      line-height: var(--tw-leading, var(--text-base--line-height));
+    }
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+body {
+  background: radial-gradient(circle at 16% 9rem, rgba(0, 180, 216, 0.12), transparent 26rem), linear-gradient(180deg, #061832 0, #08234a 32rem, #e7eef3 32rem, #f4f7f9 100%);
+  color: var(--color-neuro-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body::selection {
+  background: var(--color-neuro-gold);
+  color: var(--color-neuro-deep);
+}
+.neuro-shell {
+  margin-inline: auto;
+  max-width: 76rem;
+  padding-inline: 1.5rem;
+  width: 100%;
+}
+.neuro-serif {
+  font-family: var(--font-serif);
+  font-weight: 750;
+  letter-spacing: 0;
+}
+.neuro-prose {
+  color: var(--color-neuro-muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+.neuro-prose p + p {
+  margin-top: 1.25rem;
+}
+.neuro-section {
+  overflow: hidden;
+  padding: clamp(5rem, 8vw, 7.4rem) 1.25rem;
+  position: relative;
+}
+.neuro-section--mist, .neuro-section--bluewash {
+  background: radial-gradient(circle at 12% 18%, rgba(0, 180, 216, 0.16), transparent 20rem), linear-gradient(180deg, #dce8ef 0%, #eff5f8 100%);
+}
+.neuro-section--paper {
+  background: linear-gradient(180deg, #eaf3f7 0%, #dbe9f0 100%);
+}
+.neuro-section--deep, .neuro-dark-band {
+  background: radial-gradient(circle at 82% 18%, rgba(0, 180, 216, 0.22), transparent 24rem), linear-gradient(135deg, rgba(11, 95, 118, 0.24), transparent 38%), var(--color-neuro-deep);
+  color: var(--color-neuro-on-dark);
+}
+.neuro-section--deep p {
+  color: var(--color-neuro-on-dark-muted);
+}
+.neuro-section-heading {
+  margin-bottom: 2.4rem;
+  margin-inline: auto;
+  max-width: 48rem;
+  text-align: center;
+}
+.neuro-section-heading--left {
+  margin: 0;
+  max-width: 26rem;
+  text-align: left;
+}
+.neuro-section-heading h2 {
+  color: var(--color-neuro-ink);
+  font-size: clamp(2.4rem, 4vw, 4.8rem);
+  line-height: 1;
+  margin-top: 0;
+}
+.neuro-section--deep .neuro-section-heading h2, .neuro-section--deep h2 {
+  color: var(--color-neuro-on-dark);
+}
+.neuro-section-heading p {
+  color: var(--color-neuro-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-top: 1rem;
+}
+.neuro-eyebrow, .neuro-eyebrow--gold {
+  color: var(--color-neuro-gold-soft);
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.neuro-hero, .neuro-hero--home {
+  background: radial-gradient(circle at 82% 16%, rgba(0, 180, 216, 0.22), transparent 24rem), radial-gradient(circle at 18% 82%, rgba(212, 175, 55, 0.16), transparent 18rem), linear-gradient(135deg, #031026 0%, #06204a 48%, #04142f 100%);
+  color: var(--color-neuro-on-dark);
+  overflow: hidden;
+  position: relative;
+}
+.neuro-hero__image {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+.neuro-hero--about .neuro-hero__image {
+  object-position: 76% center;
+}
+.neuro-hero--events .neuro-hero__image, .neuro-hero--committee .neuro-hero__image, .neuro-hero--join .neuro-hero__image {
+  object-position: 72% center;
+}
+.neuro-hero::before {
+  background: repeating-linear-gradient(168deg, transparent 0 2.4rem, rgba(0, 180, 216, 0.1) 2.45rem, transparent 2.52rem), radial-gradient(ellipse at 50% 100%, rgba(0, 180, 216, 0.16), transparent 58%);
+  content: "";
+  inset: 0;
+  opacity: 0.72;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+.neuro-hero::after {
+  background: linear-gradient(180deg, transparent 0%, rgba(2, 17, 43, 0) 72%, rgba(2, 17, 43, 0.78) 100%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+.neuro-hero__inner {
+  margin: 0 auto;
+  max-width: 90rem;
+  padding: clamp(3rem, 5vw, 5.2rem) 1.5rem clamp(2.4rem, 5vw, 4rem);
+  position: relative;
+  z-index: 2;
+}
+.neuro-hero-grid, .neuro-subhero-grid {
+  align-items: center;
+  display: grid;
+  gap: clamp(2rem, 4vw, 4rem);
+  grid-template-columns: minmax(28rem, 0.82fr) minmax(30rem, 1.05fr);
+  position: relative;
+  z-index: 2;
+}
+.neuro-subhero-grid {
+  grid-template-columns: minmax(25rem, 0.86fr) minmax(26rem, 0.9fr);
+}
+.neuro-hero-title, .neuro-subhero-copy h1 {
+  color: var(--color-neuro-on-dark);
+  font-size: clamp(3rem, 5.25vw, 5.6rem);
+  line-height: 0.96;
+  margin-top: 1.1rem;
+  max-width: 44rem;
+}
+.neuro-subhero-copy h1 {
+  font-size: clamp(2.9rem, 5vw, 5.15rem);
+}
+.neuro-hero-copy, .neuro-subhero-copy p {
+  border-left: 2px solid rgba(212, 175, 55, 0.54);
+  color: var(--color-neuro-on-dark-muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  margin-top: 1.35rem;
+  max-width: 38rem;
+  padding-left: 1.15rem;
+}
+.neuro-subhero-copy {
+  max-width: 48rem;
+  position: relative;
+  z-index: 2;
+}
+.neuro-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.55rem;
+}
+.neuro-cutout-stage {
+  isolation: isolate;
+  margin: 0;
+  min-height: 24rem;
+  position: relative;
+}
+.neuro-cutout-stage--subhero, .neuro-cutout-stage--subhero-signal {
+  background: linear-gradient(135deg, rgba(8, 35, 74, 0.86), rgba(3, 16, 38, 0.68));
+  border: 1px solid rgba(241, 220, 145, 0.32);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.neuro-cutout-stage--subhero::before {
+  background: radial-gradient(circle at 52% 48%, rgba(0, 180, 216, 0.24), transparent 44%), radial-gradient(circle at 42% 55%, rgba(212, 175, 55, 0.14), transparent 36%);
+  content: "";
+  filter: blur(12px);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.neuro-cutout {
+  display: block;
+  height: auto;
+  position: absolute;
+  transition: filter 420ms ease, transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: auto;
+  will-change: transform;
+  z-index: 1;
+}
+.neuro-cutout--subhero-brain {
+  filter: drop-shadow(0 34px 52px rgba(0, 0, 0, 0.34)) saturate(0.96) contrast(1.04);
+  max-width: min(36rem, 72%);
+  right: 0;
+  top: 3%;
+  transform: rotate(4deg);
+  width: 72%;
+  z-index: 1;
+}
+.neuro-cutout--subhero-signal {
+  bottom: 2%;
+  filter: drop-shadow(0 34px 52px rgba(0, 0, 0, 0.34)) saturate(0.96) contrast(1.04);
+  left: 50%;
+  max-width: min(46rem, 100%);
+  transform: translateX(-50%) rotate(-3deg);
+  width: 100%;
+}
+.neuro-cutout-stage--subhero:hover .neuro-cutout--subhero-brain, .neuro-cutout-stage--subhero-signal:hover .neuro-cutout--subhero-signal {
+  filter: drop-shadow(0 36px 52px rgba(0, 0, 0, 0.26)) saturate(1.08) contrast(1.03);
+}
+.neuro-mission-grid {
+  align-items: start;
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 7rem);
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
+  margin-bottom: 3.5rem;
+}
+.neuro-mission-grid h2 {
+  color: var(--color-neuro-ink);
+  font-size: clamp(2.4rem, 4.7vw, 5.2rem);
+  line-height: 0.98;
+}
+.neuro-mission-grid .neuro-prose, .neuro-section--bluewash .neuro-prose {
+  color: var(--color-neuro-muted);
+}
+.neuro-principles-layout {
+  display: grid;
+  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+}
+.neuro-principles-layout h2 {
+  color: var(--color-neuro-on-dark);
+  font-size: clamp(2.6rem, 4.8vw, 5.4rem);
+  line-height: 0.98;
+}
+.neuro-principles-layout > div:first-child p {
+  border-left: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--color-neuro-on-dark-muted);
+  line-height: 1.85;
+  margin-top: 1.5rem;
+  padding-left: 1.2rem;
+}
+.neuro-principle-rail {
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+}
+.neuro-principle-rail article {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 0.65fr);
+  padding-block: 1.35rem;
+}
+.neuro-principle-rail h3 {
+  color: var(--color-neuro-gold-soft);
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+}
+.neuro-principle-rail p {
+  color: var(--color-neuro-on-dark-muted);
+  line-height: 1.7;
+}
+.neuro-feature-grid {
+  align-items: center;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(18rem, 0.35fr) minmax(0, 0.65fr);
+}
+.neuro-feature-grid--balanced {
+  align-items: start;
+  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(18rem, 0.4fr) minmax(0, 0.6fr);
+}
+.neuro-community-grid {
+  align-items: center;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: minmax(0, 0.56fr) minmax(20rem, 0.44fr);
+}
+.neuro-community-grid h2 {
+  color: var(--color-neuro-on-dark);
+  font-size: clamp(2.5rem, 4vw, 5rem);
+  line-height: 1;
+}
+.neuro-community-grid p {
+  color: var(--color-neuro-on-dark-muted);
+  font-size: 1.04rem;
+  line-height: 1.85;
+  margin-top: 1.3rem;
+}
+.neuro-ledger {
+  border-color: rgba(36, 69, 111, 0.2);
+  border-top: 1px solid var(--color-neuro-line);
+  margin-top: 1.5rem;
+}
+.neuro-ledger--clean {
+  border-color: rgba(7, 22, 45, 0.18);
+  margin-top: 0;
+}
+.neuro-row {
+  border-bottom: 1px solid var(--color-neuro-line);
+  border-color: rgba(36, 69, 111, 0.18);
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: minmax(7rem, 0.28fr) minmax(0, 1fr);
+  padding: 1.25rem 0;
+}
+.neuro-row--activity {
+  grid-template-columns: 4.2rem minmax(0, 1fr);
+  padding-block: 1.3rem;
+}
+.neuro-row--activity h3 {
+  font-size: 1.45rem;
+}
+.neuro-row h3 {
+  color: var(--color-neuro-ink);
+  font-size: 1.45rem;
+}
+.neuro-row p {
+  color: var(--color-neuro-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-top: 0.45rem;
+}
+.neuro-row__meta {
+  color: var(--color-neuro-teal);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+.neuro-empty {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(231, 239, 244, 0.78));
+  border: 1px solid rgba(36, 69, 111, 0.2);
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+}
+.neuro-empty h3 {
+  color: var(--color-neuro-ink);
+  font-size: 1.45rem;
+}
+.neuro-empty p {
+  color: var(--color-neuro-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-top: 0.5rem;
+}
+.neuro-link-panel {
+  border-top: 1px solid var(--color-neuro-line);
+  border-color: rgba(36, 69, 111, 0.2);
+}
+.neuro-link-panel--dark {
+  border-color: rgba(212, 175, 55, 0.34);
+}
+.neuro-link-row {
+  align-items: center;
+  border-bottom: 1px solid var(--color-neuro-line);
+  border-color: rgba(36, 69, 111, 0.18);
+  color: var(--color-neuro-navy);
+  display: flex;
+  font-weight: 850;
+  justify-content: space-between;
+  padding-block: 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+.neuro-link-row span[aria-hidden="true"] {
+  color: var(--color-neuro-gold-ink);
+}
+.neuro-link-row:hover {
+  color: var(--color-neuro-teal);
+  padding-left: 0.35rem;
+}
+.neuro-link-row:last-child {
+  border-bottom: 0;
+}
+.neuro-link-panel--dark .neuro-link-row {
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--color-neuro-on-dark);
+}
+.neuro-link-panel--dark .neuro-link-row:hover {
+  color: var(--color-neuro-gold-soft);
+}
+.neuro-section--deep .neuro-link-row {
+  border-color: rgba(212, 175, 55, 0.28);
+  color: var(--color-neuro-on-dark);
+}
+.neuro-section--deep .neuro-link-row:hover {
+  color: var(--color-neuro-gold-soft);
+}
+.neuro-faq-list {
+  border-top: 1px solid var(--color-neuro-line);
+  border-color: rgba(36, 69, 111, 0.2);
+}
+.neuro-faq-list details {
+  background: rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid var(--color-neuro-line);
+  border-color: rgba(36, 69, 111, 0.18);
+  padding-inline: 0;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+.neuro-atlas-people-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.neuro-atlas-person {
+  border-top: 1px solid rgba(212, 175, 55, 0.54);
+  padding-top: 0.85rem;
+}
+.neuro-atlas-person > :first-child {
+  border: 1px solid rgba(36, 69, 111, 0.2);
+  border-radius: 8px;
+  box-shadow: none;
+}
+.neuro-dark-band {
+  background: radial-gradient(circle at 80% 18%, rgba(0, 180, 216, 0.2), transparent 22rem), linear-gradient(135deg, rgba(11, 95, 118, 0.24), transparent 36%), var(--color-neuro-deep);
+}
+.neuro-btn-primary, .neuro-btn-secondary, .neuro-btn-dark {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 850;
+  justify-content: center;
+  letter-spacing: 0;
+  min-height: 3rem;
+  padding: 0.82rem 1.35rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.neuro-btn-primary {
+  background: var(--color-neuro-gold);
+  border: 1px solid var(--color-neuro-gold);
+  box-shadow: 0 12px 26px rgba(212, 175, 55, 0.22);
+  color: var(--color-neuro-deep);
+}
+.neuro-btn-primary:hover {
+  background: var(--color-neuro-gold-soft);
+  border-color: var(--color-neuro-gold-soft);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 32px rgba(212, 175, 55, 0.28);
+}
+.neuro-btn-secondary {
+  background: rgba(0, 180, 216, 0.1);
+  border: 1px solid rgba(0, 180, 216, 0.66);
+  color: var(--color-neuro-on-dark);
+}
+.neuro-section--paper .neuro-btn-secondary, .neuro-section--mist .neuro-btn-secondary, .neuro-section--bluewash .neuro-btn-secondary, .neuro-empty .neuro-btn-secondary {
+  background: rgba(0, 180, 216, 0.08);
+  color: var(--color-neuro-navy);
+}
+.neuro-btn-secondary:hover {
+  background: rgba(0, 180, 216, 0.18);
+  border-color: var(--color-neuro-cyan);
+  color: var(--color-neuro-on-dark);
+  transform: translateY(-2px) scale(1.02);
+}
+.neuro-section--paper .neuro-btn-secondary:hover, .neuro-section--mist .neuro-btn-secondary:hover, .neuro-section--bluewash .neuro-btn-secondary:hover, .neuro-empty .neuro-btn-secondary:hover {
+  color: var(--color-neuro-teal);
+}
+.neuro-btn-dark {
+  background: rgba(255, 248, 232, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.42);
+  color: var(--color-neuro-on-dark);
+}
+.neuro-btn-dark:hover {
+  background: var(--color-neuro-gold);
+  border-color: var(--color-neuro-gold);
+  color: var(--color-neuro-deep);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(212, 175, 55, 0.22);
+}
+.neuro-btn-primary:focus-visible, .neuro-btn-secondary:focus-visible, .neuro-btn-dark:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--color-neuro-gold);
+  outline-offset: 3px;
+}
+.reveal {
+  opacity: 1;
+}
+.js-enabled .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: none;
+}
+.js-enabled .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.js-enabled .neuro-hero .reveal {
+  opacity: 1;
+  transform: none;
+}
+.neuro-site-nav {
+  background: #03172b;
+  border-bottom: 1px solid rgba(244, 246, 248, 0.12);
+  box-shadow: 0 18px 44px rgba(1, 10, 28, 0.22);
+  color: var(--color-neuro-on-dark);
+}
+.neuro-site-nav__brand {
+  color: var(--color-neuro-on-dark);
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 0.9;
+  max-width: 9rem;
+  text-transform: uppercase;
+  white-space: normal;
+}
+.neuro-site-nav a[aria-current="page"] {
+  color: var(--color-neuro-gold-soft);
+}
+.society-assistant {
+  --assistant-accent: var(--color-neuro-gold) !important;
+  --assistant-accent-text: var(--color-neuro-deep) !important;
+  --assistant-surface: var(--color-neuro-paper) !important;
+  --assistant-text: var(--color-neuro-ink) !important;
+  --assistant-muted: var(--color-neuro-muted) !important;
+  --assistant-border: var(--color-neuro-line) !important;
+}
+.society-assistant .assistant-toggle {
+  background: var(--color-neuro-deep) !important;
+  border: 1px solid var(--color-neuro-gold) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 14px 34px rgba(8, 20, 45, 0.22) !important;
+  color: var(--color-neuro-gold) !important;
+}
+.society-assistant .assistant-toggle:hover {
+  background: var(--color-neuro-gold) !important;
+  color: var(--color-neuro-deep) !important;
+}
+.society-assistant .assistant-panel {
+  border: 1px solid var(--color-neuro-gold) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 22px 54px rgba(8, 20, 45, 0.22) !important;
+}
+.society-assistant .assistant-header {
+  background: var(--color-neuro-deep) !important;
+  border-bottom: 1px solid var(--color-neuro-gold) !important;
+  border-radius: 16px 16px 0 0 !important;
+  color: var(--color-neuro-on-dark) !important;
+}
+.society-assistant .assistant-header h2 {
+  color: var(--color-neuro-on-dark) !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 750 !important;
+}
+.society-assistant .assistant-eyebrow {
+  color: var(--color-neuro-gold) !important;
+  letter-spacing: 0 !important;
+}
+.neuro-home-hero {
+  background: radial-gradient(circle at 73% 16%, rgba(0, 180, 216, 0.17), transparent 26rem), radial-gradient(circle at 8% 72%, rgba(0, 180, 216, 0.1), transparent 22rem), linear-gradient(118deg, #031426 0%, #062944 54%, #03192f 100%);
+  color: var(--color-neuro-on-dark);
+  overflow: hidden;
+  position: relative;
+}
+.neuro-home-hero::before {
+  background: repeating-radial-gradient(ellipse at 75% 100%, transparent 0 1.25rem, rgba(0, 180, 216, 0.13) 1.3rem 1.34rem, transparent 1.39rem 2.35rem);
+  content: "";
+  height: 22rem;
+  opacity: 0.62;
+  pointer-events: none;
+  position: absolute;
+  right: -7rem;
+  top: -5rem;
+  transform: rotate(-9deg);
+  width: 50rem;
+}
+.neuro-home-hero::after {
+  background: linear-gradient(90deg, transparent, rgba(0, 180, 216, 0.3), transparent);
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  opacity: 0.7;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+.neuro-home-hero__inner {
+  margin: 0 auto;
+  max-width: 80rem;
+  min-height: 43rem;
+  padding: 4.6rem 3rem 4rem;
+  position: relative;
+}
+.neuro-home-hero__copy {
+  max-width: 24rem;
+  position: relative;
+  z-index: 2;
+}
+.neuro-home-kicker {
+  color: var(--color-neuro-gold);
+  display: block;
+  font-size: 0.67rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.neuro-home-kicker--blue {
+  color: var(--color-neuro-teal);
+}
+.neuro-home-hero h1 {
+  color: var(--color-neuro-on-dark);
+  font-size: clamp(3.8rem, 5.4vw, 5.8rem);
+  line-height: 0.9;
+  margin: 1rem 0 0;
+}
+.neuro-home-hero h1 span {
+  color: var(--color-neuro-gold);
+}
+.neuro-home-title-rule {
+  border-top: 1px solid var(--color-neuro-gold);
+  margin-top: 1.25rem;
+  position: relative;
+  width: 5.5rem;
+}
+.neuro-home-title-rule::after {
+  background: var(--color-neuro-gold);
+  border-radius: 999px;
+  content: "";
+  height: 0.45rem;
+  left: 2.25rem;
+  position: absolute;
+  top: -0.27rem;
+  width: 0.45rem;
+}
+.neuro-home-hero__copy > p:not(.neuro-home-open-note) {
+  color: rgba(244, 246, 248, 0.88);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-top: 1.55rem;
+  max-width: 24rem;
+}
+.neuro-home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.25rem;
+}
+.neuro-home-btn {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  display: inline-flex;
+  font-size: 0.68rem;
+  font-weight: 850;
+  gap: 0.65rem;
+  justify-content: space-between;
+  letter-spacing: 0.08em;
+  min-height: 2.7rem;
+  padding: 0.65rem 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.neuro-home-btn--gold {
+  background: var(--color-neuro-gold);
+  border-color: var(--color-neuro-gold);
+  color: #07162d;
+}
+.neuro-home-btn--gold:hover {
+  background: var(--color-neuro-gold-soft);
+  border-color: var(--color-neuro-gold-soft);
+}
+.neuro-home-btn--outline {
+  border-color: var(--color-neuro-cyan);
+  color: var(--color-neuro-cyan);
+}
+.neuro-home-btn--outline:hover {
+  background: rgba(0, 180, 216, 0.12);
+}
+.neuro-home-btn--blue {
+  border-color: var(--color-neuro-teal);
+  color: var(--color-neuro-teal);
+  margin-top: 1.5rem;
+}
+.neuro-home-btn--blue:hover {
+  background: rgba(11, 95, 118, 0.08);
+}
+.neuro-home-open-note {
+  align-items: center;
+  color: rgba(244, 246, 248, 0.9);
+  display: flex;
+  font-size: 0.78rem;
+  gap: 0.7rem;
+  margin-top: 1.8rem;
+}
+.neuro-home-open-note::before {
+  border: 1px solid var(--color-neuro-cyan);
+  border-radius: 999px;
+  content: "";
+  height: 1.15rem;
+  width: 1.15rem;
+}
+.neuro-home-atlas {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  height: 35rem;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  position: absolute;
+  right: 0.5rem;
+  top: 1.15rem;
+  width: min(69%, 54rem);
+}
+.neuro-home-atlas__grid {
+  display: block;
+  height: 100%;
+}
+.neuro-home-atlas__brain {
+  inset: 0;
+  overflow: visible;
+  position: absolute;
+}
+.neuro-home-atlas__brain::after {
+  background: radial-gradient(circle at 57% 48%, transparent 23%, rgba(3, 19, 43, 0.22) 72%, rgba(3, 19, 43, 0.8) 100%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.neuro-home-atlas__brain img {
+  filter: saturate(1.12) contrast(1.12) brightness(1.1);
+  height: 100%;
+  object-fit: cover;
+  object-position: 56% 50%;
+  width: 100%;
+}
+.neuro-home-atlas__steps {
+  display: grid;
+  gap: 0.8rem;
+  left: 1rem;
+  padding: 0;
+  position: absolute;
+  top: 8.8rem;
+  width: 12.8rem;
+  z-index: 3;
+}
+.neuro-home-atlas-step {
+  background: rgba(3, 22, 46, 0.86);
+  border: 1px solid rgba(0, 180, 216, 0.58);
+  border-radius: 6px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+  color: var(--color-neuro-on-dark);
+  display: block;
+  min-height: 0;
+  padding: 0.8rem 0.9rem;
+  text-decoration: none;
+}
+.neuro-home-atlas-step:hover {
+  border-color: var(--color-neuro-cyan);
+}
+.neuro-home-atlas-step strong {
+  color: var(--color-neuro-gold-soft);
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+.neuro-home-atlas-step small {
+  color: rgba(244, 246, 248, 0.78);
+  display: block;
+  font-size: 0.7rem;
+  line-height: 1.42;
+  margin-top: 0.28rem;
+}
+.neuro-home-event-strip {
+  align-items: center;
+  background: rgba(3, 20, 43, 0.94);
+  border: 1px solid rgba(225, 239, 246, 0.78);
+  border-radius: 8px;
+  bottom: 4.4rem;
+  color: var(--color-neuro-on-dark);
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 2.8rem 8.7rem minmax(0, 1fr) auto;
+  min-height: 5.25rem;
+  padding: 0.7rem 1rem;
+  position: absolute;
+  right: 2rem;
+  text-decoration: none;
+  width: min(58%, 44rem);
+  z-index: 4;
+}
+.neuro-home-event-strip__mark, .neuro-home-action-rail__index {
+  align-items: center;
+  border: 1px solid var(--color-neuro-gold);
+  border-radius: 999px;
+  color: var(--color-neuro-gold-soft);
+  display: inline-flex;
+  font-size: 0.58rem;
+  font-weight: 850;
+  height: 2.25rem;
+  justify-content: center;
+  width: 2.25rem;
+}
+.neuro-home-event-strip strong {
+  color: var(--color-neuro-cyan);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.neuro-home-event-strip__message {
+  border-left: 1px solid rgba(244, 246, 248, 0.24);
+  color: rgba(244, 246, 248, 0.9);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  padding-left: 0.9rem;
+}
+.neuro-home-event-strip__link {
+  color: var(--color-neuro-cyan);
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.neuro-home-pathways {
+  background: radial-gradient(circle at 20% 0%, rgba(0, 180, 216, 0.14), transparent 18rem), linear-gradient(135deg, #04192e, #062a45 60%, #04192e);
+  color: var(--color-neuro-on-dark);
+  overflow: hidden;
+  padding: 6.5rem 3rem 3.9rem;
+}
+.neuro-home-pathways__inner {
+  margin: 0 auto;
+  max-width: 80rem;
+}
+.neuro-home-pathways__heading {
+  margin: 0 auto;
+  max-width: 40rem;
+  text-align: center;
+}
+.neuro-home-pathways h2 {
+  color: var(--color-neuro-on-dark);
+  font-size: clamp(2.15rem, 3.6vw, 3.35rem);
+  line-height: 1;
+  margin-top: 0.75rem;
+}
+.neuro-home-pathways .neuro-home-title-rule {
+  margin: 1.25rem auto 0;
+}
+.neuro-home-pathway-track {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: 1.85rem;
+  padding-top: 0.15rem;
+  position: relative;
+}
+.neuro-home-pathway-track::before {
+  border-top: 1px dashed rgba(212, 175, 55, 0.72);
+  content: "";
+  left: 5%;
+  position: absolute;
+  right: 5%;
+  top: 2.25rem;
+}
+.neuro-home-pathway {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.neuro-home-pathway__mark {
+  align-items: center;
+  background: rgba(4, 27, 50, 0.96);
+  border: 1px solid var(--color-neuro-gold);
+  border-radius: 999px;
+  color: var(--color-neuro-cyan);
+  display: inline-flex;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  height: 4.3rem;
+  justify-content: center;
+  overflow: visible;
+  width: 4.3rem;
+}
+.neuro-home-pathway h3 {
+  color: var(--color-neuro-gold-soft);
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 0.8rem;
+}
+.neuro-home-pathway p {
+  color: rgba(244, 246, 248, 0.87);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  margin: 0.35rem auto 0;
+  max-width: 9.5rem;
+}
+.neuro-home-activities {
+  background: radial-gradient(circle at 4% 76%, rgba(0, 180, 216, 0.16), transparent 22rem), linear-gradient(135deg, #eef5f6 0%, #dcecf1 100%);
+  padding: 4.35rem 3rem 3.3rem;
+}
+.neuro-home-activities__inner {
+  align-items: start;
+  display: grid;
+  gap: 3.4rem;
+  grid-template-columns: minmax(13rem, 0.34fr) minmax(0, 0.66fr);
+  margin: 0 auto;
+  max-width: 80rem;
+}
+.neuro-home-activities__intro {
+  padding-top: 1rem;
+}
+.neuro-home-activities h2 {
+  color: var(--color-neuro-ink);
+  font-size: clamp(2.25rem, 3.2vw, 3.1rem);
+  line-height: 1;
+  margin-top: 0.7rem;
+}
+.neuro-home-activities .neuro-home-title-rule {
+  margin-top: 1.25rem;
+}
+.neuro-home-activities__intro > p {
+  color: var(--color-neuro-muted);
+  font-size: 0.88rem;
+  line-height: 1.66;
+  margin-top: 1.55rem;
+  max-width: 15rem;
+}
+.neuro-home-activity-list {
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid rgba(191, 145, 54, 0.66);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.neuro-home-activity {
+  align-items: center;
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 2.8rem minmax(13rem, 1fr) minmax(11rem, 16rem) 2.4rem;
+  min-height: 7.1rem;
+  padding: 0.65rem 1rem;
+}
+.neuro-home-activity + .neuro-home-activity {
+  border-top: 1px solid rgba(191, 145, 54, 0.48);
+}
+.neuro-home-activity__number {
+  align-items: center;
+  border: 1px solid var(--color-neuro-teal);
+  border-radius: 999px;
+  color: var(--color-neuro-teal);
+  display: inline-flex;
+  font-size: 0.6rem;
+  font-weight: 850;
+  height: 2.3rem;
+  justify-content: center;
+  width: 2.3rem;
+}
+.neuro-home-activity__copy h3 {
+  color: var(--color-neuro-ink);
+  font-size: 1.08rem;
+  line-height: 1.15;
+}
+.neuro-home-activity p {
+  color: var(--color-neuro-muted);
+  font-size: 0.69rem;
+  line-height: 1.42;
+  margin-top: 0.35rem;
+  max-width: 18rem;
+}
+.neuro-home-activity img {
+  border-radius: 6px;
+  display: block;
+  height: 5.45rem;
+  object-fit: cover;
+  width: 100%;
+}
+.neuro-home-activity__arrow {
+  align-items: center;
+  border: 1px solid var(--color-neuro-teal);
+  border-radius: 999px;
+  color: var(--color-neuro-teal);
+  display: inline-flex;
+  font-size: 0.86rem;
+  height: 2.15rem;
+  justify-content: center;
+  text-decoration: none;
+  width: 2.15rem;
+}
+.neuro-home-activity__arrow:hover {
+  background: rgba(11, 95, 118, 0.1);
+}
+.neuro-home-action-rail {
+  background: linear-gradient(135deg, #edf5f7, #dcecf1);
+  padding: 0 3rem 3.4rem;
+}
+.neuro-home-action-rail__inner {
+  background: linear-gradient(108deg, #031a31, #062d4d);
+  border: 1px solid rgba(212, 175, 55, 0.34);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 74rem;
+  overflow: hidden;
+}
+.neuro-home-action-rail__item {
+  align-items: flex-start;
+  color: var(--color-neuro-on-dark);
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 2.25rem 1fr;
+  min-height: 7.45rem;
+  padding: 1.25rem 1.4rem;
+  text-decoration: none;
+}
+.neuro-home-action-rail__item + .neuro-home-action-rail__item {
+  border-left: 1px solid rgba(244, 246, 248, 0.2);
+}
+.neuro-home-action-rail__item strong, .neuro-home-action-rail__item small, .neuro-home-action-rail__item em {
+  display: block;
+}
+.neuro-home-action-rail__item strong {
+  color: var(--color-neuro-on-dark);
+  font-size: 0.86rem;
+}
+.neuro-home-action-rail__item small {
+  color: rgba(244, 246, 248, 0.74);
+  font-size: 0.68rem;
+  line-height: 1.45;
+  margin-top: 0.25rem;
+}
+.neuro-home-action-rail__item em {
+  color: var(--color-neuro-gold-soft);
+  font-size: 0.67rem;
+  font-style: normal;
+  font-weight: 850;
+  margin-top: 0.55rem;
+}
+@media (max-width: 1180px) {
+  .neuro-hero-grid, .neuro-subhero-grid {
+    grid-template-columns: 1fr;
+  }
+  .neuro-home-hero__inner {
+    min-height: auto;
+  }
+  .neuro-home-atlas {
+    height: 31rem;
+    width: 100%;
+  }
+  .neuro-home-event-strip {
+    bottom: auto;
+    margin-top: -1rem;
+    width: min(92%, 46rem);
+  }
+  .neuro-home-pathway-track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 2rem;
+  }
+  .neuro-home-pathway-track::before {
+    display: none;
+  }
+  .neuro-home-activities__inner {
+    grid-template-columns: 1fr;
+  }
+  .neuro-home-activities__intro > p {
+    max-width: 32rem;
+  }
+  .neuro-atlas-people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .neuro-shell {
+    padding-inline: 1.1rem;
+  }
+  .neuro-hero__inner {
+    padding-block: 3.4rem 3rem;
+  }
+  .neuro-hero-grid, .neuro-subhero-grid, .neuro-feature-grid, .neuro-community-grid, .neuro-mission-grid, .neuro-principles-layout {
+    grid-template-columns: 1fr;
+  }
+  .neuro-hero-title, .neuro-subhero-copy h1 {
+    font-size: clamp(2.35rem, 12vw, 3.45rem);
+    max-width: 100%;
+  }
+  .neuro-hero-copy, .neuro-subhero-copy p {
+    font-size: 0.98rem;
+  }
+  .neuro-cutout-stage--subhero, .neuro-cutout-stage--subhero-signal {
+    min-height: 18rem;
+  }
+  .neuro-section {
+    padding-block: 5rem;
+  }
+  .neuro-row, .neuro-principle-rail article {
+    grid-template-columns: 1fr;
+  }
+  .neuro-row--activity {
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .neuro-hero__inner {
+    padding: 2.6rem 1.1rem 2.8rem;
+  }
+  .neuro-cutout-stage--subhero {
+    bottom: -2rem;
+    left: 16%;
+    min-height: auto;
+    opacity: 0.35;
+    position: absolute;
+    right: -10rem;
+    top: 2rem;
+    z-index: 1;
+  }
+  .neuro-cutout-stage--subhero-signal {
+    left: 34%;
+    opacity: 0.16;
+    right: -16rem;
+    top: 8rem;
+  }
+  .neuro-cutout-stage--subhero-signal .neuro-cutout--subhero-signal {
+    bottom: auto;
+    left: 58%;
+    top: 0;
+    width: 78%;
+  }
+  .neuro-cutout--subhero-brain {
+    max-width: none;
+    width: 62%;
+  }
+  .neuro-home-hero__inner, .neuro-home-pathways, .neuro-home-activities, .neuro-home-action-rail {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+  .neuro-home-hero__inner {
+    padding-top: 3.2rem;
+  }
+  .neuro-home-hero h1 {
+    font-size: clamp(3.25rem, 16vw, 4.25rem);
+  }
+  .neuro-home-atlas {
+    height: 27rem;
+    min-height: 0;
+    margin-top: 1.1rem;
+  }
+  .neuro-home-atlas__brain img {
+    object-position: 60% 50%;
+  }
+  .neuro-home-atlas__steps {
+    left: -0.25rem;
+    top: 12.5rem;
+    width: min(75%, 15rem);
+  }
+  .neuro-home-event-strip {
+    margin-top: 0.25rem;
+    width: 100%;
+  }
+  .neuro-home-pathways {
+    padding-top: 4.8rem;
+  }
+  .neuro-home-pathway-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .neuro-home-activity {
+    grid-template-columns: 2.45rem 1fr 2.2rem;
+    padding: 0.85rem;
+  }
+  .neuro-home-activity img {
+    grid-column: 2 / 4;
+    height: 9rem;
+  }
+  .neuro-home-action-rail__inner {
+    grid-template-columns: 1fr;
+  }
+  .neuro-home-action-rail__item + .neuro-home-action-rail__item {
+    border-left: 0;
+    border-top: 1px solid rgba(244, 246, 248, 0.2);
+  }
+  .neuro-atlas-people-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.neuro-hero {
+  background-color: #031426;
+  background-image: linear-gradient(90deg, rgba(2, 13, 30, 0.98) 0%, rgba(2, 13, 30, 0.93) 31%, rgba(2, 13, 30, 0.72) 48%, rgba(2, 13, 30, 0.24) 72%, rgba(2, 13, 30, 0.3) 100%), linear-gradient(0deg, rgba(2, 13, 30, 0.7), transparent 44%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: clamp(34rem, 65vh, 43rem);
+}
+.neuro-hero::before {
+  background: linear-gradient(90deg, rgba(2, 13, 30, 0.98) 0%, rgba(2, 13, 30, 0.93) 31%, rgba(2, 13, 30, 0.72) 48%, rgba(2, 13, 30, 0.24) 72%, rgba(2, 13, 30, 0.3) 100%), linear-gradient(0deg, rgba(2, 13, 30, 0.7), transparent 44%), radial-gradient(circle at 16% 44%, rgba(0, 180, 216, 0.13), transparent 22rem);
+  opacity: 1;
+}
+.neuro-hero::after {
+  background: linear-gradient(180deg, transparent 58%, rgba(2, 13, 30, 0.8) 100%);
+}
+.neuro-hero__inner {
+  align-items: center;
+  display: flex;
+  min-height: inherit;
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+}
+.neuro-subhero-grid {
+  display: block;
+  width: min(100%, 42rem);
+}
+.neuro-subhero-copy {
+  max-width: 39rem;
+}
+.neuro-subhero-copy h1 {
+  font-size: clamp(3.2rem, 5.1vw, 5.25rem);
+  max-width: 38rem;
+}
+.neuro-subhero-copy p {
+  max-width: 36rem;
+}
+.neuro-home-hero {
+  background-color: #031426;
+  background-image: linear-gradient(90deg, rgba(2, 13, 30, 0.99) 0%, rgba(2, 13, 30, 0.95) 28%, rgba(2, 13, 30, 0.76) 45%, rgba(2, 13, 30, 0.2) 73%, rgba(2, 13, 30, 0.36) 100%), linear-gradient(0deg, rgba(2, 13, 30, 0.83), transparent 48%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.neuro-home-hero::before {
+  background: linear-gradient(90deg, rgba(2, 13, 30, 0.99) 0%, rgba(2, 13, 30, 0.95) 28%, rgba(2, 13, 30, 0.76) 45%, rgba(2, 13, 30, 0.2) 73%, rgba(2, 13, 30, 0.36) 100%), linear-gradient(0deg, rgba(2, 13, 30, 0.83), transparent 48%), radial-gradient(circle at 14% 46%, rgba(0, 180, 216, 0.16), transparent 23rem);
+  height: auto;
+  inset: 0;
+  opacity: 1;
+  right: auto;
+  top: auto;
+  transform: none;
+  width: auto;
+  z-index: 1;
+}
+.neuro-home-hero::after {
+  z-index: 1;
+}
+.neuro-home-hero__inner {
+  z-index: 2;
+}
+.neuro-home-hero__inner {
+  max-width: 80rem;
+  min-height: 44rem;
+  padding-bottom: 4.4rem;
+  padding-top: clamp(3.25rem, 5vw, 4.5rem);
+}
+.neuro-home-hero__copy {
+  max-width: 33rem;
+}
+.neuro-home-hero__copy > p:not(.neuro-home-open-note) {
+  max-width: 32rem;
+}
+.neuro-home-route-list {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1rem;
+  max-width: 53rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.neuro-home-route {
+  align-items: start;
+  background: rgba(2, 18, 39, 0.78);
+  border: 1px solid rgba(168, 220, 231, 0.28);
+  color: var(--color-neuro-on-dark);
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: 1.95rem minmax(0, 1fr) 1rem;
+  min-height: 6.7rem;
+  padding: 1rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.neuro-home-route + .neuro-home-route {
+  border-left: 0;
+}
+.neuro-home-route:hover {
+  background: rgba(4, 42, 70, 0.92);
+  border-color: var(--color-neuro-cyan);
+}
+.neuro-home-route__index {
+  color: var(--color-neuro-gold-soft);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  padding-top: 0.14rem;
+}
+.neuro-home-route strong, .neuro-home-route small {
+  display: block;
+}
+.neuro-home-route strong {
+  color: var(--color-neuro-gold-soft);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+.neuro-home-route small {
+  color: rgba(244, 246, 248, 0.82);
+  font-size: 0.71rem;
+  line-height: 1.43;
+  margin-top: 0.3rem;
+}
+.neuro-home-route__arrow {
+  color: var(--color-neuro-cyan);
+  font-size: 1rem;
+  padding-top: 0.04rem;
+}
+.neuro-home-event-strip {
+  align-items: center;
+  background: rgba(2, 18, 39, 0.86);
+  border: 1px solid rgba(241, 220, 145, 0.52);
+  bottom: auto;
+  gap: 1rem;
+  grid-template-columns: 2.8rem minmax(0, 1fr) auto;
+  margin-top: 1.2rem;
+  min-height: 4.8rem;
+  padding: 0.8rem 1rem;
+  position: relative;
+  right: auto;
+  width: min(100%, 53rem);
+}
+.neuro-home-event-strip strong {
+  color: var(--color-neuro-gold-soft);
+  display: block;
+}
+.neuro-home-event-strip__message {
+  border-left: 0;
+  display: block;
+  padding-left: 0;
+  padding-top: 0.25rem;
+}
+.neuro-home-event-strip__mark {
+  border-color: rgba(241, 220, 145, 0.7);
+  font-size: 0.55rem;
+}
+@media (max-width: 760px) {
+  .neuro-hero__image {
+    object-position: 67% center;
+  }
+  .neuro-hero--about .neuro-hero__image {
+    object-position: 81% center;
+  }
+  .neuro-hero--events .neuro-hero__image, .neuro-hero--committee .neuro-hero__image, .neuro-hero--join .neuro-hero__image {
+    object-position: 78% center;
+  }
+  .neuro-home-hero .neuro-hero__image {
+    object-position: 38% center;
+  }
+  .neuro-hero {
+    min-height: auto;
+  }
+  .neuro-hero__inner {
+    padding-block: 5rem 4rem;
+  }
+  .neuro-subhero-copy h1 {
+    font-size: clamp(2.35rem, 10vw, 3rem);
+    line-height: 1.02;
+    overflow-wrap: anywhere;
+  }
+  .neuro-home-hero::before {
+    background: linear-gradient(180deg, rgba(2, 13, 30, 0.98) 0%, rgba(2, 13, 30, 0.9) 42%, rgba(2, 13, 30, 0.72) 100%), radial-gradient(circle at 18% 32%, rgba(0, 180, 216, 0.14), transparent 18rem);
+  }
+  .neuro-home-hero__inner {
+    min-height: auto;
+    padding-bottom: 2.5rem;
+    padding-top: 3.8rem;
+  }
+  .neuro-home-hero__copy {
+    max-width: 100%;
+  }
+  .neuro-home-hero h1 {
+    font-size: clamp(3rem, 15vw, 3.8rem);
+  }
+  .neuro-home-route-list {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+  .neuro-home-route + .neuro-home-route {
+    border-left: 1px solid rgba(168, 220, 231, 0.28);
+    border-top: 0;
+  }
+  .neuro-home-route {
+    min-height: 0;
+  }
+  .neuro-home-event-strip {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    width: 100%;
+  }
+  .neuro-home-event-strip__link {
+    grid-column: 2;
+  }
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+    }
+  }
+}
+</style>
+<style>@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(assets/fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuDyYMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(assets/fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuBWYMZg.ttf) format('truetype');
+}
+</style>
+<style>@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/fonts/6NUh8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58nib1603gg7S2nfgRYIcaRyjDg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/fonts/6NUh8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58nib1603gg7S2nfgRYIcUByjDg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(assets/fonts/6NUh8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58nib1603gg7S2nfgRYIcNxyjDg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(assets/fonts/6NUh8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58nib1603gg7S2nfgRYIcHhyjDg.ttf) format('truetype');
+}
+</style>
+<script type="module" src="/@vite/client"></script>
+<script type="module" src="/@id/astro/runtime/client/dev-toolbar/entrypoint.js"></script>
+<script>window.__astro_dev_toolbar__ = {"root":"C:\\Users\\Joshua Knott\\Projects\\surreysocieties\\apps\\neurotech\\","version":"6.4.8","debugInfo":"Astro                    v6.4.8\nNode                     v24.11.1\nSystem                   Windows (x64)\nPackage Manager          npm\nOutput                   server\nAdapter                  @astrojs/vercel\nIntegrations             @astrojs/vercel\n                         @clerk/astro/integration\n                         astro:actions\n                         astro:copy-vercel-output"}</script>
+<script type="module" src="/@id/astro:scripts/page.js"></script>
+<script type="module" src="/@fs/C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro?astro&amp;type=style&amp;index=0&amp;lang.css"></script>
+<script type="module" src="/src/styles/global.css"></script>
+<script id="__CLERK_ASTRO_DATA__" type="application/json">{"tokenType":"session_token","sessionClaims":null,"sessionId":null,"sessionStatus":null,"userId":null,"actor":null,"orgId":null,"orgRole":null,"orgSlug":null,"orgPermissions":null,"factorVerificationAge":null,"isAuthenticated":false}</script>
+<script id="__CLERK_ASTRO_SAFE_VARS__" type="application/json">{"isSatellite":false,"publishableKey":"pk_test_Y3VycmVudC1lYXJ3aWctNTUuY2xlcmsuYWNjb3VudHMuZGV2JA"}</script>
+<script src="https://current-earwig-55.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js" data-clerk-js-script="" async="" crossorigin="anonymous" data-clerk-publishable-key="pk_test_Y3VycmVudC1lYXJ3aWctNTUuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
+</head>
+<body>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neuro-paper focus:text-neuro-ink focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold shadow-lg rounded-md" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="47:290">
+Skip to content
+</a> <nav class="neuro-site-nav sticky top-0 z-50" role="navigation" aria-label="Main navigation" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="51:96"> <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="52:88"> <a href="/" class="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold" aria-label="Surrey Neurotech Society home" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="53:191"> <img src="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fneurotech-logo.png%3ForigWidth%3D1179%26origHeight%3D1179%26origFormat%3Dwebp&w=360&q=100" data-image-component="true" alt="" loading="lazy" decoding="async" width="92" height="92" class="h-11 w-11 shrink-0 rounded-md object-contain" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/astro/components/Image.astro" data-astro-source-loc="53:2"> <span class="neuro-site-nav__brand hidden min-w-0 whitespace-nowrap text-sm font-extrabold uppercase sm:block lg:text-base" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="61:133">
+Surrey Neurotech Society
+</span> </a> <div class="hidden items-center gap-1 md:flex" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="66:54"> <a href="/" aria-current="page" class="rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors bg-neuro-gold/15 text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="77:12"> Home </a><a href="/about" class="rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors text-neuro-on-dark-muted hover:text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="77:12"> About </a><a href="/events" class="rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors text-neuro-on-dark-muted hover:text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="77:12"> Events </a><a href="/committee" class="rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors text-neuro-on-dark-muted hover:text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="77:12"> Committee </a> <a href="/join" class="neuro-btn-primary ml-3 px-5 py-2 text-xs" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="81:74">
+Join the society
+</a> </div> <button id="mobile-menu-btn" class="rounded-md p-3 text-neuro-on-dark-muted transition-colors hover:text-neuro-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold md:hidden" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="92:8"> <svg class="h-5 w-5" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="93:123"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="94:12"></path> </svg> <svg class="hidden h-5 w-5" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="96:126"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18 18 6M6 6l12 12" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="97:12"></path> </svg> </button> </div> <div id="mobile-menu" class="hidden border-t border-neuro-line-dark bg-neuro-deep md:hidden" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="102:98"> <div class="flex flex-col px-5 py-3" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="103:44"> <a href="/" aria-current="page" class="rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors bg-neuro-gold/15 text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="114:12"> Home </a><a href="/about" class="rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors text-neuro-on-dark-muted hover:text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="114:12"> About </a><a href="/events" class="rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors text-neuro-on-dark-muted hover:text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="114:12"> Events </a><a href="/committee" class="rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors text-neuro-on-dark-muted hover:text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="114:12"> Committee </a> <a href="/join" class="neuro-btn-primary mt-3 w-full text-sm" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="118:71">
+Join
+</a> </div> </div> </nav> <main id="main-content" class="flex-1" tabindex="-1" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="125:56">  <section class="neuro-home-hero" aria-labelledby="neuro-hero-title" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="88:71"> <img src="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-home-neural-hero.png%3ForigWidth%3D1813%26origHeight%3D868%26origFormat%3Dpng&w=1800&q=90" srcset="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-home-neural-hero.png%3ForigWidth%3D1813%26origHeight%3D868%26origFormat%3Dpng&w=640&q=90 640w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-home-neural-hero.png%3ForigWidth%3D1813%26origHeight%3D868%26origFormat%3Dpng&w=960&q=90 960w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-home-neural-hero.png%3ForigWidth%3D1813%26origHeight%3D868%26origFormat%3Dpng&w=1440&q=90 1440w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-home-neural-hero.png%3ForigWidth%3D1813%26origHeight%3D868%26origFormat%3Dpng&w=1800&q=90 1800w" data-image-component="true" alt="" aria-hidden="true" sizes="100vw" loading="eager" decoding="async" fetchpriority="high" width="1813" height="868" class="neuro-hero__image" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/astro/components/Image.astro" data-astro-source-loc="53:2"> <div class="neuro-home-hero__inner" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="102:41"> <div class="neuro-home-hero__copy reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="103:49"> <h1 id="neuro-hero-title" class="neuro-serif" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="104:55">
+Neurotech,<br data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="105:22"><span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="105:33">for good.</span> </h1> <div class="neuro-home-title-rule" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="107:10"></div> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="108:12">
+Surrey Neurotech Society is the University of Surrey's first student group dedicated to neurotechnology and the fourth in the UK. We connect students across neuroscience, AI and technology to explore how they can work together to enhance human potential.
+</p> <div class="neuro-home-hero-actions" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="111:46"> <a href="https://surreyunion.org/shop/neurotech-society/d5784e49-49f7-4bd4-a66c-b4f3971103af" target="_blank" rel="noopener noreferrer" class="neuro-home-btn neuro-home-btn--gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="112:129">
+Join the society <span aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="113:55">→</span> </a> <a href="#what-we-explore" class="neuro-home-btn neuro-home-btn--outline" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="115:85">
+Explore focus areas <span aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="116:58">→</span> </a> </div> <p class="neuro-home-open-note" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="119:41">Open to all students. All backgrounds. All levels.</p> </div> <a href="/events" class="neuro-home-event-strip reveal visible" aria-label="View confirmed events" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="122:98"> <span class="neuro-home-event-strip__mark" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="123:71">Now</span> <span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="124:16"><strong data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="124:23">What's happening</strong><span class="neuro-home-event-strip__message" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="124:94">Events will appear once confirmed.</span></span> <span class="neuro-home-event-strip__link" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="125:52">See events →</span> </a> <nav class="neuro-home-route-list reveal visible" aria-label="How to get involved" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="128:82"> <a href="/events" class="neuro-home-route" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="130:56"> <span class="neuro-home-route__index" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="131:70">01</span> <span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:20"><strong data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:27">Learn</strong><small data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:55">Friendly talks, workshops, and explainers.</small></span> <span class="neuro-home-route__arrow" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="133:70">→</span> </a><a href="/committee" class="neuro-home-route" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="130:56"> <span class="neuro-home-route__index" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="131:70">02</span> <span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:20"><strong data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:27">Meet</strong><small data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:55">Connect with curious students from every course.</small></span> <span class="neuro-home-route__arrow" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="133:70">→</span> </a><a href="/about" class="neuro-home-route" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="130:56"> <span class="neuro-home-route__index" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="131:70">03</span> <span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:20"><strong data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:27">Build responsibly</strong><small data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="132:55">Ethics, inclusion, and wellbeing stay at the centre.</small></span> <span class="neuro-home-route__arrow" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="133:70">→</span> </a> </nav> </div> </section> <section id="what-we-explore" class="neuro-home-pathways" aria-labelledby="pathways-title" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="141:94"> <div class="neuro-home-pathways__inner" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="142:45"> <div class="neuro-home-pathways__heading reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="143:56"> <span class="neuro-home-kicker" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="144:41">Many doors into neurotech</span> <h2 id="pathways-title" class="neuro-serif" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="145:53">Different paths. Shared curiosity.</h2> <div class="neuro-home-title-rule" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="146:10"></div> </div> <div class="neuro-home-pathway-track" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="148:45"> <article class="neuro-home-pathway reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="152:56"> <span class="neuro-home-pathway__mark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="153:55"><svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="28" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" strokewidth="1.45" aria-hidden="true" class="lucide lucide-brain" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/.Layout.astro" data-astro-source-loc="26:76">  <path d="M12 18V5" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="7:3"></path> <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="8:3"></path> <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="9:3"></path> <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="10:3"></path> <path d="M18 18a4 4 0 0 0 2-7.464" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="11:3"></path> <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="12:3"></path> <path d="M6 18a4 4 0 0 1-2-7.464" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="13:3"></path> <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Brain.astro" data-astro-source-loc="14:3"></path>  </svg></span> <h3 data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="154:19">Psychology</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="155:18">Understanding minds and behaviour.</p> </article><article class="neuro-home-pathway reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="152:56"> <span class="neuro-home-pathway__mark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="153:55"><svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="28" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" strokewidth="1.45" aria-hidden="true" class="lucide lucide-cpu" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/.Layout.astro" data-astro-source-loc="26:76">  <path d="M12 20v2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="7:3"></path> <path d="M12 2v2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="8:3"></path> <path d="M17 20v2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="9:3"></path> <path d="M17 2v2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="10:3"></path> <path d="M2 12h2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="11:3"></path> <path d="M2 17h2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="12:3"></path> <path d="M2 7h2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="13:3"></path> <path d="M20 12h2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="14:3"></path> <path d="M20 17h2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="15:3"></path> <path d="M20 7h2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="16:3"></path> <path d="M7 20v2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="17:3"></path> <path d="M7 2v2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="18:3"></path> <rect x="4" y="4" width="16" height="16" rx="2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="19:3"></rect> <rect x="8" y="8" width="8" height="8" rx="1" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Cpu.astro" data-astro-source-loc="20:3"></rect>  </svg></span> <h3 data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="154:19">Computing</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="155:18">Algorithms, data and intelligent systems.</p> </article><article class="neuro-home-pathway reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="152:56"> <span class="neuro-home-pathway__mark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="153:55"><svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="28" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" strokewidth="1.45" aria-hidden="true" class="lucide lucide-dna" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/.Layout.astro" data-astro-source-loc="26:76">  <path d="m10 16 1.5 1.5" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="7:3"></path> <path d="m14 8-1.5-1.5" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="8:3"></path> <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="9:3"></path> <path d="m16.5 10.5 1 1" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="10:3"></path> <path d="m17 6-2.891-2.891" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="11:3"></path> <path d="M2 15c6.667-6 13.333 0 20-6" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="12:3"></path> <path d="m20 9 .891.891" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="13:3"></path> <path d="M3.109 14.109 4 15" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="14:3"></path> <path d="m6.5 12.5 1 1" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="15:3"></path> <path d="m7 18 2.891 2.891" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="16:3"></path> <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Dna.astro" data-astro-source-loc="17:3"></path>  </svg></span> <h3 data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="154:19">Bioscience</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="155:18">Cells, systems and the biology of the brain.</p> </article><article class="neuro-home-pathway reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="152:56"> <span class="neuro-home-pathway__mark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="153:55"><svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="28" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" strokewidth="1.45" aria-hidden="true" class="lucide lucide-pencil-ruler" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/.Layout.astro" data-astro-source-loc="26:76">  <path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/PencilRuler.astro" data-astro-source-loc="7:3"></path> <path d="m8 6 2-2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/PencilRuler.astro" data-astro-source-loc="8:3"></path> <path d="m18 16 2-2" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/PencilRuler.astro" data-astro-source-loc="9:3"></path> <path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/PencilRuler.astro" data-astro-source-loc="10:3"></path> <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/PencilRuler.astro" data-astro-source-loc="11:3"></path> <path d="m15 5 4 4" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/PencilRuler.astro" data-astro-source-loc="12:3"></path>  </svg></span> <h3 data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="154:19">Design</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="155:18">Human-centred design and creative solutions.</p> </article><article class="neuro-home-pathway reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="152:56"> <span class="neuro-home-pathway__mark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="153:55"><svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="28" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" strokewidth="1.45" aria-hidden="true" class="lucide lucide-scale" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/.Layout.astro" data-astro-source-loc="26:76">  <path d="M12 3v18" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Scale.astro" data-astro-source-loc="7:3"></path> <path d="m19 8 3 8a5 5 0 0 1-6 0zV7" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Scale.astro" data-astro-source-loc="8:3"></path> <path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Scale.astro" data-astro-source-loc="9:3"></path> <path d="m5 8 3 8a5 5 0 0 1-6 0zV7" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Scale.astro" data-astro-source-loc="10:3"></path> <path d="M7 21h10" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Scale.astro" data-astro-source-loc="11:3"></path>  </svg></span> <h3 data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="154:19">Ethics</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="155:18">Questions of fairness, privacy, consent and impact.</p> </article><article class="neuro-home-pathway reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="152:56"> <span class="neuro-home-pathway__mark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="153:55"><svg xmlns="http://www.w3.org/2000/svg" stroke-width="2" width="28" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" strokewidth="1.45" aria-hidden="true" class="lucide lucide-lightbulb" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/.Layout.astro" data-astro-source-loc="26:76">  <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Lightbulb.astro" data-astro-source-loc="7:3"></path> <path d="M9 18h6" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Lightbulb.astro" data-astro-source-loc="8:3"></path> <path d="M10 22h4" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/lucide-astro/dist/Lightbulb.astro" data-astro-source-loc="9:3"></path>  </svg></span> <h3 data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="154:19">Curious beginners</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="155:18">You don't need experience — just curiosity.</p> </article> </div> </div> </section> <section class="neuro-home-activities" aria-labelledby="activities-title" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="163:77"> <div class="neuro-home-activities__inner" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="164:47"> <div class="neuro-home-activities__intro reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="165:56"> <span class="neuro-home-kicker neuro-home-kicker--blue" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="166:65">What we do together</span> <h2 id="activities-title" class="neuro-serif" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="167:55">Explore. Discuss.<br data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="167:73">Create. Together.</h2> <div class="neuro-home-title-rule" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="168:10"></div> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="169:12">
+We bring big ideas to life through events, projects and community. There's something for everyone, whether you're here to learn, build or just get curious.
+</p> <a href="/events" class="neuro-home-btn neuro-home-btn--blue" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="172:71">See all events <span aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="172:111">→</span></a> </div> <div class="neuro-home-activity-list" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="175:45"> <article class="neuro-home-activity reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="177:55"> <span class="neuro-home-activity__number" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="178:74">01</span> <div class="neuro-home-activity__copy" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="179:52"> <h3 class="neuro-serif" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="180:39">Talks &amp; Events</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="181:18">Expert speakers from academia, startups and industry share insights into emerging developments in neurotech, AI and cognitive science.</p> </div> <img src="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-talks-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90" srcset="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-talks-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=360&q=90 360w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-talks-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=600&q=90 600w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-talks-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=960&q=90 960w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-talks-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90 1440w" data-image-component="true" alt="Students listening to a neurotechnology discussion." sizes="(min-width: 761px) 16rem, calc(100vw - 4.6rem)" loading="lazy" decoding="async" width="1448" height="1086" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/astro/components/Image.astro" data-astro-source-loc="53:2"> <a href="/events" aria-label="Learn more about Talks &amp; Events" class="neuro-home-activity__arrow" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="192:116"> <span aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="193:40">→</span> </a> </article><article class="neuro-home-activity reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="177:55"> <span class="neuro-home-activity__number" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="178:74">02</span> <div class="neuro-home-activity__copy" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="179:52"> <h3 class="neuro-serif" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="180:39">Workshops</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="181:18">Practical experiences including workshops, journal clubs and projects such as building brain-computer interfaces.</p> </div> <img src="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-workshops-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90" srcset="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-workshops-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=360&q=90 360w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-workshops-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=600&q=90 600w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-workshops-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=960&q=90 960w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-workshops-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90 1440w" data-image-component="true" alt="Students collaborating at a workshop table." sizes="(min-width: 761px) 16rem, calc(100vw - 4.6rem)" loading="lazy" decoding="async" width="1448" height="1086" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/astro/components/Image.astro" data-astro-source-loc="53:2"> <a href="/events" aria-label="Learn more about Workshops" class="neuro-home-activity__arrow" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="192:116"> <span aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="193:40">→</span> </a> </article><article class="neuro-home-activity reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="177:55"> <span class="neuro-home-activity__number" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="178:74">03</span> <div class="neuro-home-activity__copy" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="179:52"> <h3 class="neuro-serif" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="180:39">Inter-University Collaborations</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="181:18">Large-scale events including hackathons, symposiums and networking initiatives with other leading neurotech societies.</p> </div> <img src="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-projects-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90" srcset="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-projects-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=360&q=90 360w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-projects-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=600&q=90 600w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-projects-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=960&q=90 960w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-projects-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90 1440w" data-image-component="true" alt="Students presenting at a neurotechnology event." sizes="(min-width: 761px) 16rem, calc(100vw - 4.6rem)" loading="lazy" decoding="async" width="1448" height="1086" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/astro/components/Image.astro" data-astro-source-loc="53:2"> <a href="/events" aria-label="Learn more about Inter-University Collaborations" class="neuro-home-activity__arrow" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="192:116"> <span aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="193:40">→</span> </a> </article><article class="neuro-home-activity reveal visible" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="177:55"> <span class="neuro-home-activity__number" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="178:74">04</span> <div class="neuro-home-activity__copy" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="179:52"> <h3 class="neuro-serif" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="180:39">Socials &amp; Community</h3> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="181:18">Informal social events and an active virtual community to support discussion, collaboration and connection.</p> </div> <img src="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-socials-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90" srcset="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-socials-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=360&q=90 360w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-socials-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=600&q=90 600w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-socials-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=960&q=90 960w, http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fgenerated%2Fneurotech-socials-thumb.png%3ForigWidth%3D1448%26origHeight%3D1086%26origFormat%3Dpng&w=1440&q=90 1440w" data-image-component="true" alt="Students chatting at a society social." sizes="(min-width: 761px) 16rem, calc(100vw - 4.6rem)" loading="lazy" decoding="async" width="1448" height="1086" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/astro/components/Image.astro" data-astro-source-loc="53:2"> <a href="/events" aria-label="Learn more about Socials &amp; Community" class="neuro-home-activity__arrow" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="192:116"> <span aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="193:40">→</span> </a> </article> </div> </div> </section> <section class="neuro-home-action-rail" aria-label="More ways to get involved" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="201:82"> <div class="neuro-home-action-rail__inner" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="202:48"> <a href="/events" class="neuro-home-action-rail__item" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="203:62"> <span class="neuro-home-action-rail__index" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="204:72">01</span> <span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="205:16"><strong data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="205:23">Events</strong><small data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="205:45">See upcoming talks, workshops and socials.</small><em data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="205:99">See events →</em></span> </a> <a href="https://surreyunion.org/shop/neurotech-society/d5784e49-49f7-4bd4-a66c-b4f3971103af" target="_blank" rel="noopener noreferrer" class="neuro-home-action-rail__item" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="207:118"> <span class="neuro-home-action-rail__index" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="208:72">02</span> <span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="209:16"><strong data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="209:23">Join</strong><small data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="209:43">Become a member and get involved.</small><em data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="209:88">Join the society →</em></span> </a> <a href="/committee" class="neuro-home-action-rail__item" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="211:65"> <span class="neuro-home-action-rail__index" aria-hidden="true" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="212:72">03</span> <span data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="213:16"><strong data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="213:23">Committee</strong><small data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="213:48">Meet the student team leading the society.</small><em data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/pages/index.astro" data-astro-source-loc="213:102">Meet the committee →</em></span> </a> </div> </section>  </main> <footer class="border-t border-neuro-line-dark bg-neuro-deep text-neuro-on-dark-muted" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="129:90"> <div class="mx-auto max-w-7xl px-5 py-16 sm:px-6" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="130:55"> <div class="grid gap-12 lg:grid-cols-12" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="131:48"> <div class="lg:col-span-5" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="132:36"> <div class="mb-6 flex items-center gap-4" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="133:53"> <img src="http://localhost:4323/_image?href=%2F%40fs%2FC%3A%2FUsers%2FJoshua+Knott%2FProjects%2Fsurreysocieties%2Fapps%2Fneurotech%2Fsrc%2Fassets%2Fneurotech-logo.png%3ForigWidth%3D1179%26origHeight%3D1179%26origFormat%3Dwebp&w=360&q=100" data-image-component="true" alt="" loading="lazy" decoding="async" width="100" height="100" class="h-12 w-12 rounded-md object-contain" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/node_modules/astro/components/Image.astro" data-astro-source-loc="53:2"> <div data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="135:18"> <p class="neuro-serif text-2xl text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="136:66">Surrey Neurotech Society</p> <p class="mt-1 text-sm text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="137:55">Established 2024</p> </div> </div> <p class="max-w-md border-l border-neuro-gold/60 pl-5 text-sm leading-7" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="140:84">
+The university's first neurotechnology society, connecting students across psychology, computing, engineering, and beyond with the cutting-edge of neuroscience, AI, and responsible innovation.
+</p> </div> <div class="lg:col-span-3 lg:col-start-7" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="145:51"> <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="146:77">Explore</h2> <div class="flex flex-col items-start gap-3" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="147:56"> <a href="/" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="149:108">Home</a><a href="/about" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="149:108">About</a><a href="/events" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="149:108">Events</a><a href="/committee" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="149:108">Committee</a> <a href="/join" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="151:102">Join</a> </div> </div> <div class="lg:col-span-3" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="155:36"> <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="156:77">Connect</h2> <div class="flex flex-col items-start gap-3" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="157:56"> <a href="https://www.instagram.com/surreyneurotech/" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="159:166">Instagram</a> <a href="https://www.linkedin.com/company/surrey-neurotech/posts/?feedView=all" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="162:165">LinkedIn</a> <a href="mailto:ussu.neurotechsoc@surrey.ac.uk" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="164:129">Email</a> <a href="https://surreyunion.org/your-activity/clubs-and-societies-a-z/neurotech-society" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="165:163">Students' Union</a> <a href="https://surreyunion.org/shop/neurotech-society/d5784e49-49f7-4bd4-a66c-b4f3971103af" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="166:160">Membership</a> </div> </div> </div> <div class="mt-12 flex flex-col gap-3 border-t border-neuro-line-dark pt-8 text-xs sm:flex-row sm:items-center sm:justify-between" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="171:138"> <p data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="172:12">© 2026 Surrey Neurotech Society. A society of Surrey Students' Union.</p> <p class="font-semibold text-neuro-gold/80" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/apps/neurotech/src/layouts/Layout.astro" data-astro-source-loc="173:53">surreyneurotechsociety.org</p> </div> </div> </footer> <div id="society-assistant-neurotech" class="society-assistant" data-assistant-widget="" data-endpoint="/api/assistant/chat" data-society-name="Surrey Neurotech Society" data-short-name="Neurotech Society" data-description="A student-led society exploring neuroscience, brain-computer interfaces, signal processing, AI, ethics, and human-centred innovation." data-starter-prompts="[&quot;What is Surrey Neurotech Society about?&quot;,&quot;What events are coming up?&quot;,&quot;I am new to neurotech. Where should I start?&quot;,&quot;What projects or topics can I explore?&quot;]" data-fallback-links="[{&quot;label&quot;:&quot;Join&quot;,&quot;href&quot;:&quot;/join&quot;},{&quot;label&quot;:&quot;Events&quot;,&quot;href&quot;:&quot;/events&quot;},{&quot;label&quot;:&quot;Committee&quot;,&quot;href&quot;:&quot;/committee&quot;}]" style="--assistant-accent:#E5C158;--assistant-accent-text:#040A18;--assistant-surface:#0A142C;--assistant-text:#FAFAFA;--assistant-muted:#94A3B8;--assistant-border:#1E2E4E" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="34:2" data-initialized="true"> <button type="button" class="assistant-toggle" aria-label="Open Neurotech Society assistant" aria-expanded="false" aria-controls="society-assistant-neurotech-panel" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="41:4"> <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="42:49"> <path d="M4.75 5.75A3.25 3.25 0 0 1 8 2.5h8A3.25 3.25 0 0 1 19.25 5.75v6.5A3.25 3.25 0 0 1 16 15.5H9.2l-3.45 3.08a.75.75 0 0 1-1.25-.56V15.2a3.25 3.25 0 0 1-2-2.95v-6.5Z" fill="currentColor" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="43:8"></path> <path d="M8 8h8M8 11.25h5.5" fill="none" stroke="var(--assistant-accent-text)" stroke-linecap="round" stroke-width="1.5" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="44:8"></path> </svg> </button> <section id="society-assistant-neurotech-panel" class="assistant-panel" role="dialog" aria-modal="false" aria-labelledby="society-assistant-neurotech-title" hidden="" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="55:4"> <header class="assistant-header" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="56:38"> <div data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="57:12"> <p class="assistant-eyebrow" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="58:38">Neurotech Society</p> <h2 id="society-assistant-neurotech-title" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="59:38">Website assistant</h2> </div> <div class="assistant-header-actions" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="61:45"> <button type="button" class="assistant-reset" aria-label="Reset assistant conversation" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="62:97">Reset</button> <button type="button" class="assistant-close" aria-label="Close Neurotech Society assistant" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="63:106"> <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="64:55"> <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="65:14"></path> </svg> </button> </div> </header> <div class="assistant-body" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="71:33"> <div class="assistant-intro" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="72:36"> <p data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="73:12">A student-led society exploring neuroscience, brain-computer interfaces, signal processing, AI, ethics, and human-centred innovation.</p> </div> <div class="assistant-starters" aria-label="Suggested questions" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="75:8"><button type="button" class="assistant-starter">What is Surrey Neurotech Society about?</button><button type="button" class="assistant-starter">What events are coming up?</button><button type="button" class="assistant-starter">I am new to neurotech. Where should I start?</button><button type="button" class="assistant-starter">What projects or topics can I explore?</button></div> <div class="assistant-messages" aria-live="polite" aria-relevant="additions" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="76:8"></div> </div> <form class="assistant-form" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="79:34"> <label class="sr-only" for="society-assistant-neurotech-input" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="80:56">Ask Neurotech Society</label> <textarea id="society-assistant-neurotech-input" class="assistant-input" name="message" rows="1" maxlength="1200" placeholder="Ask a quick question..." data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="81:8"></textarea> <button type="submit" class="assistant-send" data-astro-cid-bq6mpggb="" data-astro-source-file="C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro" data-astro-source-loc="89:52">Send</button> </form> </section> </div>  <script type="module" src="/@fs/C:/Users/Joshua Knott/Projects/surreysocieties/packages/ui/src/components/AssistantWidget.astro?astro&amp;type=script&amp;index=0&amp;lang.ts"></script> <script type="module" src="/src/layouts/Layout.astro?astro&amp;type=script&amp;index=0&amp;lang.ts"></script>  <div id="clerk-components"></div>
+</body>
+</html>

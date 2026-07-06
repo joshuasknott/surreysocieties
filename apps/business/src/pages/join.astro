@@ -4,38 +4,50 @@ export const prerender = true;
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import membership from '../assets/generated/business-join-membership.png';
+import heroImage from '../assets/generated/business-join-campus-sketch-hero.optimized.webp';
 import '../styles/global.css';
 
 const society = getSocietyById('business')!;
 
 const joinSteps = [
-  { title: 'Open the Union membership page', copy: 'Membership is officially handled through Surrey Students’ Union.' },
+  { title: 'Open the Union membership page', copy: "Membership is officially handled through Surrey Students' Union." },
   { title: 'Complete your membership', copy: 'Check the current details and finish the Union checkout process.' },
-  { title: 'Stay in the loop', copy: 'Use the events page and society channels for confirmed activity and updates.' },
+  { title: 'Stay in the loop', copy: 'Use the events page and society channels for confirmed events and opportunities.' },
 ];
 
 const reasons = [
-  { title: 'Career context', copy: 'Make applications, industries, and workplace expectations easier to understand.' },
-  { title: 'Enterprise thinking', copy: 'Learn how to make an idea clearer, test it, and bring other people into it.' },
-  { title: 'A stronger network', copy: 'Meet students beyond your course who are interested in where they could go next.' },
+  { title: 'Career context', copy: 'Understand industries, applications, interviews, and workplace expectations.' },
+  { title: 'Enterprise support', copy: 'Learn how to shape an idea, test it, and bring other people into it.' },
+  { title: 'A stronger network', copy: 'Meet students, speakers, professionals, and alumni beyond your usual circle.' },
 ];
 
 const faqs = [
   { question: 'Do I need to study business?', answer: 'No. Surrey Business Society is open to students from every course.' },
-  { question: 'Where is membership handled?', answer: 'Membership is handled through the official Surrey Students’ Union page.' },
-  { question: 'How much does it cost?', answer: 'The Students’ Union page has the current membership price and terms.' },
-  { question: 'Where are events published?', answer: 'Confirmed public events appear on the Events page and through the society’s social channels.' },
+  { question: 'Where is membership handled?', answer: "Membership is handled through the official Surrey Students' Union page." },
+  { question: 'How much does it cost?', answer: "The Students' Union page has the current membership price and terms." },
+  { question: 'Where are events published?', answer: "Confirmed public events appear on the Events page and through the society's social channels." },
 ];
 ---
 
-<Layout title="Join" description="Join Surrey Business Society through Surrey Students' Union and connect with a student community for careers, enterprise, networking, and practical business confidence.">
-  <section class="business-hero business-hero--page" aria-labelledby="join-title">
-    <Image src={membership} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
+<Layout title="Join" description="Join Surrey Business Society through Surrey Students' Union for business events, workshops, networking, enterprise support, and career confidence.">
+  <section class="business-hero business-hero--page business-hero--campus" aria-labelledby="join-title">
+    <Image
+      src={heroImage}
+      alt=""
+      aria-hidden="true"
+      class="business-hero__image"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      widths={[640, 960, 1280, 1600, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={70}
+    />
     <div class="business-shell business-hero__content">
-      <p class="business-hero__eyebrow business-reveal">Membership</p>
-      <h1 id="join-title" class="business-reveal">Join the business community at Surrey.</h1>
-      <p class="business-hero__lede business-reveal">Become a member through Surrey Students' Union, then use the society to find people, events, and opportunities worth acting on.</p>
+      <p class="business-hero__eyebrow business-reveal">Join</p>
+      <h1 id="join-title" class="business-reveal">Join Surrey Business Society.</h1>
+      <p class="business-hero__lede business-reveal">Become a member through Surrey Students' Union and get closer to business events, workshops, networks, enterprise support, and career opportunities.</p>
       <div class="business-hero__actions business-reveal">
         <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join via the Union</a>
         <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="business-button business-button--outline">Union page</a>
@@ -45,7 +57,7 @@ const faqs = [
 
   <section class="business-section business-section--paper" aria-labelledby="steps-title">
     <div class="business-shell">
-      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">How to join</p><h2 id="steps-title" class="business-title">Three straightforward steps.</h2></div><p>The official membership flow lives with Surrey Students' Union. Everything after that begins here.</p></div>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">How to join</p><h2 id="steps-title" class="business-title">Three quick steps.</h2></div><p>The official membership flow lives with Surrey Students' Union. Once you are in, use the society to meet people, attend events, and build confidence.</p></div>
       <ol class="business-steps business-reveal">
         {joinSteps.map((step, index) => <li class="business-step"><span class="business-step__number">0{index + 1}</span><h3>{step.title}</h3><p>{step.copy}</p></li>)}
       </ol>
@@ -55,14 +67,14 @@ const faqs = [
 
   <section class="business-section business-section--ink" aria-labelledby="why-membership-title">
     <div class="business-shell">
-      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Why membership</p><h2 id="why-membership-title" class="business-title">Join for access. Stay for momentum.</h2></div></div>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Why join</p><h2 id="why-membership-title" class="business-title">Get access to people, events, and practice.</h2></div></div>
       <div class="business-lines business-reveal">{reasons.map((reason, index) => <article class="business-line"><span class="business-line__number">0{index + 1}</span><h3>{reason.title}</h3><p>{reason.copy}</p></article>)}</div>
     </div>
   </section>
 
   <section class="business-section business-section--paper-light" aria-labelledby="questions-title">
     <div class="business-shell business-feature-split business-reveal">
-      <div><p class="business-eyebrow">Questions</p><h2 id="questions-title" class="business-title">The useful details.</h2><p class="business-copy" style="margin-top: 1.25rem;">If your question is not covered here, email the society and the committee will point you in the right direction.</p></div>
+      <div><p class="business-eyebrow">Questions</p><h2 id="questions-title" class="business-title">Membership details.</h2><p class="business-copy" style="margin-top: 1.25rem;">If your question is not covered here, email the society and the committee will point you in the right direction.</p></div>
       <div class="business-faq">{faqs.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
     </div>
   </section>
@@ -70,7 +82,7 @@ const faqs = [
   <section class="business-section business-section--red" aria-labelledby="connect-title">
     <div class="business-shell business-reveal">
       <p class="business-eyebrow">Stay connected</p>
-      <h2 id="connect-title" class="business-title">Follow the updates where they land.</h2>
+      <h2 id="connect-title" class="business-title">Follow Surrey Business Society.</h2>
       <div class="business-contact-line">
         <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>

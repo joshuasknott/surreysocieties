@@ -30,7 +30,7 @@ Use this checklist for final reconciliation after implementation, design reviews
 - [ ] AI email is `ussu.aianddatascience@surrey.ac.uk` everywhere.
 - [ ] Business email is `ussu.bizsoc@surrey.ac.uk` everywhere.
 - [ ] Neurotech email is `ussu.neurotechsoc@surrey.ac.uk` everywhere.
-- [ ] AI Instagram links to `https://www.instagram.com/surrey.ai.ds/`.
+- [ ] AI Instagram links to `https://www.instagram.com/surreyaisociety/`.
 - [ ] Business Instagram links to `https://www.instagram.com/surreybusinesssociety`.
 - [ ] Neurotech Instagram links to `https://www.instagram.com/surreyneurotech/`.
 - [ ] AI LinkedIn is hidden or marked unavailable without a dead link.

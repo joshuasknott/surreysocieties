@@ -1,0 +1,75 @@
+[a] Skip to content
+[span] Surrey Neurotech Society
+[a] Committee
+[a] Join the society
+[a] Committee
+[h1] Neurotech,
+[span] for good.
+[p] Surrey Neurotech Society is the University of Surrey's first student group dedicated to neurotechnology and the fourth in the UK. We connect students across neuroscience, AI and technology to explore how they can work together to enhance human potential.
+[a] Join the society
+[a] Explore focus areas
+[p] Open to all students. All backgrounds. All levels.
+[span] Now
+[strong] What's happening
+[span] Events will appear once confirmed.
+[span] See events →
+[small] Friendly talks, workshops, and explainers.
+[small] Connect with curious students from every course.
+[strong] Build responsibly
+[small] Ethics, inclusion, and wellbeing stay at the centre.
+[span] Many doors into neurotech
+[h2] Different paths. Shared curiosity.
+[h3] Psychology
+[p] Understanding minds and behaviour.
+[h3] Computing
+[p] Algorithms, data and intelligent systems.
+[h3] Bioscience
+[p] Cells, systems and the biology of the brain.
+[h3] Design
+[p] Human-centred design and creative solutions.
+[h3] Ethics
+[p] Questions of fairness, privacy, consent and impact.
+[h3] Curious beginners
+[p] You don't need experience — just curiosity.
+[span] What we do together
+[h2] Explore. Discuss.
+[h2] Create. Together.
+[p] We bring big ideas to life through events, projects and community. There's something for everyone, whether you're here to learn, build or just get curious.
+[a] See all events
+[h3] Talks & Events
+[p] Expert speakers from academia, startups and industry share insights into emerging developments in neurotech, AI and cognitive science.
+[h3] Workshops
+[p] Practical experiences including workshops, journal clubs and projects such as building brain-computer interfaces.
+[h3] Inter-University Collaborations
+[p] Large-scale events including hackathons, symposiums and networking initiatives with other leading neurotech societies.
+[h3] Socials & Community
+[p] Informal social events and an active virtual community to support discussion, collaboration and connection.
+[strong] Events
+[small] See upcoming talks, workshops and socials.
+[em] See events →
+[strong] Join
+[small] Become a member and get involved.
+[em] Join the society →
+[strong] Committee
+[small] Meet the student team leading the society.
+[em] Meet the committee →
+[p] Surrey Neurotech Society
+[p] Established 2024
+[p] The university's first neurotechnology society, connecting students across psychology, computing, engineering, and beyond with the cutting-edge of neuroscience, AI, and responsible innovation.
+[a] Committee
+[a] Instagram
+[a] LinkedIn
+[a] Students' Union
+[a] Membership
+[p] © 2026 Surrey Neurotech Society. A society of Surrey Students' Union.
+[p] surreyneurotechsociety.org
+[p] Neurotech Society
+[h2] Website assistant
+[button] Reset
+[p] A student-led society exploring neuroscience, brain-computer interfaces, signal processing, AI, ethics, and human-centred innovation.
+[button] What is Surrey Neurotech Society about?
+[button] What events are coming up?
+[button] I am new to neurotech. Where should I start?
+[button] What projects or topics can I explore?
+[label] Ask Neurotech Society
+[button] Send

@@ -6,10 +6,11 @@ import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import leadership from '../assets/generated/business-committee-leadership.png';
+import heroImage from '../assets/generated/business-committee-campus-sketch-hero.optimized.webp';
 import '../styles/global.css';
 
 const society = getSocietyById('business')!;
+Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
 const [committeeResult, pastCommitteeResult] = await Promise.all([
   queryPublicConvex(api.committee.listActive, { societySlug: 'business' }, []),
   queryPublicConvex(api.committee.listPast, { societySlug: 'business' }, []),
@@ -26,19 +27,31 @@ const initials = (name?: string, role?: string) => {
 };
 
 const leadershipWork = [
-  { title: 'Set the direction', copy: 'Choose activity that gives members a useful reason to show up.' },
-  { title: 'Make things happen', copy: 'Turn good ideas into clear events, communication, and follow-through.' },
-  { title: 'Keep it open', copy: 'Make the society welcoming to people from every course and starting point.' },
+  { title: 'Plan the programme', copy: 'Choose talks, workshops, networking, and enterprise activity that members will value.' },
+  { title: 'Build partnerships', copy: 'Connect the society with speakers, employers, alumni, founders, and campus teams.' },
+  { title: 'Represent members', copy: 'Keep the society useful, welcoming, and open to students from every course.' },
 ];
 ---
 
 <Layout title="Committee" description="Meet the Surrey Business Society committee and see confirmed student leadership information.">
-  <section class="business-hero business-hero--page" aria-labelledby="committee-title">
-    <Image src={leadership} alt="" class="business-hero__image" widths={[640, 960, 1440, 1920]} sizes="100vw" loading="eager" decoding="async" fetchpriority="high" format="webp" quality={70} />
+  <section class="business-hero business-hero--page business-hero--campus business-hero--committee" aria-labelledby="committee-title">
+    <Image
+      src={heroImage}
+      alt=""
+      aria-hidden="true"
+      class="business-hero__image"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      widths={[640, 960, 1280, 1600, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={70}
+    />
     <div class="business-shell business-hero__content">
       <p class="business-hero__eyebrow business-reveal">Committee</p>
-      <h1 id="committee-title" class="business-reveal">The students shaping the society.</h1>
-      <p class="business-hero__lede business-reveal">Surrey Business Society is student-led. Current committee information appears here when it has been confirmed.</p>
+      <h1 id="committee-title" class="business-reveal">Meet the students leading the society.</h1>
+      <p class="business-hero__lede business-reveal">The committee runs events, builds partnerships, supports members, and keeps Surrey Business Society moving.</p>
       <div class="business-hero__actions business-reveal">
         <a href={`mailto:${society.contactEmail}`} class="business-button">Contact the society</a>
         <a href="/join" class="business-button business-button--outline">Become a member</a>
@@ -49,8 +62,8 @@ const leadershipWork = [
   <section class="business-section business-section--paper" aria-labelledby="current-title">
     <div class="business-shell">
       <div class="business-section__heading business-reveal">
-        <div><p class="business-eyebrow">Current team</p><h2 id="current-title" class="business-title">Meet the committee.</h2></div>
-        <p>Names, roles, and contact details are only shown once the team has chosen to publish them.</p>
+        <div><p class="business-eyebrow">Current committee</p><h2 id="current-title" class="business-title">The team behind the society.</h2></div>
+        <p>Names, roles, and contact details are shown once committee members confirm them for public sharing.</p>
       </div>
       {committee.length ? (
         <div class="business-people-grid business-reveal">
@@ -65,14 +78,14 @@ const leadershipWork = [
           ))}
         </div>
       ) : (
-        <div class="business-empty business-reveal"><h3>The current committee will be introduced here soon.</h3><div><p>The society remains student-led. Names and roles will appear once they are ready to be shared publicly.</p><a href={`mailto:${society.contactEmail}`} class="business-text-link" style="display: inline-block; margin-top: 1rem;">Email the society</a></div></div>
+        <div class="business-empty business-reveal"><h3>Committee details will appear here once added.</h3><div><p>The society is student-led. Names and roles will appear once the committee adds them.</p><a href={`mailto:${society.contactEmail}`} class="business-text-link" style="display: inline-block; margin-top: 1rem;">Email the society</a></div></div>
       )}
     </div>
   </section>
 
   <section class="business-section business-section--ink" aria-labelledby="leadership-title">
     <div class="business-shell">
-      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Student leadership</p><h2 id="leadership-title" class="business-title">What the committee is here to do.</h2></div></div>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Leadership</p><h2 id="leadership-title" class="business-title">What the committee does.</h2></div></div>
       <div class="business-lines business-reveal">
         {leadershipWork.map((item, index) => <article class="business-line"><span class="business-line__number">0{index + 1}</span><h3>{item.title}</h3><p>{item.copy}</p></article>)}
       </div>
@@ -81,18 +94,18 @@ const leadershipWork = [
 
   <section class="business-section business-section--paper-light" aria-labelledby="archive-title">
     <div class="business-shell">
-      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Archive</p><h2 id="archive-title" class="business-title">Past committees.</h2></div><p>A simple record of the students who have helped lead the society.</p></div>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Past teams</p><h2 id="archive-title" class="business-title">Past committees.</h2></div><p>A simple record of the students who have helped lead the society.</p></div>
       {pastCommittee.length ? (
         <div class="business-archive business-reveal">
           {pastYears.map((year) => (
             <section class="business-archive__year"><h3>{year}</h3><div class="business-archive__names">{pastCommittee.filter((member) => (member.yearLabel || 'Previous committee') === year).map((member) => <div><strong>{member.name}</strong><span>{member.role}</span></div>)}</div></section>
           ))}
         </div>
-      ) : <div class="business-empty business-reveal"><h3>The archive is waiting for its first entries.</h3><p>Past committee records will appear here as they are added.</p></div>}
+      ) : <div class="business-empty business-reveal"><h3>Past committee records will appear once added.</h3><p>Historical committee details will appear here once committee members add them.</p></div>}
     </div>
   </section>
 
   <section class="business-join-band" aria-labelledby="committee-join-title">
-    <div class="business-shell business-join-band__inner"><div><h2 id="committee-join-title">Leadership starts by showing up.</h2><p>Join the society, meet the team, and find the parts you want to help shape.</p></div><a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a></div>
+    <div class="business-shell business-join-band__inner"><div><h2 id="committee-join-title">Want to get involved?</h2><p>Join the society, meet the team, and help shape what happens next.</p></div><a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a></div>
   </section>
 </Layout>

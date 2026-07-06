@@ -26,7 +26,7 @@ Use this data until a later research pack supersedes it.
 
 | Society | Established | Instagram | Email | Union page | Membership | LinkedIn |
 | --- | --- | --- | --- | --- | --- | --- |
-| Surrey Artificial Intelligence Society | 2025 | `https://www.instagram.com/surrey.ai.ds/` | `ussu.aianddatascience@surrey.ac.uk` | `https://surreyunion.org/your-activity/clubs-and-societies-a-z/ai-and-data-science-society` | `https://surreyunion.org/shop/ai-and-data-science-society/293e762b-01b8-46f4-a541-2260e4d9ec4f` | N/A for now |
+| Surrey Artificial Intelligence Society | 2025 | `https://www.instagram.com/surreyaisociety/` | `ussu.aianddatascience@surrey.ac.uk` | `https://surreyunion.org/your-activity/clubs-and-societies-a-z/ai-and-data-science-society` | `https://surreyunion.org/shop/ai-and-data-science-society/293e762b-01b8-46f4-a541-2260e4d9ec4f` | N/A for now |
 | Surrey Business Society | 2021 | `https://www.instagram.com/surreybusinesssociety` | `ussu.bizsoc@surrey.ac.uk` | `https://surreyunion.org/your-activity/clubs-and-societies-a-z/business-society` | `https://surreyunion.org/shop/business-society/5c580cdd-8641-44e0-acd6-69d9545eacdb` | `https://www.linkedin.com/company/surreybusinesssociety/` |
 | Surrey Neurotech Society | 2024 | `https://www.instagram.com/surreyneurotech/` | `ussu.neurotechsoc@surrey.ac.uk` | `https://surreyunion.org/your-activity/clubs-and-societies-a-z/neurotech-society` | `https://surreyunion.org/shop/neurotech-society/d5784e49-49f7-4bd4-a66c-b4f3971103af` | `https://www.linkedin.com/company/surrey-neurotech/posts/?feedView=all` |
 

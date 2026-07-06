@@ -3,8 +3,6 @@ import BaseLayout from '@surreysocieties/ui/components/BaseLayout';
 import AssistantWidget from '@surreysocieties/ui/components/AssistantWidget';
 import { ASSISTANT_CONFIGS } from '@surreysocieties/ui';
 import { getSocietyById } from '@surreysocieties/admin/config';
-import { Image } from 'astro:assets';
-import sbsLogo from '../assets/sbs-logo.png';
 
 interface Props {
   title: string;
@@ -45,7 +43,7 @@ const isCurrent = (href: string) => currentPath === href || (href !== '/' && cur
   <nav class="business-nav" aria-label="Main navigation">
     <div class="business-nav__inner">
       <a href="/" class="business-nav__brand" aria-label="Surrey Business Society home">
-        <Image src={sbsLogo} alt="" width={48} height={48} class="business-nav__mark" format="webp" />
+        <img src="/logos/sbs-logo.png" alt="" width="48" height="48" class="business-nav__mark" loading="eager" decoding="async" />
         <span>Surrey Business Society</span>
       </a>
 
@@ -85,7 +83,7 @@ const isCurrent = (href: string) => currentPath === href || (href !== '/' && cur
   <footer class="business-footer">
     <div class="business-footer__inner">
       <a href="/" class="business-footer__brand">
-        <Image src={sbsLogo} alt="" width={34} height={34} class="business-footer__mark" format="webp" loading="lazy" />
+        <img src="/logos/sbs-logo.png" alt="" width="34" height="34" class="business-footer__mark" loading="lazy" decoding="async" />
         Surrey Business Society
       </a>
       <div class="business-footer__links">
