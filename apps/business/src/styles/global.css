@@ -136,6 +136,7 @@ summary:focus-visible {
   align-items: center;
   background: var(--gold);
   border: 1px solid var(--gold);
+  box-sizing: border-box;
   color: var(--ink);
   display: inline-flex;
   font-size: 0.74rem;
@@ -432,13 +433,29 @@ summary:focus-visible {
   .business-hero--join .business-hero__image { object-position: 60% 38%; }
   .business-hero::after {
     background:
-      linear-gradient(180deg, rgba(255, 252, 246, 0.9) 0%, rgba(255, 252, 246, 0.84) 43%, rgba(245, 240, 231, 0.94) 100%),
-      linear-gradient(90deg, rgba(255, 252, 246, 0.94) 0%, rgba(255, 252, 246, 0.5) 66%, rgba(255, 252, 246, 0.08) 100%);
+      linear-gradient(180deg, rgba(255, 252, 246, 0.78) 0%, rgba(255, 252, 246, 0.78) 43%, rgba(245, 240, 231, 0.94) 100%),
+      linear-gradient(90deg, rgba(255, 252, 246, 0.86) 0%, rgba(255, 252, 246, 0.36) 66%, rgba(255, 252, 246, 0.04) 100%);
   }
-  .business-hero__content { padding-block: clamp(9rem, 34vw, 13rem) clamp(2.4rem, 10vw, 3.5rem); }
+  .business-hero__content {
+    box-sizing: border-box;
+    margin-inline: auto;
+    max-width: 34rem;
+    padding: clamp(9rem, 34vw, 13rem) 1.25rem clamp(2.4rem, 10vw, 3.5rem);
+    text-align: center;
+    width: min(100%, 36rem);
+  }
   .business-hero h1 {
     font-size: clamp(2.55rem, 11.2vw, 3.35rem);
+    margin-inline: auto;
     max-width: 9ch;
+  }
+  .business-hero__lede {
+    margin-inline: auto;
+  }
+  .business-hero__actions {
+    justify-content: center;
+    margin-inline: auto;
+    max-width: 24rem;
   }
   .business-fact-row__inner,
   .business-lines,

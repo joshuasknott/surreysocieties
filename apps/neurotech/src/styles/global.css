@@ -228,6 +228,7 @@ details > summary::-webkit-details-marker { display: none; }
 .neuro-btn-secondary,
 .neuro-btn-dark {
   align-items: center;
+  box-sizing: border-box;
   border-radius: 999px;
   display: inline-flex;
   font-size: 0.82rem;
@@ -313,7 +314,7 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 .neuro-home-title-rule::after { background: var(--color-neuro-gold); border-radius: 999px; content: ""; height: 0.45rem; left: 2.25rem; position: absolute; top: -0.27rem; width: 0.45rem; }
 .neuro-home-hero__copy > p:not(.neuro-home-open-note) { color: rgba(244, 246, 248, 0.88); font-size: 0.98rem; line-height: 1.7; margin-top: 1.55rem; max-width: 24rem; }
 .neuro-home-hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.25rem; }
-.neuro-home-btn { align-items: center; border: 1px solid transparent; border-radius: 6px; display: inline-flex; font-size: 0.68rem; font-weight: 850; gap: 0.65rem; justify-content: space-between; letter-spacing: 0.08em; min-height: 2.7rem; padding: 0.65rem 1rem; text-decoration: none; text-transform: uppercase; transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease; }
+.neuro-home-btn { align-items: center; border: 1px solid transparent; border-radius: 6px; box-sizing: border-box; display: inline-flex; font-size: 0.68rem; font-weight: 850; gap: 0.65rem; justify-content: space-between; letter-spacing: 0.08em; min-height: 2.7rem; padding: 0.65rem 1rem; text-decoration: none; text-transform: uppercase; transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease; }
 .neuro-home-btn--gold { background: var(--color-neuro-gold); border-color: var(--color-neuro-gold); color: #07162d; }
 .neuro-home-btn--gold:hover { background: var(--color-neuro-gold-soft); border-color: var(--color-neuro-gold-soft); }
 .neuro-home-btn--outline { border-color: var(--color-neuro-cyan); color: var(--color-neuro-cyan); }
@@ -1248,16 +1249,59 @@ body {
   .neuro-home-hero::before,
   .neuro-hero::before {
     background:
-      linear-gradient(180deg, rgba(255, 250, 240, 0.82) 0%, rgba(255, 250, 240, 0.88) 42%, rgba(255, 250, 240, 0.98) 100%),
-      linear-gradient(90deg, rgba(255, 250, 240, 0.95) 0%, rgba(255, 250, 240, 0.54) 70%, rgba(255, 250, 240, 0.08) 100%),
-      radial-gradient(circle at 20% 24%, rgba(214, 181, 75, 0.14), transparent 17rem);
+      linear-gradient(180deg, rgba(255, 250, 240, 0.7) 0%, rgba(255, 250, 240, 0.8) 42%, rgba(255, 250, 240, 0.98) 100%),
+      linear-gradient(90deg, rgba(255, 250, 240, 0.86) 0%, rgba(255, 250, 240, 0.4) 70%, rgba(255, 250, 240, 0.04) 100%),
+      radial-gradient(circle at 20% 24%, rgba(214, 181, 75, 0.18), transparent 17rem);
   }
 
   .neuro-home-hero__inner,
   .neuro-hero__inner {
+    justify-content: center;
     min-height: inherit;
     padding: clamp(9rem, 34vw, 12.5rem) 1.25rem 3.4rem;
     align-items: end;
+  }
+
+  .neuro-home-hero__copy,
+  .neuro-subhero-copy {
+    margin-inline: auto;
+    max-width: 34rem;
+    text-align: center;
+    width: min(100%, 34rem);
+  }
+
+  .neuro-home-hero h1,
+  .neuro-subhero-copy h1,
+  .neuro-hero-title {
+    margin-inline: auto;
+  }
+
+  .neuro-home-title-rule {
+    margin-inline: auto;
+  }
+
+  .neuro-home-hero__copy > p:not(.neuro-home-open-note),
+  .neuro-subhero-copy p,
+  .neuro-hero-copy {
+    border-left: 0;
+    margin-inline: auto;
+    padding-left: 0;
+  }
+
+  .neuro-home-hero-actions,
+  .neuro-action-row,
+  .neuro-subhero-copy .mt-9 {
+    justify-content: center;
+    margin-inline: auto;
+    max-width: 24rem;
+    width: 100%;
+  }
+
+  .neuro-home-btn,
+  .neuro-action-row :is(.neuro-btn-primary, .neuro-btn-secondary, .neuro-btn-dark),
+  .neuro-subhero-copy .mt-9 :is(.neuro-btn-primary, .neuro-btn-secondary, .neuro-btn-dark) {
+    justify-content: center;
+    width: 100%;
   }
 
   .neuro-site-nav #mobile-menu {
