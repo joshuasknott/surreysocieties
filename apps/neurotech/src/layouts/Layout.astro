@@ -5,6 +5,7 @@ import { ASSISTANT_CONFIGS } from '@surreysocieties/ui';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { Image } from 'astro:assets';
 import neurotechLogo from '../assets/neurotech-logo.png';
+import defaultOgImage from '../assets/generated/neurotech-science-hero-v2.optimized.webp';
 
 interface Props {
   title: string;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { title, description, ogImage } = Astro.props;
+const resolvedOgImage = ogImage ?? new URL(defaultOgImage.src, Astro.site).toString();
 
 const society = getSocietyById('neurotech')!;
 const assistantConfig = ASSISTANT_CONFIGS.neurotech;
@@ -36,7 +38,7 @@ const isCurrent = (href: string) =>
 <BaseLayout
   title={fullTitle}
   description={description}
-  ogImage={ogImage}
+  ogImage={resolvedOgImage}
   canonicalUrl={canonicalUrl}
   htmlClass="motion-safe:scroll-smooth"
   bodyClass="bg-neuro-ivory text-neuro-ink font-sans min-h-screen flex flex-col"
@@ -146,9 +148,9 @@ const isCurrent = (href: string) =>
           <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold">Explore</h2>
           <div class="flex flex-col items-start gap-3">
             {navLinks.map((link) => (
-              <a href={link.href} class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">{link.label}</a>
+              <a href={link.href} class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">{link.label}</a>
             ))}
-            <a href="/join" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Join</a>
+            <a href="/join" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Join</a>
           </div>
         </div>
 
@@ -156,14 +158,14 @@ const isCurrent = (href: string) =>
           <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold">Connect</h2>
           <div class="flex flex-col items-start gap-3">
             {society.socials.instagram && (
-              <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Instagram</a>
+              <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Instagram</a>
             )}
             {society.socials.linkedin && (
-              <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">LinkedIn</a>
+              <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">LinkedIn</a>
             )}
-            <a href={`mailto:${society.contactEmail}`} class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Email</a>
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Students' Union</a>
-            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-semibold transition-colors hover:text-neuro-on-dark">Membership</a>
+            <a href={`mailto:${society.contactEmail}`} class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Email</a>
+            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Students' Union</a>
+            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Membership</a>
           </div>
         </div>
       </div>

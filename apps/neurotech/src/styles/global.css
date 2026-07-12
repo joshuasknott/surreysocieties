@@ -382,7 +382,7 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 .neuro-home-activity__copy h3 { color: var(--color-neuro-ink); font-size: 1.08rem; line-height: 1.15; }
 .neuro-home-activity p { color: var(--color-neuro-muted); font-size: 0.69rem; line-height: 1.42; margin-top: 0.35rem; max-width: 18rem; }
 .neuro-home-activity img { border-radius: 6px; display: block; height: 5.45rem; object-fit: cover; width: 100%; }
-.neuro-home-activity__arrow { align-items: center; border: 1px solid var(--color-neuro-teal); border-radius: 999px; color: var(--color-neuro-teal); display: inline-flex; font-size: 0.86rem; height: 2.15rem; justify-content: center; text-decoration: none; width: 2.15rem; }
+.neuro-home-activity__arrow { align-items: center; border: 1px solid var(--color-neuro-teal); border-radius: 999px; color: var(--color-neuro-teal); display: inline-flex; font-size: 0.86rem; height: 2.75rem; justify-content: center; text-decoration: none; width: 2.75rem; }
 .neuro-home-activity__arrow:hover { background: rgba(11, 95, 118, 0.1); }
 
 /* ── Homepage: action rail ── */

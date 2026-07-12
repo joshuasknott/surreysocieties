@@ -5,7 +5,7 @@ import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import Layout from '../layouts/Layout.astro';
-import homeHero from '../assets/generated/neurotech-cathedral-graduation-sketch-hero.optimized.webp';
+import homeHero from '../assets/generated/neurotech-science-hero-v2.optimized.webp';
 import talksThumb from '../assets/generated/neurotech-talks-refined-cover.optimized.webp';
 import workshopsThumb from '../assets/generated/neurotech-workshops-refined-cover.optimized.webp';
 import projectsThumb from '../assets/generated/neurotech-projects-refined-cover.optimized.webp';
@@ -26,22 +26,22 @@ const events: any[] = (
   await queryPublicConvex(api.events.listPublished, { societySlug: SOCIETY_ID }, [])
 );
 
-const eventMessage = events[0]?.title || 'Events, workshops, socials, and society updates will appear here.';
+const eventMessage = events[0]?.title || 'No events are confirmed yet. Check the Events page for verified updates.';
 
 const approachSteps = [
   {
     title: 'Build',
-    copy: 'Work on practical neurotech projects, including brain-computer interface ideas.',
+    copy: 'Explore practical neurotech ideas, including brain-computer interfaces.',
     href: '/events',
   },
   {
     title: 'Research',
-    copy: 'Explore neuroscience, AI, cognitive science, ethics, and emerging tools.',
+    copy: 'Learn about neuroscience, AI, cognitive science, ethics, and emerging tools.',
     href: '/about',
   },
   {
     title: 'Connect',
-    copy: 'Meet students, researchers, startups, and societies working in the field.',
+    copy: 'Meet students interested in neuroscience, technology, and responsible innovation.',
     href: '/join',
   },
 ];
@@ -58,30 +58,30 @@ const disciplines = [
 const activityCards = [
   {
     title: 'Hands-On Learning',
-    copy: 'Workshops, journal clubs, and projects such as building brain-computer interfaces.',
+    copy: 'Beginner-friendly sessions and project ideas, published here when they are confirmed.',
     image: talksThumb,
-    alt: 'Students collaborating on a neurotechnology workshop.',
+    alt: 'Illustration representing collaborative neurotechnology learning.',
     number: '01',
   },
   {
     title: 'Talks and Events',
-    copy: 'Expert speakers from academia, startups, and industry sharing developments in neurotech, AI, and cognitive science.',
+    copy: 'Confirmed talks and discussions about neurotechnology, AI, and cognitive science.',
     image: workshopsThumb,
-    alt: 'Students listening to a neurotechnology discussion.',
+    alt: 'Illustration representing a neurotechnology discussion.',
     number: '02',
   },
   {
     title: 'Inter-University Collaboration',
-    copy: 'Hackathons, symposiums, networking initiatives, and events with other leading related societies.',
+    copy: 'Collaboration opportunities with other student groups, shown when they are confirmed.',
     image: projectsThumb,
-    alt: 'Students presenting at a neurotechnology event.',
+    alt: 'Illustration representing student collaboration.',
     number: '03',
   },
   {
     title: 'Networking and Community',
-    copy: 'Routes into researchers, companies, internships, research collaborations, career insight, and an active student community.',
+    copy: 'Community events, peer connections, and verified career or research links when available.',
     image: socialsThumb,
-    alt: 'Students chatting at a society social.',
+    alt: 'Illustration representing a student community.',
     number: '04',
   },
 ];
@@ -113,7 +113,7 @@ const activityCards = [
         </h1>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          Positioning Surrey at the forefront of neurotechnology innovation by connecting students with the cutting edge of neuroscience, AI, and technology.
+          A student community for exploring neuroscience, AI, technology, and the responsible future of neurotechnology.
         </p>
         <div class="neuro-home-hero-actions">
           <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-btn neuro-home-btn--gold">
@@ -130,7 +130,7 @@ const activityCards = [
 
   <section class="neuro-home-routes-band" aria-label="How to get involved">
     <a href="/events" class="neuro-home-event-strip reveal" aria-label="View confirmed events">
-      <span class="neuro-home-event-strip__mark" aria-hidden="true">Live</span>
+      <span class="neuro-home-event-strip__mark" aria-hidden="true">{events.length ? 'Next' : 'Updates'}</span>
       <span><strong>What's happening</strong><span class="neuro-home-event-strip__message">{eventMessage}</span></span>
       <span class="neuro-home-event-strip__link">See events &rarr;</span>
     </a>
@@ -183,7 +183,7 @@ const activityCards = [
         <h2 id="activities-title" class="neuro-serif">Build, learn, meet, and shape what comes next.</h2>
         <div class="neuro-home-title-rule" aria-hidden="true"></div>
         <p>
-          Surrey Neurotech brings together hands-on learning, expert talks, collaborations, networking, socials, and advocacy for more neurotech opportunity at Surrey.
+          Surrey Neurotech brings together students who want to learn, discuss ideas, try practical activities, and build a thoughtful neurotechnology community.
         </p>
         <a href="/events" class="neuro-home-btn neuro-home-btn--blue">See all events <span aria-hidden="true">&rarr;</span></a>
       </div>
@@ -222,11 +222,11 @@ const activityCards = [
       </a>
       <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">02</span>
-        <span><strong>Join</strong><small>Start building, researching, networking, or learning with us.</small><em>Join the society &rarr;</em></span>
+        <span><strong>Join</strong><small>Start learning, meeting other students, and exploring neurotechnology with us.</small><em>Join the society &rarr;</em></span>
       </a>
       <a href="/committee" class="neuro-home-action-rail__item">
         <span class="neuro-home-action-rail__index" aria-hidden="true">03</span>
-        <span><strong>Committee</strong><small>Meet the students building neurotech infrastructure at Surrey.</small><em>Meet the committee &rarr;</em></span>
+        <span><strong>Committee</strong><small>Meet the students responsible for running the society.</small><em>Meet the committee &rarr;</em></span>
       </a>
     </div>
   </section>

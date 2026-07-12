@@ -337,9 +337,10 @@ summary:focus-visible {
 .business-update:first-child { border-left: 0; padding-left: 0; }
 .business-update__top { align-items: center; display: flex; gap: 1rem; justify-content: space-between; }
 .business-update h3 { font-family: var(--font-serif); font-size: clamp(1.7rem, 2.8vw, 2.45rem); font-weight: 700; line-height: 1.08; }
-.business-text-link { color: var(--red); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; }
+.business-text-link { align-items: center; color: var(--red); display: inline-flex; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; min-height: 2.75rem; text-decoration: none; text-transform: uppercase; }
 .business-text-link:hover { color: var(--red-dark); text-decoration: underline; text-underline-offset: 0.25em; }
 .business-update__empty { border-bottom: 1px solid var(--line); color: var(--ink-muted); line-height: 1.6; margin-top: 1.35rem; padding-bottom: 1.35rem; }
+.business-update__empty p { margin-bottom: 0.35rem; }
 .business-event { border-bottom: 1px solid var(--line); padding-block: 1.25rem; }
 .business-event time { color: var(--red); display: block; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 .business-event h4 { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700; line-height: 1.12; margin-top: 0.35rem; }
@@ -410,6 +411,7 @@ summary:focus-visible {
 .business-footer { background: #051525; color: rgba(255, 250, 241, 0.72); }
 .business-footer__inner { align-items: center; display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; min-height: 5.25rem; padding-block: 0.9rem; }
 .business-footer__links { display: flex; flex-wrap: wrap; gap: 0.55rem 1.15rem; }
+.business-footer__links a { align-items: center; display: inline-flex; min-height: 2.75rem; }
 .business-footer__links a,
 .business-footer small { color: rgba(255, 250, 241, 0.68); font-size: 0.74rem; font-weight: 600; text-decoration: none; }
 .business-footer__links a:hover { color: var(--gold-light); }

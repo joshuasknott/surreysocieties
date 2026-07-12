@@ -35,13 +35,13 @@ const ledgerStats = [
 const reasonsToJoin = [
   { title: 'Understand careers', copy: 'Get clearer on industries, applications, workplaces, and commercial roles.' },
   { title: 'Build business skills', copy: 'Practise presenting, networking, interviewing, leadership, and idea development.' },
-  { title: 'Meet useful people', copy: 'Connect with students, speakers, founders, employers, and alumni.' },
+  { title: 'Meet the community', copy: 'Start useful conversations with students across courses and career interests.' },
 ];
 
 const focusAreas = [
   { title: 'Careers', copy: 'Employer insight, application context, and practical career direction.', Icon: BriefcaseBusiness },
   { title: 'Enterprise', copy: 'Support for ideas, startups, problem-solving, and building confidence early.', Icon: Rocket },
-  { title: 'Networking', copy: 'Direct routes into conversations with students, professionals, and alumni.', Icon: UsersRound },
+  { title: 'Networking', copy: 'Practical ways to build confidence and start useful conversations.', Icon: UsersRound },
   { title: 'Skills', copy: 'Workshops for communication, strategy, leadership, teamwork, and commercial awareness.', Icon: ChartNoAxesColumnIncreasing },
 ];
 ---
@@ -89,7 +89,7 @@ const focusAreas = [
           <h2 id="why-title" class="business-intro__lead">Build commercial confidence, whatever you study.</h2>
         </div>
         <div class="business-intro__body business-copy">
-          <p>Surrey Business Society is open to students from every degree. We connect members with industry speakers, practical workshops, networking opportunities, and enterprise support.</p>
+          <p>Surrey Business Society is open to students from every degree. We help members build commercial confidence through practical sessions, peer learning, networking, and enterprise-focused activity.</p>
           <p>Come to understand careers, test ideas, meet useful people, and build the skills that help you move with more confidence.</p>
         </div>
       </div>
@@ -141,7 +141,7 @@ const focusAreas = [
               {event.location && <p>{event.location}</p>}
             </article>
           ))
-        ) : <p class="business-update__empty">Confirmed events will appear here once committee members add them.</p>}
+        ) : <div class="business-update__empty"><p>No events are confirmed yet.</p><a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-text-link">Follow verified updates</a></div>}
       </section>
       <section class="business-update" aria-labelledby="committee-title">
         <div class="business-update__top"><h3 id="committee-title">The committee</h3><a href="/committee" class="business-text-link">Meet the team</a></div>
@@ -152,7 +152,7 @@ const focusAreas = [
               <h4>{member.name}</h4>
             </article>
           ))
-        ) : <p class="business-update__empty">Committee details will appear here once committee members add them.</p>}
+        ) : <div class="business-update__empty"><p>The public committee list has not been published yet.</p><a href={`mailto:${society.contactEmail}`} class="business-text-link">Contact the society</a></div>}
       </section>
     </div>
   </section>
