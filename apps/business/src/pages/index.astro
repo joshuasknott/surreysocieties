@@ -48,24 +48,26 @@ const focusAreas = [
 
 <Layout title="Home" description="Surrey Business Society connects University of Surrey students with business events, workshops, networking, enterprise support, and practical career skills.">
   <section class="business-hero business-hero--home business-hero--campus" aria-labelledby="business-hero-title">
-    <Image
-      src={heroImage}
-      alt=""
-      class="business-hero__image"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-      widths={[640, 960, 1280, 1600, 1920]}
-      sizes="100vw"
-      format="webp"
-      quality={70}
-    />
-    <div class="business-shell business-hero__content">
-      <h1 id="business-hero-title" class="business-reveal">Surrey's student-led business society.</h1>
-      <p class="business-hero__lede business-reveal">Events, workshops, networking, and practical support for students who want to build commercial confidence.</p>
-      <div class="business-hero__actions business-reveal">
-        <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
-        <a href="/events" class="business-button business-button--outline">See events</a>
+    <div class="business-hero__frame">
+      <Image
+        src={heroImage}
+        alt=""
+        class="business-hero__image"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        widths={[640, 960, 1280, 1600, 1920]}
+        sizes="(min-width: 1440px) 1440px, 100vw"
+        format="webp"
+        quality={70}
+      />
+      <div class="business-shell business-hero__content">
+        <h1 id="business-hero-title" class="business-reveal">Surrey's student-led business society.</h1>
+        <p class="business-hero__lede business-reveal">Events, workshops, networking, and practical support for students who want to build commercial confidence.</p>
+        <div class="business-hero__actions business-reveal">
+          <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
+          <a href="#activities" class="business-button business-button--outline">Explore activities</a>
+        </div>
       </div>
     </div>
   </section>
@@ -81,7 +83,7 @@ const focusAreas = [
     </div>
   </section>
 
-  <section class="business-section business-section--paper" aria-labelledby="why-title">
+  <section id="about" class="business-section business-section--paper" aria-labelledby="why-title">
     <div class="business-shell">
       <div class="business-intro business-reveal">
         <div>
@@ -107,7 +109,7 @@ const focusAreas = [
     </div>
   </section>
 
-  <section class="business-section business-section--ink" aria-labelledby="focus-title">
+  <section id="activities" class="business-section business-section--ink" aria-labelledby="focus-title">
     <div class="business-shell">
       <div class="business-section__heading business-reveal">
         <div>
@@ -132,7 +134,7 @@ const focusAreas = [
   <section class="business-section business-section--paper-light" aria-label="Society updates">
     <div class="business-shell business-updates business-reveal">
       <section class="business-update" aria-labelledby="events-title">
-        <div class="business-update__top"><h3 id="events-title">Society updates</h3><a href="/events" class="business-text-link">Events page</a></div>
+        <div class="business-update__top"><h3 id="events-title">Society updates</h3><a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-text-link">Follow updates</a></div>
         {events.length ? (
           events.slice(0, 2).map((event) => (
             <article class="business-event">
@@ -144,7 +146,7 @@ const focusAreas = [
         ) : <div class="business-update__empty"><p>No events are confirmed yet.</p><a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-text-link">Follow verified updates</a></div>}
       </section>
       <section class="business-update" aria-labelledby="committee-title">
-        <div class="business-update__top"><h3 id="committee-title">The committee</h3><a href="/committee" class="business-text-link">Meet the team</a></div>
+        <div class="business-update__top"><h3 id="committee-title">The committee</h3><a href={`mailto:${society.contactEmail}`} class="business-text-link">Contact the team</a></div>
         {committee.length ? (
           committee.slice(0, 2).map((member) => (
             <article class="business-event">
@@ -157,7 +159,7 @@ const focusAreas = [
     </div>
   </section>
 
-  <section class="business-join-band" aria-labelledby="join-title">
+  <section id="join" class="business-join-band" aria-labelledby="join-title">
     <div class="business-shell business-join-band__inner">
       <div>
         <h2 id="join-title">Ready to get involved?</h2>

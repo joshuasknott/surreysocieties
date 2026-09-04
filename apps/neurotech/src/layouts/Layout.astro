@@ -4,8 +4,9 @@ import AssistantWidget from '@surreysocieties/ui/components/AssistantWidget';
 import { ASSISTANT_CONFIGS } from '@surreysocieties/ui';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { Image } from 'astro:assets';
-import neurotechLogo from '../assets/neurotech-logo.png';
-import defaultOgImage from '../assets/generated/neurotech-science-hero-v2.optimized.webp';
+import { Menu, X } from 'lucide-astro';
+import neurotechMark from '../assets/neurotech-logo.png';
+import defaultOgImage from '../assets/showcase/neurotech-hero-lab.png';
 
 interface Props {
   title: string;
@@ -14,25 +15,17 @@ interface Props {
 }
 
 const { title, description, ogImage } = Astro.props;
-const resolvedOgImage = ogImage ?? new URL(defaultOgImage.src, Astro.site).toString();
-
 const society = getSocietyById('neurotech')!;
 const assistantConfig = ASSISTANT_CONFIGS.neurotech;
-const siteName = society.name;
-const fullTitle = `${title} | ${siteName}`;
-
+const fullTitle = `${title} | ${society.name}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const currentPath = Astro.url.pathname;
+const resolvedOgImage = ogImage ?? new URL(defaultOgImage.src, Astro.site).toString();
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/events', label: 'Events' },
-  { href: '/committee', label: 'Committee' },
+  { href: '/#activities', label: 'What we do' },
+  { href: '/#updates', label: 'Updates' },
+  { href: '/#contact', label: 'Contact' },
 ];
-
-const isCurrent = (href: string) =>
-  currentPath === href || (href !== '/' && currentPath.startsWith(href));
 ---
 
 <BaseLayout
@@ -40,180 +33,108 @@ const isCurrent = (href: string) =>
   description={description}
   ogImage={resolvedOgImage}
   canonicalUrl={canonicalUrl}
-  htmlClass="motion-safe:scroll-smooth"
-  bodyClass="bg-neuro-ivory text-neuro-ink font-sans min-h-screen flex flex-col"
+  htmlClass="nt-scroll"
+  bodyClass="nt-body"
   extraFontHrefs={[
-    'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650;9..144,750;9..144,850&display=swap',
+    'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap',
   ]}
 >
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-neuro-paper focus:text-neuro-ink focus:font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold shadow-lg rounded-md">
-    Skip to content
-  </a>
+  <a href="#main-content" class="nt-skip">Skip to content</a>
 
-  <nav class="neuro-site-nav sticky top-0 z-50" role="navigation" aria-label="Main navigation">
-    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6">
-      <a href="/" class="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold" aria-label="Surrey Neurotech Society home">
+  <header class="nt-header">
+    <div class="nt-header__inner">
+      <a href="/" class="nt-brand" aria-label="Surrey Neurotech Society home">
         <Image
-          src={neurotechLogo}
+          src={neurotechMark}
           alt=""
-          width={92}
-          height={92}
-          class="h-11 w-11 shrink-0 rounded-md object-contain"
+          width={96}
+          height={96}
+          loading="eager"
+          class="nt-brand__mark"
         />
-        <span class="neuro-site-nav__brand hidden min-w-0 whitespace-nowrap text-sm font-extrabold uppercase sm:block lg:text-base">
-          Surrey Neurotech Society
-        </span>
+        <span class="nt-brand__name" aria-hidden="true">Surrey Neurotech Society</span>
       </a>
 
-      <div class="hidden items-center gap-1 md:flex">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            aria-current={isCurrent(link.href) ? 'page' : undefined}
-            class:list={[
-              'rounded-md px-3 py-2 text-sm font-bold uppercase transition-colors',
-              isCurrent(link.href)
-                ? 'bg-neuro-gold/15 text-neuro-gold'
-                : 'text-neuro-on-dark-muted hover:text-neuro-gold',
-            ]}
-          >
-            {link.label}
-          </a>
-        ))}
-        <a href="/join" class="neuro-btn-primary ml-3 px-5 py-2 text-xs">
-          Join
-        </a>
-      </div>
+      <nav class="nt-nav" aria-label="Main navigation">
+        {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+        <a class="nt-button nt-button--yellow nt-nav__join" href={society.membershipUrl} target="_blank" rel="noopener noreferrer">Join</a>
+      </nav>
 
       <button
-        id="mobile-menu-btn"
-        class="rounded-md p-3 text-neuro-on-dark-muted transition-colors hover:text-neuro-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neuro-gold md:hidden"
+        id="nt-menu-button"
+        class="nt-menu-button"
+        type="button"
         aria-label="Open navigation menu"
         aria-expanded="false"
-        aria-controls="mobile-menu"
+        aria-controls="nt-mobile-menu"
       >
-        <svg class="h-5 w-5" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg class="hidden h-5 w-5" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18 18 6M6 6l12 12" />
-        </svg>
+        <Menu class="nt-menu-icon nt-menu-icon--open" size={24} aria-hidden="true" />
+        <X class="nt-menu-icon nt-menu-icon--close" size={24} aria-hidden="true" />
       </button>
     </div>
 
-    <div id="mobile-menu" class="hidden border-t border-neuro-line-dark bg-neuro-deep md:hidden">
-      <div class="flex flex-col px-5 py-3">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            aria-current={isCurrent(link.href) ? 'page' : undefined}
-            class:list={[
-              'rounded-md px-3 py-3 text-sm font-bold uppercase transition-colors',
-              isCurrent(link.href)
-                ? 'bg-neuro-gold/15 text-neuro-gold'
-                : 'text-neuro-on-dark-muted hover:text-neuro-gold',
-            ]}
-          >
-            {link.label}
-          </a>
-        ))}
-        <a href="/join" class="neuro-btn-primary mt-3 w-full text-sm">
-          Join
-        </a>
-      </div>
-    </div>
-  </nav>
+    <nav id="nt-mobile-menu" class="nt-mobile-menu" aria-label="Mobile navigation" hidden>
+      {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+      <a class="nt-button nt-button--yellow" href={society.membershipUrl} target="_blank" rel="noopener noreferrer">Join the society</a>
+    </nav>
+  </header>
 
-  <main id="main-content" class="flex-1" tabindex="-1">
+  <main id="main-content" tabindex="-1">
     <slot />
   </main>
 
-  <footer class="border-t border-neuro-line-dark bg-neuro-deep text-neuro-on-dark-muted">
-    <div class="mx-auto max-w-7xl px-5 py-16 sm:px-6">
-      <div class="grid gap-12 lg:grid-cols-12">
-        <div class="lg:col-span-5">
-          <div class="mb-6 flex items-center gap-4">
-            <Image src={neurotechLogo} alt="" width={100} height={100} class="h-12 w-12 rounded-md object-contain" loading="lazy" />
-            <div>
-              <p class="neuro-serif text-2xl text-neuro-on-dark">Surrey Neurotech Society</p>
-              <p class="mt-1 text-sm text-neuro-gold">Established {society.establishedYear}</p>
-            </div>
-          </div>
-          <p class="max-w-md border-l border-neuro-gold/60 pl-5 text-sm leading-7">
-            The University of Surrey's first student group dedicated to neurotechnology, connecting students with neuroscience, AI, technology, and human potential.
-          </p>
-        </div>
-
-        <div class="lg:col-span-3 lg:col-start-7">
-          <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold">Explore</h2>
-          <div class="flex flex-col items-start gap-3">
-            {navLinks.map((link) => (
-              <a href={link.href} class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">{link.label}</a>
-            ))}
-            <a href="/join" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Join</a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-3">
-          <h2 class="mb-4 text-sm font-extrabold uppercase text-neuro-gold">Connect</h2>
-          <div class="flex flex-col items-start gap-3">
-            {society.socials.instagram && (
-              <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Instagram</a>
-            )}
-            {society.socials.linkedin && (
-              <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">LinkedIn</a>
-            )}
-            <a href={`mailto:${society.contactEmail}`} class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Email</a>
-            <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Students' Union</a>
-            <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-semibold transition-colors hover:text-neuro-on-dark">Membership</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-12 flex flex-col gap-3 border-t border-neuro-line-dark pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
-        <p>&copy; {new Date().getFullYear()} Surrey Neurotech Society. A society of Surrey Students' Union.</p>
-        <p class="font-semibold text-neuro-gold/80">{society.domain}</p>
+  <footer id="contact" class="nt-footer">
+    <div class="nt-footer__inner">
+      <a href="/" class="nt-footer__brand" aria-label="Surrey Neurotech Society home">
+        <Image src={neurotechMark} alt="" width={68} height={68} loading="lazy" class="nt-footer__mark" />
+        <span class="nt-brand__name" aria-hidden="true">Surrey Neurotech Society</span>
+      </a>
+      <div class="nt-footer__links">
+        <a href={`mailto:${society.contactEmail}`}>{society.contactEmail}</a>
+        <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer">@SurreyNeurotech</a>
+        <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer">Surrey Neurotech</a>
+        <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer">Students' Union</a>
       </div>
     </div>
+    <div class="nt-footer__legal">© {new Date().getFullYear()} Surrey Neurotech Society</div>
   </footer>
 
   <AssistantWidget config={assistantConfig} endpoint="/api/assistant/chat" />
 
   <script>
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    const hamburger = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
-    btn?.addEventListener('click', () => {
-      const willOpen = menu?.classList.contains('hidden') ?? false;
-      menu?.classList.toggle('hidden', !willOpen);
-      hamburger?.classList.toggle('hidden', willOpen);
-      closeIcon?.classList.toggle('hidden', !willOpen);
-      btn.setAttribute('aria-expanded', String(willOpen));
-      btn.setAttribute('aria-label', willOpen ? 'Close navigation menu' : 'Open navigation menu');
-    });
+    document.documentElement.classList.add('js-enabled');
 
-    const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
-      .filter((element) => !element.closest('.neuro-hero'));
+    const menuButton = document.getElementById('nt-menu-button');
+    const mobileMenu = document.getElementById('nt-mobile-menu');
 
-    const revealElement = (element: HTMLElement) => {
-      element.classList.add('visible');
-
+    const setMenuOpen = (open: boolean) => {
+      if (!menuButton || !mobileMenu) return;
+      mobileMenu.hidden = !open;
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      menuButton.classList.toggle('is-open', open);
     };
 
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            revealElement(entry.target as HTMLElement);
-            observer.unobserve(entry.target);
-          }
-        }),
-        { threshold: 0.12 }
-      );
-      revealElements.forEach((element) => observer.observe(element));
+    menuButton?.addEventListener('click', () => {
+      setMenuOpen(menuButton.getAttribute('aria-expanded') !== 'true');
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setMenuOpen(false));
+    });
+
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      revealElements.forEach((element) => element.classList.add('is-visible'));
     } else {
-      revealElements.forEach((element) => element.classList.add('visible'));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          (entry.target as HTMLElement).classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+      revealElements.forEach((element) => observer.observe(element));
     }
   </script>
 </BaseLayout>
