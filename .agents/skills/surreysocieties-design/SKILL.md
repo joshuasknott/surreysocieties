@@ -12,13 +12,9 @@ SurreySocieties has two design modes:
 
 ## Workflow
 
-1. Use ui-ux-pro-max to define the visitor or admin job, first action, required states, and risks.
-2. Use reference-research only when useful:
-   - Godly for public AI, Business, and Neurotech page direction.
-   - Refero for event sections, committee pages, resource hubs, content layouts.
-   - Mobbin for admin, invites, roles, settings, empty states.
-3. Use frontend-design for page structure, responsive behavior, components, and QA.
-4. Use motion-design for public-page animation plans.
+Use the user's selected direction and the target society's existing design. For substantial new flows, establish purpose, primary action, states, and responsive layout before implementing. Keep this brief internal unless a material decision needs discussion.
+
+Consult ui-ux-pro-max, frontend-design, or motion-design only when the specific task benefits from that guidance; do not load the whole chain for a small fix. Reference research is optional and should resolve a concrete design question. Validate the affected desktop/mobile experience.
 
 ## Project Rules
 
