@@ -1,5 +1,4 @@
 ---
-return Astro.redirect('/#activities', 302);
 export const prerender = false;
 
 import { getSocietyById } from '@surreysocieties/admin/config';
@@ -32,7 +31,7 @@ const formats = [
 ---
 
 <Layout title="Events" description="See confirmed Surrey Business Society events, workshops, talks, and networking opportunities.">
-  <section class="business-hero business-hero--page business-hero--campus" aria-labelledby="events-title">
+  <section class="business-hero business-hero--page business-hero--campus business-hero--events" aria-labelledby="events-title">
     <Image
       src={heroImage}
       alt=""
@@ -49,22 +48,23 @@ const formats = [
     <div class="business-shell business-hero__content">
       <p class="business-hero__eyebrow business-reveal">Events</p>
       <h1 id="events-title" class="business-reveal">Business events for Surrey students.</h1>
-      <p class="business-hero__lede business-reveal">Talks, workshops, networking sessions, and opportunities that make careers, enterprise, and commercial skills easier to act on.</p>
+      <p class="business-hero__lede business-reveal">Talks, workshops, networking, and practical sessions for careers, enterprise, and commercial skills.</p>
       <div class="business-hero__actions business-reveal">
-        <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-button">Follow updates</a>
+        <a href="#programme" class="business-button">Browse events</a>
+        <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-button business-button--outline">Follow updates</a>
         <a href="/join" class="business-button business-button--outline">Join the society</a>
       </div>
     </div>
   </section>
 
-  <section class="business-section business-section--paper" aria-labelledby="programme-title">
+  <section id="programme" class="business-section business-section--paper" aria-labelledby="programme-title">
     <div class="business-shell">
       <div class="business-section__heading business-reveal">
         <div>
           <p class="business-eyebrow">Upcoming</p>
           <h2 id="programme-title" class="business-title">Confirmed events.</h2>
         </div>
-        <p>Dates, locations, and sign-up details appear here once they are confirmed by the committee.</p>
+        <p>Dates, locations, and sign-up details appear here when the committee confirms them.</p>
       </div>
 
       {events.length ? (

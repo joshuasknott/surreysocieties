@@ -1,5 +1,4 @@
 ---
-return Astro.redirect('/#activities', 302);
 export const prerender = false;
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
@@ -83,7 +82,8 @@ const programmeThemes = [
             Find confirmed talks, workshops, discussions, socials, and collaborations connecting neuroscience, AI, and technology.
           </p>
           <div class="neuro-action-row">
-            <a href="/join" class="neuro-btn-primary">Join the society</a>
+            <a href="#event-ledger" class="neuro-btn-primary">Browse events</a>
+            <a href="/join" class="neuro-btn-secondary">Join the society</a>
             {society.socials.instagram && (
               <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="neuro-btn-secondary">Follow updates</a>
             )}
@@ -93,7 +93,7 @@ const programmeThemes = [
     </div>
   </section>
 
-  <section class="neuro-section neuro-section--bluewash" aria-labelledby="event-ledger-title">
+  <section id="event-ledger" class="neuro-section neuro-section--bluewash" aria-labelledby="event-ledger-title">
     <div class="neuro-shell">
       <div class="mb-12 max-w-3xl">
         <div class="neuro-section-heading neuro-section-heading--left reveal">
@@ -128,7 +128,7 @@ const programmeThemes = [
               <article class="neuro-row" data-event-card data-category={event.category || 'Event'}>
                 <div>
                   <p class="neuro-row__meta">{event.category || 'Event'}</p>
-                  <time class="mt-3 block font-bold text-neuro-ink">{formatEventDate(event.date)}</time>
+                  <time datetime={event.date} class="mt-3 block font-bold text-neuro-ink">{formatEventDate(event.date)}</time>
                   {formatEventTime(event) && (
                     <p class="mt-2 text-sm font-semibold text-neuro-soft">{formatEventTime(event)}</p>
                   )}
@@ -157,7 +157,7 @@ const programmeThemes = [
         </>
       ) : (
         <div class="neuro-empty reveal">
-          <h2 class="mb-3 neuro-serif text-3xl text-neuro-ink">Upcoming events will appear here soon.</h2>
+          <h3 class="mb-3 neuro-serif text-3xl text-neuro-ink">No events listed yet.</h3>
           <p class="neuro-prose">
             Join the society or follow our channels for talks, workshops, socials, and collaboration updates.
           </p>

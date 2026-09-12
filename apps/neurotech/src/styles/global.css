@@ -188,6 +188,7 @@ body::selection { background: var(--color-neuro-gold); color: var(--color-neuro-
 .neuro-row { border-bottom: 1px solid var(--color-neuro-line); border-color: rgba(36, 69, 111, 0.18); display: grid; gap: 1.3rem; grid-template-columns: minmax(7rem, 0.28fr) minmax(0, 1fr); padding: 1.25rem 0; }
 .neuro-row--activity { grid-template-columns: 4.2rem minmax(0, 1fr); padding-block: 1.3rem; }
 .neuro-row--activity h3 { font-size: 1.45rem; }
+.neuro-row[hidden] { display: none; }
 .neuro-row h3 { color: var(--color-neuro-ink); font-size: 1.45rem; }
 .neuro-row p { color: var(--color-neuro-muted); font-size: 0.95rem; line-height: 1.65; margin-top: 0.45rem; }
 .neuro-row__meta { color: var(--color-neuro-teal); font-size: 0.76rem; font-weight: 850; text-transform: uppercase; }
@@ -268,7 +269,7 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 
 /* ── Reveal-on-scroll ── */
 .reveal { opacity: 1; }
-.js-enabled .reveal { opacity: 0; transform: translateY(18px); transition: none; }
+.js-enabled .reveal { opacity: 1; transform: translateY(0.75rem); transition: opacity 360ms ease, transform 360ms ease; }
 .js-enabled .reveal.visible { opacity: 1; transform: translateY(0); }
 .js-enabled .neuro-hero .reveal { opacity: 1; transform: none; }
 
@@ -1466,6 +1467,10 @@ body {
   text-underline-offset: 0.35rem;
 }
 
+.nt-header--secondary .nt-nav > a:not(.nt-button) {
+  color: #fff;
+}
+
 .nt-nav > a:not(.nt-button):hover,
 .nt-nav > a:not(.nt-button):focus-visible,
 .nt-mobile-menu > a:not(.nt-button):hover,
@@ -1750,8 +1755,14 @@ body {
 }
 
 .nt-step-label span {
+  align-items: center;
+  background: var(--nt-forest);
   color: var(--nt-yellow);
+  display: inline-flex;
+  justify-content: center;
   margin-right: 0.55rem;
+  min-width: 1.55rem;
+  padding: 0.12rem 0.28rem;
 }
 
 .nt-activity h3 {
@@ -1782,14 +1793,13 @@ body {
   position: relative;
 }
 
-.nt-pipeline__visual > picture,
-.nt-pipeline__visual > picture > img {
+.nt-pipeline__visual > img {
   height: 100%;
   min-height: 22rem;
   width: 100%;
 }
 
-.nt-pipeline__visual > picture > img {
+.nt-pipeline__visual > img {
   object-fit: cover;
 }
 
@@ -1921,6 +1931,25 @@ body {
   line-height: 1.65;
   margin: 0.6rem 0 0;
   max-width: 36rem;
+}
+
+.nt-inline-link {
+  align-items: center;
+  color: var(--nt-ink);
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 0.35rem;
+  margin-top: 0.9rem;
+  text-decoration: underline;
+  text-decoration-color: var(--nt-yellow);
+  text-decoration-thickness: 0.14rem;
+  text-underline-offset: 0.25rem;
+}
+
+.nt-inline-link:hover,
+.nt-inline-link:focus-visible {
+  color: var(--nt-forest);
 }
 
 .nt-updates__links {
@@ -2089,10 +2118,21 @@ body {
   width: min(100%, clamp(90rem, 72vw, 132rem));
 }
 
+.nt-body--404 .nt-header {
+  background: var(--nt-cream-bright);
+  border-bottom: 1px solid var(--nt-line);
+  position: relative;
+}
+
+.nt-body--404 .nt-brand,
+.nt-body--404 .nt-nav > a:not(.nt-button) {
+  color: var(--nt-ink);
+}
+
 .js-enabled [data-reveal] {
-  opacity: 0;
-  transform: translateY(1.1rem);
-  transition: opacity 480ms ease, transform 480ms ease;
+  opacity: 1;
+  transform: translateY(0.75rem);
+  transition: transform 360ms ease;
 }
 
 .js-enabled [data-reveal].is-visible {
@@ -2153,7 +2193,7 @@ body {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1100px) {
   .nt-header {
     background: var(--nt-cream-bright);
     border-bottom: 1px solid var(--nt-line);
@@ -2191,7 +2231,9 @@ body {
   .nt-menu-button {
     display: inline-flex;
   }
+}
 
+@media (max-width: 760px) {
   .nt-hero__inner {
     display: flex;
     flex-direction: column;
@@ -2271,20 +2313,21 @@ body {
   }
 
   .nt-pipeline__visual,
-  .nt-pipeline__visual > picture,
-  .nt-pipeline__visual > picture > img {
-    min-height: 20rem;
+  .nt-pipeline__visual > img {
+    height: auto;
+    min-height: 0;
   }
 
-  .nt-pipeline__visual > picture > img {
+  .nt-pipeline__visual > img {
+    display: block;
+    min-height: 0;
     object-position: center;
   }
 
   .nt-pipeline__labels {
-    background: rgba(0, 30, 26, 0.88);
-    bottom: 0;
+    background: var(--nt-forest);
     grid-template-columns: 1fr;
-    inset: auto 0 0;
+    position: static;
     padding: 1rem 1.25rem;
   }
 
@@ -2296,7 +2339,8 @@ body {
   }
 
   .nt-pipeline__labels small {
-    display: none;
+    display: block;
+    font-size: 0.85rem;
   }
 
   .nt-facts__inner {
@@ -2386,5 +2430,280 @@ body {
 
   .nt-button {
     transition: none;
+  }
+}
+
+/* Secondary pages share the homepage's current campus-lab language. */
+.nt-body .neuro-serif {
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.nt-body .neuro-hero {
+  background: var(--nt-forest-deep);
+  color: #fff;
+  min-height: clamp(32rem, 64vh, 42rem);
+}
+
+.nt-body .neuro-hero::before {
+  background:
+    linear-gradient(90deg, rgba(0, 49, 41, 0.98) 0%, rgba(0, 49, 41, 0.9) 38%, rgba(0, 49, 41, 0.58) 62%, rgba(0, 49, 41, 0.18) 100%),
+    linear-gradient(180deg, rgba(0, 49, 41, 0.18), rgba(0, 49, 41, 0.76));
+  opacity: 1;
+}
+
+.nt-body .neuro-hero::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 203, 5, 0.72), transparent);
+  height: 2px;
+}
+
+.nt-body .neuro-hero__inner {
+  align-items: center;
+  max-width: none;
+  min-height: inherit;
+  padding: clamp(6.5rem, 11vw, 9rem) clamp(1.25rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
+}
+
+.nt-body .neuro-subhero-grid {
+  display: block;
+  margin-inline: auto;
+  max-width: 76rem;
+  width: 100%;
+}
+
+.nt-body .neuro-subhero-copy {
+  margin-inline: 0;
+  max-width: 38rem;
+  text-align: left;
+  width: 100%;
+}
+
+.nt-body .neuro-subhero-copy .mt-9 {
+  justify-content: flex-start;
+  margin-inline: 0;
+  max-width: none;
+}
+
+.nt-body .neuro-subhero-copy h1,
+.nt-body .neuro-hero-title {
+  color: #fff;
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.65rem, 5.25vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1.02;
+  max-width: 17ch;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.nt-body .neuro-subhero-copy p,
+.nt-body .neuro-hero-copy {
+  border-left: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 35rem;
+  padding-left: 0;
+}
+
+.nt-body .neuro-eyebrow,
+.nt-body .neuro-eyebrow--gold {
+  color: var(--nt-yellow);
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.nt-body .neuro-section--bluewash .neuro-eyebrow,
+.nt-body .neuro-section--paper .neuro-eyebrow {
+  color: var(--nt-ink);
+}
+
+.nt-body .neuro-btn-primary,
+.nt-body .neuro-btn-secondary,
+.nt-body .neuro-btn-dark {
+  border-radius: 0;
+  box-shadow: none;
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  min-height: 3.1rem;
+  padding: 0.75rem 1.2rem;
+  text-transform: none;
+}
+
+.nt-body .neuro-btn-primary {
+  background: var(--nt-yellow);
+  border-color: var(--nt-yellow);
+  color: var(--nt-ink);
+}
+
+.nt-body .neuro-btn-primary:hover {
+  background: #ffdc4a;
+  border-color: #ffdc4a;
+  color: var(--nt-ink);
+  transform: translateY(-2px);
+}
+
+.nt-body .neuro-btn-secondary,
+.nt-body .neuro-btn-dark {
+  background: rgba(0, 49, 41, 0.16);
+  border-color: rgba(255, 255, 255, 0.72);
+  color: #fff;
+}
+
+.nt-body .neuro-btn-secondary:hover,
+.nt-body .neuro-btn-dark:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--nt-forest);
+  transform: translateY(-2px);
+}
+
+.nt-body .neuro-section--paper .neuro-btn-secondary,
+.nt-body .neuro-section--bluewash .neuro-btn-secondary,
+.nt-body .neuro-empty .neuro-btn-secondary {
+  background: transparent;
+  border-color: var(--nt-forest);
+  color: var(--nt-ink);
+}
+
+.nt-body .neuro-section--paper .neuro-btn-secondary:hover,
+.nt-body .neuro-section--bluewash .neuro-btn-secondary:hover,
+.nt-body .neuro-empty .neuro-btn-secondary:hover {
+  background: var(--nt-forest);
+  border-color: var(--nt-forest);
+  color: #fff;
+}
+
+.nt-body .neuro-section {
+  padding-block: clamp(3.75rem, 7vw, 6.5rem);
+}
+
+.nt-body .neuro-section--bluewash {
+  background: var(--nt-cream);
+}
+
+.nt-body .neuro-section--paper {
+  background: var(--nt-cream-bright);
+}
+
+.nt-body .neuro-section--deep,
+.nt-body .neuro-dark-band {
+  background: var(--nt-forest-deep);
+}
+
+.nt-body .neuro-section-heading h2,
+.nt-body .neuro-mission-grid h2,
+.nt-body .neuro-principles-layout h2,
+.nt-body .neuro-community-grid h2 {
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.nt-body .neuro-section-heading h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.03;
+}
+
+.nt-body .neuro-link-row {
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  text-transform: none;
+}
+
+.nt-body .neuro-faq-list details {
+  background: transparent;
+  padding: 1.1rem 0;
+}
+
+.nt-body .neuro-faq-list details[open] {
+  background: rgba(255, 203, 5, 0.08);
+  border-bottom-color: rgba(8, 47, 42, 0.3);
+  padding-inline: 0.85rem;
+}
+
+.nt-body .neuro-faq-list summary {
+  min-height: 2.5rem;
+}
+
+.nt-body .neuro-faq-list summary:focus-visible {
+  outline: 3px solid var(--nt-yellow);
+  outline-offset: 3px;
+}
+
+.nt-body .neuro-faq-list details[open] > summary > span {
+  transform: rotate(45deg);
+}
+
+.nt-body--404 .neuro-hero {
+  min-height: min(34rem, 72vh);
+}
+
+.nt-body--404 .neuro-hero::before {
+  background: linear-gradient(135deg, var(--nt-forest-deep), var(--nt-forest));
+}
+
+@media (max-width: 1100px) {
+  .nt-body .neuro-hero,
+  .nt-body .neuro-hero__inner {
+    min-height: 0;
+  }
+
+  .nt-body .neuro-hero__inner {
+    padding: 3.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .nt-body .neuro-hero {
+    min-height: 28rem;
+  }
+
+  .nt-body .neuro-hero__inner {
+    min-height: 28rem;
+    padding: 4.25rem 1.25rem 3rem;
+  }
+
+  .nt-body .neuro-subhero-copy h1,
+  .nt-body .neuro-hero-title {
+    font-size: clamp(2.35rem, 10vw, 3.2rem);
+    line-height: 1.04;
+    max-width: 100%;
+  }
+
+  .nt-body .neuro-subhero-copy p,
+  .nt-body .neuro-hero-copy {
+    font-size: 0.95rem;
+  }
+
+  .nt-body .neuro-action-row {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nt-body .neuro-action-row > a {
+    width: 100%;
+  }
+
+  .nt-body .neuro-section-heading h2,
+  .nt-body .neuro-mission-grid h2,
+  .nt-body .neuro-principles-layout h2,
+  .nt-body .neuro-community-grid h2 {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    line-height: 1.05;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nt-body .neuro-btn-primary:hover,
+  .nt-body .neuro-btn-secondary:hover,
+  .nt-body .neuro-btn-dark:hover {
+    transform: none;
   }
 }

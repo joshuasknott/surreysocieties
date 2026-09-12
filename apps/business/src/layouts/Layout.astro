@@ -16,9 +16,10 @@ const resolvedOgImage = ogImage ?? new URL(defaultOgImage.src, Astro.site).toStr
 const society = getSocietyById('business')!;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const navLinks = [
-  { href: '/#about', label: 'About' },
+  { href: '/about', label: 'About' },
   { href: '/#activities', label: 'Activities' },
-  { href: '/#join', label: 'Join' },
+  { href: '/events', label: 'Events' },
+  { href: '/join', label: 'Join' },
 ];
 ---
 
@@ -48,7 +49,7 @@ const navLinks = [
 
       <div class="business-nav__links">
         {navLinks.map((link) => (
-          <a href={link.href} class="business-nav__link">
+          <a href={link.href} class="business-nav__link" aria-current={Astro.url.pathname === link.href ? 'page' : undefined}>
             {link.label}
           </a>
         ))}
@@ -69,7 +70,7 @@ const navLinks = [
     <div id="mobile-menu" class="business-mobile-menu hidden">
       <div class="business-mobile-menu__inner">
         {navLinks.map((link) => (
-          <a href={link.href}>{link.label}</a>
+          <a href={link.href} aria-current={Astro.url.pathname === link.href ? 'page' : undefined}>{link.label}</a>
         ))}
       </div>
     </div>
@@ -84,6 +85,9 @@ const navLinks = [
         Surrey Business Society
       </a>
       <div class="business-footer__links">
+        <a href="/about">About</a>
+        <a href="/events">Events</a>
+        <a href="/committee">Committee</a>
         <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href={`mailto:${society.contactEmail}`}>Email</a>
@@ -98,6 +102,16 @@ const navLinks = [
   <script>
     const button = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
+    const menuLinks = menu ? Array.from(menu.querySelectorAll('a')) : [];
+
+    const closeMenu = (restoreFocus = false) => {
+      if (!button || !menu) return;
+      menu.classList.add('hidden');
+      button.classList.remove('is-open');
+      button.setAttribute('aria-expanded', 'false');
+      button.setAttribute('aria-label', 'Open navigation menu');
+      if (restoreFocus) button.focus();
+    };
 
     button?.addEventListener('click', () => {
       const isOpening = menu?.classList.contains('hidden') ?? false;
@@ -105,14 +119,21 @@ const navLinks = [
       button.classList.toggle('is-open', isOpening);
       button.setAttribute('aria-expanded', String(isOpening));
       button.setAttribute('aria-label', isOpening ? 'Close navigation menu' : 'Open navigation menu');
+      if (isOpening) menuLinks[0]?.focus();
     });
 
-    menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-      menu.classList.add('hidden');
-      button?.classList.remove('is-open');
-      button?.setAttribute('aria-expanded', 'false');
-      button?.setAttribute('aria-label', 'Open navigation menu');
-    }));
+    menuLinks.forEach((link) => link.addEventListener('click', () => closeMenu()));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && button?.getAttribute('aria-expanded') === 'true') {
+        event.preventDefault();
+        closeMenu(true);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 820 && button?.getAttribute('aria-expanded') === 'true') closeMenu();
+    });
 
   </script>
 </BaseLayout>

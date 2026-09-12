@@ -1,5 +1,4 @@
 ---
-return Astro.redirect('/#join', 302);
 export const prerender = true;
 
 import { getSocietyById } from '@surreysocieties/admin/config';
@@ -31,7 +30,7 @@ const faqs = [
 ---
 
 <Layout title="Join" description="Join Surrey Business Society through Surrey Students' Union for business events, workshops, networking, enterprise support, and career confidence.">
-  <section class="business-hero business-hero--page business-hero--campus" aria-labelledby="join-title">
+  <section class="business-hero business-hero--page business-hero--campus business-hero--join" aria-labelledby="join-title">
     <Image
       src={heroImage}
       alt=""
@@ -48,7 +47,7 @@ const faqs = [
     <div class="business-shell business-hero__content">
       <p class="business-hero__eyebrow business-reveal">Join</p>
       <h1 id="join-title" class="business-reveal">Join Surrey Business Society.</h1>
-      <p class="business-hero__lede business-reveal">Become a member through Surrey Students' Union and get closer to business events, workshops, networks, enterprise support, and career opportunities.</p>
+      <p class="business-hero__lede business-reveal">Join through Surrey Students' Union for events, networks, enterprise support, and career opportunities.</p>
       <div class="business-hero__actions business-reveal">
         <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join via the Union</a>
         <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="business-button business-button--outline">Union page</a>
@@ -58,7 +57,7 @@ const faqs = [
 
   <section class="business-section business-section--paper" aria-labelledby="steps-title">
     <div class="business-shell">
-      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">How to join</p><h2 id="steps-title" class="business-title">Three quick steps.</h2></div><p>The official membership flow lives with Surrey Students' Union. Once you are in, use the society to meet people, attend events, and build confidence.</p></div>
+      <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">How to join</p><h2 id="steps-title" class="business-title">Three quick steps.</h2></div><p>Membership is handled by Surrey Students' Union. Then use the society to meet people, attend events, and build confidence.</p></div>
       <ol class="business-steps business-reveal">
         {joinSteps.map((step, index) => <li class="business-step"><span class="business-step__number">0{index + 1}</span><h3>{step.title}</h3><p>{step.copy}</p></li>)}
       </ol>

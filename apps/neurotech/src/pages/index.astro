@@ -2,7 +2,7 @@
 export const prerender = false;
 
 import { Image } from 'astro:assets';
-import { BrainCircuit, ExternalLink, Instagram, Linkedin, Mail } from 'lucide-astro';
+import { BrainCircuit, ExternalLink, Instagram } from 'lucide-astro';
 import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
@@ -167,6 +167,7 @@ const activityRows = [
       <div class="nt-updates__copy" data-reveal>
         <h2 id="nt-updates-title">Stay in the loop</h2>
         <p>{updateCopy}</p>
+        <a class="nt-inline-link" href="/events">View confirmed events <ExternalLink size={15} aria-hidden="true" /></a>
       </div>
       <div class="nt-updates__links" data-reveal>
         <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer">
@@ -194,11 +195,4 @@ const activityRows = [
     </div>
   </section>
 
-  <section class="nt-contact-links" aria-label="Contact links">
-    <div class="nt-contact-links__inner">
-      <a href={`mailto:${society.contactEmail}`}><Mail size={19} aria-hidden="true" /> {society.contactEmail}</a>
-      <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer"><Instagram size={19} aria-hidden="true" /> @SurreyNeurotech</a>
-      <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={19} aria-hidden="true" /> Surrey Neurotech</a>
-    </div>
-  </section>
 </Layout>

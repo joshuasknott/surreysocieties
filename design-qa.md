@@ -305,3 +305,45 @@ Selected Product Design direction:
 
 - The existing server-side AI boundary is preserved: Gemini keys remain server-side only.
 - The Agentic Builder API still depends on local/deployed AI environment configuration being present.
+
+---
+
+# AI, Business and Neurotech refinement — 12 September 2026
+
+Local refinement of the existing three sites. Existing imagery, branding and overall design directions were retained. No commits, pushes, deployments, backend changes or member-data mutations were made.
+
+## Review scope and evidence
+
+- Inspected the three homepages, navigation, activities, event discovery, joining, footers, About, Committee, Events and Join pages on desktop and mobile, plus 404 and relevant public error states.
+- Evidence is in `output/refinement-2026-09-12/`: `before/`, `pass1/`, `after/`, `verified/`, and `comparisons/`. The ignored `review.html` provides ten before-and-after comparisons and selected interaction captures.
+- Local previews: AI `http://127.0.0.1:4321/`, Business `http://127.0.0.1:4322/`, Neurotech `http://127.0.0.1:4323/`. All returned HTTP 200 at handoff and were left running. The evidence viewer is at `http://127.0.0.1:8765/`.
+- Desktop browser targets were 1440×1000 and 1280×720; mobile was 390×844, with an additional 320px overflow check. The in-app browser's screenshot dimensions differ slightly from its requested viewport. Each homepage comparison uses matching capture dimensions. Neurotech tablet navigation was additionally inspected at 900px.
+
+## Significant changes
+
+- All societies: restored the authored secondary routes that previously redirected to the homepage. Navigation and assistant recovery links now make Events and other useful pages discoverable. Mobile menus support Escape and close correctly when returning to desktop width.
+- AI: fixed mobile menu containment and contrast; retained complete headline phrases; shortened repetitive copy; restored the event preview and events listing; made Union membership the primary closing action; improved project-card alignment and footer wrapping at 320px. The raw redirect statement previously displayed on Committee is removed. Three.js robot ownership and reduced-motion behaviour are preserved.
+- Business: preserved the navy, cream, gold and serif identity; refined secondary-page spacing, heading hierarchy and small-text contrast; prioritised browsing events; improved menu state feedback and joining copy; omitted the empty historical committee block when there are no records.
+- Neurotech: brought secondary pages into the current Manrope, forest, purple and yellow direction; fixed headline wrapping, secondary navigation contrast and the 404 header; changed tablet navigation before links wrap; corrected the actual BCI image selector so its diagram and three descriptions remain visible without the large mobile gap; kept reveal content readable from the start.
+- Shared assistant: empty submission is disabled, controls have usable touch targets, sending/reset states are consistent, HTTP errors expose useful recovery links, and a late response no longer steals focus after the panel is closed. Loading, error, retry and reset verification used mocked responses.
+
+## Two deliberate critique passes
+
+1. Major layout and usability: reopened the rendered pages after the first implementation. Corrected excessive whitespace on restored pages, old Neurotech secondary-page styling, broken mobile menu layout, confusing event actions and redundant AI joining content.
+2. Detail and consistency: rechecked desktop/mobile pages and interactions. Refined heading weights, labels on light surfaces, button contrast, disclosure feedback, project-card alignment, footer wrapping, the BCI diagram, and Neurotech desktop/tablet navigation. Stopped where remaining alternatives were subjective.
+
+## Verification results
+
+- `npm run typecheck`: passed.
+- `npm test`: passed, 37 tests across five files.
+- `npm run build:all`: passed. AI and Neurotech builds were repeated after their final CSS changes and passed; Business had no subsequent source changes.
+- Chromium E2E: 45 distinct cases are green across the complete run and focused follow-ups. The initial 44-case run passed 43 and found a 9px AI footer overflow at 320px. After the fix and added BCI coverage, the five affected/new cases passed. Two affected Neurotech navigation/membership cases passed again after the tablet header change. This is not a claim that one final 45-case suite was rerun.
+- Browser inspection covered menus, focus, Escape, resizing, reduced motion, native FAQ open states, empty events, membership link destinations, and opening/closing all four AI project dialogs. Hover and mocked assistant loading/error captures were inspected.
+- `git diff --check`: passed. No authorization or backend code changed.
+
+## Limits
+
+- No live assistant/provider generation, real membership checkout, event registration or admin mutation was performed. AI project dialogs were inspected without running paid generation, full gameplay or audio sessions.
+- Connected public event listings were empty. Populated event layouts and Neurotech filtering were not exercised against event records.
+- This was local visual and functional QA, not a production deployment or a full accessibility/performance audit. Existing build warnings remain for deprecated Vite dependency-optimization options and the large AI client chunk.
+- Some browser captures include the Astro development toolbar. It is preview tooling, not society content.

@@ -1,5 +1,4 @@
 ---
-return Astro.redirect('/#join', 302);
 export const prerender = false;
 
 import { getSocietyById } from '@surreysocieties/admin/config';
@@ -52,7 +51,7 @@ const leadershipWork = [
     <div class="business-shell business-hero__content">
       <p class="business-hero__eyebrow business-reveal">Committee</p>
       <h1 id="committee-title" class="business-reveal">Meet the students leading the society.</h1>
-      <p class="business-hero__lede business-reveal">The committee organises confirmed activity, supports members, and keeps Surrey Business Society moving.</p>
+      <p class="business-hero__lede business-reveal">The committee organises activity, supports members, and keeps the society moving.</p>
       <div class="business-hero__actions business-reveal">
         <a href={`mailto:${society.contactEmail}`} class="business-button">Contact the society</a>
         <a href="/join" class="business-button business-button--outline">Become a member</a>
@@ -64,7 +63,7 @@ const leadershipWork = [
     <div class="business-shell">
       <div class="business-section__heading business-reveal">
         <div><p class="business-eyebrow">Current committee</p><h2 id="current-title" class="business-title">The team behind the society.</h2></div>
-        <p>Names, roles, and contact details are shown once committee members confirm them for public sharing.</p>
+        <p>Meet the students shaping this year’s programme, community, and member experience.</p>
       </div>
       {committee.length ? (
         <div class="business-people-grid business-reveal">
@@ -93,18 +92,16 @@ const leadershipWork = [
     </div>
   </section>
 
-  <section class="business-section business-section--paper-light" aria-labelledby="archive-title">
+  {pastCommittee.length > 0 && <section class="business-section business-section--paper-light" aria-labelledby="archive-title">
     <div class="business-shell">
       <div class="business-section__heading business-reveal"><div><p class="business-eyebrow">Past teams</p><h2 id="archive-title" class="business-title">Past committees.</h2></div><p>A simple record of the students who have helped lead the society.</p></div>
-      {pastCommittee.length ? (
         <div class="business-archive business-reveal">
           {pastYears.map((year) => (
             <section class="business-archive__year"><h3>{year}</h3><div class="business-archive__names">{pastCommittee.filter((member) => (member.yearLabel || 'Previous committee') === year).map((member) => <div><strong>{member.name}</strong><span>{member.role}</span></div>)}</div></section>
           ))}
         </div>
-      ) : <div class="business-empty business-reveal"><h3>Past committee records will appear once added.</h3><p>Historical committee details will appear here once committee members add them.</p></div>}
     </div>
-  </section>
+  </section>}
 
   <section class="business-join-band" aria-labelledby="committee-join-title">
     <div class="business-shell business-join-band__inner"><div><h2 id="committee-join-title">Want to get involved?</h2><p>Join the society, meet the team, and help shape what happens next.</p></div><a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a></div>

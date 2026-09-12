@@ -23,6 +23,7 @@ section[id] {
   --paper-light: #fffcf6;
   --gold: #d7a845;
   --gold-light: #edc76e;
+  --gold-ink: #966f1a;
   --red: #861f35;
   --red-dark: #641426;
   --line: rgba(16, 34, 55, 0.18);
@@ -257,6 +258,9 @@ summary:focus-visible {
 .business-hero--home .business-hero__content { padding-top: clamp(5.1rem, 7vw, 6.1rem); }
 .business-hero__eyebrow,
 .business-eyebrow { color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; margin-bottom: 1rem; text-transform: uppercase; }
+.business-hero__eyebrow,
+.business-section--paper .business-eyebrow,
+.business-section--paper-light .business-eyebrow { color: var(--gold-ink); }
 .business-hero h1,
 .business-title,
 .business-quote { font-family: var(--font-serif); font-weight: 700; letter-spacing: -0.035em; }
@@ -427,8 +431,10 @@ summary:focus-visible {
 .business-faq details { border-bottom: 1px solid var(--line); }
 .business-faq summary { align-items: center; cursor: pointer; display: flex; font-family: var(--font-serif); font-size: clamp(1.2rem, 2vw, 1.55rem); font-weight: 700; gap: 1rem; justify-content: space-between; list-style: none; padding-block: 1.15rem; }
 .business-faq summary::-webkit-details-marker { display: none; }
-.business-faq summary::after { color: var(--red); content: '+'; font-family: var(--font-sans); font-size: 1.6rem; font-weight: 400; }
+.business-faq summary:hover { color: var(--red); }
+.business-faq summary::after { align-items: center; border: 1px solid currentColor; border-radius: 50%; color: var(--red); content: '+'; display: inline-flex; flex: 0 0 1.7rem; font-family: var(--font-sans); font-size: 1.35rem; font-weight: 400; height: 1.7rem; justify-content: center; line-height: 1; transition: background 160ms ease, color 160ms ease, transform 160ms ease; width: 1.7rem; }
 .business-faq details[open] summary::after { content: '−'; }
+.business-faq details[open] summary { color: var(--red); }
 .business-faq p { color: var(--ink-muted); line-height: 1.65; padding: 0 2rem 1.25rem 0; }
 
 .business-contact-line { align-items: center; border-top: 1px solid var(--line-light); display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 2rem; padding-top: 1.35rem; }
@@ -446,7 +452,9 @@ summary:focus-visible {
   .business-nav__links { display: none; }
   .business-nav__menu { display: block; }
   .business-hero { min-height: min(43rem, calc(100svh - 4.75rem)); }
-  .business-hero--page { min-height: min(37rem, calc(100svh - 4.75rem)); }
+  .business-hero--home { min-height: min(36rem, calc(100svh - 4.75rem)); }
+  .business-hero--page { min-height: min(33rem, calc(100svh - 4.75rem)); }
+  .business-hero--page .business-hero__content { padding-top: clamp(5.5rem, 20vw, 8rem); }
   .business-hero__image { inset: 0; height: 100%; object-position: 58% 36%; opacity: 1; }
   .business-hero--home .business-hero__image { object-position: 64% 34%; }
   .business-hero--about .business-hero__image { object-position: 54% 58%; }
@@ -475,8 +483,10 @@ summary:focus-visible {
   .business-hero h1 {
     font-size: clamp(2.55rem, 11.2vw, 3.35rem);
     margin-inline: auto;
-    max-width: 9ch;
+    max-width: 10.5ch;
   }
+  .business-hero--page h1 { font-size: clamp(2.35rem, 9.8vw, 3.05rem); }
+  .business-hero--page ~ .business-section .business-section__heading .business-title { font-size: clamp(2rem, 8.7vw, 2.65rem); }
   .business-hero__lede {
     margin-inline: auto;
   }
@@ -506,6 +516,7 @@ summary:focus-visible {
   .business-updates .business-update:first-child { border-bottom: 1px solid var(--line); border-left: 0; padding: 0 0 2rem; }
   .business-updates .business-update + .business-update { padding-top: 2rem; }
   .business-updates .business-update:last-child { border-bottom: 0; }
+  .business-updates .business-update__empty { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
   .business-event-row { grid-template-columns: 1fr; }
   .business-event-row__action { justify-self: start; }
   .business-archive__year,
@@ -519,10 +530,11 @@ summary:focus-visible {
 
 @media (max-width: 500px) {
   .business-nav__brand span { max-width: 12rem; }
-  .business-hero h1 { font-size: clamp(2.45rem, 10.8vw, 3.15rem); max-width: 8.8ch; }
+  .business-hero h1 { font-size: clamp(2.45rem, 10.8vw, 3.15rem); max-width: 10.5ch; }
   .business-hero__actions .business-button { width: 100%; }
   .business-title { font-size: clamp(2.1rem, 11vw, 3rem); }
   .business-image-break__inner { padding-block: 4rem; }
+  .business-footer__links a { font-size: 0.8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

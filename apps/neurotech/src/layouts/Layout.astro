@@ -12,9 +12,10 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  bodyClass?: string;
 }
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, bodyClass = 'nt-body' } = Astro.props;
 const society = getSocietyById('neurotech')!;
 const assistantConfig = ASSISTANT_CONFIGS.neurotech;
 const fullTitle = `${title} | ${society.name}`;
@@ -23,6 +24,9 @@ const resolvedOgImage = ogImage ?? new URL(defaultOgImage.src, Astro.site).toStr
 
 const navLinks = [
   { href: '/#activities', label: 'What we do' },
+  { href: '/events', label: 'Events' },
+  { href: '/about', label: 'About' },
+  { href: '/committee', label: 'Committee' },
   { href: '/#updates', label: 'Updates' },
   { href: '/#contact', label: 'Contact' },
 ];
@@ -34,14 +38,14 @@ const navLinks = [
   ogImage={resolvedOgImage}
   canonicalUrl={canonicalUrl}
   htmlClass="nt-scroll"
-  bodyClass="nt-body"
+  bodyClass={bodyClass}
   extraFontHrefs={[
     'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap',
   ]}
 >
   <a href="#main-content" class="nt-skip">Skip to content</a>
 
-  <header class="nt-header">
+  <header class:list={['nt-header', { 'nt-header--secondary': Astro.url.pathname !== '/' }]}>
     <div class="nt-header__inner">
       <a href="/" class="nt-brand" aria-label="Surrey Neurotech Society home">
         <Image
@@ -90,6 +94,9 @@ const navLinks = [
         <span class="nt-brand__name" aria-hidden="true">Surrey Neurotech Society</span>
       </a>
       <div class="nt-footer__links">
+        <a href="/about">About</a>
+        <a href="/events">Events</a>
+        <a href="/committee">Committee</a>
         <a href={`mailto:${society.contactEmail}`}>{society.contactEmail}</a>
         <a href={society.socials.instagram} target="_blank" rel="noopener noreferrer">@SurreyNeurotech</a>
         <a href={society.socials.linkedin} target="_blank" rel="noopener noreferrer">Surrey Neurotech</a>
@@ -107,12 +114,13 @@ const navLinks = [
     const menuButton = document.getElementById('nt-menu-button');
     const mobileMenu = document.getElementById('nt-mobile-menu');
 
-    const setMenuOpen = (open: boolean) => {
+    const setMenuOpen = (open: boolean, restoreFocus = false) => {
       if (!menuButton || !mobileMenu) return;
       mobileMenu.hidden = !open;
       menuButton.setAttribute('aria-expanded', String(open));
       menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
       menuButton.classList.toggle('is-open', open);
+      if (!open && restoreFocus) menuButton.focus();
     };
 
     menuButton?.addEventListener('click', () => {
@@ -123,14 +131,28 @@ const navLinks = [
       link.addEventListener('click', () => setMenuOpen(false));
     });
 
-    const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false, true);
+      }
+    });
+
+    const desktopQuery = window.matchMedia('(min-width: 1101px)');
+    desktopQuery.addEventListener?.('change', (event) => {
+      if (event.matches) setMenuOpen(false);
+    });
+
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal], .reveal'));
+    const markRevealVisible = (element: HTMLElement) => {
+      element.classList.add('is-visible', 'visible');
+    };
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-      revealElements.forEach((element) => element.classList.add('is-visible'));
+      revealElements.forEach(markRevealVisible);
     } else {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          (entry.target as HTMLElement).classList.add('is-visible');
+          markRevealVisible(entry.target as HTMLElement);
           observer.unobserve(entry.target);
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
