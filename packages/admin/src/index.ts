@@ -16,3 +16,4 @@ export {
   UNION_OFFICER_ROLES,
 } from './unionCommittee.js';
 export type { UnionCommitteeOfficer, UnionOfficerRole } from './unionCommittee.js';
+export { applySecurityHeaders } from './securityHeaders.js';

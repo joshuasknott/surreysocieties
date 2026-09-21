@@ -11,7 +11,8 @@
     "./unionCommittee": "./src/unionCommittee.ts",
     "./types": "./src/types.ts",
     "./csrf": "./src/csrf.ts",
-    "./actionGuard": "./src/actionGuard.ts"
+    "./actionGuard": "./src/actionGuard.ts",
+    "./securityHeaders": "./src/securityHeaders.ts"
   },
   "dependencies": {
     "convex": "^1.37.0"

@@ -1,5 +1,5 @@
 import { clerkMiddleware } from '@clerk/astro/server';
-import { createConvexClient } from '@surreysocieties/admin';
+import { createConvexClient, applySecurityHeaders } from '@surreysocieties/admin';
 import { api } from '../../../convex/_generated/api.js';
 
 const SOCIETY_ID = 'ai';
@@ -11,54 +11,59 @@ const publicAdminRoutes = new Set([
 export const onRequest = clerkMiddleware(async (auth, context, next) => {
   const { pathname } = new URL(context.request.url);
 
+  let response: Response;
+
   if (!pathname.startsWith('/admin') && !pathname.startsWith('/api/admin') && !pathname.startsWith('/_actions/')) {
-    return next();
-  }
+    response = await next();
+  } else if (publicAdminRoutes.has(pathname)) {
+    response = await next();
+  } else {
+    const { userId } = auth();
 
-  if (publicAdminRoutes.has(pathname)) {
-    return next();
-  }
+    if (!userId) {
+      if (pathname.startsWith('/api/admin') || pathname.startsWith('/_actions/')) {
+        response = new Response(JSON.stringify({ error: 'Unauthorized' }), {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      } else {
+        response = context.redirect('/admin/login');
+      }
+    } else {
+      const token = await auth().getToken({ template: 'convex' });
+      if (!token) {
+        response = new Response('Authentication configuration error: missing Convex Clerk token.', { status: 500 });
+      } else {
+        const client = createConvexClient(token || undefined);
 
-  const { userId } = auth();
+        const membership = await client.query(api.memberships.getMyMembership, {
+          societySlug: SOCIETY_ID,
+        });
 
-  if (!userId) {
-    if (pathname.startsWith('/api/admin') || pathname.startsWith('/_actions/')) {
-      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
-      });
+        if (!membership) {
+          if (pathname.startsWith('/api/admin') || pathname.startsWith('/_actions/')) {
+            response = new Response(JSON.stringify({ error: 'Forbidden' }), {
+              status: 403,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          } else {
+            response = new Response('Forbidden: You do not have access to this society\'s admin area.', { status: 403 });
+          }
+        } else {
+          context.locals.convexClient = client;
+          context.locals.user = {
+            _id: membership.user._id,
+            name: membership.user.name,
+            email: membership.user.email,
+            role: membership.role,
+          };
+          context.locals.societySlug = SOCIETY_ID;
+
+          response = await next();
+        }
+      }
     }
-    return context.redirect('/admin/login');
   }
 
-  const token = await auth().getToken({ template: 'convex' });
-  if (!token) {
-    return new Response('Authentication configuration error: missing Convex Clerk token.', { status: 500 });
-  }
-  const client = createConvexClient(token || undefined);
-
-  const membership = await client.query(api.memberships.getMyMembership, {
-    societySlug: SOCIETY_ID,
-  });
-
-  if (!membership) {
-    if (pathname.startsWith('/api/admin') || pathname.startsWith('/_actions/')) {
-      return new Response(JSON.stringify({ error: 'Forbidden' }), {
-        status: 403,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-    return new Response('Forbidden: You do not have access to this society\'s admin area.', { status: 403 });
-  }
-
-  context.locals.convexClient = client;
-  context.locals.user = {
-    _id: membership.user._id,
-    name: membership.user.name,
-    email: membership.user.email,
-    role: membership.role,
-  };
-  context.locals.societySlug = SOCIETY_ID;
-
-  return next();
+  return applySecurityHeaders(response);
 });
