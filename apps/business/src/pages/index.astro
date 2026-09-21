@@ -5,44 +5,21 @@ import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
-import { BriefcaseBusiness, CalendarDays, ChartNoAxesColumnIncreasing, GraduationCap, Rocket, UsersRound } from 'lucide-astro';
+import { BriefcaseBusiness, ChartNoAxesColumnIncreasing, Rocket, UsersRound } from 'lucide-astro';
 import Layout from '../layouts/Layout.astro';
+import SocietyCommunity from '@surreysocieties/ui/components/SocietyCommunity';
 import heroImage from '../assets/generated/business-campus-ledger-hero.optimized.webp';
 import '../styles/global.css';
 
 const society = getSocietyById('business')!;
 Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
-const [eventsResult, committeeResult] = await Promise.all([
-  queryPublicConvex(api.events.listPublished, { societySlug: 'business' }, []),
-  queryPublicConvex(api.committee.listActive, { societySlug: 'business' }, []),
-]);
-const events: any[] = eventsResult;
-const committee: any[] = committeeResult
-  .sort((a: any, b: any) => (a.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.displayOrder ?? Number.MAX_SAFE_INTEGER));
-
-const formatEventDate = (date?: string) => {
-  if (!date) return 'Date to be confirmed';
-  const parsed = new Date(`${date}T00:00:00`);
-  return Number.isNaN(parsed.getTime()) ? date : parsed.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-};
-
-const ledgerStats = [
-  { title: 'Events', copy: 'Talks, workshops, networking', Icon: CalendarDays },
-  { title: 'All courses', copy: 'Every Surrey student', Icon: GraduationCap },
-  { title: 'Student-led', copy: 'Run by students', Icon: UsersRound },
-];
-
-const reasonsToJoin = [
-  { title: 'Understand careers', copy: 'Get clearer on industries, applications, workplaces, and commercial roles.' },
-  { title: 'Build business skills', copy: 'Practise presenting, networking, interviewing, leadership, and idea development.' },
-  { title: 'Meet the community', copy: 'Start useful conversations with students across courses and career interests.' },
-];
+const committee = await queryPublicConvex(api.committee.listActive, { societySlug: 'business' }, []);
 
 const focusAreas = [
-  { title: 'Careers', copy: 'Employer insight, application context, and practical career direction.', Icon: BriefcaseBusiness },
-  { title: 'Enterprise', copy: 'Support for ideas, startups, problem-solving, and building confidence early.', Icon: Rocket },
-  { title: 'Networking', copy: 'Practical ways to build confidence and start useful conversations.', Icon: UsersRound },
-  { title: 'Skills', copy: 'Workshops for communication, strategy, leadership, teamwork, and commercial awareness.', Icon: ChartNoAxesColumnIncreasing },
+  { title: 'Careers', copy: 'Hear from people in industry and get practical advice on applications and interviews.', Icon: BriefcaseBusiness },
+  { title: 'Enterprise', copy: 'Share a business idea, learn how to test it and find other students to build it with.', Icon: Rocket },
+  { title: 'Networking', copy: 'Meet students across Surrey, alongside alumni, employers and guest speakers.', Icon: UsersRound },
+  { title: 'Skills', copy: 'Practise presenting, work through business challenges and learn from each other.', Icon: ChartNoAxesColumnIncreasing },
 ];
 ---
 
@@ -62,24 +39,13 @@ const focusAreas = [
         quality={70}
       />
       <div class="business-shell business-hero__content">
-        <h1 id="business-hero-title" class="business-reveal">Surrey's student-led business society.</h1>
-        <p class="business-hero__lede business-reveal">Events, workshops, networking, and practical support for students who want to build commercial confidence.</p>
-        <div class="business-hero__actions business-reveal">
-          <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
-          <a href="#activities" class="business-button business-button--outline">Explore activities</a>
+        <h1 id="business-hero-title" class="business-reveal">Meet Surrey’s business community.</h1>
+        <p class="business-hero__lede business-reveal">Meet people, explore careers and try your hand at business. Open to every Surrey student.</p>
+        <div class="business-hero__actions business-reveal" data-hero-actions>
+          <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society <span aria-hidden="true">↗</span></a>
+          <a href={society.socials.linktree} target="_blank" rel="noopener noreferrer" class="business-button business-button--outline">Linktree <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="business-fact-row" aria-label="Society at a glance">
-    <div class="business-fact-row__inner">
-      {ledgerStats.map(({ title, copy, Icon }) => (
-        <div class="business-fact">
-          <Icon aria-hidden="true" />
-          <div><strong>{title}</strong><span>{copy}</span></div>
-        </div>
-      ))}
     </div>
   </section>
 
@@ -87,24 +53,12 @@ const focusAreas = [
     <div class="business-shell">
       <div class="business-intro business-reveal">
         <div>
-          <p class="business-eyebrow">For Surrey students</p>
-          <h2 id="why-title" class="business-intro__lead">Build commercial confidence, whatever you study.</h2>
+          <h2 id="why-title" class="business-intro__lead">Business is for everyone.</h2>
         </div>
         <div class="business-intro__body business-copy">
-          <p>Surrey Business Society is open to students from every degree. We help members build commercial confidence through practical sessions, peer learning, networking, and enterprise-focused activity.</p>
-          <p>Come to understand careers, test ideas, meet useful people, and build the skills that help you move with more confidence.</p>
+          <p>We bring students together to explore business, careers and entrepreneurship through talks, workshops and socials.</p>
+          <p>You don’t need to study business or have a startup idea. Come along to learn something, ask questions and meet people.</p>
         </div>
-      </div>
-      <div class="business-reasons business-reveal" style="margin-top: clamp(3rem, 7vw, 6rem);">
-        {reasonsToJoin.map((reason, index) => (
-          <article class="business-reason">
-            <span class="business-line__number">0{index + 1}</span>
-            <div>
-              <h3>{reason.title}</h3>
-              <p>{reason.copy}</p>
-            </div>
-          </article>
-        ))}
       </div>
     </div>
   </section>
@@ -113,16 +67,13 @@ const focusAreas = [
     <div class="business-shell">
       <div class="business-section__heading business-reveal">
         <div>
-          <p class="business-eyebrow">What we do</p>
-          <h2 id="focus-title" class="business-title">Events, skills, networks, enterprise.</h2>
+          <h2 id="focus-title" class="business-title">What we get up to.</h2>
         </div>
-        <p>Everything is designed to make business easier to understand and easier to act on.</p>
       </div>
       <div class="business-focus-grid business-reveal">
-        {focusAreas.map(({ title, copy, Icon }, index) => (
+        {focusAreas.map(({ title, copy, Icon }) => (
           <article class="business-line">
             <Icon class="business-line__icon" aria-hidden="true" />
-            <span class="business-line__number">0{index + 1}</span>
             <h3>{title}</h3>
             <p>{copy}</p>
           </article>
@@ -131,41 +82,5 @@ const focusAreas = [
     </div>
   </section>
 
-  <section class="business-section business-section--paper-light" aria-label="Society updates">
-    <div class="business-shell business-updates business-reveal">
-      <section class="business-update" aria-labelledby="events-title">
-        <div class="business-update__top"><h3 id="events-title">Society updates</h3><a href={society.socials.instagram} target="_blank" rel="noopener noreferrer" class="business-text-link">Follow updates</a></div>
-        {events.length ? (
-          events.slice(0, 2).map((event) => (
-            <article class="business-event">
-              <time>{formatEventDate(event.date)}</time>
-              <h4>{event.title}</h4>
-              {event.location && <p>{event.location}</p>}
-            </article>
-          ))
-        ) : <div class="business-update__empty"><p>No events are confirmed yet.</p><a href="/events" class="business-text-link">View events page</a></div>}
-      </section>
-      <section class="business-update" aria-labelledby="committee-title">
-        <div class="business-update__top"><h3 id="committee-title">The committee</h3><a href={`mailto:${society.contactEmail}`} class="business-text-link">Contact the team</a></div>
-        {committee.length ? (
-          committee.slice(0, 2).map((member) => (
-            <article class="business-event">
-              <time>{member.role || 'Committee member'}</time>
-              <h4>{member.name}</h4>
-            </article>
-          ))
-        ) : <div class="business-update__empty"><p>The public committee list has not been published yet.</p><a href={`mailto:${society.contactEmail}`} class="business-text-link">Contact the society</a></div>}
-      </section>
-    </div>
-  </section>
-
-  <section id="join" class="business-join-band" aria-labelledby="join-title">
-    <div class="business-shell business-join-band__inner">
-      <div>
-        <h2 id="join-title">Ready to get involved?</h2>
-        <p>Join through the Union and start with the next event, workshop, or useful conversation.</p>
-      </div>
-      <a href={society.membershipUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society</a>
-    </div>
-  </section>
+  <SocietyCommunity society={society} committee={committee} />
 </Layout>
