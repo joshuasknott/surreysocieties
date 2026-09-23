@@ -347,3 +347,11 @@ Local refinement of the existing three sites. Existing imagery, branding and ove
 - Connected public event listings were empty. Populated event layouts and Neurotech filtering were not exercised against event records.
 - This was local visual and functional QA, not a production deployment or a full accessibility/performance audit. Existing build warnings remain for deprecated Vite dependency-optimization options and the large AI client chunk.
 - Some browser captures include the Astro development toolbar. It is preview tooling, not society content.
+
+## 2026-09-23 assistant refresh
+
+- Compared the approved AI, Business and Neurotech assistant mockups with local open and replied states at 1440×900 and 390×844. Captures are `output/assistant-preview-{ai,business,neurotech}-{desktop,mobile}.png` and corresponding `-reply.png` files.
+- Each launcher and panel header reuses its site's actual logo, as requested. Each panel has three society-focused starters; social, committee and membership answers include clickable verified links. The panel stays in the mobile viewport and scrolls its conversation content.
+- `npm run build:all`, `npm run typecheck`, 33 unit tests, nine focused Playwright checks and real local membership endpoint requests all passed. No domain deployment was performed.
+
+final result: passed

@@ -120,22 +120,6 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 
 /* ── Navigation ── */
 
-/* ── Assistant widget theme ── */
-.society-assistant {
-  --assistant-accent: var(--color-neuro-gold) !important;
-  --assistant-accent-text: var(--color-neuro-deep) !important;
-  --assistant-surface: var(--color-neuro-paper) !important;
-  --assistant-text: var(--color-neuro-ink) !important;
-  --assistant-muted: var(--color-neuro-muted) !important;
-  --assistant-border: var(--color-neuro-line) !important;
-}
-.society-assistant .assistant-toggle { background: var(--color-neuro-paper) !important; border: 1px solid rgba(212, 175, 55, 0.86) !important; border-radius: 999px !important; box-shadow: 0 14px 34px rgba(8, 20, 45, 0.18) !important; color: var(--color-neuro-teal) !important; }
-.society-assistant .assistant-toggle:hover { background: var(--color-neuro-wash) !important; color: var(--color-neuro-deep) !important; }
-.society-assistant .assistant-panel { border: 1px solid var(--color-neuro-gold) !important; border-radius: 16px !important; box-shadow: 0 22px 54px rgba(8, 20, 45, 0.22) !important; }
-.society-assistant .assistant-header { background: var(--color-neuro-deep) !important; border-bottom: 1px solid var(--color-neuro-gold) !important; border-radius: 16px 16px 0 0 !important; color: var(--color-neuro-on-dark) !important; }
-.society-assistant .assistant-header h2 { color: var(--color-neuro-on-dark) !important; font-family: var(--font-serif) !important; font-weight: 750 !important; }
-.society-assistant .assistant-eyebrow { color: var(--color-neuro-gold) !important; letter-spacing: 0 !important; }
-
 /* ── Homepage: Blue Signal Atlas hero ── */
 
 /* Hero atlas panel (brain visual + floating steps) */
