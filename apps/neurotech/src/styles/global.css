@@ -53,51 +53,10 @@ body {
 }
 
 body::selection { background: var(--color-neuro-gold); color: var(--color-neuro-deep); }
-
-.neuro-shell { margin-inline: auto; max-width: 76rem; padding-inline: 1.5rem; width: 100%; }
 .neuro-serif { font-family: var(--font-serif); font-weight: 750; letter-spacing: 0; }
-.neuro-prose { color: var(--color-neuro-muted); font-size: 1.05rem; line-height: 1.85; }
-.neuro-prose p + p { margin-top: 1.25rem; }
-
-.neuro-section { overflow: hidden; padding: clamp(5rem, 8vw, 7.4rem) 1.25rem; position: relative; }
-.neuro-section--mist,
-.neuro-section--bluewash {
-  background:
-    radial-gradient(circle at 12% 18%, rgba(0, 180, 216, 0.16), transparent 20rem),
-    linear-gradient(180deg, #dce8ef 0%, #eff5f8 100%);
-}
-.neuro-section--paper { background: linear-gradient(180deg, #eaf3f7 0%, #dbe9f0 100%); }
-.neuro-section--deep,
-.neuro-dark-band {
-  background:
-    radial-gradient(circle at 82% 18%, rgba(0, 180, 216, 0.22), transparent 24rem),
-    linear-gradient(135deg, rgba(11, 95, 118, 0.24), transparent 38%),
-    var(--color-neuro-deep);
-  color: var(--color-neuro-on-dark);
-}
-.neuro-section--deep p { color: var(--color-neuro-on-dark-muted); }
-
-.neuro-section-heading { margin-bottom: 2.4rem; margin-inline: auto; max-width: 48rem; text-align: center; }
-.neuro-section-heading--left { margin: 0; max-width: 26rem; text-align: left; }
-.neuro-section-heading h2 { color: var(--color-neuro-ink); font-size: clamp(2.4rem, 4vw, 4.8rem); line-height: 1; margin-top: 0; }
-.neuro-section--deep .neuro-section-heading h2,
-.neuro-section--deep h2 { color: var(--color-neuro-on-dark); }
-.neuro-section-heading p { color: var(--color-neuro-muted); font-size: 1rem; line-height: 1.8; margin-top: 1rem; }
-
-.neuro-eyebrow,
-.neuro-eyebrow--gold {
-  color: var(--color-neuro-gold-soft);
-  display: block;
-  font-size: 0.76rem;
-  font-weight: 850;
-  letter-spacing: 0.14em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
 
 /* ── Hero (subhero pages: about/events/committee/join) ── */
-.neuro-hero,
-.neuro-hero--home {
+.neuro-hero {
   background:
     radial-gradient(circle at 82% 16%, rgba(0, 180, 216, 0.22), transparent 24rem),
     radial-gradient(circle at 18% 82%, rgba(212, 175, 55, 0.16), transparent 18rem),
@@ -106,19 +65,6 @@ body::selection { background: var(--color-neuro-gold); color: var(--color-neuro-
   overflow: hidden;
   position: relative;
 }
-.neuro-hero__image {
-  height: 100%;
-  inset: 0;
-  object-fit: cover;
-  object-position: center;
-  position: absolute;
-  width: 100%;
-  z-index: 0;
-}
-.neuro-hero--about .neuro-hero__image { object-position: 76% center; }
-.neuro-hero--events .neuro-hero__image,
-.neuro-hero--committee .neuro-hero__image,
-.neuro-hero--join .neuro-hero__image { object-position: 72% center; }
 .neuro-hero::before {
   background:
     repeating-linear-gradient(168deg, transparent 0 2.4rem, rgba(0, 180, 216, 0.1) 2.45rem, transparent 2.52rem),
@@ -130,107 +76,20 @@ body::selection { background: var(--color-neuro-gold); color: var(--color-neuro-
   content: ""; inset: 0; pointer-events: none; position: absolute; z-index: 1;
 }
 .neuro-hero__inner { margin: 0 auto; max-width: 90rem; padding: clamp(3rem, 5vw, 5.2rem) 1.5rem clamp(2.4rem, 5vw, 4rem); position: relative; z-index: 2; }
-.neuro-hero-grid,
-.neuro-subhero-grid { align-items: center; display: grid; gap: clamp(2rem, 4vw, 4rem); grid-template-columns: minmax(28rem, 0.82fr) minmax(30rem, 1.05fr); position: relative; z-index: 2; }
-.neuro-subhero-grid { grid-template-columns: minmax(25rem, 0.86fr) minmax(26rem, 0.9fr); }
-.neuro-hero-title,
-.neuro-subhero-copy h1 { color: var(--color-neuro-on-dark); font-size: clamp(3rem, 5.25vw, 5.6rem); line-height: 0.96; margin-top: 1.1rem; max-width: 44rem; }
-.neuro-subhero-copy h1 { font-size: clamp(2.9rem, 5vw, 5.15rem); }
-.neuro-hero-copy,
-.neuro-subhero-copy p { border-left: 2px solid rgba(212, 175, 55, 0.54); color: var(--color-neuro-on-dark-muted); font-size: 1.02rem; line-height: 1.75; margin-top: 1.35rem; max-width: 38rem; padding-left: 1.15rem; }
-.neuro-subhero-copy { max-width: 48rem; position: relative; z-index: 2; }
+.neuro-hero-title { color: var(--color-neuro-on-dark); font-size: clamp(3rem, 5.25vw, 5.6rem); line-height: 0.96; margin-top: 1.1rem; max-width: 44rem; }
+.neuro-hero-copy { border-left: 2px solid rgba(212, 175, 55, 0.54); color: var(--color-neuro-on-dark-muted); font-size: 1.02rem; line-height: 1.75; margin-top: 1.35rem; max-width: 38rem; padding-left: 1.15rem; }
 .neuro-action-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.55rem; }
 
 /* ── Cutout stage (subhero decorative image panel) ── */
-.neuro-cutout-stage { isolation: isolate; margin: 0; min-height: 24rem; position: relative; }
-.neuro-cutout-stage--subhero,
-.neuro-cutout-stage--subhero-signal {
-  background: linear-gradient(135deg, rgba(8, 35, 74, 0.86), rgba(3, 16, 38, 0.68));
-  border: 1px solid rgba(241, 220, 145, 0.32);
-  border-radius: 8px;
-  overflow: hidden;
-}
-.neuro-cutout-stage--subhero::before {
-  background:
-    radial-gradient(circle at 52% 48%, rgba(0, 180, 216, 0.24), transparent 44%),
-    radial-gradient(circle at 42% 55%, rgba(212, 175, 55, 0.14), transparent 36%);
-  content: ""; filter: blur(12px); inset: 0; pointer-events: none; position: absolute;
-}
-.neuro-cutout { display: block; height: auto; position: absolute; transition: filter 420ms ease, transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1); width: auto; will-change: transform; z-index: 1; }
-.neuro-cutout--subhero-brain { filter: drop-shadow(0 34px 52px rgba(0, 0, 0, 0.34)) saturate(0.96) contrast(1.04); max-width: min(36rem, 72%); right: 0; top: 3%; transform: rotate(4deg); width: 72%; z-index: 1; }
-.neuro-cutout--subhero-signal { bottom: 2%; filter: drop-shadow(0 34px 52px rgba(0, 0, 0, 0.34)) saturate(0.96) contrast(1.04); left: 50%; max-width: min(46rem, 100%); transform: translateX(-50%) rotate(-3deg); width: 100%; }
-.neuro-cutout-stage--subhero:hover .neuro-cutout--subhero-brain,
-.neuro-cutout-stage--subhero-signal:hover .neuro-cutout--subhero-signal { filter: drop-shadow(0 36px 52px rgba(0, 0, 0, 0.26)) saturate(1.08) contrast(1.03); }
 
 /* ── Mission / principles / feature layouts ── */
-.neuro-mission-grid { align-items: start; display: grid; gap: clamp(2.5rem, 6vw, 7rem); grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr); margin-bottom: 3.5rem; }
-.neuro-mission-grid h2 { color: var(--color-neuro-ink); font-size: clamp(2.4rem, 4.7vw, 5.2rem); line-height: 0.98; }
-.neuro-mission-grid .neuro-prose,
-.neuro-section--bluewash .neuro-prose { color: var(--color-neuro-muted); }
-.neuro-principles-layout { display: grid; gap: clamp(2rem, 6vw, 6rem); grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr); }
-.neuro-principles-layout h2 { color: var(--color-neuro-on-dark); font-size: clamp(2.6rem, 4.8vw, 5.4rem); line-height: 0.98; }
-.neuro-principles-layout > div:first-child p { border-left: 1px solid rgba(212, 175, 55, 0.5); color: var(--color-neuro-on-dark-muted); line-height: 1.85; margin-top: 1.5rem; padding-left: 1.2rem; }
-.neuro-principle-rail { border-top: 1px solid rgba(212, 175, 55, 0.3); }
-.neuro-principle-rail article { border-bottom: 1px solid rgba(212, 175, 55, 0.3); display: grid; gap: 1rem; grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 0.65fr); padding-block: 1.35rem; }
-.neuro-principle-rail h3 { color: var(--color-neuro-gold-soft); font-family: var(--font-serif); font-size: 1.45rem; }
-.neuro-principle-rail p { color: var(--color-neuro-on-dark-muted); line-height: 1.7; }
-
-.neuro-feature-grid { align-items: center; display: grid; gap: 2rem; grid-template-columns: minmax(18rem, 0.35fr) minmax(0, 0.65fr); }
-.neuro-feature-grid--balanced { align-items: start; gap: clamp(2rem, 6vw, 5rem); grid-template-columns: minmax(18rem, 0.4fr) minmax(0, 0.6fr); }
-.neuro-community-grid { align-items: center; display: grid; gap: 3rem; grid-template-columns: minmax(0, 0.56fr) minmax(20rem, 0.44fr); }
-.neuro-community-grid h2 { color: var(--color-neuro-on-dark); font-size: clamp(2.5rem, 4vw, 5rem); line-height: 1; }
-.neuro-community-grid p { color: var(--color-neuro-on-dark-muted); font-size: 1.04rem; line-height: 1.85; margin-top: 1.3rem; }
 
 /* ── Signal panel / join pathway (decorative label clusters) ── */
 /* ── Ledger / rows (numbered lists) ── */
-.neuro-ledger { border-color: rgba(36, 69, 111, 0.2); border-top: 1px solid var(--color-neuro-line); margin-top: 1.5rem; }
-.neuro-ledger--clean { border-color: rgba(7, 22, 45, 0.18); margin-top: 0; }
-.neuro-row { border-bottom: 1px solid var(--color-neuro-line); border-color: rgba(36, 69, 111, 0.18); display: grid; gap: 1.3rem; grid-template-columns: minmax(7rem, 0.28fr) minmax(0, 1fr); padding: 1.25rem 0; }
-.neuro-row--activity { grid-template-columns: 4.2rem minmax(0, 1fr); padding-block: 1.3rem; }
-.neuro-row--activity h3 { font-size: 1.45rem; }
-.neuro-row[hidden] { display: none; }
-.neuro-row h3 { color: var(--color-neuro-ink); font-size: 1.45rem; }
-.neuro-row p { color: var(--color-neuro-muted); font-size: 0.95rem; line-height: 1.65; margin-top: 0.45rem; }
-.neuro-row__meta { color: var(--color-neuro-teal); font-size: 0.76rem; font-weight: 850; text-transform: uppercase; }
-
-.neuro-empty {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(231, 239, 244, 0.78));
-  border: 1px solid rgba(36, 69, 111, 0.2);
-  border-radius: 8px;
-  margin-top: 1.5rem;
-  padding: 1.25rem;
-}
-.neuro-empty h3 { color: var(--color-neuro-ink); font-size: 1.45rem; }
-.neuro-empty p { color: var(--color-neuro-muted); font-size: 0.95rem; line-height: 1.65; margin-top: 0.5rem; }
-
-.neuro-link-panel { border-top: 1px solid var(--color-neuro-line); border-color: rgba(36, 69, 111, 0.2); }
-.neuro-link-panel--dark { border-color: rgba(212, 175, 55, 0.34); }
-.neuro-link-row { align-items: center; border-bottom: 1px solid var(--color-neuro-line); border-color: rgba(36, 69, 111, 0.18); color: var(--color-neuro-navy); display: flex; font-weight: 850; justify-content: space-between; padding-block: 1.2rem; text-decoration: none; text-transform: uppercase; transition: color 0.2s ease, padding-left 0.2s ease; }
-.neuro-link-row span[aria-hidden="true"] { color: var(--color-neuro-gold-ink); }
-.neuro-link-row:hover { color: var(--color-neuro-teal); padding-left: 0.35rem; }
-.neuro-link-row:last-child { border-bottom: 0; }
-.neuro-link-panel--dark .neuro-link-row { border-color: rgba(212, 175, 55, 0.3); color: var(--color-neuro-on-dark); }
-.neuro-link-panel--dark .neuro-link-row:hover { color: var(--color-neuro-gold-soft); }
-.neuro-section--deep .neuro-link-row { border-color: rgba(212, 175, 55, 0.28); color: var(--color-neuro-on-dark); }
-.neuro-section--deep .neuro-link-row:hover { color: var(--color-neuro-gold-soft); }
-.neuro-faq-list { border-top: 1px solid var(--color-neuro-line); border-color: rgba(36, 69, 111, 0.2); }
-.neuro-faq-list details { background: rgba(255, 255, 255, 0.4); border-bottom: 1px solid var(--color-neuro-line); border-color: rgba(36, 69, 111, 0.18); padding-inline: 0; }
 details > summary::-webkit-details-marker { display: none; }
-
-.neuro-atlas-people-grid { display: grid; gap: 2rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.neuro-atlas-person { border-top: 1px solid rgba(212, 175, 55, 0.54); padding-top: 0.85rem; }
-.neuro-atlas-person > :first-child { border: 1px solid rgba(36, 69, 111, 0.2); border-radius: 8px; box-shadow: none; }
-
-.neuro-dark-band {
-  background:
-    radial-gradient(circle at 80% 18%, rgba(0, 180, 216, 0.2), transparent 22rem),
-    linear-gradient(135deg, rgba(11, 95, 118, 0.24), transparent 36%),
-    var(--color-neuro-deep);
-}
 
 /* ── Buttons ── */
 .neuro-btn-primary,
-.neuro-btn-secondary,
 .neuro-btn-dark {
   align-items: center;
   box-sizing: border-box;
@@ -248,20 +107,9 @@ details > summary::-webkit-details-marker { display: none; }
 }
 .neuro-btn-primary { background: var(--color-neuro-gold); border: 1px solid var(--color-neuro-gold); box-shadow: 0 12px 26px rgba(212, 175, 55, 0.22); color: var(--color-neuro-deep); }
 .neuro-btn-primary:hover { background: var(--color-neuro-gold-soft); border-color: var(--color-neuro-gold-soft); transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 32px rgba(212, 175, 55, 0.28); }
-.neuro-btn-secondary { background: rgba(0, 180, 216, 0.1); border: 1px solid rgba(0, 180, 216, 0.66); color: var(--color-neuro-on-dark); }
-.neuro-section--paper .neuro-btn-secondary,
-.neuro-section--mist .neuro-btn-secondary,
-.neuro-section--bluewash .neuro-btn-secondary,
-.neuro-empty .neuro-btn-secondary { background: rgba(0, 180, 216, 0.08); color: var(--color-neuro-navy); }
-.neuro-btn-secondary:hover { background: rgba(0, 180, 216, 0.18); border-color: var(--color-neuro-cyan); color: var(--color-neuro-on-dark); transform: translateY(-2px) scale(1.02); }
-.neuro-section--paper .neuro-btn-secondary:hover,
-.neuro-section--mist .neuro-btn-secondary:hover,
-.neuro-section--bluewash .neuro-btn-secondary:hover,
-.neuro-empty .neuro-btn-secondary:hover { color: var(--color-neuro-teal); }
 .neuro-btn-dark { background: rgba(255, 248, 232, 0.07); border: 1px solid rgba(212, 175, 55, 0.42); color: var(--color-neuro-on-dark); }
 .neuro-btn-dark:hover { background: var(--color-neuro-gold); border-color: var(--color-neuro-gold); color: var(--color-neuro-deep); transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px rgba(212, 175, 55, 0.22); }
 .neuro-btn-primary:focus-visible,
-.neuro-btn-secondary:focus-visible,
 .neuro-btn-dark:focus-visible,
 a:focus-visible,
 button:focus-visible,
@@ -269,14 +117,8 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 
 /* ── Reveal-on-scroll ── */
 .reveal { opacity: 1; }
-.js-enabled .reveal { opacity: 1; transform: translateY(0.75rem); transition: opacity 360ms ease, transform 360ms ease; }
-.js-enabled .reveal.visible { opacity: 1; transform: translateY(0); }
-.js-enabled .neuro-hero .reveal { opacity: 1; transform: none; }
 
 /* ── Navigation ── */
-.neuro-site-nav { background: #03172b; border-bottom: 1px solid rgba(244, 246, 248, 0.12); box-shadow: 0 18px 44px rgba(1, 10, 28, 0.22); color: var(--color-neuro-on-dark); }
-.neuro-site-nav__brand { color: var(--color-neuro-on-dark); font-family: var(--font-serif); font-size: 0.98rem; font-weight: 700; letter-spacing: 0.035em; line-height: 0.9; max-width: 9rem; text-transform: uppercase; white-space: normal; }
-.neuro-site-nav a[aria-current="page"] { color: var(--color-neuro-gold-soft); }
 
 /* ── Assistant widget theme ── */
 .society-assistant {
@@ -295,171 +137,25 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 .society-assistant .assistant-eyebrow { color: var(--color-neuro-gold) !important; letter-spacing: 0 !important; }
 
 /* ── Homepage: Blue Signal Atlas hero ── */
-.neuro-home-hero {
-  background:
-    radial-gradient(circle at 73% 16%, rgba(0, 180, 216, 0.17), transparent 26rem),
-    radial-gradient(circle at 8% 72%, rgba(0, 180, 216, 0.1), transparent 22rem),
-    linear-gradient(118deg, #031426 0%, #062944 54%, #03192f 100%);
-  color: var(--color-neuro-on-dark);
-  overflow: hidden;
-  position: relative;
-}
-.neuro-home-hero::before {
-  background: repeating-radial-gradient(ellipse at 75% 100%, transparent 0 1.25rem, rgba(0, 180, 216, 0.13) 1.3rem 1.34rem, transparent 1.39rem 2.35rem);
-  content: ""; height: 22rem; opacity: 0.62; pointer-events: none; position: absolute; right: -7rem; top: -5rem; transform: rotate(-9deg); width: 50rem;
-}
-.neuro-home-hero::after { background: linear-gradient(90deg, transparent, rgba(0, 180, 216, 0.3), transparent); bottom: 0; content: ""; height: 1px; left: 0; opacity: 0.7; pointer-events: none; position: absolute; width: 100%; }
-.neuro-home-hero__inner { margin: 0 auto; max-width: 80rem; min-height: 43rem; padding: 4.6rem 3rem 4rem; position: relative; }
-.neuro-home-hero__copy { max-width: 24rem; position: relative; z-index: 2; }
-.neuro-home-kicker { color: var(--color-neuro-gold); display: block; font-size: 0.67rem; font-weight: 850; letter-spacing: 0.16em; line-height: 1.3; text-transform: uppercase; }
-.neuro-home-kicker--blue { color: var(--color-neuro-teal); }
-.neuro-home-hero h1 { color: var(--color-neuro-on-dark); font-size: clamp(3.8rem, 5.4vw, 5.8rem); line-height: 0.9; margin: 1rem 0 0; }
-.neuro-home-hero h1 span { color: var(--color-neuro-gold); }
-.neuro-home-title-rule { border-top: 1px solid var(--color-neuro-gold); margin-top: 1.25rem; position: relative; width: 5.5rem; }
-.neuro-home-title-rule::after { background: var(--color-neuro-gold); border-radius: 999px; content: ""; height: 0.45rem; left: 2.25rem; position: absolute; top: -0.27rem; width: 0.45rem; }
-.neuro-home-hero__copy > p:not(.neuro-home-open-note) { color: rgba(244, 246, 248, 0.88); font-size: 0.98rem; line-height: 1.7; margin-top: 1.55rem; max-width: 24rem; }
-.neuro-home-hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.25rem; }
-.neuro-home-btn { align-items: center; border: 1px solid transparent; border-radius: 6px; box-sizing: border-box; display: inline-flex; font-size: 0.68rem; font-weight: 850; gap: 0.65rem; justify-content: space-between; letter-spacing: 0.08em; min-height: 2.7rem; padding: 0.65rem 1rem; text-decoration: none; text-transform: uppercase; transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease; }
-.neuro-home-btn--gold { background: var(--color-neuro-gold); border-color: var(--color-neuro-gold); color: #07162d; }
-.neuro-home-btn--gold:hover { background: var(--color-neuro-gold-soft); border-color: var(--color-neuro-gold-soft); }
-.neuro-home-btn--outline { border-color: var(--color-neuro-cyan); color: var(--color-neuro-cyan); }
-.neuro-home-btn--outline:hover { background: rgba(0, 180, 216, 0.12); }
-.neuro-home-btn--blue { border-color: var(--color-neuro-teal); color: var(--color-neuro-teal); margin-top: 1.5rem; }
-.neuro-home-btn--blue:hover { background: rgba(11, 95, 118, 0.08); }
-.neuro-home-open-note { align-items: center; color: rgba(244, 246, 248, 0.9); display: flex; font-size: 0.78rem; gap: 0.7rem; margin-top: 1.8rem; }
-.neuro-home-open-note::before { border: 1px solid var(--color-neuro-cyan); border-radius: 999px; content: ""; height: 1.15rem; width: 1.15rem; }
 
 /* Hero atlas panel (brain visual + floating steps) */
-.neuro-home-atlas { background: transparent; border: 0; border-radius: 0; height: 35rem; margin: 0; overflow: visible; padding: 0; position: absolute; right: 0.5rem; top: 1.15rem; width: min(69%, 54rem); }
-.neuro-home-atlas__grid { display: block; height: 100%; }
-.neuro-home-atlas__brain { inset: 0; overflow: visible; position: absolute; }
-.neuro-home-atlas__brain::after { background: radial-gradient(circle at 57% 48%, transparent 23%, rgba(3, 19, 43, 0.22) 72%, rgba(3, 19, 43, 0.8) 100%); content: ""; inset: 0; pointer-events: none; position: absolute; }
-.neuro-home-atlas__brain img { filter: saturate(1.12) contrast(1.12) brightness(1.1); height: 100%; object-fit: cover; object-position: 56% 50%; width: 100%; }
-.neuro-home-atlas__steps { display: grid; gap: 0.8rem; left: 1rem; padding: 0; position: absolute; top: 8.8rem; width: 12.8rem; z-index: 3; }
-.neuro-home-atlas-step { background: rgba(3, 22, 46, 0.86); border: 1px solid rgba(0, 180, 216, 0.58); border-radius: 6px; box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22); color: var(--color-neuro-on-dark); display: block; min-height: 0; padding: 0.8rem 0.9rem; text-decoration: none; }
-.neuro-home-atlas-step:hover { border-color: var(--color-neuro-cyan); }
-.neuro-home-atlas-step strong { color: var(--color-neuro-gold-soft); display: block; font-size: 0.7rem; font-weight: 850; letter-spacing: 0.07em; line-height: 1.25; text-transform: uppercase; }
-.neuro-home-atlas-step small { color: rgba(244, 246, 248, 0.78); display: block; font-size: 0.7rem; line-height: 1.42; margin-top: 0.28rem; }
-
-.neuro-home-event-strip { align-items: center; background: rgba(3, 20, 43, 0.94); border: 1px solid rgba(225, 239, 246, 0.78); border-radius: 8px; bottom: 4.4rem; color: var(--color-neuro-on-dark); display: grid; gap: 0.9rem; grid-template-columns: 2.8rem 8.7rem minmax(0, 1fr) auto; min-height: 5.25rem; padding: 0.7rem 1rem; position: absolute; right: 2rem; text-decoration: none; width: min(58%, 44rem); z-index: 4; }
-.neuro-home-event-strip__mark,
-.neuro-home-action-rail__index { align-items: center; border: 1px solid var(--color-neuro-gold); border-radius: 999px; color: var(--color-neuro-gold-soft); display: inline-flex; font-size: 0.58rem; font-weight: 850; height: 2.25rem; justify-content: center; width: 2.25rem; }
-.neuro-home-event-strip strong { color: var(--color-neuro-cyan); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
-.neuro-home-event-strip__message { border-left: 1px solid rgba(244, 246, 248, 0.24); color: rgba(244, 246, 248, 0.9); font-size: 0.8rem; line-height: 1.35; padding-left: 0.9rem; }
-.neuro-home-event-strip__link { color: var(--color-neuro-cyan); font-size: 0.64rem; font-weight: 850; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
 
 /* ── Homepage: pathways section ── */
-.neuro-home-pathways {
-  background:
-    radial-gradient(circle at 20% 0%, rgba(0, 180, 216, 0.14), transparent 18rem),
-    linear-gradient(135deg, #04192e, #062a45 60%, #04192e);
-  color: var(--color-neuro-on-dark);
-  overflow: hidden;
-  padding: 6.5rem 3rem 3.9rem;
-}
-.neuro-home-pathways__inner { margin: 0 auto; max-width: 80rem; }
-.neuro-home-pathways__heading { margin: 0 auto; max-width: 40rem; text-align: center; }
-.neuro-home-pathways h2 { color: var(--color-neuro-on-dark); font-size: clamp(2.15rem, 3.6vw, 3.35rem); line-height: 1; margin-top: 0.75rem; }
-.neuro-home-pathways .neuro-home-title-rule { margin: 1.25rem auto 0; }
-.neuro-home-pathway-track { display: grid; gap: 0.75rem; grid-template-columns: repeat(6, minmax(0, 1fr)); margin-top: 1.85rem; padding-top: 0.15rem; position: relative; }
-.neuro-home-pathway-track::before { border-top: 1px dashed rgba(212, 175, 55, 0.72); content: ""; left: 5%; position: absolute; right: 5%; top: 2.25rem; }
-.neuro-home-pathway { position: relative; text-align: center; z-index: 1; }
-.neuro-home-pathway__mark { align-items: center; background: rgba(4, 27, 50, 0.96); border: 1px solid var(--color-neuro-gold); border-radius: 999px; color: var(--color-neuro-cyan); display: inline-flex; font-family: var(--font-serif); font-size: 1.15rem; height: 4.3rem; justify-content: center; overflow: visible; width: 4.3rem; }
-.neuro-home-pathway h3 { color: var(--color-neuro-gold-soft); font-size: 0.88rem; font-weight: 800; line-height: 1.25; margin-top: 0.8rem; }
-.neuro-home-pathway p { color: rgba(244, 246, 248, 0.87); font-size: 0.72rem; line-height: 1.45; margin: 0.35rem auto 0; max-width: 9.5rem; }
 
 /* ── Homepage: activities section ── */
-.neuro-home-activities {
-  background:
-    radial-gradient(circle at 4% 76%, rgba(0, 180, 216, 0.16), transparent 22rem),
-    linear-gradient(135deg, #eef5f6 0%, #dcecf1 100%);
-  padding: 4.35rem 3rem 3.3rem;
-}
-.neuro-home-activities__inner { align-items: start; display: grid; gap: 3.4rem; grid-template-columns: minmax(13rem, 0.34fr) minmax(0, 0.66fr); margin: 0 auto; max-width: 80rem; }
-.neuro-home-activities__intro { padding-top: 1rem; }
-.neuro-home-activities h2 { color: var(--color-neuro-ink); font-size: clamp(2.25rem, 3.2vw, 3.1rem); line-height: 1; margin-top: 0.7rem; }
-.neuro-home-activities .neuro-home-title-rule { margin-top: 1.25rem; }
-.neuro-home-activities__intro > p { color: var(--color-neuro-muted); font-size: 0.88rem; line-height: 1.66; margin-top: 1.55rem; max-width: 15rem; }
-.neuro-home-activity-list { background: rgba(255, 255, 255, 0.52); border: 1px solid rgba(191, 145, 54, 0.66); border-radius: 8px; overflow: hidden; }
-.neuro-home-activity { align-items: center; display: grid; gap: 0.85rem; grid-template-columns: 2.8rem minmax(13rem, 1fr) minmax(11rem, 16rem) 2.4rem; min-height: 7.1rem; padding: 0.65rem 1rem; }
-.neuro-home-activity + .neuro-home-activity { border-top: 1px solid rgba(191, 145, 54, 0.48); }
-.neuro-home-activity__number { align-items: center; border: 1px solid var(--color-neuro-teal); border-radius: 999px; color: var(--color-neuro-teal); display: inline-flex; font-size: 0.6rem; font-weight: 850; height: 2.3rem; justify-content: center; width: 2.3rem; }
-.neuro-home-activity__copy h3 { color: var(--color-neuro-ink); font-size: 1.08rem; line-height: 1.15; }
-.neuro-home-activity p { color: var(--color-neuro-muted); font-size: 0.69rem; line-height: 1.42; margin-top: 0.35rem; max-width: 18rem; }
-.neuro-home-activity img { border-radius: 6px; display: block; height: 5.45rem; object-fit: cover; width: 100%; }
-.neuro-home-activity__arrow { align-items: center; border: 1px solid var(--color-neuro-teal); border-radius: 999px; color: var(--color-neuro-teal); display: inline-flex; font-size: 0.86rem; height: 2.75rem; justify-content: center; text-decoration: none; width: 2.75rem; }
-.neuro-home-activity__arrow:hover { background: rgba(11, 95, 118, 0.1); }
 
 /* ── Homepage: action rail ── */
-.neuro-home-action-rail { background: linear-gradient(135deg, #edf5f7, #dcecf1); padding: 0 3rem 3.4rem; }
-.neuro-home-action-rail__inner { background: linear-gradient(108deg, #031a31, #062d4d); border: 1px solid rgba(212, 175, 55, 0.34); border-radius: 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 auto; max-width: 74rem; overflow: hidden; }
-.neuro-home-action-rail__item { align-items: flex-start; color: var(--color-neuro-on-dark); display: grid; gap: 0.9rem; grid-template-columns: 2.25rem 1fr; min-height: 7.45rem; padding: 1.25rem 1.4rem; text-decoration: none; }
-.neuro-home-action-rail__item + .neuro-home-action-rail__item { border-left: 1px solid rgba(244, 246, 248, 0.2); }
-.neuro-home-action-rail__item strong,
-.neuro-home-action-rail__item small,
-.neuro-home-action-rail__item em { display: block; }
-.neuro-home-action-rail__item strong { color: var(--color-neuro-on-dark); font-size: 0.86rem; }
-.neuro-home-action-rail__item small { color: rgba(244, 246, 248, 0.74); font-size: 0.68rem; line-height: 1.45; margin-top: 0.25rem; }
-.neuro-home-action-rail__item em { color: var(--color-neuro-gold-soft); font-size: 0.67rem; font-style: normal; font-weight: 850; margin-top: 0.55rem; }
 
 /* ── Responsive ── */
-@media (max-width: 1180px) {
-  .neuro-hero-grid,
-  .neuro-subhero-grid { grid-template-columns: 1fr; }
-  .neuro-home-hero__inner { min-height: auto; }
-  .neuro-home-atlas { height: 31rem; width: 100%; }
-  .neuro-home-event-strip { bottom: auto; margin-top: -1rem; width: min(92%, 46rem); }
-  .neuro-home-pathway-track { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 2rem; }
-  .neuro-home-pathway-track::before { display: none; }
-  .neuro-home-activities__inner { grid-template-columns: 1fr; }
-  .neuro-home-activities__intro > p { max-width: 32rem; }
-  .neuro-atlas-people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
 
 @media (max-width: 900px) {
-  .neuro-shell { padding-inline: 1.1rem; }
   .neuro-hero__inner { padding-block: 3.4rem 3rem; }
-  .neuro-hero-grid,
-  .neuro-subhero-grid,
-  .neuro-feature-grid,
-  .neuro-community-grid,
-  .neuro-mission-grid,
-  .neuro-principles-layout { grid-template-columns: 1fr; }
-  .neuro-hero-title,
-  .neuro-subhero-copy h1 { font-size: clamp(2.35rem, 12vw, 3.45rem); max-width: 100%; }
-  .neuro-hero-copy,
-  .neuro-subhero-copy p { font-size: 0.98rem; }
-  .neuro-cutout-stage--subhero,
-  .neuro-cutout-stage--subhero-signal { min-height: 18rem; }
-  .neuro-section { padding-block: 5rem; }
-  .neuro-row,
-  .neuro-principle-rail article { grid-template-columns: 1fr; }
-  .neuro-row--activity { grid-template-columns: 3.2rem minmax(0, 1fr); }
+  .neuro-hero-title { font-size: clamp(2.35rem, 12vw, 3.45rem); max-width: 100%; }
+  .neuro-hero-copy { font-size: 0.98rem; }
 }
 
 @media (max-width: 760px) {
   .neuro-hero__inner { padding: 2.6rem 1.1rem 2.8rem; }
-  .neuro-cutout-stage--subhero { bottom: -2rem; left: 16%; min-height: auto; opacity: 0.35; position: absolute; right: -10rem; top: 2rem; z-index: 1; }
-  .neuro-cutout-stage--subhero-signal { left: 34%; opacity: 0.16; right: -16rem; top: 8rem; }
-  .neuro-cutout-stage--subhero-signal .neuro-cutout--subhero-signal { bottom: auto; left: 58%; top: 0; width: 78%; }
-  .neuro-cutout--subhero-brain { max-width: none; width: 62%; }
-  .neuro-home-hero__inner,
-  .neuro-home-pathways,
-  .neuro-home-activities,
-  .neuro-home-action-rail { padding-left: 1.15rem; padding-right: 1.15rem; }
-  .neuro-home-hero__inner { padding-top: 3.2rem; }
-  .neuro-home-hero h1 { font-size: clamp(3.25rem, 16vw, 4.25rem); }
-  .neuro-home-atlas { height: 27rem; min-height: 0; margin-top: 1.1rem; }
-  .neuro-home-atlas__brain img { object-position: 60% 50%; }
-  .neuro-home-atlas__steps { left: -0.25rem; top: 12.5rem; width: min(75%, 15rem); }
-  .neuro-home-event-strip { margin-top: 0.25rem; width: 100%; }
-  .neuro-home-pathways { padding-top: 4.8rem; }
-  .neuro-home-pathway-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .neuro-home-activity { grid-template-columns: 2.45rem 1fr 2.2rem; padding: 0.85rem; }
-  .neuro-home-activity img { grid-column: 2 / 4; height: 9rem; }
-  .neuro-home-action-rail__inner { grid-template-columns: 1fr; }
-  .neuro-home-action-rail__item + .neuro-home-action-rail__item { border-left: 0; border-top: 1px solid rgba(244, 246, 248, 0.2); }
-  .neuro-atlas-people-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Hero repair: image-led scenes with a protected reading zone ── */
@@ -482,80 +178,10 @@ summary:focus-visible { outline: 2px solid var(--color-neuro-gold); outline-offs
 }
 .neuro-hero::after { background: linear-gradient(180deg, transparent 58%, rgba(2, 13, 30, 0.8) 100%); }
 .neuro-hero__inner { align-items: center; display: flex; min-height: inherit; padding-block: clamp(4.5rem, 8vw, 7.5rem); }
-.neuro-subhero-grid { display: block; width: min(100%, 42rem); }
-.neuro-subhero-copy { max-width: 39rem; }
-.neuro-subhero-copy h1 { font-size: clamp(3.2rem, 5.1vw, 5.25rem); max-width: 38rem; }
-.neuro-subhero-copy p { max-width: 36rem; }
-
-.neuro-home-hero {
-  background-color: #031426;
-  background-image:
-    linear-gradient(90deg, rgba(2, 13, 30, 0.99) 0%, rgba(2, 13, 30, 0.95) 28%, rgba(2, 13, 30, 0.76) 45%, rgba(2, 13, 30, 0.2) 73%, rgba(2, 13, 30, 0.36) 100%),
-    linear-gradient(0deg, rgba(2, 13, 30, 0.83), transparent 48%);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.neuro-home-hero::before {
-  background:
-    linear-gradient(90deg, rgba(2, 13, 30, 0.99) 0%, rgba(2, 13, 30, 0.95) 28%, rgba(2, 13, 30, 0.76) 45%, rgba(2, 13, 30, 0.2) 73%, rgba(2, 13, 30, 0.36) 100%),
-    linear-gradient(0deg, rgba(2, 13, 30, 0.83), transparent 48%),
-    radial-gradient(circle at 14% 46%, rgba(0, 180, 216, 0.16), transparent 23rem);
-  height: auto;
-  inset: 0;
-  opacity: 1;
-  right: auto;
-  top: auto;
-  transform: none;
-  width: auto;
-  z-index: 1;
-}
-.neuro-home-hero::after { z-index: 1; }
-.neuro-home-hero__inner { z-index: 2; }
-.neuro-home-hero__inner { max-width: 80rem; min-height: 44rem; padding-bottom: 4.4rem; padding-top: clamp(3.25rem, 5vw, 4.5rem); }
-.neuro-home-hero__copy { max-width: 33rem; }
-.neuro-home-hero__copy > p:not(.neuro-home-open-note) { max-width: 32rem; }
-.neuro-home-route-list { display: grid; gap: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1rem; max-width: 53rem; overflow: hidden; position: relative; z-index: 2; }
-.neuro-home-route { align-items: start; background: rgba(2, 18, 39, 0.78); border: 1px solid rgba(168, 220, 231, 0.28); color: var(--color-neuro-on-dark); display: grid; gap: 0.7rem; grid-template-columns: 1.95rem minmax(0, 1fr) 1rem; min-height: 6.7rem; padding: 1rem; text-decoration: none; transition: background-color 180ms ease, border-color 180ms ease; }
-.neuro-home-route + .neuro-home-route { border-left: 0; }
-.neuro-home-route:hover { background: rgba(4, 42, 70, 0.92); border-color: var(--color-neuro-cyan); }
-.neuro-home-route__index { color: var(--color-neuro-gold-soft); font-size: 0.62rem; font-weight: 850; letter-spacing: 0.08em; padding-top: 0.14rem; }
-.neuro-home-route strong, .neuro-home-route small { display: block; }
-.neuro-home-route strong { color: var(--color-neuro-gold-soft); font-size: 0.72rem; font-weight: 850; letter-spacing: 0.06em; line-height: 1.25; text-transform: uppercase; }
-.neuro-home-route small { color: rgba(244, 246, 248, 0.82); font-size: 0.71rem; line-height: 1.43; margin-top: 0.3rem; }
-.neuro-home-route__arrow { color: var(--color-neuro-cyan); font-size: 1rem; padding-top: 0.04rem; }
-.neuro-home-event-strip { align-items: center; background: rgba(2, 18, 39, 0.86); border: 1px solid rgba(241, 220, 145, 0.52); bottom: auto; gap: 1rem; grid-template-columns: 2.8rem minmax(0, 1fr) auto; margin-top: 1.2rem; min-height: 4.8rem; padding: 0.8rem 1rem; position: relative; right: auto; width: min(100%, 53rem); }
-.neuro-home-event-strip strong { color: var(--color-neuro-gold-soft); display: block; }
-.neuro-home-event-strip__message { border-left: 0; display: block; padding-left: 0; padding-top: 0.25rem; }
-.neuro-home-event-strip__mark { border-color: rgba(241, 220, 145, 0.7); font-size: 0.55rem; }
 
 @media (max-width: 760px) {
-  .neuro-hero__image { object-position: 67% center; }
-  .neuro-hero--about .neuro-hero__image { object-position: 81% center; }
-  .neuro-hero--events .neuro-hero__image,
-  .neuro-hero--committee .neuro-hero__image,
-  .neuro-hero--join .neuro-hero__image { object-position: 78% center; }
-  .neuro-home-hero .neuro-hero__image { object-position: 38% center; }
   .neuro-hero { min-height: auto; }
   .neuro-hero__inner { padding-block: 5rem 4rem; }
-  .neuro-subhero-copy h1 {
-    font-size: clamp(2.35rem, 10vw, 3rem);
-    line-height: 1.02;
-    overflow-wrap: anywhere;
-  }
-  .neuro-home-hero::before {
-    background:
-      linear-gradient(180deg, rgba(2, 13, 30, 0.98) 0%, rgba(2, 13, 30, 0.9) 42%, rgba(2, 13, 30, 0.72) 100%),
-      radial-gradient(circle at 18% 32%, rgba(0, 180, 216, 0.14), transparent 18rem);
-  }
-  .neuro-home-hero__inner { min-height: auto; padding-bottom: 2.5rem; padding-top: 3.8rem; }
-  .neuro-home-hero__copy { max-width: 100%; }
-  .neuro-home-hero h1 { font-size: clamp(3rem, 15vw, 3.8rem); }
-  .neuro-home-route-list { grid-template-columns: 1fr; margin-top: 2rem; max-width: 100%; }
-  .neuro-home-route + .neuro-home-route { border-left: 1px solid rgba(168, 220, 231, 0.28); border-top: 0; }
-  .neuro-home-route { min-height: 0; }
-  .neuro-home-event-strip { grid-template-columns: 2.5rem minmax(0, 1fr); width: 100%; }
-  .neuro-home-event-strip__link { grid-column: 2; }
 }
 
 /* Welcome Atlas refresh: warm campus-led public pages */
@@ -566,262 +192,17 @@ body {
   color: var(--color-neuro-ink);
 }
 
-.neuro-site-nav {
-  background: rgba(255, 250, 238, 0.92);
-  border-bottom: 1px solid rgba(36, 69, 111, 0.14);
-  box-shadow: 0 12px 32px rgba(7, 22, 45, 0.08);
-  color: var(--color-neuro-ink);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-}
-
-.neuro-site-nav__brand { color: var(--color-neuro-ink); }
-.neuro-site-nav a[aria-current="page"] { color: var(--color-neuro-gold-ink); }
-.neuro-site-nav .text-neuro-on-dark-muted { color: rgba(7, 22, 45, 0.72); }
-.neuro-site-nav .hover\:text-neuro-gold:hover { color: var(--color-neuro-gold-ink); }
-
-.neuro-btn-primary,
-.neuro-home-btn--gold {
+.neuro-btn-primary {
   background: #d8b84a;
   border-color: #d8b84a;
   box-shadow: 0 12px 24px rgba(115, 82, 0, 0.14);
   color: #07162d;
 }
 
-.neuro-btn-secondary,
-.neuro-home-btn--outline,
-.neuro-home-btn--blue {
-  background: rgba(255, 250, 238, 0.58);
-  border-color: rgba(16, 40, 86, 0.34);
-  color: var(--color-neuro-navy);
-}
-
-.neuro-btn-secondary:hover,
-.neuro-home-btn--outline:hover,
-.neuro-home-btn--blue:hover {
-  background: rgba(142, 202, 230, 0.24);
-  border-color: rgba(11, 95, 118, 0.52);
-  color: var(--color-neuro-teal);
-}
-
-.neuro-home-hero {
-  background-color: #f8f3e8;
-  color: var(--color-neuro-ink);
-  min-height: auto;
-}
-
-.neuro-home-hero .neuro-hero__image {
-  filter: saturate(0.96) contrast(0.98);
-  object-position: 68% center;
-  z-index: 0;
-}
-
-.neuro-home-hero::before {
-  background:
-    linear-gradient(90deg, rgba(255, 250, 238, 0.97) 0%, rgba(255, 250, 238, 0.9) 29%, rgba(255, 250, 238, 0.64) 47%, rgba(255, 250, 238, 0.16) 76%),
-    linear-gradient(180deg, rgba(255, 250, 238, 0.06) 0%, rgba(255, 250, 238, 0.18) 66%, #eef6f9 100%);
-  content: "";
-  inset: 0;
-  opacity: 1;
-  pointer-events: none;
-  position: absolute;
-  z-index: 1;
-}
-
-.neuro-home-hero::after {
-  background: linear-gradient(180deg, transparent 0%, rgba(238, 246, 249, 0.78) 100%);
-  bottom: 0;
-  height: 9rem;
-  opacity: 1;
-  z-index: 1;
-}
-
-.neuro-home-hero__inner {
-  display: grid;
-  align-items: center;
-  grid-template-columns: minmax(20rem, 34rem) minmax(0, 1fr);
-  grid-template-areas: "copy .";
-  max-width: 82rem;
-  min-height: clamp(38rem, 67svh, 48rem);
-  padding: clamp(4.25rem, 7vw, 6.25rem) 2rem clamp(4.5rem, 7vw, 6rem);
-}
-
-.neuro-home-hero__copy {
-  grid-area: copy;
-  max-width: 34rem;
-}
-
-.neuro-home-kicker {
-  color: var(--color-neuro-gold-ink);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-}
-
-.neuro-home-hero h1 {
-  color: var(--color-neuro-ink);
-  font-size: clamp(3.25rem, 5.7vw, 5.35rem);
-  line-height: 0.94;
-  margin-top: 0.85rem;
-  max-width: 11ch;
-}
-
-.neuro-home-hero h1 span { color: var(--color-neuro-gold-ink); }
-.neuro-home-title-rule { border-color: rgba(115, 82, 0, 0.62); }
-.neuro-home-title-rule::after { background: var(--color-neuro-gold-ink); }
-
-.neuro-home-hero__copy > p:not(.neuro-home-open-note) {
-  color: rgba(7, 22, 45, 0.78);
-  font-size: 1rem;
-  max-width: 31rem;
-}
-
-.neuro-home-open-note {
-  color: rgba(7, 22, 45, 0.76);
-  font-weight: 700;
-}
-
-.neuro-home-event-strip {
-  background: rgba(255, 250, 238, 0.9);
-  border: 1px solid rgba(16, 40, 86, 0.18);
-  box-shadow: 0 16px 42px rgba(7, 22, 45, 0.1);
-  color: var(--color-neuro-ink);
-  margin: 0 auto;
-  position: relative;
-  width: min(100%, 57rem);
-}
-
-.neuro-home-event-strip strong {
-  color: var(--color-neuro-gold-ink);
-}
-
-.neuro-home-event-strip__message {
-  color: rgba(7, 22, 45, 0.74);
-}
-
-.neuro-home-event-strip__link {
-  color: var(--color-neuro-teal);
-}
-
-.neuro-home-event-strip__mark,
-.neuro-home-action-rail__index {
-  border-color: rgba(115, 82, 0, 0.52);
-  color: var(--color-neuro-gold-ink);
-}
-
-.neuro-home-route-list {
-  margin: 1rem auto 0;
-  max-width: 57rem;
-}
-
-.neuro-home-routes-band {
-  background:
-    linear-gradient(180deg, #eef6f9 0%, #f7fbfc 100%);
-  padding: 1.35rem 2rem 2.75rem;
-}
-
-.neuro-home-route {
-  background: rgba(255, 250, 238, 0.82);
-  border-color: rgba(16, 40, 86, 0.16);
-  color: var(--color-neuro-ink);
-}
-
-.neuro-home-route:hover {
-  background: rgba(238, 246, 249, 0.94);
-  border-color: rgba(11, 95, 118, 0.32);
-}
-
-.neuro-home-route strong { color: var(--color-neuro-navy); }
-.neuro-home-route small { color: rgba(7, 22, 45, 0.68); }
-.neuro-home-route__index { color: var(--color-neuro-gold-ink); }
-.neuro-home-route__arrow { color: var(--color-neuro-teal); }
-
-.neuro-home-pathways,
-.neuro-section--bluewash,
-.neuro-section--mist {
-  background:
-    radial-gradient(circle at 18% 0%, rgba(142, 202, 230, 0.28), transparent 22rem),
-    linear-gradient(135deg, #eef6f9 0%, #f7fbfc 48%, #f4eddf 100%);
-  color: var(--color-neuro-ink);
-}
-
-.neuro-home-pathways h2,
-.neuro-section--deep h2 {
-  color: var(--color-neuro-ink);
-}
-
-.neuro-home-pathway-track::before { border-color: rgba(115, 82, 0, 0.35); }
-.neuro-home-pathway__mark {
-  background: rgba(255, 250, 238, 0.92);
-  border-color: rgba(115, 82, 0, 0.44);
-  color: var(--color-neuro-teal);
-  height: 5.4rem;
-  padding: 0.3rem;
-  width: 5.4rem;
-}
-.neuro-home-pathway__mark img {
-  border-radius: 999px;
-  display: block;
-  height: 100%;
-  object-fit: contain;
-  width: 100%;
-}
-.neuro-home-pathway h3 { color: var(--color-neuro-navy); }
-.neuro-home-pathway p { color: rgba(7, 22, 45, 0.68); }
-
-.neuro-home-activities,
-.neuro-home-action-rail,
-.neuro-section--paper {
-  background:
-    radial-gradient(circle at 85% 12%, rgba(142, 202, 230, 0.2), transparent 19rem),
-    linear-gradient(180deg, #fbf7ee 0%, #eef6f9 100%);
-}
-
-.neuro-home-activity-list {
-  background: rgba(255, 250, 238, 0.7);
-  border-color: rgba(16, 40, 86, 0.16);
-}
-
-.neuro-home-activity {
-  grid-template-columns: 2.8rem minmax(13rem, 1fr) minmax(12rem, 15.5rem) 2.4rem;
-  min-height: 9.75rem;
-}
-
-.neuro-home-activity + .neuro-home-activity { border-color: rgba(16, 40, 86, 0.12); }
-.neuro-home-activity img {
-  background: #fbf7ee;
-  border: 1px solid rgba(16, 40, 86, 0.1);
-  aspect-ratio: 4 / 3;
-  height: auto;
-  object-fit: contain;
-  padding: 0.25rem;
-}
-
-.neuro-home-action-rail__inner {
-  background: rgba(255, 250, 238, 0.76);
-  border-color: rgba(16, 40, 86, 0.16);
-}
-
-.neuro-home-action-rail__item {
-  color: var(--color-neuro-ink);
-}
-
-.neuro-home-action-rail__item + .neuro-home-action-rail__item {
-  border-color: rgba(16, 40, 86, 0.14);
-}
-
-.neuro-home-action-rail__item strong { color: var(--color-neuro-navy); }
-.neuro-home-action-rail__item small { color: rgba(7, 22, 45, 0.66); }
-.neuro-home-action-rail__item em { color: var(--color-neuro-gold-ink); }
-
 .neuro-hero {
   background-color: #f8f3e8;
   color: var(--color-neuro-ink);
   min-height: clamp(30rem, 58vh, 38rem);
-}
-
-.neuro-hero .neuro-hero__image {
-  filter: saturate(0.95) contrast(0.98);
-  object-position: 62% center;
 }
 
 .neuro-hero::before {
@@ -835,110 +216,15 @@ body {
   background: linear-gradient(180deg, transparent 58%, rgba(238, 246, 249, 0.72) 100%);
 }
 
-.neuro-subhero-copy h1,
+
 .neuro-hero-title {
   color: var(--color-neuro-ink);
 }
 
-.neuro-subhero-copy p,
+
 .neuro-hero-copy {
   border-color: rgba(115, 82, 0, 0.42);
   color: rgba(7, 22, 45, 0.74);
-}
-
-.neuro-eyebrow,
-.neuro-eyebrow--gold {
-  color: var(--color-neuro-gold-ink);
-  letter-spacing: 0.1em;
-}
-
-.neuro-section--deep,
-.neuro-dark-band {
-  background:
-    radial-gradient(circle at 82% 18%, rgba(142, 202, 230, 0.2), transparent 24rem),
-    linear-gradient(135deg, rgba(255, 250, 238, 0.92), rgba(238, 246, 249, 0.94));
-  color: var(--color-neuro-ink);
-}
-
-.neuro-section--deep p,
-.neuro-community-grid p,
-.neuro-principles-layout > div:first-child p,
-.neuro-principle-rail p {
-  color: rgba(7, 22, 45, 0.68);
-}
-
-.neuro-principles-layout h2,
-.neuro-community-grid h2,
-.neuro-dark-band h2 {
-  color: var(--color-neuro-ink);
-}
-
-.neuro-principle-rail,
-.neuro-principle-rail article,
-.neuro-link-panel--dark,
-.neuro-section--deep .neuro-link-row {
-  border-color: rgba(16, 40, 86, 0.16);
-}
-
-.neuro-principle-rail h3,
-.neuro-link-panel--dark .neuro-link-row,
-.neuro-section--deep .neuro-link-row {
-  color: var(--color-neuro-navy);
-}
-
-.neuro-link-panel--dark .neuro-link-row:hover,
-.neuro-section--deep .neuro-link-row:hover {
-  color: var(--color-neuro-teal);
-}
-
-@media (max-width: 900px) {
-  .neuro-home-hero__inner {
-    grid-template-columns: 1fr;
-    grid-template-areas: "copy";
-    min-height: auto;
-    padding: 3.25rem 1.25rem 2.5rem;
-  }
-
-  .neuro-home-hero::before {
-    background:
-      linear-gradient(180deg, rgba(255, 250, 238, 0.98) 0%, rgba(255, 250, 238, 0.92) 52%, rgba(255, 250, 238, 0.72) 100%);
-  }
-
-  .neuro-home-event-strip {
-    width: 100%;
-  }
-
-  .neuro-home-routes-band {
-    padding: 1rem 1.25rem 2.25rem;
-  }
-}
-
-@media (max-width: 760px) {
-  .neuro-home-hero .neuro-hero__image,
-  .neuro-hero .neuro-hero__image {
-    object-position: 66% center;
-  }
-
-  .neuro-home-hero h1 { font-size: clamp(2.95rem, 14vw, 4.1rem); }
-
-  .neuro-home-event-strip {
-    grid-template-columns: 2.5rem minmax(0, 1fr);
-  }
-
-  .neuro-home-route-list { margin-top: 0.8rem; }
-
-  .neuro-home-activity {
-    grid-template-columns: 2.45rem 1fr 2.2rem;
-  }
-
-  .neuro-home-activity img {
-    grid-column: 2 / 4;
-    height: auto;
-  }
-
-  .neuro-home-action-rail__item + .neuro-home-action-rail__item {
-    border-color: rgba(16, 40, 86, 0.14);
-  }
 }
 
 /* Neurotech logo-aligned editorial refresh */
@@ -972,21 +258,7 @@ body {
     linear-gradient(180deg, #f7f1e4 0%, #f7faf8 42rem, #f3ecde 100%);
 }
 
-.neuro-site-nav {
-  background: rgba(255, 250, 240, 0.94);
-  border-bottom: 1px solid rgba(9, 41, 85, 0.14);
-  box-shadow: 0 14px 36px rgba(7, 22, 45, 0.1);
-}
 
-.neuro-site-nav a[aria-current="page"] {
-  background: rgba(214, 181, 75, 0.18);
-  color: var(--color-neuro-navy);
-}
-
-.neuro-site-nav .text-neuro-on-dark-muted { color: rgba(7, 22, 45, 0.72); }
-.neuro-site-nav .hover\:text-neuro-gold:hover { color: var(--color-neuro-gold-ink); }
-
-.neuro-home-hero,
 .neuro-hero {
   background: #f7f1e4;
   border-bottom: 1px solid rgba(9, 41, 85, 0.14);
@@ -994,27 +266,11 @@ body {
   isolation: isolate;
 }
 
-.neuro-home-hero {
-  min-height: clamp(42rem, 72svh, 52rem);
-}
-
 .neuro-hero {
   min-height: clamp(34rem, 60svh, 43rem);
 }
 
-.neuro-home-hero .neuro-hero__image,
-.neuro-hero .neuro-hero__image {
-  filter: saturate(1.08) contrast(1.05) brightness(0.99);
-  opacity: 1;
-  object-position: 72% 45%;
-}
 
-.neuro-hero--about .neuro-hero__image { object-position: 70% 44%; }
-.neuro-hero--events .neuro-hero__image { object-position: 74% 44%; }
-.neuro-hero--committee .neuro-hero__image { object-position: 78% 45%; }
-.neuro-hero--join .neuro-hero__image { object-position: 66% 45%; }
-
-.neuro-home-hero::before,
 .neuro-hero::before {
   background:
     linear-gradient(90deg, rgba(255, 250, 240, 0.98) 0%, rgba(255, 250, 240, 0.9) 29%, rgba(255, 250, 240, 0.48) 49%, rgba(255, 250, 240, 0.1) 74%),
@@ -1028,7 +284,7 @@ body {
   z-index: 1;
 }
 
-.neuro-home-hero::after,
+
 .neuro-hero::after {
   background: linear-gradient(90deg, rgba(9, 41, 85, 0.18), rgba(214, 181, 75, 0.46), rgba(9, 41, 85, 0.12));
   bottom: 0;
@@ -1041,217 +297,41 @@ body {
   z-index: 2;
 }
 
-.neuro-home-hero__inner {
-  min-height: clamp(42rem, 72svh, 52rem);
-  padding-bottom: clamp(5rem, 8vw, 7rem);
-  padding-top: clamp(5rem, 7vw, 6.75rem);
-}
-
 .neuro-hero__inner {
   min-height: inherit;
   padding-block: clamp(5rem, 8vw, 7.5rem);
 }
 
-.neuro-home-hero__copy,
-.neuro-subhero-copy {
-  text-shadow: 0 1px 0 rgba(255, 250, 240, 0.5);
-}
 
-.neuro-home-kicker,
-.neuro-eyebrow,
-.neuro-eyebrow--gold {
-  color: var(--color-neuro-gold-ink);
-  letter-spacing: 0.1em;
-}
-
-.neuro-home-hero h1,
-.neuro-subhero-copy h1,
 .neuro-hero-title {
   color: var(--color-neuro-ink);
 }
 
-.neuro-home-hero h1 {
-  font-size: clamp(3.65rem, 6vw, 6rem);
-  line-height: 0.92;
-  max-width: 12ch;
-}
 
-.neuro-subhero-copy h1 {
-  font-size: clamp(3.15rem, 5.2vw, 5.55rem);
-  line-height: 0.96;
-}
-
-.neuro-home-title-rule {
-  border-color: rgba(123, 95, 18, 0.68);
-}
-
-.neuro-home-title-rule::after {
-  background: var(--color-neuro-gold-ink);
-}
-
-.neuro-home-hero__copy > p:not(.neuro-home-open-note),
-.neuro-subhero-copy p,
 .neuro-hero-copy {
   border-color: rgba(123, 95, 18, 0.48);
   color: rgba(7, 22, 45, 0.78);
 }
 
-.neuro-home-open-note {
-  color: rgba(7, 22, 45, 0.74);
-}
-
-.neuro-btn-primary,
-.neuro-home-btn--gold {
+.neuro-btn-primary {
   background: var(--color-neuro-gold);
   border-color: var(--color-neuro-gold);
   box-shadow: 0 14px 28px rgba(123, 95, 18, 0.18);
   color: var(--color-neuro-ink);
 }
 
-.neuro-btn-primary:hover,
-.neuro-home-btn--gold:hover {
+.neuro-btn-primary:hover {
   background: var(--color-neuro-gold-soft);
   border-color: var(--color-neuro-gold-soft);
 }
 
-.neuro-btn-secondary,
-.neuro-home-btn--outline,
-.neuro-home-btn--blue {
-  background: rgba(255, 250, 240, 0.68);
-  border-color: rgba(9, 41, 85, 0.44);
-  color: var(--color-neuro-navy);
-}
-
-.neuro-btn-secondary:hover,
-.neuro-home-btn--outline:hover,
-.neuro-home-btn--blue:hover {
-  background: var(--color-neuro-navy);
-  border-color: var(--color-neuro-navy);
-  color: var(--color-neuro-on-dark);
-}
-
-.neuro-home-routes-band,
-.neuro-home-pathways,
-.neuro-section--bluewash,
-.neuro-section--mist {
-  background:
-    radial-gradient(circle at 14% 0%, rgba(214, 181, 75, 0.14), transparent 21rem),
-    radial-gradient(circle at 86% 12%, rgba(111, 156, 169, 0.14), transparent 22rem),
-    linear-gradient(135deg, #f7f3e8 0%, #f8faf8 48%, #edf2f2 100%);
-}
-
-.neuro-home-activities,
-.neuro-home-action-rail,
-.neuro-section--paper {
-  background:
-    radial-gradient(circle at 82% 10%, rgba(111, 156, 169, 0.13), transparent 18rem),
-    linear-gradient(180deg, #fffaf0 0%, #f2f5f2 100%);
-}
-
-.neuro-home-event-strip,
-.neuro-home-route,
-.neuro-home-activity-list,
-.neuro-home-action-rail__inner,
-.neuro-empty,
-.neuro-faq-list details {
-  background: rgba(255, 250, 240, 0.82);
-  border-color: rgba(9, 41, 85, 0.16);
-}
-
-.neuro-home-event-strip {
-  box-shadow: 0 18px 44px rgba(7, 22, 45, 0.1);
-}
-
-.neuro-home-event-strip strong,
-.neuro-home-route strong,
-.neuro-home-action-rail__item strong {
-  color: var(--color-neuro-navy);
-}
-
-.neuro-home-event-strip__link,
-.neuro-home-route__arrow,
-.neuro-row__meta {
-  color: var(--color-neuro-gold-ink);
-}
-
-.neuro-home-route:hover {
-  background: rgba(255, 255, 255, 0.94);
-  border-color: rgba(123, 95, 18, 0.32);
-}
-
-.neuro-section--deep,
-.neuro-dark-band {
-  background:
-    radial-gradient(circle at 84% 14%, rgba(214, 181, 75, 0.18), transparent 24rem),
-    radial-gradient(circle at 12% 82%, rgba(111, 156, 169, 0.12), transparent 20rem),
-    linear-gradient(135deg, #04142b 0%, #092955 58%, #07162d 100%);
-  color: var(--color-neuro-on-dark);
-}
-
-.neuro-section--deep h2,
-.neuro-principles-layout h2,
-.neuro-community-grid h2,
-.neuro-dark-band h2 {
-  color: var(--color-neuro-on-dark);
-}
-
-.neuro-section--deep p,
-.neuro-community-grid p,
-.neuro-principles-layout > div:first-child p,
-.neuro-principle-rail p {
-  color: var(--color-neuro-on-dark-muted);
-}
-
-.neuro-principle-rail,
-.neuro-principle-rail article,
-.neuro-link-panel--dark,
-.neuro-section--deep .neuro-link-row {
-  border-color: rgba(239, 216, 137, 0.28);
-}
-
-.neuro-principle-rail h3,
-.neuro-link-panel--dark .neuro-link-row,
-.neuro-section--deep .neuro-link-row {
-  color: var(--color-neuro-gold-soft);
-}
-
-.neuro-link-panel--dark .neuro-link-row:hover,
-.neuro-section--deep .neuro-link-row:hover {
-  color: var(--color-neuro-on-dark);
-}
-
-.neuro-section--deep .neuro-btn-secondary,
-.neuro-dark-band .neuro-btn-secondary {
-  background: rgba(255, 247, 230, 0.08);
-  border-color: rgba(239, 216, 137, 0.52);
-  color: var(--color-neuro-on-dark);
-}
-
-.neuro-section--deep .neuro-btn-secondary:hover,
-.neuro-dark-band .neuro-btn-secondary:hover {
-  background: var(--color-neuro-gold);
-  border-color: var(--color-neuro-gold);
-  color: var(--color-neuro-ink);
-}
-
 @media (max-width: 900px) {
-  .neuro-home-hero,
-  .neuro-home-hero__inner,
+
   .neuro-hero {
     min-height: min(42rem, calc(100svh - 5rem));
   }
 
-  .neuro-home-hero .neuro-hero__image,
-  .neuro-hero .neuro-hero__image {
-    object-position: 66% 36%;
-  }
 
-  .neuro-hero--about .neuro-hero__image { object-position: 62% 36%; }
-  .neuro-hero--events .neuro-hero__image { object-position: 67% 35%; }
-  .neuro-hero--committee .neuro-hero__image { object-position: 70% 36%; }
-  .neuro-hero--join .neuro-hero__image { object-position: 60% 36%; }
-
-  .neuro-home-hero::before,
   .neuro-hero::before {
     background:
       linear-gradient(180deg, rgba(255, 250, 240, 0.7) 0%, rgba(255, 250, 240, 0.8) 42%, rgba(255, 250, 240, 0.98) 100%),
@@ -1259,7 +339,7 @@ body {
       radial-gradient(circle at 20% 24%, rgba(214, 181, 75, 0.18), transparent 17rem);
   }
 
-  .neuro-home-hero__inner,
+
   .neuro-hero__inner {
     justify-content: center;
     min-height: inherit;
@@ -1267,77 +347,24 @@ body {
     align-items: end;
   }
 
-  .neuro-home-hero__copy,
-  .neuro-subhero-copy {
-    margin-inline: auto;
-    max-width: 34rem;
-    text-align: center;
-    width: min(100%, 34rem);
-  }
 
-  .neuro-home-hero h1,
-  .neuro-subhero-copy h1,
   .neuro-hero-title {
     margin-inline: auto;
   }
 
-  .neuro-home-title-rule {
-    margin-inline: auto;
-  }
 
-  .neuro-home-hero__copy > p:not(.neuro-home-open-note),
-  .neuro-subhero-copy p,
   .neuro-hero-copy {
     border-left: 0;
     margin-inline: auto;
     padding-left: 0;
   }
 
-  .neuro-home-hero-actions,
-  .neuro-action-row,
-  .neuro-subhero-copy .mt-9 {
+
+  .neuro-action-row {
     justify-content: center;
     margin-inline: auto;
     max-width: 24rem;
     width: 100%;
-  }
-
-  .neuro-home-btn,
-  .neuro-action-row :is(.neuro-btn-primary, .neuro-btn-secondary, .neuro-btn-dark),
-  .neuro-subhero-copy .mt-9 :is(.neuro-btn-primary, .neuro-btn-secondary, .neuro-btn-dark) {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .neuro-site-nav #mobile-menu {
-    background: color-mix(in srgb, var(--color-neuro-paper) 96%, #ffffff);
-    border-color: rgba(9, 41, 85, 0.14);
-    box-shadow: 0 18px 38px rgba(7, 22, 45, 0.16);
-  }
-
-  .neuro-site-nav #mobile-menu a {
-    color: var(--color-neuro-navy);
-  }
-
-  .neuro-site-nav #mobile-menu a[aria-current="page"] {
-    background: var(--color-neuro-gold);
-    color: var(--color-neuro-ink);
-  }
-
-  .neuro-site-nav #mobile-menu .neuro-btn-primary {
-    background: var(--color-neuro-navy);
-    border-color: var(--color-neuro-navy);
-    color: var(--color-neuro-on-dark);
-  }
-}
-
-@media (max-width: 760px) {
-  .neuro-home-hero h1 {
-    font-size: clamp(3rem, 14vw, 4.2rem);
-  }
-
-  .neuro-subhero-copy h1 {
-    font-size: clamp(2.45rem, 10.5vw, 3.35rem);
   }
 }
 
@@ -1353,10 +380,6 @@ body {
   --nt-yellow: #f0d17e;
   --nt-purple: #16365b;
   --nt-line: rgba(12, 37, 73, 0.18);
-}
-
-.nt-scroll {
-  scroll-behavior: smooth;
 }
 
 .nt-body {
@@ -1385,21 +408,6 @@ body {
   color: var(--nt-ink);
 }
 
-.nt-skip {
-  background: var(--nt-yellow);
-  color: var(--nt-ink);
-  font-weight: 800;
-  left: 1rem;
-  padding: 0.8rem 1rem;
-  position: fixed;
-  top: -5rem;
-  z-index: 120;
-}
-
-.nt-skip:focus {
-  top: 1rem;
-}
-
 .nt-header {
   background: transparent;
   left: 0;
@@ -1407,17 +415,6 @@ body {
   right: 0;
   top: 0;
   z-index: 70;
-}
-
-.nt-header__inner {
-  align-items: center;
-  display: grid;
-  grid-template-columns: minmax(22rem, 37%) minmax(0, 63%);
-  height: 6rem;
-  margin: 0 auto;
-  max-width: none;
-  padding: 0;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
 }
 
 .nt-brand {
@@ -1434,92 +431,6 @@ body {
 }
 
 .nt-body .nt-brand { color: #fff; }
-
-.nt-body .nt-brand__mark,
-.nt-footer__mark {
-  flex: 0 0 auto;
-  height: clamp(3.7rem, 4.6vw, 4.8rem);
-  width: clamp(3.7rem, 4.6vw, 4.8rem);
-}
-
-.nt-brand__name {
-  color: inherit;
-  font-size: clamp(0.88rem, 1vw, 1.05rem);
-  font-weight: 750;
-  letter-spacing: 0.045em;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-.nt-nav {
-  align-items: center;
-  display: flex;
-  gap: clamp(1.35rem, 2.4vw, 2.35rem);
-  justify-self: end;
-  padding-right: clamp(2rem, 4vw, 4rem);
-}
-
-.nt-nav > a:not(.nt-button),
-.nt-mobile-menu > a:not(.nt-button) {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none;
-  text-underline-offset: 0.35rem;
-}
-
-.nt-header--secondary .nt-nav > a:not(.nt-button) {
-  color: #fff;
-}
-
-.nt-nav > a:not(.nt-button):hover,
-.nt-nav > a:not(.nt-button):focus-visible,
-.nt-mobile-menu > a:not(.nt-button):hover,
-.nt-mobile-menu > a:not(.nt-button):focus-visible {
-  text-decoration: underline;
-  text-decoration-thickness: 0.12rem;
-}
-
-.nt-menu-button {
-  align-items: center;
-  background: transparent;
-  border: 1px solid var(--nt-line);
-  color: var(--nt-ink);
-  cursor: pointer;
-  display: none;
-  height: 2.8rem;
-  justify-content: center;
-  width: 2.8rem;
-}
-
-.nt-menu-icon--close {
-  display: none;
-}
-
-.nt-menu-button.is-open .nt-menu-icon--open {
-  display: none;
-}
-
-.nt-menu-button.is-open .nt-menu-icon--close {
-  display: block;
-}
-
-.nt-mobile-menu {
-  background: var(--nt-cream-bright);
-  border-top: 1px solid var(--nt-line);
-  display: grid;
-  gap: 0.3rem;
-  padding: 1rem 1.25rem 1.35rem;
-}
-
-.nt-mobile-menu[hidden] {
-  display: none;
-}
-
-.nt-mobile-menu > a:not(.nt-button) {
-  align-items: center;
-  display: flex;
-  min-height: 3rem;
-}
 
 .nt-button {
   align-items: center;
@@ -1540,7 +451,6 @@ body {
 }
 
 .nt-button:focus-visible,
-.nt-menu-button:focus-visible,
 .nt-body a:focus-visible {
   outline: 3px solid var(--nt-yellow);
   outline-offset: 3px;
@@ -1566,12 +476,6 @@ body {
 .nt-button--outline:hover {
   background: #fff;
   color: var(--nt-forest) !important;
-}
-
-.nt-nav__join {
-  font-size: 0.78rem;
-  min-height: 2.55rem;
-  padding: 0.55rem 1rem;
 }
 
 .nt-hero {
@@ -1637,20 +541,6 @@ body {
   white-space: normal;
 }
 
-.nt-hero__fact {
-  color: rgba(255, 255, 255, 0.82);
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 0.78rem;
-  gap: 0.55rem 1.1rem;
-  margin: 1.65rem 0 0;
-}
-
-.nt-hero__fact span + span {
-  border-left: 1px solid rgba(255, 255, 255, 0.42);
-  padding-left: 1.1rem;
-}
-
 .nt-hero__visual,
 .nt-hero__visual picture,
 .nt-hero__visual img {
@@ -1676,8 +566,7 @@ body {
   width: min(100%, clamp(90rem, 72vw, 132rem));
 }
 
-.nt-activity-list,
-.nt-pipeline__visual {
+.nt-activity-list {
   margin-inline: auto;
   max-width: none;
   width: min(100%, clamp(90rem, 72vw, 132rem));
@@ -1697,11 +586,6 @@ body {
   font-size: 0.92rem;
   line-height: 1.6;
   margin: 0.5rem 0 0;
-}
-
-.nt-section-heading--tight {
-  padding-bottom: 1.35rem;
-  padding-top: 1.55rem;
 }
 
 .nt-activity {
@@ -1745,26 +629,6 @@ body {
   padding: clamp(2.5rem, 4vw, 4rem);
 }
 
-.nt-step-label {
-  color: #bc8a00;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  margin: 0 0 0.9rem;
-  text-transform: uppercase;
-}
-
-.nt-step-label span {
-  align-items: center;
-  background: var(--nt-forest);
-  color: var(--nt-yellow);
-  display: inline-flex;
-  justify-content: center;
-  margin-right: 0.55rem;
-  min-width: 1.55rem;
-  padding: 0.12rem 0.28rem;
-}
-
 .nt-activity h3 {
   color: var(--nt-ink);
   font-size: clamp(2rem, 3.35vw, 3.7rem);
@@ -1781,79 +645,6 @@ body {
   line-height: 1.7;
   margin: 1.2rem 0 0;
   max-width: 34rem;
-}
-
-.nt-pipeline {
-  background: var(--nt-cream-bright);
-}
-
-.nt-pipeline__visual {
-  min-height: 22rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.nt-pipeline__visual > img {
-  height: 100%;
-  min-height: 22rem;
-  width: 100%;
-}
-
-.nt-pipeline__visual > img {
-  object-fit: cover;
-}
-
-.nt-pipeline__labels {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  inset: 1.5rem clamp(1.5rem, 4vw, 4rem) auto;
-  pointer-events: none;
-  position: absolute;
-}
-
-.nt-pipeline__labels > div {
-  align-items: start;
-  color: #fff;
-  display: grid;
-  gap: 0.1rem 0.5rem;
-  grid-template-columns: auto 1fr;
-  max-width: 15rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.82);
-}
-
-.nt-pipeline__labels > div:nth-child(2) {
-  justify-self: center;
-}
-
-.nt-pipeline__labels > div:nth-child(3) {
-  justify-self: end;
-}
-
-.nt-pipeline__labels span {
-  align-items: center;
-  background: var(--nt-yellow);
-  color: #111d18;
-  display: inline-flex;
-  font-size: 0.7rem;
-  font-weight: 800;
-  grid-row: 1 / span 2;
-  height: 1.25rem;
-  justify-content: center;
-  text-shadow: none;
-  width: 1.25rem;
-}
-
-.nt-pipeline__labels strong {
-  font-size: 0.76rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.nt-pipeline__labels small {
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.68rem;
-  line-height: 1.45;
 }
 
 .nt-facts {
@@ -1900,255 +691,17 @@ body {
   max-width: 63rem;
 }
 
-.nt-updates {
-  background: var(--nt-cream-bright);
-  border-bottom: 1px solid var(--nt-line);
-  margin-inline: auto;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
-.nt-updates__inner {
-  align-items: center;
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: minmax(0, 1fr) auto;
-  margin-inline: auto;
-  padding: clamp(2.2rem, 4vw, 3.8rem) clamp(2rem, 4vw, 4rem);
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
-.nt-updates h2 {
-  color: var(--nt-ink);
-  font-size: clamp(1.55rem, 2.5vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  margin: 0;
-}
-
-.nt-updates p {
-  color: var(--nt-muted);
-  font-size: 0.92rem;
-  line-height: 1.65;
-  margin: 0.6rem 0 0;
-  max-width: 36rem;
-}
-
-.nt-inline-link {
-  align-items: center;
-  color: var(--nt-ink);
-  display: inline-flex;
-  font-size: 0.82rem;
-  font-weight: 800;
-  gap: 0.35rem;
-  margin-top: 0.9rem;
-  text-decoration: underline;
-  text-decoration-color: var(--nt-yellow);
-  text-decoration-thickness: 0.14rem;
-  text-underline-offset: 0.25rem;
-}
-
-.nt-inline-link:hover,
-.nt-inline-link:focus-visible {
-  color: var(--nt-forest);
-}
-
-.nt-updates__links {
-  align-items: stretch;
-  display: flex;
-}
-
-.nt-updates__links a {
-  align-items: center;
-  display: flex;
-  gap: 0.9rem;
-  min-width: 14rem;
-  padding: 0.35rem 1.7rem;
-  text-decoration: none;
-}
-
-.nt-updates__links a + a {
-  border-left: 1px solid var(--nt-line);
-}
-
-.nt-updates__links span {
-  display: grid;
-}
-
-.nt-updates__links strong {
-  color: var(--nt-ink);
-  font-size: 0.88rem;
-}
-
-.nt-updates__links small {
-  color: var(--nt-muted);
-  font-size: 0.78rem;
-  margin-top: 0.2rem;
-}
-
-.nt-join {
-  background: var(--nt-forest-deep);
-  color: #fff;
-  margin-inline: auto;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
-.nt-join__inner {
-  align-items: center;
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 36rem);
-  margin-inline: auto;
-  padding: clamp(3.2rem, 4.5vw, 4.5rem) clamp(2rem, 4vw, 4rem);
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
-.nt-join h2 {
-  color: #fff;
-  font-size: clamp(2.4rem, 4.3vw, 4.8rem);
-  font-weight: 800;
-  letter-spacing: -0.055em;
-  line-height: 1.01;
-  margin: 0;
-  max-width: 12ch;
-}
-
-.nt-join p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: clamp(1.2rem, 2vw, 1.85rem);
-  font-weight: 600;
-  margin: 1rem 0 0;
-}
-
-.nt-join__actions {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.nt-contact-links {
-  background: var(--nt-cream-bright);
-  margin-inline: auto;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
-.nt-contact-links__inner {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 2.5rem;
-  justify-content: center;
-  margin-inline: auto;
-  padding: 1.8rem clamp(2rem, 4vw, 4rem);
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
-.nt-contact-links a {
-  align-items: center;
-  color: var(--nt-ink);
-  display: inline-flex;
-  font-size: 0.78rem;
-  font-weight: 600;
-  gap: 0.6rem;
-  min-height: 2.75rem;
-  text-decoration: none;
-}
-
-.nt-footer {
-  background: var(--nt-cream);
-  border-top: 1px solid var(--nt-line);
-  color: var(--nt-text);
-  padding: 0;
-}
-
-.nt-footer__inner {
-  align-items: center;
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: none;
-  padding: 2rem clamp(1.5rem, 4vw, 4rem) 0;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
-.nt-footer__brand {
-  align-items: center;
-  color: var(--nt-ink);
-  display: inline-flex;
-  gap: 0.75rem;
-  text-decoration: none;
-}
-
-.nt-body .nt-footer__brand { color: var(--nt-ink); }
-
-.nt-body .nt-footer__mark {
-  height: 3.4rem;
-  width: 3.4rem;
-}
-
-.nt-footer__links {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 2rem;
-  justify-content: flex-end;
-}
-
-.nt-footer__links a {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.nt-footer__links a:hover,
-.nt-footer__links a:focus-visible,
-.nt-contact-links a:hover,
-.nt-contact-links a:focus-visible,
-.nt-updates__links a:hover strong,
-.nt-updates__links a:focus-visible strong {
-  text-decoration: underline;
-  text-underline-offset: 0.25rem;
-}
-
-.nt-footer__legal {
-  color: var(--nt-muted);
-  font-size: 0.68rem;
-  margin: 1.5rem auto 0;
-  max-width: none;
-  padding: 0 clamp(1.5rem, 4vw, 4rem) 1.2rem;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
-}
-
 .nt-body--404 .nt-header {
   background: var(--nt-cream-bright);
   border-bottom: 1px solid var(--nt-line);
   position: relative;
 }
 
-.nt-body--404 .nt-brand,
-.nt-body--404 .nt-nav > a:not(.nt-button) {
+.nt-body--404 .nt-brand {
   color: var(--nt-ink);
 }
 
-.js-enabled [data-reveal] {
-  opacity: 1;
-  transform: translateY(0.75rem);
-  transition: transform 360ms ease;
-}
-
-.js-enabled [data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 @media (max-width: 980px) {
-  .nt-header__inner {
-    grid-template-columns: minmax(19rem, 43%) minmax(0, 57%);
-    padding-inline: 0;
-  }
-
-  .nt-nav {
-    gap: 1.2rem;
-  }
 
   .nt-hero__inner {
     grid-template-columns: minmax(19rem, 43%) minmax(0, 57%);
@@ -2157,15 +710,6 @@ body {
   .nt-activity,
   .nt-activity--reverse {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .nt-updates__inner {
-    align-items: start;
-    grid-template-columns: 1fr;
-  }
-
-  .nt-updates__links a:first-child {
-    padding-left: 0;
   }
 }
 
@@ -2200,13 +744,6 @@ body {
     position: relative;
   }
 
-  .nt-header__inner {
-    display: flex;
-    height: 5rem;
-    justify-content: space-between;
-    padding-inline: 1rem;
-  }
-
   .nt-brand {
     align-self: auto;
     background: transparent;
@@ -2216,21 +753,6 @@ body {
   }
 
   .nt-body .nt-brand { color: var(--nt-ink); }
-
-  .nt-body .nt-brand__mark {
-    height: 3.5rem;
-    width: 3.5rem;
-  }
-
-  .nt-brand__name { font-size: 0.82rem; }
-
-  .nt-nav {
-    display: none;
-  }
-
-  .nt-menu-button {
-    display: inline-flex;
-  }
 }
 
 @media (max-width: 760px) {
@@ -2256,16 +778,6 @@ body {
 
   .nt-actions .nt-button {
     width: 100%;
-  }
-
-  .nt-hero__fact {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .nt-hero__fact span + span {
-    border-left: 0;
-    padding-left: 0;
   }
 
   .nt-hero__visual,
@@ -2312,37 +824,6 @@ body {
     font-size: clamp(2.25rem, 10vw, 3.5rem);
   }
 
-  .nt-pipeline__visual,
-  .nt-pipeline__visual > img {
-    height: auto;
-    min-height: 0;
-  }
-
-  .nt-pipeline__visual > img {
-    display: block;
-    min-height: 0;
-    object-position: center;
-  }
-
-  .nt-pipeline__labels {
-    background: var(--nt-forest);
-    grid-template-columns: 1fr;
-    position: static;
-    padding: 1rem 1.25rem;
-  }
-
-  .nt-pipeline__labels > div,
-  .nt-pipeline__labels > div:nth-child(2),
-  .nt-pipeline__labels > div:nth-child(3) {
-    justify-self: stretch;
-    max-width: none;
-  }
-
-  .nt-pipeline__labels small {
-    display: block;
-    font-size: 0.85rem;
-  }
-
   .nt-facts__inner {
     align-items: start;
     gap: 1.25rem;
@@ -2356,77 +837,9 @@ body {
     padding-left: 0;
     padding-top: 1.5rem;
   }
-
-  .nt-updates__inner {
-    gap: 1.6rem;
-    padding: 2.5rem 1.25rem;
-  }
-
-  .nt-updates__links {
-    align-items: stretch;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .nt-updates__links a,
-  .nt-updates__links a:first-child {
-    min-height: 4.5rem;
-    min-width: 0;
-    padding: 0;
-  }
-
-  .nt-updates__links a + a {
-    border-left: 0;
-    border-top: 1px solid var(--nt-line);
-  }
-
-  .nt-join__inner {
-    gap: 2.3rem;
-    grid-template-columns: 1fr;
-    padding: 3.6rem 1.25rem;
-  }
-
-  .nt-contact-links__inner {
-    align-items: stretch;
-    flex-direction: column;
-    padding: 1.5rem 1.25rem;
-  }
-
-  .nt-contact-links a {
-    border-bottom: 1px solid var(--nt-line);
-    overflow-wrap: anywhere;
-    padding-bottom: 0.7rem;
-  }
-
-  .nt-footer {
-    padding-inline: 0;
-  }
-
-  .nt-footer__inner {
-    align-items: flex-start;
-    flex-direction: column;
-    padding-inline: 1.25rem;
-  }
-
-  .nt-footer__legal { padding-inline: 1.25rem; }
-
-  .nt-footer__links {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nt-scroll {
-    scroll-behavior: auto;
-  }
-
-  .js-enabled [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 
   .nt-button {
     transition: none;
@@ -2465,27 +878,7 @@ body {
   padding: clamp(6.5rem, 11vw, 9rem) clamp(1.25rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
 }
 
-.nt-body .neuro-subhero-grid {
-  display: block;
-  margin-inline: auto;
-  max-width: 76rem;
-  width: 100%;
-}
 
-.nt-body .neuro-subhero-copy {
-  margin-inline: 0;
-  max-width: 38rem;
-  text-align: left;
-  width: 100%;
-}
-
-.nt-body .neuro-subhero-copy .mt-9 {
-  justify-content: flex-start;
-  margin-inline: 0;
-  max-width: none;
-}
-
-.nt-body .neuro-subhero-copy h1,
 .nt-body .neuro-hero-title {
   color: #fff;
   font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
@@ -2499,7 +892,7 @@ body {
   hyphens: none;
 }
 
-.nt-body .neuro-subhero-copy p,
+
 .nt-body .neuro-hero-copy {
   border-left: 0;
   color: rgba(255, 255, 255, 0.86);
@@ -2509,22 +902,7 @@ body {
   padding-left: 0;
 }
 
-.nt-body .neuro-eyebrow,
-.nt-body .neuro-eyebrow--gold {
-  color: var(--nt-yellow);
-  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-
-.nt-body .neuro-section--bluewash .neuro-eyebrow,
-.nt-body .neuro-section--paper .neuro-eyebrow {
-  color: var(--nt-ink);
-}
-
 .nt-body .neuro-btn-primary,
-.nt-body .neuro-btn-secondary,
 .nt-body .neuro-btn-dark {
   border-radius: 0;
   box-shadow: none;
@@ -2549,95 +927,19 @@ body {
   transform: translateY(-2px);
 }
 
-.nt-body .neuro-btn-secondary,
+
 .nt-body .neuro-btn-dark {
   background: rgba(0, 49, 41, 0.16);
   border-color: rgba(255, 255, 255, 0.72);
   color: #fff;
 }
 
-.nt-body .neuro-btn-secondary:hover,
+
 .nt-body .neuro-btn-dark:hover {
   background: #fff;
   border-color: #fff;
   color: var(--nt-forest);
   transform: translateY(-2px);
-}
-
-.nt-body .neuro-section--paper .neuro-btn-secondary,
-.nt-body .neuro-section--bluewash .neuro-btn-secondary,
-.nt-body .neuro-empty .neuro-btn-secondary {
-  background: transparent;
-  border-color: var(--nt-forest);
-  color: var(--nt-ink);
-}
-
-.nt-body .neuro-section--paper .neuro-btn-secondary:hover,
-.nt-body .neuro-section--bluewash .neuro-btn-secondary:hover,
-.nt-body .neuro-empty .neuro-btn-secondary:hover {
-  background: var(--nt-forest);
-  border-color: var(--nt-forest);
-  color: #fff;
-}
-
-.nt-body .neuro-section {
-  padding-block: clamp(3.75rem, 7vw, 6.5rem);
-}
-
-.nt-body .neuro-section--bluewash {
-  background: var(--nt-cream);
-}
-
-.nt-body .neuro-section--paper {
-  background: var(--nt-cream-bright);
-}
-
-.nt-body .neuro-section--deep,
-.nt-body .neuro-dark-band {
-  background: var(--nt-forest-deep);
-}
-
-.nt-body .neuro-section-heading h2,
-.nt-body .neuro-mission-grid h2,
-.nt-body .neuro-principles-layout h2,
-.nt-body .neuro-community-grid h2 {
-  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.055em;
-}
-
-.nt-body .neuro-section-heading h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1.03;
-}
-
-.nt-body .neuro-link-row {
-  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-  text-transform: none;
-}
-
-.nt-body .neuro-faq-list details {
-  background: transparent;
-  padding: 1.1rem 0;
-}
-
-.nt-body .neuro-faq-list details[open] {
-  background: rgba(255, 203, 5, 0.08);
-  border-bottom-color: rgba(8, 47, 42, 0.3);
-  padding-inline: 0.85rem;
-}
-
-.nt-body .neuro-faq-list summary {
-  min-height: 2.5rem;
-}
-
-.nt-body .neuro-faq-list summary:focus-visible {
-  outline: 3px solid var(--nt-yellow);
-  outline-offset: 3px;
-}
-
-.nt-body .neuro-faq-list details[open] > summary > span {
-  transform: rotate(45deg);
 }
 
 .nt-body--404 .neuro-hero {
@@ -2669,14 +971,14 @@ body {
     padding: 4.25rem 1.25rem 3rem;
   }
 
-  .nt-body .neuro-subhero-copy h1,
+
   .nt-body .neuro-hero-title {
     font-size: clamp(2.35rem, 10vw, 3.2rem);
     line-height: 1.04;
     max-width: 100%;
   }
 
-  .nt-body .neuro-subhero-copy p,
+
   .nt-body .neuro-hero-copy {
     font-size: 0.95rem;
   }
@@ -2690,19 +992,10 @@ body {
   .nt-body .neuro-action-row > a {
     width: 100%;
   }
-
-  .nt-body .neuro-section-heading h2,
-  .nt-body .neuro-mission-grid h2,
-  .nt-body .neuro-principles-layout h2,
-  .nt-body .neuro-community-grid h2 {
-    font-size: clamp(2rem, 9vw, 2.8rem);
-    line-height: 1.05;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .nt-body .neuro-btn-primary:hover,
-  .nt-body .neuro-btn-secondary:hover,
   .nt-body .neuro-btn-dark:hover {
     transform: none;
   }
