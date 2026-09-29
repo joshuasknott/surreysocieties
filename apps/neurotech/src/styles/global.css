@@ -473,7 +473,7 @@ body {
   grid-template-columns: minmax(22rem, 37%) minmax(0, 63%);
   margin-inline: auto;
   min-height: 38rem;
-  width: min(100%, var(--nt-content-width));
+  width: 100%;
 }
 
 .nt-hero__copy {
@@ -548,13 +548,13 @@ body {
   margin-inline: auto;
   max-width: none;
   padding: 2rem clamp(2rem, 4vw, 4rem) 1.8rem;
-  width: min(100%, var(--nt-content-width));
+  width: 100%;
 }
 
 .nt-activity-list {
   margin-inline: auto;
   max-width: none;
-  width: min(100%, var(--nt-content-width));
+  width: 100%;
 }
 
 .nt-section-heading h2 {
@@ -636,7 +636,7 @@ body {
   background: var(--nt-purple);
   color: #fff;
   margin-inline: auto;
-  width: min(100%, var(--nt-content-width));
+  width: 100%;
 }
 
 .nt-facts__inner {
@@ -647,13 +647,13 @@ body {
   margin: 0 auto;
   max-width: none;
   padding: clamp(2.5rem, 3.5vw, 3.5rem) clamp(2rem, 4vw, 4rem);
-  width: min(100%, var(--nt-content-width));
+  width: 100%;
 }
 
-/* Keep the shared header and community sections on the same Neurotech grid. */
+/* Align the header and announcement with the full-width Neurotech sections. */
 .society-neurotech .society-header__inner,
 .society-neurotech .society-committee-banner__inner {
-  width: min(100%, var(--nt-content-width));
+  width: 100%;
   padding-inline: clamp(16px, 4vw, 64px);
 }
 
