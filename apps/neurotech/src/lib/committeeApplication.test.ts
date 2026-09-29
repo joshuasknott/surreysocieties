@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { del, get } from '@vercel/blob';
 import { handleCommitteeApplication } from './committeeApplication';
+import { COMMITTEE_APPLICATIONS_CLOSE_AT } from '@surreysocieties/ui/committeeDeadline';
 
 vi.mock('@vercel/blob', () => ({ get: vi.fn(), del: vi.fn() }));
 
@@ -20,7 +21,7 @@ function request(role = 'workshops-projects', extras: Record<string, string> = {
 }
 
 const send = (req = request(), options: { apiKey?: string; fromEmail?: string } = config) => handleCommitteeApplication(req, options, String(++address));
-afterEach(() => { vi.unstubAllGlobals(); vi.clearAllMocks(); });
+afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); vi.clearAllMocks(); });
 
 describe('Neurotech committee applications', () => {
   it('sends role answers to the requested inbox', async () => {
@@ -56,5 +57,13 @@ describe('Neurotech committee applications', () => {
     expect((await send(request('social-media-content', { mockPostUrl: 'https://attacker.example/file.png' }))).status).toBe(400);
     expect(get).not.toHaveBeenCalled();
     expect((await send(request(), {})).status).toBe(503);
+  });
+
+  it('stops accepting applications when the countdown ends', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(COMMITTEE_APPLICATIONS_CLOSE_AT));
+    const fetch = vi.fn(); vi.stubGlobal('fetch', fetch);
+    expect((await send()).status).toBe(410);
+    expect(fetch).not.toHaveBeenCalled();
   });
 });
