@@ -213,6 +213,7 @@ body {
 
 /* Neurotech logo-aligned editorial refresh */
 :root {
+  --nt-content-width: 100rem;
   --color-neuro-ink: #07162d;
   --color-neuro-navy: #092955;
   --color-neuro-deep: #04142b;
@@ -472,7 +473,7 @@ body {
   grid-template-columns: minmax(22rem, 37%) minmax(0, 63%);
   margin-inline: auto;
   min-height: 38rem;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
+  width: min(100%, var(--nt-content-width));
 }
 
 .nt-hero__copy {
@@ -547,13 +548,13 @@ body {
   margin-inline: auto;
   max-width: none;
   padding: 2rem clamp(2rem, 4vw, 4rem) 1.8rem;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
+  width: min(100%, var(--nt-content-width));
 }
 
 .nt-activity-list {
   margin-inline: auto;
   max-width: none;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
+  width: min(100%, var(--nt-content-width));
 }
 
 .nt-section-heading h2 {
@@ -575,12 +576,12 @@ body {
 .nt-activity {
   border-bottom: 1px solid var(--nt-line);
   display: grid;
-  grid-template-columns: minmax(0, 53%) minmax(0, 47%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   min-height: 18.5rem;
 }
 
 .nt-activity--reverse {
-  grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .nt-activity--reverse .nt-activity__image {
@@ -635,7 +636,7 @@ body {
   background: var(--nt-purple);
   color: #fff;
   margin-inline: auto;
-  width: min(100%, clamp(90rem, 72vw, 132rem));
+  width: min(100%, var(--nt-content-width));
 }
 
 .nt-facts__inner {
@@ -646,7 +647,23 @@ body {
   margin: 0 auto;
   max-width: none;
   padding: clamp(2.5rem, 3.5vw, 3.5rem) clamp(2rem, 4vw, 4rem);
-  width: min(100%, clamp(90rem, 72vw, 132rem));
+  width: min(100%, var(--nt-content-width));
+}
+
+/* Keep the shared header and community sections on the same Neurotech grid. */
+.society-neurotech .society-header__inner,
+.society-neurotech .society-committee-banner__inner {
+  width: min(100%, var(--nt-content-width));
+  padding-inline: clamp(16px, 4vw, 64px);
+}
+
+.society-neurotech .community-section {
+  padding-inline: clamp(16px, 4vw, 64px);
+}
+
+.society-neurotech .community-shell,
+.society-neurotech .society-footer > div {
+  max-width: calc(var(--nt-content-width) - 128px);
 }
 
 .nt-facts__inner > svg {
