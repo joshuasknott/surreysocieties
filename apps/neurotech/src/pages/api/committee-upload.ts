@@ -12,7 +12,7 @@ const respond = (status: number, message: string) => new Response(JSON.stringify
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (committeeApplicationsClosed()) return respond(410, 'Committee applications have closed.');
-  if (!import.meta.env.RESEND_API_KEY || !import.meta.env.COMMITTEE_FROM_EMAIL) return respond(503, 'Applications are temporarily unavailable.');
+  if (!import.meta.env.RESEND_API_KEY || !(import.meta.env.COMMITTEE_FROM_EMAIL || import.meta.env.CONTACT_FROM_EMAIL)) return respond(503, 'Applications are temporarily unavailable.');
   if (!request.headers.get('content-type')?.startsWith('application/json')) return respond(415, 'Invalid upload request.');
   if (Number(request.headers.get('content-length')) > 20_000) return respond(413, 'Invalid upload request.');
 
@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     const result = await handleUpload({
       body, request,
       onBeforeGenerateToken: async (pathname) => {
-        if (!/^committee-applications\/[a-f0-9-]{36}\.(png|jpg|webp|pdf)$/.test(pathname)) throw new Error('Invalid upload path.');
+        if (!/^neurotech-committee-applications\/[a-f0-9-]{36}\.(png|jpg|webp|pdf)$/.test(pathname)) throw new Error('Invalid upload path.');
         return {
           allowedContentTypes: ['image/png', 'image/jpeg', 'image/webp', 'application/pdf'],
           maximumSizeInBytes: MAX_FILE_BYTES,

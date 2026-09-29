@@ -9,14 +9,14 @@ import '../../styles/committeeApplications.css';
 const role = getCommitteeRole(Astro.params.role ?? '');
 if (!role) return Astro.redirect('/committee-applications', 302);
 const applicationsClosed = committeeApplicationsClosed();
-const applicationsOpen = !applicationsClosed && Boolean(import.meta.env.RESEND_API_KEY && import.meta.env.COMMITTEE_FROM_EMAIL);
+const applicationsOpen = !applicationsClosed && Boolean(import.meta.env.RESEND_API_KEY && (import.meta.env.COMMITTEE_FROM_EMAIL || import.meta.env.CONTACT_FROM_EMAIL));
 const social = role.slug === 'social-media-content';
 ---
 
 <Layout
   title={`${role.title} application 2026–27`}
-  description={`Apply to be the Surrey Artificial Intelligence Society ${role.title} for 2026–27.`}
-  bodyClass="committee-page bg-ai-bg text-ai-fg font-sans min-h-screen"
+  description={`Apply to be the Surrey Neurotech Society ${role.title} for 2026–27.`}
+  bodyClass="committee-page"
 >
   <div class="committee-shell committee-detail">
     <a class="committee-back" href="/committee-applications">← All committee roles</a>
@@ -50,7 +50,7 @@ const social = role.slug === 'social-media-content';
             </fieldset>
             <fieldset><legend>Your role task</legend>
               <p class="committee-task">{role.task}</p>
-              {social && <div class="committee-assets"><p>Use one or more approved assets in your mock post. You can combine them with your own design.</p><div><a href="/logos/brand/surrey-ai-logo-transparent.png" download>Full logo ↓</a><a href="/logos/brand/surrey-ai-avatar-light.png" download>AI mark ↓</a><a href="/logos/brand/surrey-ai-logo-light.png" download>Light logo ↓</a></div></div>}
+              {social && <div class="committee-assets"><p>Use one or more of these society assets in your mock post. You can combine them with your own design.</p><div><a href="/logos/brand/surrey-neurotech-logo.png" download>Society logo ↓</a><a href="/logos/brand/surrey-neurotech-avatar.png" download>Avatar ↓</a><a href="/social-cover.png" download>Cover artwork ↓</a></div></div>}
               {role.questions.map((question) => <div class="committee-field"><label for={question.key}>{question.label} <span>*</span></label><textarea id={question.key} name={question.key} maxlength="2000" rows="4" placeholder={question.hint} required></textarea></div>)}
               {social && <div class="committee-field"><label for="mockPost">Upload your mock post <span>*</span></label><input id="mockPost" name="mockPost" type="file" accept=".png,.jpg,.jpeg,.webp,.pdf,image/png,image/jpeg,image/webp,application/pdf" aria-describedby="mock-post-help" required /><small id="mock-post-help">PNG, JPG, WebP or PDF; maximum 15 MB. Your file uploads securely before the form is sent.</small></div>}
             </fieldset>
@@ -92,7 +92,7 @@ const social = role.slug === 'social-media-content';
         const suffix = contentType === 'image/jpeg' ? 'jpg' : contentType === 'application/pdf' ? 'pdf' : contentType === 'image/webp' ? 'webp' : contentType === 'image/png' ? 'png' : '';
         if (!suffix) throw new Error('Please upload a PNG, JPG, WebP or PDF file.');
         button.textContent = 'Uploading mock post…';
-        const blob = await upload(`committee-applications/${crypto.randomUUID()}.${suffix}`, file, {
+        const blob = await upload(`neurotech-committee-applications/${crypto.randomUUID()}.${suffix}`, file, {
           access: 'private', contentType, handleUploadUrl: '/api/committee-upload',
           onUploadProgress: ({ percentage }) => { button.textContent = `Uploading mock post… ${Math.round(percentage)}%`; },
         });

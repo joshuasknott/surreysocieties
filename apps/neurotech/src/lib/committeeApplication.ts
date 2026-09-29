@@ -73,7 +73,7 @@ export async function handleCommitteeApplication(request: Request, config: Deliv
     let parsedUrl: URL;
     try { parsedUrl = new URL(suppliedUrl); }
     catch { return reply(400, 'Please upload your mock post before submitting.'); }
-    if (parsedUrl.protocol !== 'https:' || !/^[a-z0-9-]+\.private\.blob\.vercel-storage\.com$/.test(parsedUrl.hostname) || !parsedUrl.pathname.startsWith('/committee-applications/') || parsedUrl.search || parsedUrl.hash) {
+    if (parsedUrl.protocol !== 'https:' || !/^[a-z0-9-]+\.private\.blob\.vercel-storage\.com$/.test(parsedUrl.hostname) || !parsedUrl.pathname.startsWith('/neurotech-committee-applications/') || parsedUrl.search || parsedUrl.hash) {
       return reply(400, 'Please upload your mock post using the application form.');
     }
     blobUrl = parsedUrl.href;
@@ -89,7 +89,7 @@ export async function handleCommitteeApplication(request: Request, config: Deliv
   }
 
   const lines = [
-    `Committee application 2026–27`, `Role: ${role.title}`, '',
+    `Surrey Neurotech Society committee application 2026–27`, `Role: ${role.title}`, '',
     `Name: ${name}`, `Email: ${email}`, `Course: ${course}`, `Year of study: ${year}`, `Availability: ${availability}`, '',
     'Relevant experience', experience, '', 'Why they want to join', motivation, '',
     'Role task', role.task, '', ...answers.flatMap((answer) => [answer.label, answer.value, '']),
@@ -103,7 +103,7 @@ export async function handleCommitteeApplication(request: Request, config: Deliv
         from: config.fromEmail,
         to: [OWNER_EMAIL],
         reply_to: email,
-        subject: `AI Society committee application: ${role.title} — ${name}`,
+        subject: `Neurotech Society committee application: ${role.title} — ${name}`,
         text: lines.join('\n'),
         ...(upload ? { attachments: [upload] } : {}),
       }),
