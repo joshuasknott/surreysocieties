@@ -53,6 +53,17 @@ export const committeeRoles: CommitteeRole[] = [
       { key: 'postApproach', label: 'Who is the post for, and why did you design it this way?', hint: 'A few sentences are enough.' },
     ],
   },
+  {
+    slug: 'wellbeing-champion', title: 'Wellbeing Champion',
+    summary: 'Help make neurotech welcoming and accessible for everyone.',
+    intro: 'Be a thoughtful voice for inclusion and help members find appropriate support.',
+    responsibilities: ['Promote inclusive society activities', 'Notice barriers to participation and raise them with the committee', 'Signpost members to appropriate University support'],
+    task: 'A new member says they felt left out at a technical workshop. How would you respond and help the next workshop feel more welcoming?',
+    questions: [
+      { key: 'wellbeingResponse', label: 'What would you say or do first?', hint: 'Focus on listening and practical support without sharing private details.' },
+      { key: 'wellbeingImprovement', label: 'What would you change for future workshops?', hint: 'Think about people new to neurotech. You do not need to disclose personal experiences.' },
+    ],
+  },
 ];
 
 export const getCommitteeRole = (slug: string) => committeeRoles.find((role) => role.slug === slug);

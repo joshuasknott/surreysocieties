@@ -66,4 +66,17 @@ describe('Neurotech committee applications', () => {
     expect((await send()).status).toBe(410);
     expect(fetch).not.toHaveBeenCalled();
   });
+
+  it('requires and emails both Wellbeing Champion answers', async () => {
+    const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({ id: 'sent-wellbeing' })));
+    vi.stubGlobal('fetch', fetch);
+    const answers = { wellbeingResponse: 'Listen privately and ask what would help.', wellbeingImprovement: 'Offer a beginner introduction and clearer group activities.' };
+    expect((await send(request('wellbeing-champion', answers))).status).toBe(200);
+    const mail = JSON.parse(fetch.mock.calls[0][1].body);
+    expect(mail.subject).toContain('Wellbeing Champion');
+    expect(mail.text).toContain(answers.wellbeingResponse);
+    expect(mail.text).toContain(answers.wellbeingImprovement);
+    expect((await send(request('wellbeing-champion', { ...answers, wellbeingImprovement: '' }))).status).toBe(400);
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
 });
