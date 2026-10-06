@@ -3,11 +3,11 @@ import { getSecret } from 'astro:env/server';
 export const prerender = false;
 import Layout from '../../layouts/Layout.astro';
 import { committeeRoles } from '../../data/committeeRoles';
-import { committeeApplicationsClosed } from '@surreysocieties/ui/committeeDeadline';
+import { neurotechCommitteeApplicationsClosed } from '@surreysocieties/ui/committeeDeadline';
 import '../../styles/global.css';
 import '../../styles/committeeApplications.css';
 
-const applicationsClosed = committeeApplicationsClosed();
+const applicationsClosed = neurotechCommitteeApplicationsClosed();
 const applicationsOpen = !applicationsClosed && Boolean(getSecret('RESEND_API_KEY') && (getSecret('COMMITTEE_FROM_EMAIL') || getSecret('CONTACT_FROM_EMAIL')));
 ---
 

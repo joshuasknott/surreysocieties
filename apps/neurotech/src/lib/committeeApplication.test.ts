@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { del, get } from '@vercel/blob';
 import { handleCommitteeApplication } from './committeeApplication';
-import { COMMITTEE_APPLICATIONS_CLOSE_AT } from '@surreysocieties/ui/committeeDeadline';
+import { COMMITTEE_APPLICATIONS_CLOSE_AT, NEUROTECH_COMMITTEE_APPLICATIONS_CLOSE_AT, committeeApplicationsClosed } from '@surreysocieties/ui/committeeDeadline';
 
 vi.mock('@vercel/blob', () => ({ get: vi.fn(), del: vi.fn() }));
 
@@ -64,8 +64,17 @@ describe('Neurotech committee applications', () => {
     expect((await send(request(), {})).status).toBe(503);
   });
 
+  it('keeps Neurotech open after AI closes', async () => {
+    vi.setSystemTime(new Date(COMMITTEE_APPLICATIONS_CLOSE_AT));
+    expect(committeeApplicationsClosed()).toBe(true);
+    const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({ id: 'neurotech-still-open' })));
+    vi.stubGlobal('fetch', fetch);
+    expect((await send()).status).toBe(200);
+    expect(fetch).toHaveBeenCalledOnce();
+  });
+
   it('accepts applications right up until the closing time', async () => {
-    vi.setSystemTime(new Date(Date.parse(COMMITTEE_APPLICATIONS_CLOSE_AT) - 1));
+    vi.setSystemTime(new Date(Date.parse(NEUROTECH_COMMITTEE_APPLICATIONS_CLOSE_AT) - 1));
     const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({ id: 'before-close-1' })));
     vi.stubGlobal('fetch', fetch);
     expect((await send()).status).toBe(200);
@@ -73,7 +82,7 @@ describe('Neurotech committee applications', () => {
   });
 
   it('closes applications at the countdown deadline', async () => {
-    vi.setSystemTime(new Date(COMMITTEE_APPLICATIONS_CLOSE_AT));
+    vi.setSystemTime(new Date(NEUROTECH_COMMITTEE_APPLICATIONS_CLOSE_AT));
     const fetch = vi.fn();
     vi.stubGlobal('fetch', fetch);
     expect((await send()).status).toBe(410);
