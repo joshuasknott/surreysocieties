@@ -59,12 +59,13 @@ describe('Neurotech committee applications', () => {
     expect((await send(request(), {})).status).toBe(503);
   });
 
-  it('stops accepting applications when the countdown ends', async () => {
+  it('accepts applications after the old automatic deadline', async () => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date(COMMITTEE_APPLICATIONS_CLOSE_AT));
-    const fetch = vi.fn(); vi.stubGlobal('fetch', fetch);
-    expect((await send()).status).toBe(410);
-    expect(fetch).not.toHaveBeenCalled();
+    vi.setSystemTime(new Date('2026-10-08T12:00:00Z'));
+    const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({ id: 'reopened-1' })));
+    vi.stubGlobal('fetch', fetch);
+    expect((await send()).status).toBe(200);
+    expect(fetch).toHaveBeenCalledOnce();
   });
 
   it('requires and emails both Wellbeing Champion answers', async () => {
