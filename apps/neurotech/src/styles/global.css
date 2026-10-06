@@ -657,7 +657,8 @@ body {
   padding-inline: clamp(16px, 4vw, 64px);
 }
 
-.society-neurotech .community-section {
+.society-neurotech .community-section,
+.society-neurotech .society-footer {
   padding-inline: clamp(16px, 4vw, 64px);
 }
 
