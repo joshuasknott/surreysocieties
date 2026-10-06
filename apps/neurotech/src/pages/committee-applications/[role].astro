@@ -3,13 +3,13 @@ import { getSecret } from 'astro:env/server';
 export const prerender = false;
 import Layout from '../../layouts/Layout.astro';
 import { getCommitteeRole } from '../../data/committeeRoles';
-import { committeeApplicationsClosed } from '@surreysocieties/ui/committeeDeadline';
+import { neurotechCommitteeApplicationsClosed } from '@surreysocieties/ui/committeeDeadline';
 import '../../styles/global.css';
 import '../../styles/committeeApplications.css';
 
 const role = getCommitteeRole(Astro.params.role ?? '');
 if (!role) return Astro.redirect('/committee-applications', 302);
-const applicationsClosed = committeeApplicationsClosed();
+const applicationsClosed = neurotechCommitteeApplicationsClosed();
 const applicationsOpen = !applicationsClosed && Boolean(getSecret('RESEND_API_KEY') && (getSecret('COMMITTEE_FROM_EMAIL') || getSecret('CONTACT_FROM_EMAIL')));
 const social = role.slug === 'social-media-content';
 ---
