@@ -219,7 +219,7 @@
   .business-join__copy { padding: 2rem 1.5rem 0; width: 100%; }
   .business-join h2 { font-size: clamp(2.5rem, 10vw, 3.8rem); max-width: calc(100% - 5rem); }
   .business-join__copy p { font-size: 1rem; margin-top: 0.8rem; max-width: 32ch; }
-  .business-join__pencil { right: -20%; top: 62%; width: 105%; }
+  .business-join__pencil { display: block; margin-top: 1.25rem; position: relative; right: auto; top: auto; transform: translateX(15%); width: 105%; }
   .business-join__button { font-size: 1rem; margin-top: 0.8rem; }
   .business-contact__inner { gap: 1.5rem; grid-template-columns: 1fr; padding: 2rem 1.5rem 1.5rem; }
   .business-contact h2 { font-size: 2rem; }
