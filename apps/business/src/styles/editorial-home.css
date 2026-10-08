@@ -224,7 +224,7 @@
   .business-contact__inner { gap: 1.5rem; grid-template-columns: 1fr; padding: 2rem 1.5rem 1.5rem; }
   .business-contact h2 { font-size: 2rem; }
   .business-contact__email { font-size: 0.95rem; }
-  .business-contact nav { align-items: stretch; flex-direction: column; gap: 0.65rem; max-width: 24rem; }
+  .business-contact nav { align-items: stretch; flex-direction: column; gap: 0.65rem; max-width: min(24rem, calc(100% - 4.5rem)); }
   .business-contact nav .business-social-link { width: 100%; }
   .business-contact__meta { align-items: flex-start; flex-direction: column; padding-right: 4.5rem; }
 }
