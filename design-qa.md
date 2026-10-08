@@ -355,3 +355,13 @@ Local refinement of the existing three sites. Existing imagery, branding and ove
 - `npm run build:all`, `npm run typecheck`, 33 unit tests, nine focused Playwright checks and real local membership endpoint requests all passed. No domain deployment was performed.
 
 final result: passed
+
+## 2026-10-08 Business committee and social refinement
+
+- Scope: approved notebook committee layout, integrated yellow WhatsApp strip, fawn assistant and spacing around the student line/microphone. Add prominent Instagram, LinkedIn and WhatsApp links in the desktop header, join menu and labelled footer controls using their familiar brand colours.
+- Preserve all eleven public committee names and roles, membership destinations, email contact and existing assistant behavior. Shared layout extensions are optional; AI and Neurotech retain their default header, footer and launcher.
+- Phone footer links stack at equal widths; tablet copy sits above the decorative pencil. The notebook has additional clearance from its binding and the fixed assistant.
+- Recovery: the previous preview checkout disappeared after an interrupted run. Restored 24 selected source/artwork files from unpromoted Vercel deployment `dpl_HUQ4f5HzbwUB6gPjv1MFkpAW81tu`, checking each file's SHA-1 against the uploaded file identifier. Reapplied subsequent CSS and test corrections. The root QA history above remains intact.
+- Current checkout: `C:/Users/Joshua Knott/.codex/worktrees/business-committee-refinements/surreysocieties`. Target production domain: `https://surreybusinesssociety.org`.
+- Historical checks before interruption: typecheck passed; 35 of 47 unit tests passed, with 12 failures in unchanged application handlers after their deadline elapsed. Business E2E passed 14 of 17; three failures involved a hidden-image screenshot helper, the expected header link count, and a capture timeout. The helper and link assertions are corrected; current verification is pending. Recent upstream application fixes will be retained before release.
+- The earlier staged Business build reached READY. This does not verify the final CSS revisions or the production domain. Final builds, responsive checks, assistant tests and live domain checks are pending; no final release pass is claimed yet.

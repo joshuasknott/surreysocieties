@@ -1,0 +1,19 @@
+---
+import type { Society } from '@surreysocieties/admin/types';
+import { Image } from 'astro:assets';
+import { ArrowRight } from 'lucide-astro';
+import SocialIcon from '@surreysocieties/ui/components/SocialIcon';
+import pencil from '../assets/generated/business-pencil.webp';
+interface Props { society: Society }
+const { society } = Astro.props;
+---
+<section id="join" class="business-join" aria-labelledby="join-title">
+  <div class="business-join__inner">
+    <div class="business-join__copy">
+      <h2 id="join-title">Come and join us.</h2>
+      <p>Be part of a welcoming community, meet new people and make the most of your time at Surrey.</p>
+      <a class="business-join__button" href={society.socials.whatsapp} target="_blank" rel="noopener noreferrer"><span class="business-join__whatsapp-icon" aria-hidden="true"><SocialIcon name="whatsapp" /></span><span>Join our WhatsApp <ArrowRight size={24} aria-hidden="true" /></span></a>
+    </div>
+    <Image src={pencil} alt="" class="business-join__pencil" widths={[640, 1000, 1600]} sizes="(max-width: 700px) 450px, 60vw" loading="lazy" />
+  </div>
+</section>

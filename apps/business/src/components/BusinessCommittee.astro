@@ -1,0 +1,48 @@
+---
+import type { Society } from '@surreysocieties/admin/types';
+import { Image, getImage } from 'astro:assets';
+import notebook from '../assets/generated/business-committee-notebook.webp';
+import mobileNotebook from '../assets/generated/business-committee-notebook-mobile.webp';
+import marker from '../assets/generated/business-marker.webp';
+interface Props { society: Society; committee?: Array<{ name: string; role?: string }> }
+const { society, committee = [] } = Astro.props;
+const mobileNotebookImage = await getImage({ src: mobileNotebook, width: 768, format: 'webp', quality: 90 });
+const leadership = society.signatories.map(officer => committee.find(member => member.role === officer.role && member.name.trim()) ?? officer);
+const officers = [
+  { name: 'Habiba Atef', role: 'Inclusions Officer' },
+  { name: 'Mariah Cotterell', role: 'Media Secretary' },
+  { name: 'Riha Hussain', role: 'Social Events Lead' },
+  { name: 'Rico Lo', role: 'Professional Events Lead' },
+  { name: 'Mahdi Kamran', role: 'Sponsorships and Finance Officer' },
+  { name: 'Joseph Idicula', role: 'Marketing and Partnerships Officer' },
+  { name: 'Chloe Westbrook', role: 'Communications and Engagement Officer' },
+  { name: 'Meritta Sunny', role: 'First Year Representative' },
+];
+---
+<section id="committee" class="business-committee" aria-labelledby="committee-title">
+  <div class="committee-notebook">
+    <picture class="committee-notebook__art" aria-hidden="true">
+      <source media="(max-width: 700px)" srcset={mobileNotebookImage.src} />
+      <Image src={notebook} alt="" class="committee-notebook__surface" widths={[960, 1440, 1885]} sizes="100vw" loading="lazy" />
+    </picture>
+    <div class="committee-notebook__content">
+      <h2 id="committee-title">Meet the committee.<Image src={marker} alt="" class="committee-title-underline" loading="lazy" /></h2>
+      <ul class="committee-leadership" aria-label="Society leadership">
+        {leadership.map(member => (
+          <li><article class="committee-leader">
+            <h3>{member.name}</h3>
+            <p class="committee-role" style={`--role-marker: url('${marker.src}')`}>{member.role}</p>
+          </article></li>
+        ))}
+      </ul>
+      <ul class="committee-officers" aria-label="Committee officers">
+        {officers.map(member => (
+          <li><article class="committee-officer">
+            <h3>{member.name}</h3>
+            <p>{member.role}</p>
+          </article></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
