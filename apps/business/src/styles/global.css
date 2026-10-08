@@ -144,6 +144,7 @@ summary:focus-visible {
 .business-site .society-join-socials a[href*="instagram.com"] .social-icon { background: radial-gradient(circle at 30% 105%, #feda75 0%, #fa7e1e 25%, #d62976 55%, #962fbf 75%, #4f5bd5 100%); }
 .business-site .society-join-socials a[href*="linkedin.com"] .social-icon { background: #0a66c2; }
 .business-site .society-join-socials a[href*="whatsapp.com"] .social-icon { background: #25d366; }
+.business-site .society-join-socials a[href*="tiktok.com"] .social-icon { background: #000; }
 .business-hero__eyebrow { color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; margin-bottom: 1rem; text-transform: uppercase; }
 .business-hero__eyebrow { color: var(--gold-ink); }
 .business-hero h1,
