@@ -1,8 +1,21 @@
 ---
 import SocietyLayout from '@surreysocieties/ui/components/SocietyLayout';
+import { getSocietyById } from '@surreysocieties/admin/config';
+import BusinessSocialLink from '../components/BusinessSocialLink.astro';
 interface Props { title: string; description: string; ogImage?: string; bodyClass?: string; hideCTA?: boolean; }
 const { title, description, ogImage, bodyClass = 'business-site' } = Astro.props;
+const society = getSocietyById('business')!;
 ---
-<SocietyLayout societyKey="business" title={title} description={description} ogImage={ogImage} bodyClass={bodyClass} extraFontHrefs={["https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@600;700;800&display=swap"]}>
+<SocietyLayout societyKey="business" title={title} description={description} ogImage={ogImage} bodyClass={bodyClass} assistantMascotSrc="/images/business-assistant-fawn.webp" extraFontHrefs={["https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@600;700;800&display=swap"]}>
   <slot />
+  <nav class="business-header-socials" aria-label="Business Society socials" slot="header-actions">
+    <BusinessSocialLink network="instagram" href={society.socials.instagram} compact />
+    <BusinessSocialLink network="linkedin" href={society.socials.linkedin} compact />
+    <BusinessSocialLink network="whatsapp" href={society.socials.whatsapp} compact />
+  </nav>
+  {Astro.slots.has('footer') && <slot name="footer" slot="footer" />}
 </SocietyLayout>
+<style>
+  .business-header-socials { align-items: center; display: flex; gap: 0.35rem; margin-right: 0.6rem; }
+  @media (max-width: 700px) { .business-header-socials { display: none; } }
+</style>

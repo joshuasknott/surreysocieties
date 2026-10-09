@@ -128,7 +128,7 @@ summary:focus-visible {
   z-index: 2;
 }
 .business-hero--page .business-hero__image { object-position: 68% center; }
-.business-hero--home .business-hero__image { object-position: 72% 42%; }
+.business-hero--home .business-hero__image { object-position: center; }
 .business-hero--home::after { content: none; }
 .business-hero__frame {
   display: grid;
@@ -137,21 +137,14 @@ summary:focus-visible {
   min-height: inherit;
   overflow: hidden;
   position: relative;
-  width: min(100%, 90rem);
+  width: 100%;
 }
-.business-hero__frame::after {
-  background:
-    linear-gradient(90deg, rgba(255, 252, 246, 0.98) 0%, rgba(255, 252, 246, 0.88) 30%, rgba(255, 252, 246, 0.3) 49%, rgba(255, 252, 246, 0) 70%),
-    linear-gradient(0deg, rgba(245, 240, 231, 0.58), rgba(245, 240, 231, 0) 32%);
-  content: '';
-  inset: 0;
-  position: absolute;
-  z-index: 1;
-}
-.business-hero--home .business-hero__content {
-  margin-left: clamp(1.25rem, 4vw, 3.25rem);
-}
-.business-hero--home .business-hero__content { padding-top: clamp(5.1rem, 7vw, 6.1rem); }
+
+.business-site .society-join-socials .social-icon { box-sizing: content-box; border-radius: 6px; color: #fff; padding: 7px; }
+.business-site .society-join-socials a[href*="instagram.com"] .social-icon { background: radial-gradient(circle at 30% 105%, #feda75 0%, #fa7e1e 25%, #d62976 55%, #962fbf 75%, #4f5bd5 100%); }
+.business-site .society-join-socials a[href*="linkedin.com"] .social-icon { background: #0a66c2; }
+.business-site .society-join-socials a[href*="whatsapp.com"] .social-icon { background: #25d366; }
+.business-site .society-join-socials a[href*="tiktok.com"] .social-icon { background: #000; }
 .business-hero__eyebrow { color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; margin-bottom: 1rem; text-transform: uppercase; }
 .business-hero__eyebrow { color: var(--gold-ink); }
 .business-hero h1,
@@ -188,17 +181,10 @@ summary:focus-visible {
 
 @media (max-width: 820px) {
   .business-hero { min-height: min(43rem, calc(100svh - 4.75rem)); }
-  .business-hero--home { min-height: min(36rem, calc(100svh - 4.75rem)); }
   .business-hero--page { min-height: min(33rem, calc(100svh - 4.75rem)); }
   .business-hero--page .business-hero__content { padding-top: clamp(5.5rem, 20vw, 8rem); }
   .business-hero__image { inset: 0; height: 100%; object-position: 58% 36%; opacity: 1; }
-  .business-hero--home .business-hero__image { object-position: 64% 34%; }
   .business-hero::after {
-    background:
-      linear-gradient(180deg, rgba(255, 252, 246, 0.78) 0%, rgba(255, 252, 246, 0.78) 43%, rgba(245, 240, 231, 0.94) 100%),
-      linear-gradient(90deg, rgba(255, 252, 246, 0.86) 0%, rgba(255, 252, 246, 0.36) 66%, rgba(255, 252, 246, 0.04) 100%);
-  }
-  .business-hero__frame::after {
     background:
       linear-gradient(180deg, rgba(255, 252, 246, 0.78) 0%, rgba(255, 252, 246, 0.78) 43%, rgba(245, 240, 231, 0.94) 100%),
       linear-gradient(90deg, rgba(255, 252, 246, 0.86) 0%, rgba(255, 252, 246, 0.36) 66%, rgba(255, 252, 246, 0.04) 100%);
@@ -211,7 +197,6 @@ summary:focus-visible {
     text-align: center;
     width: min(100%, 36rem);
   }
-  .business-hero--home .business-hero__content { margin-inline: auto; }
   .business-hero h1 {
     font-size: clamp(2.55rem, 11.2vw, 3.35rem);
     margin-inline: auto;
@@ -242,6 +227,86 @@ summary:focus-visible {
   .business-hero h1 { font-size: clamp(2.45rem, 10.8vw, 3.15rem); max-width: 10.5ch; }
   .business-hero__actions .business-button { width: 100%; }
   .business-title { font-size: clamp(2.1rem, 11vw, 3rem); }
+}
+
+/* The selected editorial treatment is confined to the Business homepage. */
+.business-hero--home {
+  background: var(--ink);
+  border-bottom: 0;
+  color: var(--paper-light);
+  min-height: clamp(40rem, 50.4vw, 59rem);
+}
+.business-hero--home .business-hero__frame::after {
+  background: linear-gradient(90deg, rgba(7, 26, 45, 0.35), rgba(7, 26, 45, 0.12) 48%, transparent 76%);
+  content: '';
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+.business-hero--home .business-hero__content {
+  align-self: end;
+  margin: 0;
+  max-width: none;
+  padding: 12rem clamp(1.5rem, 4.4vw, 6rem) clamp(4rem, 6.7vw, 8rem);
+  text-align: left;
+  width: 100%;
+}
+.business-hero--home h1 {
+  color: var(--paper-light);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3.5rem, 5.75vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  margin: 0;
+  max-width: 16ch;
+}
+.business-hero--home h1 span { display: block; }
+.business-hero--home .business-hero__lede {
+  color: var(--paper-light);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.25rem, 2vw, 2.125rem);
+  line-height: 1.2;
+  margin: clamp(1.5rem, 1.8vw, 2rem) 0 0;
+  max-width: 32rem;
+}
+.business-hero--home .business-hero__actions {
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+  justify-content: flex-start;
+  margin: clamp(1.75rem, 2.3vw, 2.5rem) 0 0;
+  max-width: none;
+}
+.business-hero--home .business-button {
+  background: #e9b744;
+  border-color: #e9b744;
+  border-radius: 5px;
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1rem, 1.4vw, 1.5rem);
+  min-height: clamp(3.5rem, 4.1vw, 4.25rem);
+  min-width: clamp(12rem, 15vw, 16rem);
+  padding: 1rem 1.5rem;
+}
+.business-hero--home .business-button:hover { background: var(--gold-light); border-color: var(--gold-light); }
+.business-hero--home .business-button--outline { background: transparent; border-color: var(--paper-light); color: var(--paper-light); }
+.business-hero--home .business-button--outline:hover { background: var(--paper-light); color: var(--ink); }
+
+@media (max-width: 820px) {
+  .business-hero--home { min-height: 44rem; }
+  .business-hero--home .business-hero__image { object-position: 63% center; }
+  .business-hero--home .business-hero__frame::after {
+    background: linear-gradient(180deg, transparent 12%, rgba(7, 26, 45, 0.48) 42%, rgba(7, 26, 45, 0.96) 100%);
+  }
+  .business-hero--home .business-hero__content { padding: 15rem 1.5rem 3rem; }
+  .business-hero--home h1 { font-size: clamp(2.5rem, 7.8vw, 3.75rem); max-width: 16ch; }
+  .business-hero--home .business-hero__lede { font-size: clamp(1.2rem, 3.3vw, 1.65rem); }
+}
+
+@media (max-width: 500px) {
+  .business-hero--home { min-height: min(43rem, calc(100svh - 4.8125rem)); }
+  .business-hero--home .business-hero__content { padding-block: 11rem 5.5rem; }
+  .business-hero--home .business-hero__actions { gap: 0.875rem; }
+  .business-hero--home .business-button { min-height: 3.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

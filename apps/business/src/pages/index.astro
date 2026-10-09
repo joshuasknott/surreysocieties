@@ -5,25 +5,23 @@ import { getSocietyById } from '@surreysocieties/admin/config';
 import { queryPublicConvex } from '@surreysocieties/admin';
 import { api } from '../../../../convex/_generated/api.js';
 import { Image } from 'astro:assets';
-import { BriefcaseBusiness, ChartNoAxesColumnIncreasing, Rocket, UsersRound } from 'lucide-astro';
+import { ArrowRight } from 'lucide-astro';
 import Layout from '../layouts/Layout.astro';
-import SocietyCommunity from '@surreysocieties/ui/components/SocietyCommunity';
-import heroImage from '../assets/generated/business-campus-ledger-hero.optimized.webp';
+import BusinessCommittee from '../components/BusinessCommittee.astro';
+import BusinessEditorial from '../components/BusinessEditorial.astro';
+import BusinessJoin from '../components/BusinessJoin.astro';
+import BusinessFooter from '../components/BusinessFooter.astro';
+import heroImage from '../assets/generated/business-editorial-hero.webp';
 import '../styles/global.css';
+import '../styles/editorial-home.css';
 
 const society = getSocietyById('business')!;
 Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=3600");
 const committee = await queryPublicConvex(api.committee.listActive, { societySlug: 'business' }, []);
 
-const focusAreas = [
-  { title: 'Careers', copy: 'Hear from people in industry and get practical advice on applications and interviews.', Icon: BriefcaseBusiness },
-  { title: 'Enterprise', copy: 'Share a business idea, learn how to test it and find other students to build it with.', Icon: Rocket },
-  { title: 'Networking', copy: 'Meet students across Surrey, alongside alumni, employers and guest speakers.', Icon: UsersRound },
-  { title: 'Skills', copy: 'Practise presenting, work through business challenges and learn from each other.', Icon: ChartNoAxesColumnIncreasing },
-];
 ---
 
-<Layout title="Home" description="Surrey Business Society connects University of Surrey students with business events, workshops, networking, enterprise support, and practical career skills.">
+<Layout bodyClass="business-site business-home" title="Home" description="Surrey Business Society connects University of Surrey students with business events, workshops, networking, enterprise support, and practical career skills.">
   <section class="business-hero business-hero--home business-hero--campus" aria-labelledby="business-hero-title">
     <div class="business-hero__frame">
       <Image
@@ -34,53 +32,23 @@ const focusAreas = [
         decoding="async"
         fetchpriority="high"
         widths={[640, 960, 1280, 1600, 1920]}
-        sizes="(min-width: 1440px) 1440px, 100vw"
+        sizes="(max-width: 820px) 1440px, 100vw"
         format="webp"
-        quality={70}
+        quality={85}
       />
       <div class="business-shell business-hero__content">
-        <h1 id="business-hero-title" class="business-reveal">Meet Surrey’s business community.</h1>
-        <p class="business-hero__lede business-reveal">Meet people, explore careers and try your hand at business. Open to every Surrey student.</p>
+        <h1 id="business-hero-title"><span>Meet Surrey’s</span><span>business</span><span>community.</span></h1>
+        <p class="business-hero__lede business-reveal">Talks, workshops and socials.<br />Open to every Surrey student.</p>
         <div class="business-hero__actions business-reveal" data-hero-actions>
-          <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society <span aria-hidden="true">↗</span></a>
-          <a href={society.socials.linktree} target="_blank" rel="noopener noreferrer" class="business-button business-button--outline">Linktree <span aria-hidden="true">↗</span></a>
+          <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer" class="business-button">Join the society <ArrowRight size={20} aria-hidden="true" /></a>
+          <a href="#activities" class="business-button business-button--outline">Explore events</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="business-section business-section--paper" aria-labelledby="why-title">
-    <div class="business-shell">
-      <div class="business-intro business-reveal">
-        <div>
-          <h2 id="why-title" class="business-intro__lead">Business is for everyone.</h2>
-        </div>
-        <div class="business-intro__body business-copy">
-          <p>We bring students together to explore business, careers and entrepreneurship through talks, workshops and socials.</p>
-          <p>You don’t need to study business or have a startup idea. Come along to learn something, ask questions and meet people.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="activities" class="business-section business-section--ink" aria-labelledby="focus-title">
-    <div class="business-shell">
-      <div class="business-section__heading business-reveal">
-        <div>
-          <h2 id="focus-title" class="business-title">What we get up to.</h2>
-        </div>
-      </div>
-      <div class="business-focus-grid business-reveal">
-        {focusAreas.map(({ title, copy, Icon }) => (
-          <article class="business-line">
-            <Icon class="business-line__icon" aria-hidden="true" />
-            <h3>{title}</h3>
-            <p>{copy}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <SocietyCommunity society={society} committee={committee} />
+  <BusinessEditorial society={society} />
+  <BusinessCommittee society={society} committee={committee} />
+  <BusinessJoin society={society} />
+  <BusinessFooter slot="footer" society={society} />
 </Layout>

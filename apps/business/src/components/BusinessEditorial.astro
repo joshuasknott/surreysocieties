@@ -1,0 +1,46 @@
+---
+import type { Society } from '@surreysocieties/admin/types';
+import { Image } from 'astro:assets';
+import { ArrowRight, ArrowUpRight } from 'lucide-astro';
+import microphone from '../assets/generated/business-microphone-v2.webp';
+import notebook from '../assets/generated/business-ideas-notebook.webp';
+import marker from '../assets/generated/business-marker.webp';
+import conversationNote from '../assets/generated/business-conversation-note.webp';
+import studentNote from '../assets/generated/business-student-note.webp';
+interface Props { society: Society }
+const { society } = Astro.props;
+const activities = [
+  { id: 'careers', title: 'Careers', copy: 'Hear from people in industry.' },
+  { id: 'enterprise', title: 'Enterprise', copy: 'Put your ideas into practice.' },
+  { id: 'networking', title: 'Networking', copy: 'Meet people beyond your course.' },
+  { id: 'skills', title: 'Skills', copy: 'Build confidence by doing.' },
+];
+---
+<section id="about" class="business-editorial" aria-labelledby="everyone-title">
+  <div class="editorial-canvas">
+    <div class="editorial-intro">
+      <h2 id="everyone-title"><span>Business is</span><span><span class="editorial-outline">for</span> <span class="editorial-gold">everyone.<Image src={marker} alt="" class="editorial-underline" loading="lazy" /></span></span></h2>
+      <p>Open to every Surrey student.</p>
+    </div>
+    <div class="editorial-objects" aria-hidden="true">
+      <Image src={microphone} alt="" class="editorial-microphone" widths={[640, 1000, 1561]} sizes="(max-width: 700px) 700px, 100vw" loading="lazy" />
+      <Image src={notebook} alt="" class="editorial-notebook" widths={[320, 650]} sizes="(max-width: 700px) 240px, 40vw" loading="lazy" />
+    </div>
+    <div id="activities" class="editorial-anchor" aria-hidden="true"></div>
+    <div class="editorial-activities" aria-labelledby="activities-title">
+      <h2 id="activities-title" class="business-visually-hidden">Events and opportunities</h2>
+      {activities.map(activity => (
+        <article class:list={['editorial-activity', `editorial-activity--${activity.id}`]}>
+          <h3>{activity.title}</h3>
+          <p>{activity.copy}</p>
+          <a class="editorial-activity__link" href={society.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${activity.title} events on Instagram (opens in a new tab)`}><ArrowRight size={42} strokeWidth={1.8} aria-hidden="true" /></a>
+        </article>
+      ))}
+    </div>
+    <div class="editorial-events">
+      <a class="business-button" href={society.socials.instagram} target="_blank" rel="noopener noreferrer">Explore events <ArrowUpRight size={24} aria-hidden="true" /></a>
+      <Image src={conversationNote} alt="" class="editorial-conversation-note" loading="lazy" />
+    </div>
+    <Image src={studentNote} alt="" class="editorial-student-note" loading="lazy" />
+  </div>
+</section>

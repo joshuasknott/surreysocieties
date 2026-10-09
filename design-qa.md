@@ -355,3 +355,19 @@ Local refinement of the existing three sites. Existing imagery, branding and ove
 - `npm run build:all`, `npm run typecheck`, 33 unit tests, nine focused Playwright checks and real local membership endpoint requests all passed. No domain deployment was performed.
 
 final result: passed
+
+## 2026-10-08 Business committee and social refinement
+
+- Result: released and verified at `https://surreybusinesssociety.org`. Runtime source commit `132154e9008053e10f0e7fb61f14c01b8d14f463`; production deployment `dpl_5E2n58sBhVSJRLnYEwnNnno32VPL` in the `surrey-business-society` project. Separate PR: https://github.com/joshuasknott/surreysocieties/pull/23.
+- Layout: roomier notebook committee, integrated yellow WhatsApp strip, fawn assistant and clear student-line/microphone spacing. All eleven public names and roles, membership destinations and email contact remain present. Shared layout extensions are optional; AI and Neurotech retain their default header, footer and launcher.
+- Socials: prominent Instagram gradient, LinkedIn blue and WhatsApp green icons in the desktop header, join menu and labelled footer. TikTok has a visible black tile in the join menu. Phone footer buttons align at equal widths with a gutter beside the mascot; click targets measure 52px high.
+- Responsive repairs: increased notebook gutters from the binding and desktop mascot; tablet join copy sits above the pencil. Phone pencil artwork now follows the copy in normal document flow, with an E2E regression assertion at 320/390px. The narrow Networking heading fits both Windows and Linux fallback fonts.
+- Builds/checks ran in Vercel's build environment to avoid competing local heavy workloads. `npm run build:all` passed at `7e4c6a2`; AI/Neurotech runtime sources did not change afterward. `npm run typecheck` and all 50 unit tests passed at `063d7b7`. Final Business build and all 17 Business E2E checks passed at `132154e` using one worker and no retries.
+- E2E covers section anchors, roster/artwork at 320/390/768/1440px, overflow, branded social controls, contact email, keyboard menu/skip link, reduced motion, assistant open/close/loading/error/retry/reset/reply links, public metadata and unavailable admin routes. Assistant API reply states are mocked; provider response quality was not assessed.
+- Live verification on 8 October 2026: apex homepage HTTP 200 with Business title/content and correct social/email destinations; www HTTP 308 to the apex; mascot HTTP 200 and SHA-1 matching the approved asset. Live browser checks at 390px and 1024px confirmed clear copy/action/pencil spacing, loaded artwork, all eleven names without overflow, working assistant and branded menu controls. No console errors were recorded.
+- Live screenshots: `C:/Users/Joshua Knott/Projects/surreysocieties/output/business-recovery-2026-10-08/business-live-desktop.jpg` (1024x900 CSS viewport) and `business-live-phone.jpg` (390x844 CSS viewport). HTTP evidence is in the same folder's `live-http-check.json`. Browser viewport override was reset after inspection.
+- Installation limitation: a clean `npm ci` exposed a pre-existing missing optional `@emnapi/runtime` lock entry. Verification used the project's configured `npm install`. Temporary remote browser verification added missing Linux libraries; project runtime/dependency manifests were not changed.
+- Recovery provenance: the previous preview checkout disappeared after an interrupted run. Restored 24 selected source/artwork files from unpromoted deployment `dpl_HUQ4f5HzbwUB6gPjv1MFkpAW81tu`, verifying each uploaded SHA-1. Retained current upstream application fixes and the root QA history above. Earlier interrupted-run results are superseded by the release checks recorded here.
+- Checkout: `C:/Users/Joshua Knott/.codex/worktrees/business-committee-refinements/surreysocieties`; branch `codex/business-committee-refinements`. The primary checkout's unrelated work remains preserved.
+
+Business release result: passed.

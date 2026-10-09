@@ -1,0 +1,30 @@
+---
+import SocialIcon from '@surreysocieties/ui/components/SocialIcon';
+import { ArrowUpRight } from 'lucide-astro';
+interface Props {
+  network: 'instagram' | 'linkedin' | 'whatsapp';
+  href: string;
+  compact?: boolean;
+}
+const { network, href, compact = false } = Astro.props;
+const labels = { instagram: 'Instagram', linkedin: 'LinkedIn', whatsapp: 'WhatsApp' };
+const label = labels[network];
+---
+<a class:list={['business-social-link', `business-social-link--${network}`, { 'business-social-link--compact': compact }]} href={href} target="_blank" rel="noopener noreferrer" aria-label={compact ? `${label} (opens in a new tab)` : undefined}>
+  <span class="business-social-link__icon" aria-hidden="true"><SocialIcon name={network} /></span>
+  {!compact && <><span>{label}</span><ArrowUpRight class="business-social-link__arrow" size={17} aria-hidden="true" /></>}
+</a>
+<style>
+  .business-social-link { align-items: center; background: #fffdf9; border: 1px solid #d7dce1; border-radius: 7px; color: #061b35; display: inline-flex; font-size: 1rem; font-weight: 700; gap: 0.7rem; min-height: 52px; padding: 0.45rem 0.8rem 0.45rem 0.45rem; text-decoration: none; transition: border-color 160ms ease, transform 160ms ease; }
+  .business-social-link__icon { align-items: center; border-radius: 5px; color: #fff; display: inline-flex; flex: 0 0 36px; height: 36px; justify-content: center; width: 36px; }
+  .business-social-link__icon :global(.social-icon) { height: 24px; width: 24px; flex-basis: 24px; }
+  .business-social-link--instagram .business-social-link__icon { background: radial-gradient(circle at 30% 105%, #feda75 0%, #fa7e1e 25%, #d62976 55%, #962fbf 75%, #4f5bd5 100%); }
+  .business-social-link--linkedin .business-social-link__icon { background: #0a66c2; }
+  .business-social-link--whatsapp .business-social-link__icon { background: #25d366; }
+  .business-social-link__arrow { margin-left: auto; opacity: 0.7; }
+  .business-social-link:hover { border-color: #061b35; color: #061b35; transform: translateY(-2px); }
+  .business-social-link:focus-visible { outline: 3px solid #061b35; outline-offset: 4px; }
+  .business-social-link--compact { background: transparent; border: 0; min-height: 44px; min-width: 44px; padding: 4px; }
+  .business-social-link--compact:focus-visible { outline-color: #f5c950; }
+  @media (prefers-reduced-motion: reduce) { .business-social-link { transition: none; } }
+</style>

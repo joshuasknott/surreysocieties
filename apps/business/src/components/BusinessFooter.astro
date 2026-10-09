@@ -1,0 +1,27 @@
+---
+import type { Society } from '@surreysocieties/admin/types';
+import { Mail, ArrowUpRight } from 'lucide-astro';
+import BusinessSocialLink from './BusinessSocialLink.astro';
+interface Props { society: Society }
+const { society } = Astro.props;
+---
+<footer id="contact" class="business-contact" aria-labelledby="contact-title">
+  <div class="business-contact__inner">
+    <div class="business-contact__intro">
+      <h2 id="contact-title">Get in touch.</h2>
+      <a class="business-contact__email" href={`mailto:${society.contactEmail}`}><Mail size={23} aria-hidden="true" /><span>{society.contactEmail}</span></a>
+    </div>
+    <div class="business-contact__socials">
+      <p>Follow along</p>
+      <nav aria-label="Business Society links">
+        <BusinessSocialLink network="instagram" href={society.socials.instagram} />
+        <BusinessSocialLink network="linkedin" href={society.socials.linkedin} />
+        <BusinessSocialLink network="whatsapp" href={society.socials.whatsapp} />
+      </nav>
+    </div>
+    <div class="business-contact__meta">
+      <a href={society.studentsUnionUrl} target="_blank" rel="noopener noreferrer">Surrey Students’ Union <ArrowUpRight size={16} aria-hidden="true" /></a>
+      <p>© {new Date().getFullYear()} Business Society</p>
+    </div>
+  </div>
+</footer>
